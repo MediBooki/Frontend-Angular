@@ -24,7 +24,6 @@ import { MedicineComponent } from 'src/app/pages/pharmacy/medicine/medicine.comp
 
 
 
-
 @NgModule({
     declarations: [
         SpinnerComponent,
