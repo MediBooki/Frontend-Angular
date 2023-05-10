@@ -1,0 +1,42 @@
+<div class="medicine-component" [dir]=" 'dir' | translate "  [lang]="lang">
+    <div class="medicine">
+        <div class=" h-100 rounded">
+            <div class="medicine-img overflow-hidden rounded position-relative">
+                <img class="img-fluid h-100 w-100" [src]="medicine.photo" alt="Medicine image" *ngIf="medicine.photo">
+                <img class="img-fluid h-100 w-100 default-img" [src]="defaultMedicineImg" alt="Medicine image" *ngIf="!medicine.photo">
+                <div class="img-layer w-100 rounded" >
+                    <div class="position-relative w-100 h-100" >
+                        <div class="favorite-container" [ngClass]="rtlDir? 'favorite-container-arabic' : 'favorite-container-english'" *ngIf="favoriteLoaded">
+                            <span class="my-1" [placement]="rtlDir?'right':'left'" [ngbTooltip]="favoriteAdded? rtlDir?'تمت الاضافة الى المفضلة بنجاح':'Successfully Added to Favorite':rtlDir?'أضف الى المفضلة':'Add to Favorite'" tooltipClass="tooltip">
+                                <i class="fa-solid   fs-4" [ngClass]="favoriteAdded? ['fa-heart-circle-check','favorite-container-active'] : ['fa-heart-circle-plus','favorite-container-not-active']" (click)="addRemoveFavorite($event)"></i>
+                            </span>
+                        </div>
+                        <a [routerLink]="['/pharmacy/medicineDetails' , medicine.id]" class="w-100 h-100 d-flex"></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="p-2">
+                <span class="mt-2 mb-0 medicine-name"><i class="fa-solid fa-pills me-2"></i>{{medicine.name}}</span>
+                <h6 class="text-muted"><i class="fa-solid fa-pen-to-square m-2"></i>{{medicine.category.name}}</h6>
+                <h5 class="medicine-price mt-1 mb-3 text-danger ms-1 fw-bold">{{medicine.price}} {{"SharedData.Currency" | translate}} <span class="text-muted">{{"SingleMedicine.PricePer" | translate}}</span></h5>
+                <div class="text-white w-75 m-auto d-flex justify-content-center select-btn my-3" [ngClass]="rtlDir? 'select-btn-arabic' : 'select-btn-english'">
+                    <!-- <div class="select-container">
+                        <select #selection class="h-100" [value]="amount">
+                            <option selected value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                        </select>
+                    </div> -->
+                    <button [routerLink]="['/pharmacy/medicineDetails' , medicine.id]" class="btn" type="button"><i class="fa-solid fa-circle-info me-2"></i>{{"SingleMedicine.showDetails" | translate}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,863 @@
+<div class="home-component" [dir]=" 'dir' | translate " [lang]="lang">
+
+  <!-- =============================================================================================================== -->
+
+  <!-- First Section Main -->
+
+  <section class=" main-section position-relative " #mainSection >
+    <form (ngSubmit)="bookDoctor(doctors)"> <!--  -->
+      <div class="big-rounded main-search position-absolute p-2 d-flex justify-content-between align-items-center text-white">
+
+        <div class="mx-3 my-2 m d-flex align-items-center w-100 d-flex justify-content-center">
+          <i class="fa-solid fa-suitcase-medical me-2"></i>
+
+          <select class="p-2 text-white specialization-main-select2" name="specializations">
+            <option [selected]="this.filterForm.value['sections'].length == 0" disabled ></option>
+            <!-- <option value="all" [selected]="this.filterForm.value['sections'].length == 0">{{rtlDir?"كل التخصصات":"All Specializations"}}</option> -->
+            <option *ngFor="let specialization of allSpecializations" [value]="specialization.id" [selected]="this.filterForm.value['sections'].includes(''+specialization.id+'')">{{specialization.name}}</option>
+
+            <!-- <option required value="Neurology">Neurology</option>
+            <option required value="Cardiology">Cardiology</option>
+            <option required value="Dentistry">Dentistry</option>
+            <option required value="Ophthalmology">Ophthalmology</option> -->
+          </select>
+
+        </div>
+        <div class="mx-3 my-2 d-flex align-items-center w-100 d-flex justify-content-center">
+          <i class="fa-solid fa-user-doctor me-2"></i>
+
+          <select #doctors class="p-2 text-white doctors-main-select2" name="doctors">
+            <option [selected]="selectedDoctor == ''" disabled ></option>
+            <option *ngFor="let doctor of allDoctors" [value]="doctor.id" [selected]="selectedDoctor == doctor.id">{{doctor.name}}</option>
+            <!-- <option required value="Doctor1">Doctor1</option>
+            <option required value="Doctor2">Doctor2</option>
+            <option required value="Doctor3">Doctor3</option>
+            <option required value="Doctor4">Doctor4</option> -->
+
+
+            <!-- <option [selected]="name == ''" disabled></option>
+            <option *ngFor="let specialization of allSpecializations" [selected]="name.toLowerCase() == specialization.name.toLowerCase()" [value]="specialization.name.toLowerCase()">{{specialization.name}}</option> -->
+          </select>
+
+        </div>
+        <div class="mx-3 my-2 w-100 d-flex justify-content-center">
+          <button type="submit" class="main-btn btn px-4 py-2 border-0">{{'SharedData.searchBtn' | translate}}</button>
+        </div>
+
+      </div>
+    </form>
+
+    <div class="position-relative">
+      <owl-carousel-o [options]="mainCarousel" class="main-carousel" [ngClass]="rtlDir? 'main-carousel-arabic' : 'main-carousel-english'">
+        <ng-template carouselSlide>
+          <div class="item">
+            <a href="#">
+              <img class="img-fluid" src="../../../assets/images/home/main-carousel/carousels2.jpg" alt="">
+            </a>
+          </div>
+        </ng-template>
+        <ng-template carouselSlide>
+          <div class="item">
+            <a href="#">
+              <img class="img-fluid" src="../../../assets/images/home/main-carousel/carousels4.jpg" alt="">
+            </a>
+          </div>
+        </ng-template>
+        <ng-template carouselSlide>
+          <div class="item">
+            <a href="#">
+              <img class="img-fluid" src="../../../assets/images/home/main-carousel/carousels6.jpg" alt="">
+            </a>
+          </div>
+        </ng-template>
+        <ng-template carouselSlide>
+          <div class="item">
+            <a href="#">
+              <img class="img-fluid" src="../../../assets/images/home/main-carousel/carousels8.jpg" alt="">
+            </a>
+          </div>
+        </ng-template>
+      </owl-carousel-o>
+
+    </div>
+
+  </section>
+
+  <!-- End First Section -->
+
+  <!-- =============================================================================================================== -->
+
+  <!-- Second Section Specialization -->
+
+  <section class="py-5 specialization-section">
+    <div class="container">
+      <div class="d-flex justify-content-between align-items-center title">
+        <h2  [class.arabic-font] = "rtlDir" class="fw-bold">{{'HomePage.SpecialitiesSection' | translate}}</h2>
+        <a routerLink="/specializations" class="text-decoration-none">
+          <h5 class="fw-bold" [class.arabic-font] = "rtlDir" [ngClass]="rtlDir? 'show-all-arrow-arabic' : 'show-all-arrow-english'">{{'HomePage.ShowAll' | translate}}</h5>
+        </a>
+      </div>
+
+      <app-carousel [carouselClass]="'specialization-section'" [carouselType]="specializationCarousel" [carouselItems]="latestSpecializations"></app-carousel>
+
+      <!-- <owl-carousel-o [options]="specializationCarousel" class="specialization-carousel" [ngClass]="rtlDir? 'specialization-carousel-arabic' : 'specialization-carousel-english'">
+        <ng-template carouselSlide *ngFor="let specialization of latestSpecializations">
+                <div class="specialization">
+                  <div class=" h-100 rounded">
+                    <div class="overflow-hidden">
+                      <img class="img-fluid rounded" [src]="specialization.photo" alt="">
+                    </div>
+                    <div class="specialization-info p-3">
+                      <h4 class="my-2 fw-bold">{{specialization.name}}</h4>
+                      <p class="card-text text-muted">{{specialization.description}}</p>
+                    </div>
+                  </div>
+                </div>
+        </ng-template>   -->
+
+
+
+        <!-- <ng-template carouselSlide>
+
+                <div class="specialization">
+                  <div class=" h-100 rounded">
+                    <div class="overflow-hidden">
+                      <img class="img-fluid rounded" src="../../../assets/images/home/Cardiology.jpg" alt="">
+                    </div>
+                    <div class="specialization-info p-3">
+                      <h4 class="my-2 fw-bold">Cardiology</h4>
+                      <p class="card-text text-muted">Introduction. Cardiology is the study heart conditions. The Consultant with whom you have an appointment is a specialist.</p>
+                    </div>
+                  </div>
+                </div>
+
+        </ng-template>
+        <ng-template carouselSlide>
+                <div class="specialization">
+                  <div class=" h-100 rounded">
+                    <div class="overflow-hidden">
+                      <img class="img-fluid rounded" src="../../../assets/images/home/Dentistry.jpg" alt="">
+                    </div>
+                    <div class="specialization-info p-3">
+                      <h4 class="my-2 fw-bold">Dentistry</h4>
+                      <p class="card-text text-muted">Dentistry, also known as dental medicine is the branch of medicine focused on the teeth, gums, and mouth.</p>
+                    </div>
+                  </div>
+                </div>
+        </ng-template>
+        <ng-template carouselSlide>
+                <div class="specialization">
+                  <div class=" h-100 rounded">
+                    <div class="overflow-hidden">
+                      <img class="img-fluid rounded" src="../../../assets/images/home/Ophthalmology.jpg" alt="">
+                    </div>
+                    <div class="specialization-info p-3">
+                      <h4 class="my-2 fw-bold">Ophthalmology</h4>
+                      <p class="card-text text-muted">Ophthalmology is a surgical subspecialty within medicine that deals with the diagnosis and treatment of eye disorders.</p>
+                    </div>
+                  </div>
+                </div>
+        </ng-template>
+        <ng-template carouselSlide>
+                <div class="specialization">
+                  <div class=" h-100 rounded">
+                    <div class="overflow-hidden">
+                      <img class="img-fluid rounded" src="../../../assets/images/home/Orthopedics.jpg" alt="">
+                    </div>
+                    <div class="specialization-info p-3">
+                      <h4 class="my-2 fw-bold">Orthopedics</h4>
+                      <p class="card-text text-muted">Orthopedics is a medical specialty that focuses on the diagnosis and treatment of patients with skeletal deformities</p>
+                    </div>
+                  </div>
+                </div>
+        </ng-template> -->
+      <!-- </owl-carousel-o> -->
+
+
+
+    </div>
+  </section>
+
+  <!-- End Second Section -->
+
+  <!-- =============================================================================================================== -->
+
+  <!-- Third Section why-medibooki -->
+
+  <section class="py-5 why-section">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 why-content d-flex align-items-center text-white my-2">
+          <div>
+            <h2 class="why-title mb-5">{{'HomePage.WhySection' | translate}}</h2>
+            <h3><i class="fa-solid fa-lungs-virus me-3"></i>{{'HomePage.why1Title' | translate}}</h3>
+            <h3><i class="fa-solid fa-list-check me-3"></i>{{'HomePage.why2Title' | translate}}</h3>
+            <h3><i class="fa-solid fa-ticket me-3"></i>{{'HomePage.why3Title' | translate}}</h3>
+            <h3><i class="fa-brands fa-bots me-3"></i>{{'HomePage.why4Title' | translate}}</h3>
+          </div>
+
+        </div>
+        <div class="col-md-6 why-img d-flex justify-content-end">
+          <img class="img-fluid" src="../../../assets/images/home/doctor_consultation_02.png" alt="">
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- End Third Section -->
+
+  <!-- =============================================================================================================== -->
+
+  <!-- Fourth Section Doctors -->
+
+  <section class="py-5 doctors-section">
+    <div class="container">
+      <div class="d-flex justify-content-between align-items-center title">
+        <h2 class="fw-bold" [class.arabic-font] = "rtlDir">{{'HomePage.DoctorsSection' | translate}}</h2>
+        <a routerLink="/doctors" class="text-decoration-none">
+          <h5 class="fw-bold" [class.arabic-font] = "rtlDir" [ngClass]="rtlDir? 'show-all-arrow-arabic' : 'show-all-arrow-english'">{{'HomePage.ShowAll' | translate}}</h5>
+        </a>
+      </div>
+
+      <app-carousel [carouselClass]="'doctors-section'" [carouselType]="doctorsCarousel" [carouselItems]="distinguishedDoctors"></app-carousel>
+
+      <!-- <owl-carousel-o [options]="doctorsCarousel" class="doctors-carousel">
+        <ng-template carouselSlide>
+          <div class="doctor pt-0 mb-3 mt-0">
+            <div class="h-100 rounded">
+              <div class="doctor-info ">
+                <div class="d-flex justify-content-center">
+                  <div class="doctor-img">
+                    <span>
+                      <img class="img-fluid" src="../../../assets/images/home/Doctor1.jpg" alt="">
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div class="doctor-layer pb-3">
+                <span class="d-flex justify-content-center my-3">
+                  <h3 class="mt-3 text-center">Doctor Name </h3>
+                </span>
+                <h5 class=" px-3"><i class="fa-solid fa-suitcase-medical me-1 fs-6"></i>Doctor Specialization</h5>
+                <h6 class="text-muted  px-3"><i class="fa-solid fa-notes-medical me-1 fs-6"></i>Doctor Description</h6>
+
+
+                <div class="doctor-ratings text-muted my-3 d-flex justify-content-around align-items-center py-2">
+                  <p><i class="fa-solid fa-eye me-1"></i>15151</p>
+                  <p><i class="fa-solid fa-star text-warning me-1"></i>5</p>
+                </div>
+
+                <div class="doctor-job-info px-3">
+                  <span>
+                    <h5 class="fw-bold"><i class="fa-solid fa-square-h me-1 fs-6"></i>Misr Eldawly Hospital</h5>
+                  </span>
+                  <p class="text-muted"><i class="fa-solid fa-location-dot me-1 fs-6"></i>hospital location</p>
+                </div>
+
+                <div class="doctor-booking-info my-3 d-flex justify-content-around align-items-center py-2 text-center">
+                  <div>
+                    <i class="fa-solid fa-phone fs-4 mb-2"></i>
+                    <p class="text-muted">Book by Phone</p>
+                    <p>01234567899</p>
+                  </div>
+                  <div>
+                    <i class="fa-solid fa-dollar-sign fs-3 mb-2 fw-bold"></i>
+                    <p class="text-muted">Booking Price</p>
+                    <p>500 Dollar</p>
+                  </div>
+                </div>
+                <div class="text-center">
+                  <button class="btn px-5 book-btn big-rounded fs-5"> Book Now</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+        <ng-template carouselSlide>
+          <div class="doctor pt-0 mb-3 mt-0">
+            <div class="h-100 rounded">
+              <div class="doctor-info ">
+                <div class="d-flex justify-content-center">
+                  <div class="doctor-img">
+                    <span>
+                      <img class="img-fluid" src="../../../assets/images/home/Doctor1.jpg" alt="">
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div class="doctor-layer pb-3">
+                <span class="d-flex justify-content-center my-3">
+                  <h3 class="mt-3 text-center">Doctor Name </h3>
+                </span>
+                <h5 class=" px-3"><i class="fa-solid fa-suitcase-medical me-1 fs-6"></i>Doctor Specialization</h5>
+                <h6 class="text-muted  px-3"><i class="fa-solid fa-notes-medical me-1 fs-6"></i>Doctor Description</h6>
+
+
+                <div class="doctor-ratings text-muted my-3 d-flex justify-content-around align-items-center py-2">
+                  <p><i class="fa-solid fa-eye me-1"></i>15151</p>
+                  <p><i class="fa-solid fa-star text-warning me-1"></i>5</p>
+                </div>
+
+                <div class="doctor-job-info px-3">
+                  <span>
+                    <h5 class="fw-bold"><i class="fa-solid fa-square-h me-1 fs-6"></i>Misr Eldawly Hospital</h5>
+                  </span>
+                  <p class="text-muted"><i class="fa-solid fa-location-dot me-1 fs-6"></i>hospital location</p>
+                </div>
+
+                <div class="doctor-booking-info my-3 d-flex justify-content-around align-items-center py-2 text-center">
+                  <div>
+                    <i class="fa-solid fa-phone fs-4 mb-2"></i>
+                    <p class="text-muted">Book by Phone</p>
+                    <p>01234567899</p>
+                  </div>
+                  <div>
+                    <i class="fa-solid fa-dollar-sign fs-3 mb-2 fw-bold"></i>
+                    <p class="text-muted">Booking Price</p>
+                    <p>500 Dollar</p>
+                  </div>
+                </div>
+                <div class="text-center">
+                  <button class="btn px-5 book-btn big-rounded fs-5"> Book Now</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+        <ng-template carouselSlide>
+          <div class="doctor pt-0 mb-3 mt-0">
+            <div class="h-100 rounded">
+              <div class="doctor-info ">
+                <div class="d-flex justify-content-center">
+                  <div class="doctor-img">
+                    <span>
+                      <img class="img-fluid" src="../../../assets/images/home/Doctor1.jpg" alt="">
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div class="doctor-layer pb-3">
+                <span class="d-flex justify-content-center my-3">
+                  <h3 class="mt-3 text-center">Doctor Name </h3>
+                </span>
+                <h5 class=" px-3"><i class="fa-solid fa-suitcase-medical me-1 fs-6"></i>Doctor Specialization</h5>
+                <h6 class="text-muted  px-3"><i class="fa-solid fa-notes-medical me-1 fs-6"></i>Doctor Description</h6>
+
+
+                <div class="doctor-ratings text-muted my-3 d-flex justify-content-around align-items-center py-2">
+                  <p><i class="fa-solid fa-eye me-1"></i>15151</p>
+                  <p><i class="fa-solid fa-star text-warning me-1"></i>5</p>
+                </div>
+
+                <div class="doctor-job-info px-3">
+                  <span>
+                    <h5 class="fw-bold"><i class="fa-solid fa-square-h me-1 fs-6"></i>Misr Eldawly Hospital</h5>
+                  </span>
+                  <p class="text-muted"><i class="fa-solid fa-location-dot me-1 fs-6"></i>hospital location</p>
+                </div>
+
+                <div class="doctor-booking-info my-3 d-flex justify-content-around align-items-center py-2 text-center">
+                  <div>
+                    <i class="fa-solid fa-phone fs-4 mb-2"></i>
+                    <p class="text-muted">Book by Phone</p>
+                    <p>01234567899</p>
+                  </div>
+                  <div>
+                    <i class="fa-solid fa-dollar-sign fs-3 mb-2 fw-bold"></i>
+                    <p class="text-muted">Booking Price</p>
+                    <p>500 Dollar</p>
+                  </div>
+                </div>
+                <div class="text-center">
+                  <button class="btn px-5 book-btn big-rounded fs-5"> Book Now</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+        <ng-template carouselSlide>
+          <div class="doctor pt-0 mb-3 mt-0">
+            <div class="h-100 rounded">
+              <div class="doctor-info ">
+                <div class="d-flex justify-content-center">
+                  <div class="doctor-img">
+                    <span>
+                      <img class="img-fluid" src="../../../assets/images/home/Doctor1.jpg" alt="">
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div class="doctor-layer pb-3">
+                <span class="d-flex justify-content-center my-3">
+                  <h3 class="mt-3 text-center">Doctor Name </h3>
+                </span>
+                <h5 class=" px-3"><i class="fa-solid fa-suitcase-medical me-1 fs-6"></i>Doctor Specialization</h5>
+                <h6 class="text-muted  px-3"><i class="fa-solid fa-notes-medical me-1 fs-6"></i>Doctor Description</h6>
+
+
+                <div class="doctor-ratings text-muted my-3 d-flex justify-content-around align-items-center py-2">
+                  <p><i class="fa-solid fa-eye me-1"></i>15151</p>
+                  <p><i class="fa-solid fa-star text-warning me-1"></i>5</p>
+                </div>
+
+                <div class="doctor-job-info px-3">
+                  <span>
+                    <h5 class="fw-bold"><i class="fa-solid fa-square-h me-1 fs-6"></i>Misr Eldawly Hospital</h5>
+                  </span>
+                  <p class="text-muted"><i class="fa-solid fa-location-dot me-1 fs-6"></i>hospital location</p>
+                </div>
+
+                <div class="doctor-booking-info my-3 d-flex justify-content-around align-items-center py-2 text-center">
+                  <div>
+                    <i class="fa-solid fa-phone fs-4 mb-2"></i>
+                    <p class="text-muted">Book by Phone</p>
+                    <p>01234567899</p>
+                  </div>
+                  <div>
+                    <i class="fa-solid fa-dollar-sign fs-3 mb-2 fw-bold"></i>
+                    <p class="text-muted">Booking Price</p>
+                    <p>500 Dollar</p>
+                  </div>
+                </div>
+                <div class="text-center">
+                  <button class="btn px-5 book-btn big-rounded fs-5"> Book Now</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+        <ng-template carouselSlide>
+          <div class="doctor pt-0 mb-3 mt-0">
+            <div class="h-100 rounded">
+              <div class="doctor-info ">
+                <div class="d-flex justify-content-center">
+                  <div class="doctor-img">
+                    <span>
+                      <img class="img-fluid" src="../../../assets/images/home/Doctor1.jpg" alt="">
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div class="doctor-layer pb-3">
+                <span class="d-flex justify-content-center my-3">
+                  <h3 class="mt-3 text-center">Doctor Name </h3>
+                </span>
+                <h5 class=" px-3"><i class="fa-solid fa-suitcase-medical me-1 fs-6"></i>Doctor Specialization</h5>
+                <h6 class="text-muted  px-3"><i class="fa-solid fa-notes-medical me-1 fs-6"></i>Doctor Description</h6>
+
+
+                <div class="doctor-ratings text-muted my-3 d-flex justify-content-around align-items-center py-2">
+                  <p><i class="fa-solid fa-eye me-1"></i>15151</p>
+                  <p><i class="fa-solid fa-star text-warning me-1"></i>5</p>
+                </div>
+
+                <div class="doctor-job-info px-3">
+                  <span>
+                    <h5 class="fw-bold"><i class="fa-solid fa-square-h me-1 fs-6"></i>Misr Eldawly Hospital</h5>
+                  </span>
+                  <p class="text-muted"><i class="fa-solid fa-location-dot me-1 fs-6"></i>hospital location</p>
+                </div>
+
+                <div class="doctor-booking-info my-3 d-flex justify-content-around align-items-center py-2 text-center">
+                  <div>
+                    <i class="fa-solid fa-phone fs-4 mb-2"></i>
+                    <p class="text-muted">Book by Phone</p>
+                    <p>01234567899</p>
+                  </div>
+                  <div>
+                    <i class="fa-solid fa-dollar-sign fs-3 mb-2 fw-bold"></i>
+                    <p class="text-muted">Booking Price</p>
+                    <p>500 Dollar</p>
+                  </div>
+                </div>
+                <div class="text-center">
+                  <button class="btn px-5 book-btn big-rounded fs-5"> Book Now</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+      </owl-carousel-o> -->
+
+    </div>
+  </section>
+
+  <!-- End Fourth Section -->
+
+  <!-- =============================================================================================================== -->
+
+  <!-- Fifth Section Offers -->
+
+  <!--
+  <section class="py-5 offers-section">
+    <div class="container">
+      <div class="d-flex justify-content-between align-items-center title">
+        <h2 class="fw-bold">Latest Offers</h2>
+        <a href="#" class="text-decoration-none">
+          <h5 class="show-all-arrow">{{'HomePage.ShowAll' | translate}}</h5>
+        </a>
+      </div>
+
+      <div class="owl-carousel offers-list">
+
+        <a href="#" class="text-decoration-none">
+          <div class="offer">
+              <div class=" h-100 rounded">
+                  <div class="overflow-hidden position-relative">
+                      <img class="rounded offer-img" src="../../../assets/images/offers/Scaling-and-Polishing.jpeg" alt="">
+                      <div class="img-layer rounded">
+                          <div class="position-relative w-100 h-100">
+                              <div class="offer-doctor d-flex">
+                                  <img class="offer-doctor-img rounded-circle" src="../../../assets/images/doctors-list/Doctor-list.jpg" alt="">
+                                  <div class="offer-doctor-info ms-2 text-white">
+                                      <p class="fw-bold my-0">Doctor Name</p>
+                                      <p class="my-0">Doctor Address</p>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="discount bg-danger p-1 rounded">
+                          <span class="discounted-value"></span>% discount
+                        </div>
+                  </div>
+                  <div class="p-2">
+                      <h4 class="mt-2 mb-0">Scaling and Polishing</h4>
+                      <div class="offer-stars">
+
+                      </div>
+                      <h6 class="text-muted">Overall Rating From <span class="num-persons-rating">999</span> Persons</h6>
+                      <h5 class="text-success ">
+                          <span class="text-muted text-decoration-line-through fw-bold"><span class="old-price"></span> EGP</span>
+                          <span class="ms-2"> Save <span class="saving-amount"></span> EGP</span>
+                      </h5>
+                      <div class="d-flex justify-content-between align-items-center">
+                          <h5 class="text-primary fw-bold my-0"><span class="new-price"></span> EGP</h5>
+                          <div class="">
+                              <button href="#" class="btn px-3 py-0 book-btn fs-5 mx-3"> Book</button>
+                          </div>
+                      </div>
+
+                  </div>
+
+              </div>
+          </div>
+        </a>
+        <a href="#" class="text-decoration-none">
+          <div class="offer">
+              <div class=" h-100 rounded">
+                  <div class="overflow-hidden position-relative">
+                      <img class="rounded offer-img" src="../../../assets/images/offers/Scaling-and-Polishing.jpeg" alt="">
+                      <div class="img-layer rounded">
+                          <div class="position-relative w-100 h-100">
+                              <div class="offer-doctor d-flex">
+                                  <img class="offer-doctor-img rounded-circle" src="../../../assets/images/doctors-list/Doctor-list.jpg" alt="">
+                                  <div class="offer-doctor-info ms-2 text-white">
+                                      <p class="fw-bold my-0">Doctor Name</p>
+                                      <p class="my-0">Doctor Address</p>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="discount bg-danger p-1 rounded">
+                          <span class="discounted-value"></span>% discount
+                        </div>
+                  </div>
+                  <div class="p-2">
+                      <h4 class="mt-2 mb-0">Scaling and Polishing</h4>
+                      <div class="offer-stars">
+
+                      </div>
+                      <h6 class="text-muted">Overall Rating From <span class="num-persons-rating">999</span> Persons</h6>
+                      <h5 class="text-success ">
+                          <span class="text-muted text-decoration-line-through fw-bold"><span class="old-price"></span> EGP</span>
+                          <span class="ms-2"> Save <span class="saving-amount"></span> EGP</span>
+                      </h5>
+                      <div class="d-flex justify-content-between align-items-center">
+                          <h5 class="text-primary fw-bold my-0"><span class="new-price"></span> EGP</h5>
+                          <div class="">
+                              <button href="#" class="btn px-3 py-0 book-btn fs-5 mx-3"> Book</button>
+                          </div>
+                      </div>
+
+                  </div>
+
+              </div>
+          </div>
+        </a>
+        <a href="#" class="text-decoration-none">
+          <div class="offer">
+              <div class=" h-100 rounded">
+                  <div class="overflow-hidden position-relative">
+                      <img class="rounded offer-img" src="../../../assets/images/offers/Scaling-and-Polishing.jpeg" alt="">
+                      <div class="img-layer rounded">
+                          <div class="position-relative w-100 h-100">
+                              <div class="offer-doctor d-flex">
+                                  <img class="offer-doctor-img rounded-circle" src="../../../assets/images/doctors-list/Doctor-list.jpg" alt="">
+                                  <div class="offer-doctor-info ms-2 text-white">
+                                      <p class="fw-bold my-0">Doctor Name</p>
+                                      <p class="my-0">Doctor Address</p>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="discount bg-danger p-1 rounded">
+                          <span class="discounted-value"></span>% discount
+                        </div>
+                  </div>
+                  <div class="p-2">
+                      <h4 class="mt-2 mb-0">Scaling and Polishing</h4>
+                      <div class="offer-stars">
+
+                      </div>
+                      <h6 class="text-muted">Overall Rating From <span class="num-persons-rating">999</span> Persons</h6>
+                      <h5 class="text-success ">
+                          <span class="text-muted text-decoration-line-through fw-bold"><span class="old-price"></span> EGP</span>
+                          <span class="ms-2"> Save <span class="saving-amount"></span> EGP</span>
+                      </h5>
+                      <div class="d-flex justify-content-between align-items-center">
+                          <h5 class="text-primary fw-bold my-0"><span class="new-price"></span> EGP</h5>
+                          <div class="">
+                              <button href="#" class="btn px-3 py-0 book-btn fs-5 mx-3"> Book</button>
+                          </div>
+                      </div>
+
+                  </div>
+
+              </div>
+          </div>
+        </a>
+        <a href="#" class="text-decoration-none">
+          <div class="offer">
+              <div class=" h-100 rounded">
+                  <div class="overflow-hidden position-relative">
+                      <img class="rounded offer-img" src="../../../assets/images/offers/Scaling-and-Polishing.jpeg" alt="">
+                      <div class="img-layer rounded">
+                          <div class="position-relative w-100 h-100">
+                              <div class="offer-doctor d-flex">
+                                  <img class="offer-doctor-img rounded-circle" src="../../../assets/images/doctors-list/Doctor-list.jpg" alt="">
+                                  <div class="offer-doctor-info ms-2 text-white">
+                                      <p class="fw-bold my-0">Doctor Name</p>
+                                      <p class="my-0">Doctor Address</p>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="discount bg-danger p-1 rounded">
+                          <span class="discounted-value"></span>% discount
+                        </div>
+                  </div>
+                  <div class="p-2">
+                      <h4 class="mt-2 mb-0">Scaling and Polishing</h4>
+                      <div class="offer-stars">
+
+                      </div>
+                      <h6 class="text-muted">Overall Rating From <span class="num-persons-rating">999</span> Persons</h6>
+                      <h5 class="text-success ">
+                          <span class="text-muted text-decoration-line-through fw-bold"><span class="old-price"></span> EGP</span>
+                          <span class="ms-2"> Save <span class="saving-amount"></span> EGP</span>
+                      </h5>
+                      <div class="d-flex justify-content-between align-items-center">
+                          <h5 class="text-primary fw-bold my-0"><span class="new-price"></span> EGP</h5>
+                          <div class="">
+                              <button href="#" class="btn px-3 py-0 book-btn fs-5 mx-3"> Book</button>
+                          </div>
+                      </div>
+
+                  </div>
+
+              </div>
+          </div>
+        </a>
+        <a href="#" class="text-decoration-none">
+          <div class="offer">
+              <div class=" h-100 rounded">
+                  <div class="overflow-hidden position-relative">
+                      <img class="rounded offer-img" src="../../../assets/images/offers/Scaling-and-Polishing.jpeg" alt="">
+                      <div class="img-layer rounded">
+                          <div class="position-relative w-100 h-100">
+                              <div class="offer-doctor d-flex">
+                                  <img class="offer-doctor-img rounded-circle" src="../../../assets/images/doctors-list/Doctor-list.jpg" alt="">
+                                  <div class="offer-doctor-info ms-2 text-white">
+                                      <p class="fw-bold my-0">Doctor Name</p>
+                                      <p class="my-0">Doctor Address</p>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="discount bg-danger p-1 rounded">
+                          <span class="discounted-value"></span>% discount
+                        </div>
+                  </div>
+                  <div class="p-2">
+                      <h4 class="mt-2 mb-0">Scaling and Polishing</h4>
+                      <div class="offer-stars">
+
+                      </div>
+                      <h6 class="text-muted">Overall Rating From <span class="num-persons-rating">999</span> Persons</h6>
+                      <h5 class="text-success ">
+                          <span class="text-muted text-decoration-line-through fw-bold"><span class="old-price"></span> EGP</span>
+                          <span class="ms-2"> Save <span class="saving-amount"></span> EGP</span>
+                      </h5>
+                      <div class="d-flex justify-content-between align-items-center">
+                          <h5 class="text-primary fw-bold my-0"><span class="new-price"></span> EGP</h5>
+                          <div class="">
+                              <button href="#" class="btn px-3 py-0 book-btn fs-5 mx-3"> Book</button>
+                          </div>
+                      </div>
+
+                  </div>
+
+              </div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+  </section>
+
+  -->
+
+
+  <!-- End Fifth Section -->
+
+  <!-- =============================================================================================================== -->
+
+  <!-- Sixth Section Counter -->
+
+  <section class="counters-section text-center text-white" #countersSection>
+    <div class="counters-layer py-5">
+      <div class="container">
+        <div class="row py-5">
+          <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 my-3 mx-auto">
+            <div class="counters-icons rounded-circle mx-auto d-flex justify-content-center align-items-center mb-3">
+              <i class="fa-solid fa-user-doctor fs-1"></i>
+            </div>
+            <div id="num-doctors-patients">
+              <h3 class="counter-num">{{doctorsCounter}}</h3>
+            </div>
+            <h3>{{'HomePage.Counter1Title' | translate}}</h3>
+          </div>
+
+          <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 my-3 mx-auto">
+            <div class="counters-icons rounded-circle mx-auto d-flex justify-content-center align-items-center mb-3">
+              <i class="fa-solid fa-users fs-1"></i>
+            </div>
+            <div id="num-users">
+              <h3 class="counter-num">{{usersCounter}}</h3>
+            </div>
+            <h3>{{'HomePage.Counter2Title' | translate}}</h3>
+          </div>
+
+          <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 my-3 mx-auto">
+            <div class="counters-icons rounded-circle mx-auto d-flex justify-content-center align-items-center mb-3">
+              <i class="fa-solid fa-hand-holding-medical fs-1"></i>
+            </div>
+            <div id="num-specialization">
+              <h3 class="counter-num">{{specializationCounter}}</h3>
+            </div>
+            <h3>{{'HomePage.Counter3Title' | translate}}</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- End Sixth Section -->
+
+  <!-- =============================================================================================================== -->
+
+  <!-- Seventh Section Articles -->
+
+  <section class="py-5 articles-section">
+    <div class="container">
+      <div class="d-flex justify-content-between align-items-center title">
+        <h2  [class.arabic-font] = "rtlDir" class="fw-bold">{{'HomePage.ArticlesSection' | translate}}</h2>
+        <!-- <a href="#" class="text-decoration-none">
+          <h5 class="fw-bold" [class.arabic-font] = "rtlDir" [ngClass]="rtlDir? 'show-all-arrow-arabic' : 'show-all-arrow-english'">{{'HomePage.ShowAll' | translate}}</h5>
+        </a> -->
+      </div>
+
+      <div class="cards row d-flex">
+        <div class="col-lg-3 col-md-6 my-3">
+          <div class="card p-2">
+            <span class="card-img-link overflow-hidden">
+              <img src="../../../assets/images/home/Cardiology.jpg" class="w-100 rounded" alt="...">
+            </span>
+
+            <div class="card-body">
+              <div class="d-flex justify-content-between">
+                <span class="card-title"><i class="fa-solid fa-tags me-1"></i>Category</span>
+                <p class="card-title"><i class="far fa-clock me-1"></i>Time</p>
+              </div>
+
+              <span class="card-text">Some quick example text to build on the card title and make up the bulk of
+                the card's content.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6 my-3">
+          <div class="card p-2">
+            <span class="card-img-link overflow-hidden">
+              <img src="../../../assets/images/home/Cardiology.jpg" class="w-100 rounded" alt="...">
+            </span>
+
+            <div class="card-body">
+              <div class="d-flex justify-content-between">
+                <span class="card-title"><i class="fa-solid fa-tags me-1"></i>Category</span>
+                <p class="card-title"><i class="far fa-clock me-1"></i>Time</p>
+              </div>
+
+              <span class="card-text">Some quick example text to build on the card title and make up the bulk of
+                the card's content.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6 my-3">
+          <div class="card p-2">
+            <span class="card-img-link overflow-hidden">
+              <img src="../../../assets/images/home/Cardiology.jpg" class="w-100 rounded" alt="...">
+            </span>
+
+            <div class="card-body">
+              <div class="d-flex justify-content-between">
+                <span class="card-title"><i class="fa-solid fa-tags me-1"></i>Category</span>
+                <p class="card-title"><i class="far fa-clock me-1"></i>Time</p>
+              </div>
+
+              <span class="card-text">Some quick example text to build on the card title and make up the bulk of
+                the card's content.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6 my-3">
+          <div class="card p-2">
+            <span class="card-img-link overflow-hidden">
+              <img src="../../../assets/images/home/Cardiology.jpg" class="w-100 rounded" alt="...">
+            </span>
+
+            <div class="card-body">
+              <div class="d-flex justify-content-between">
+                <span class="card-title"><i class="fa-solid fa-tags me-1"></i>Category</span>
+                <p class="card-title"><i class="far fa-clock me-1"></i>Time</p>
+              </div>
+
+              <span class="card-text">Some quick example text to build on the card title and make up the bulk of
+                the card's content.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="text-center">
+        <button class="articles-btn btn px-4 fs-4 my-3 text-white big-rounded">{{'HomePage.ArticlesBtnTitle' | translate}}</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- End Seventh Section -->
+
+  <!-- =============================================================================================================== -->
+</div>

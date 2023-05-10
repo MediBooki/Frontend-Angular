@@ -1,0 +1,96 @@
+@import '../../../styles.scss';
+
+.bg-main {
+  background: $mainColor2;
+}
+.vh-20{
+  height: auto;
+}
+.z-index-heigh{
+  z-index: 9999;
+}
+.doctor-registeration{
+  left: 0;
+  right: 0;
+  top: 9%;
+  margin: auto;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.doctor-register-nav {
+  background-color: $lightGreyColor;
+}
+.doctor-register-nav-link {
+  width: calc(100%/3);
+}
+.doctor-register-nav-link.active-en {
+  background: $mainColor2;
+  color: white!important;
+  border-top-right-radius: 50rem;
+  border-bottom-right-radius:50rem;
+}
+
+.doctor-register-nav-link.active-ar {
+  background: $mainColor2;
+  color: white!important;
+  border-top-left-radius: 50rem;
+  border-bottom-left-radius:50rem;
+}
+
+.doctor-register-nav-link.active-en span,.doctor-register-nav-link.active-ar span {
+  color: $text;
+  background-color: #fff;
+}
+.doctor-register-nav-link.active-en p ,.doctor-register-nav-link.active-ar p {
+  color: #fff;
+}
+.doctor-register-nav-link.oldactive {
+background: $mainColor2;
+color: white!important;
+color: #fff;
+}
+.doctor-register-nav-link.oldactive span {
+color: $text;
+background-color: #fff;
+}
+.doctor-register-nav-link.oldactive p {
+color: #fff;
+}
+.w-fit {
+  width: fit-content;
+}
+.w-90 {
+  width: 90%;
+}
+.doctor-register-nav-link span {
+  margin: 0.25rem;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: $lightGrey2Color;
+  color: $lightGreyColor;
+}
+.doctor-register-nav-link p {
+  color: $lightGrey2Color;
+}
+.doctor-registeration-buttons {
+  bottom: 2.25rem;
+}
+.btn-doctor-register-main {
+  color: #fff;
+  background: $mainColor2;
+  border-color: transparent;
+  font-weight: 500;
+}
+
+::ng-deep.select2-selection {
+  .select2-selection__arrow {
+    height: 100% !important;
+  }
+  border-color: #ced4da!important;
+  height: auto !important;
+  padding: .375rem 0.75rem;
+}
+
+
+

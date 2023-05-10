@@ -1,0 +1,85 @@
+<app-spinner *ngIf="isVisibleSpinner"></app-spinner>
+<div class="specialize-component" [dir]=" 'dir' | translate " [lang]="lang">
+  <!--  =======================================================( landing )======================================================= -->
+
+  <section class=" position-relative justify-content-center align-content-center" #firstSection>
+    <div class="roadmap d-flex  align-items-center justify-content-center">
+      <div class=" ms-5 p-3 text-center ">
+        <h1 class=" fw-bolder mb-3 text-center header title" [class.arabic-font]="rtlDir">{{rtlDir?'خدمات
+          التخصصات':'Specialties Services'}}</h1>
+        <img class="img-fluid lines-img" src="../../../assets/images/roadmap/lines.png" alt="">
+        <div class="mt-2">
+          <a routerLink="/home" class="fw-bolder text-success text-decoration-none fs-5">{{'RoadMap.MainTitle' |
+            translate}} <i class="fa-solid ms-2 fs-6" [ngClass]="rtlDir? 'fa-angles-left' : 'fa-angles-right'"></i>
+          </a>
+          <span class=" ms-2 fw-bolder text-capitalize">{{rtlDir?'الخدمات':'Services'}}</span>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--  =======================================================( specialization )=======================================================  -->
+  <section class=" mt-5 container">
+    <div class="title text-center" #firstSection>
+      <p class=" fw-bold">_ {{"specializationPage.title" | translate}} _</p>
+      <h1 [class.arabic-font]="rtlDir">{{"specializationPage.mainTitle" | translate}}</h1>
+      <p class="text-muted text-center ps-lg-5">{{"specializationPage.description" | translate}}.</p>
+    </div>
+    <div class="row mt-3 p-3"  *ngIf="!noData;else error">
+      <div class="col-md-4 rounded mt-3 Specialties_service" *ngFor="let specialize of specializations | paginate :{id:'listing-pagination',
+      itemsPerPage:numSepicaistPerPage,
+      currentPage:page,
+      totalItems:totalRecords }" >
+        <a (click)="filterDoctors(specialize.id, specialize.name)"
+          class="text-decoration-none"> <!--[routerLink]="rtlDir ? '/doctors/'+specialize.name.split(' ').slice(1): '/doctors/'+specialize.name.split(' ')[0]"-->
+
+          <div class="card">
+            <div class="overflow-hidden">
+              <img [src]="specialize.photo" class="img-fluid card-img-top" alt="..." *ngIf="specialize.photo">
+              <img [src]="defaultSpecializationImg" class="img-fluid card-img-top default-img" alt="..." *ngIf="!specialize.photo">
+            </div>
+            <div class="card-body">
+              <h5 class="card-title my-3 text-dark fw-bolder "> {{specialize.name}}
+              </h5>
+              <p class="card-text my-3 text-muted">{{specialize.description}}</p>
+            </div>
+          </div>
+        </a>
+      </div>
+      <div class="d-flex justify-content-center align-items-center">
+        <pagination-controls id="listing-pagination" class="doctors-pagination" (pageChange)="changePage($event)" previousLabel="" nextLabel="">
+
+        </pagination-controls>
+      </div>
+    </div>
+    <ng-template #error>
+
+      <div class=" search-empty text-center p-5 rounded mb-5">
+          <div class="my-4">
+            <i class="fa-solid fa-suitcase-medical search-icon"></i>
+          </div>
+          <div class="search-empty-content">
+              <div class="my-3">
+                  <h2 class="fw-bold">{{"specializationPage.EmptySpecializations.Title" | translate}}</h2>
+              </div>
+              <p class="text-muted">{{"specializationPage.EmptySpecializations.paragraph" | translate}}</p>
+          </div>
+      </div>
+
+  </ng-template>
+    <!-- <ng-template #error>
+      <div class="alert alert-danger text-center my-3" role="alert">
+        <div class=" d-flex align-items-center justify-content-center">
+          <i class="fa-solid fa-triangle-exclamation mx-2"></i>
+          <div *ngIf="noDataError?.name != null;else noData">
+            {{noDataError?.name}}
+          </div>
+          <ng-template #noData>
+            {{"SharedData.NoDataError" | translate}}
+          </ng-template>
+        </div>
+        <h3 class="my-2">{{'SharedData.ErrorMessage' | translate}}</h3>
+      </div>
+    </ng-template> -->
+
+  </section>
+</div>

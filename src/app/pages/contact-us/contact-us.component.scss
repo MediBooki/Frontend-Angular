@@ -1,0 +1,48 @@
+@import '../../../styles.scss';
+.form-floating-en>.form-control:focus~label {
+  transform: scale(.85) translateY(-0.5rem) translateX(-5.15rem) !important;
+}
+
+// .form-floating-en>.form-control:-webkit-autofill~label {
+.form-floating-en>.form-control:not(:placeholder-shown)~label {
+
+  transform: scale(.85) translateY(-0.5rem) translateX(-5.15rem) !important;
+}
+
+.form-floating-ar>.form-control:focus~label {
+  transform: scale(.85) translateY(-0.5rem) translateX(-0.15rem) !important;
+}
+
+.form-floating-ar>.form-control:-webkit-autofill~label {
+  transform: scale(.85) translateY(-0.5rem) translateX(-5.15rem) !important;
+}
+
+.btn-main{
+  color: #fff;
+  background: $mainColor2;
+}
+
+.color-gmail {
+  color: 	#ea4335;
+}
+
+.color-facebook {
+ color: #3b5998;
+}
+
+.color-instagram {
+  color: #e4405f;
+}
+// #3f729b
+.color-twitter {
+  color: #55acee;
+}
+
+.color-linked {
+  color: #0077b5;
+}
+
+.color-youtupe {
+  color: 	#cd201f;
+}
+

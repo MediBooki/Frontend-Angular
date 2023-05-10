@@ -1,0 +1,44 @@
+@import '../../../styles.scss';
+
+.not-found-vector{
+  .not-found-404 {
+    top: -58px;
+    left: 29px;
+    color: #C9D3D3;
+
+    span {
+      font-size: 150px;
+      display: inline-block;
+    }
+
+    :first-child {
+      transform: rotate(-20deg);
+    }
+
+    :nth-child(2) {
+      transform: rotate(15deg);
+    }
+
+    :nth-child(3) {
+      transform: rotate(25deg);
+    }
+  }
+
+  .go-home {
+    color: #BC043D;
+    font-size: 35px;
+    bottom: 100px;
+    left: 100px;
+  }
+}
+
+.btn-main{
+  color: #fff;
+  background: $mainColor2;
+}
+
+.not-found-p {
+  h1 {
+    font-size: 120px;
+  }
+}

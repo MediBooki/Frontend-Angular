@@ -1,0 +1,151 @@
+<div class="specialize-component" [dir]=" 'dir' | translate " [lang]="lang">
+
+  <!-- Sign-In-Sign-up section starts -->
+  <section class="container Login-Register p-sm-3 mw-100 vh-100 Register-mode" id="Register">
+    <!-- Form Login and Register -->
+    <div class="row align-items-center">
+      <div
+        class="col-lg-6 col-md-7 ms-3 col-9 mb-4 row position-absolute start-75 justify-content-center Sign-in-Sign-up">
+        <!-- -----------------------------------------------------(Register Form)----------------------------------------------------- -->
+        <form class="flex-column d-flex align-items-center Register " [formGroup]="patientForm">
+          <h2 class="fs-2 text-secondary my-3 fw-bolder">{{"registerPage.title" | translate}}</h2>
+          <div class="input-field mb-3 w-100 h-100 rounded-pill p-2 d-flex ">
+            <i class="fas fa-user text-center p-2 fs-5"></i>
+            <input type="text" class="ps-3 fw-bolder text-secondary w-50 border-0 lh-1" id="UserNameRegister"
+              placeholder="{{ 'registerPage.username' | translate }}" required formControlName="username" />
+          </div>
+          <div class="d-flex">
+            <div *ngIf="username?.touched && username?.dirty" class="firstnameError">
+              <p *ngIf="username?.errors?.['pattern']" id="UserNameRegisterError" class="text-danger">
+                {{'registerPage.error2'| translate}}
+              </p>
+              <p *ngIf="username?.errors?.['required'] " class="text-danger">{{'registerPage.error'| translate}}</p>
+              <p *ngIf="username?.errors?.['minlength'] " class="text-danger">{{'registerPage.error3'| translate}}
+              </p>
+            </div>
+          </div>
+
+          <div class="input-field mb-3 w-100 h-100 rounded-pill p-2 d-flex">
+            <i class="fa-solid fa-envelope p-2 fs-5"></i>
+            <input type="text" class="ps-3 fw-bolder text-secondary w-100 border-0 lh-1" id="EmailRegister"
+              placeholder="{{ 'registerPage.email' | translate }}" required formControlName="email" />
+          </div>
+          <div *ngIf="email?.invalid && email?.touched && email?.dirty">
+            <p id="EmailRegisterError" class="text-danger " *ngIf="email?.errors?.['pattern']">
+              {{'registerPage.error4'| translate}}
+            </p>
+            <p *ngIf="email?.errors?.['required'] " class="text-danger">{{'registerPage.error'| translate}}</p>
+          </div>
+          <div class="input-field mb-3 w-100 h-100 rounded-pill p-2 d-flex">
+            <i class="fa-solid fa-mobile-button p-2 fs-5"></i>
+            <input type="text" class="ps-3 fw-bolder text-secondary w-100 border-0 lh-1" id="PhonenumberRegister"
+              placeholder="{{ 'registerPage.phoneNumber' | translate }}" required formControlName="phoneNumber" />
+          </div>
+          <div *ngIf="phoneNumber?.invalid && phoneNumber?.touched && phoneNumber?.dirty">
+            <p id="PhonenumberRegisterError" class="text-danger " *ngIf="phoneNumber?.errors?.['pattern']">
+              {{'registerPage.error5'| translate}}
+            </p>
+            <p *ngIf="phoneNumber?.errors?.['required'] " class="text-danger">{{'registerPage.error'| translate}}</p>
+          </div>
+          <div class="input-field mb-3 w-100 h-100 rounded-pill p-2 d-flex">
+            <i class="fa-solid fa-mobile-button p-2 fs-5"></i>
+            <input type="text" class="ps-3 fw-bolder text-secondary w-100 border-0 lh-1" id="addressRegister"
+              placeholder="{{ 'registerPage.address' | translate }}" required formControlName="address" />
+          </div>
+          <div *ngIf="address?.touched && address?.dirty">
+            <p *ngIf="address?.errors?.['required']" class="text-danger">{{'registerPage.error'| translate}}</p>
+          </div>
+          <div class="mb-3 input-field mb-3 w-100 h-100 rounded-pill p-2 d-flex">
+            <i class="fas fa-lock text-center p-2 fs-5"></i>
+            <input type="{{ showPassword ? 'text' : 'password' }}" class="ps-3 fw-bolder text-secondary w-100 border-0 lh-1" id="PasswordRegister"
+              placeholder="{{ 'registerPage.password' | translate }}" formControlName="password" />
+              <i class="fa-solid {{showPassword ? 'fa-eye' : 'fa-eye-slash' }} text-center p-2 fs-5" (click)="togglePassword()"></i>  
+          </div>
+          <div *ngIf="password?.invalid && password?.touched && password?.dirty">
+            <p id="PasswordRegisterError" class="text-danger" *ngIf="password?.errors?.['pattern']">
+              {{'registerPage.error7'| translate}}
+            </p>
+            <p *ngIf="password?.errors?.['required'] " class="text-danger">{{'registerPage.error'| translate}}</p>
+          </div>
+          <div class="mb-3 input-field mb-3 w-100 h-100 rounded-pill p-2 d-flex">
+            <i class="fas fa-lock text-center p-2 fs-5"></i>
+            <input type="{{ showConfirmPassword ? 'text' : 'password' }}"  class="ps-3 fw-bolder text-secondary w-100 border-0 lh-1"
+              id="confirmPasswordRegister" placeholder="{{ 'registerPage.confirmPassword' | translate }}"
+              formControlName="confirmPassword" />
+              <i class="fa-solid {{ showConfirmPassword? 'fa-eye' : 'fa-eye-slash' }} text-center p-2 fs-5" (click)="toggleConfirmPassword()"></i>  
+          </div>
+          <div *ngIf="confirmPassword?.touched && confirmPassword?.dirty">
+            <p id="PasswordRegisterError" class="text-danger"
+              *ngIf="(patientForm.value.password)!== (patientForm.value.confirmPassword)">
+              {{'registerPage.error6'| translate}}
+            </p>
+            <p *ngIf="confirmPassword?.errors?.['required'] " class="text-danger">{{'registerPage.error'| translate}}
+            </p>
+          </div>
+
+
+          <div class="input-field mb-3 w-100 h-100 rounded-pill p-2 d-flex">
+            <i class="fa-solid fa-venus-mars p-2 fs-5"></i>
+            <select name="UserGender" required id="UserGender_form" formControlName="gender"
+              class="form-select ps-3 fw-bolder text-secondary w-100 border-0 lh-1"
+              aria-label="Floating label select example">
+              <option value="" disabled selected>{{ 'registerPage.gender' | translate }}</option>
+              <option value="male" required>Male</option>
+              <option value="female" required>Female</option>
+            </select>
+          </div>
+          <div *ngIf="gender?.touched && gender?.dirty">
+            <p id="PasswordRegisterError" class="text-danger" *ngIf="gender?.errors?.['required']">
+              {{'registerPage.error'| translate}}
+            </p>
+          </div>
+          <div class="input-field mb-3 w-100 h-100 rounded-pill p-2 d-flex">
+            <i class="fa-solid fa-venus-mars p-2 fs-5"></i>
+            <select name="User_blood_group" required id="User_blood_group_form" formControlName="gender"
+              class="form-select ps-3 fw-bolder text-secondary w-100 border-0 lh-1"
+              aria-label="Floating label select example" formControlName="blood_group">
+              <option value="" disabled selected>{{ 'registerPage.blood' | translate }}</option>
+              <option value="o-" required>o-</option>
+              <option value="o+" required>o+</option>
+              <option value="A-" required>A-</option>
+              <option value="A+" required>A+</option>
+              <option value="B-" required>B-</option>
+              <option value="B+" required>B+</option>
+              <option value="AB-" required>AB-</option>
+              <option value="AB+" required>AB+</option>
+            </select>
+          </div>
+          <div *ngIf="blood_group?.touched && blood_group?.dirty">
+            <p id="PasswordRegisterError" class="text-danger" *ngIf="blood_group?.errors?.['required']">
+              {{'registerPage.error'| translate}}
+            </p>
+          </div>
+          <div class="input-field mb-3 w-100 h-100 rounded-pill p-2 d-flex">
+            <input id="BdateUser__form" name="BdateUser" type="text" onfocus="(this.type='date')"
+              onblur="(this.type='text')" class="ps-3 fw-bolder text-secondary w-100 border-0 lh-1 is-valid"
+              placeholder="{{ 'registerPage.BirthOfDate' | translate }}" formControlName="date_of_birth"
+               />
+          </div>
+          <div *ngIf="date_of_birth?.touched && date_of_birth?.dirty">
+            <p id="PasswordRegisterError" class="text-danger" *ngIf="date_of_birth?.errors?.['required']">
+              {{'registerPage.error'| translate}}
+            </p>
+          </div>
+          <div class="form-check form-switch">
+            <input class="form-check-input is-valid" type="checkbox" id="flexSwitchCheckDefault" />
+            <label class="form-check-label" for="flexSwitchCheckDefault">{{ 'registerPage.healthInsurance' | translate
+              }}</label>
+          </div>
+
+          <button type="submit" class="btn btn-primary rounded-pill text-uppercase my-2"
+            [disabled]="patientForm.invalid" (click)="submit()" id="submitBtn">
+            {{ 'registerPage.register' | translate }}
+          </button>
+        </form>
+      </div>
+    </div>
+
+
+  </section>
+</div>
+<!-- || (userForm.value.Password)!== (userForm.value.confirmPassword) -->

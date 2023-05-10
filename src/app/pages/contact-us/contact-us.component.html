@@ -1,0 +1,82 @@
+<div [dir]=" 'dir' | translate " [lang]="lang">
+  <section class=" position-relative justify-content-center align-content-center" #firstSection>
+    <div class="roadmap d-flex  align-items-center justify-content-center">
+      <div class=" ms-5 p-3 text-center ">
+        <h1 class=" fw-bolder mb-3 text-center header title" [class.arabic-font]="rtlDir">{{'navbar.ContactUs' | translate}}</h1>
+        <img class="img-fluid lines-img" src="../../../assets/images/roadmap/lines.png" alt="">
+        <div class="mt-2">
+          <a routerLink="/home" class="fw-bolder text-success text-decoration-none fs-5">{{'RoadMap.MainTitle' |
+            translate}} <i class="fa-solid ms-2 fs-6" [ngClass]="rtlDir? 'fa-angles-left' : 'fa-angles-right'"></i>
+          </a>
+          <span class=" ms-2 fw-bolder text-capitalize">{{'navbar.ContactUs' | translate}}</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<!-- about us section -->
+  <section class="container py-5">
+    <h1 class="fw-bold text-center">{{'footer.findUs1' | translate}}</h1>
+    <div class="container">
+      <div class="text-secondary text-center">
+        <p>{{'contactus.aboutus1' | translate}}</p>
+        <p>
+          {{'contactus.aboutus2' | translate}}
+        </p>
+
+      </div>
+      <!-- <div class="col-md-6">
+        <img src="../../../assets/images/contact-us/Online Doctor-amico.svg" alt="">
+      </div> -->
+    </div>
+  </section>
+<!-- contact us -->
+  <section class="bg-light container-fluid">
+    <h2 class="fw-bold fs-1 text-center pt-4">{{'navbar.ContactUs' | translate}}</h2>
+    <p class="text-center fs-5">{{'contactus.contactusp' | translate}}</p>
+      <ul class="list-unstyled d-flex justify-content-center fs-4">
+        <li class="p-3"><i class="fa-solid fa-envelope color-gmail"></i></li>
+        <li class="p-3"><i class="fa-brands fa-facebook-f color-facebook"></i></li>
+        <li class="p-3"><i class="fa-brands fa-instagram color-instagram"></i></li>
+        <li class="p-3"><i class="fa-brands fa-twitter color-twitter"></i></li>
+        <li class="p-3"><i class="fa-brands fa-linkedin-in color-linked"></i></li>
+        <li class="p-3"><i class="fa-brands fa-youtube color-youtupe"></i></li>
+      </ul>
+    <div class="row">
+      <div class="col-md-6 d-none d-md-block">
+        <img src="../../../assets/images/contact-us/get-in-touch-animate.svg" alt="">
+      </div>
+      <div class="col-md-6 d-flex align-items-center">
+        <div class="w-100">
+
+          <form class="w-75 m-auto">
+            <p class="text-center">{{'contactus.contactus-formp' | translate}}</p>
+
+            <div class="form-floating mb-3" [ngClass]="{'form-floating-en': !rtlDir}">
+              <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com">
+              <label for="floatingInput">{{'contactus.contactus-input1' | translate}}</label>
+            </div>
+            <div class="form-floating mb-3" [ngClass]="{'form-floating-en': !rtlDir}">
+              <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com">
+              <label for="floatingInput">{{'contactus.contactus-input2' | translate}}</label>
+            </div>
+            <div class="form-floating mb-3" [ngClass]="{'form-floating-en': !rtlDir}">
+              <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com">
+              <label for="floatingInput">{{'contactus.contactus-input3' | translate}}</label>
+            </div>
+            <div class="form-floating" [ngClass]="{'form-floating-en': !rtlDir, 'form-floating-ar':rtlDir}">
+              <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
+              <label for="floatingTextarea">{{'contactus.contactus-input4' | translate}}</label>
+            </div>
+            <div class="d-flex justify-content-center">
+              <input type="submit" class="btn btn-main border-0 m-2" />
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="col-md-6 d-md-none">
+        <img src="../../../assets/images/contact-us/get-in-touch-animate.svg" alt="">
+      </div>
+    </div>
+  </section>
+</div>

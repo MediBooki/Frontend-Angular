@@ -1,0 +1,14 @@
+<!-- Fast Links -->
+<div class="d-flex fast-links flex-column p-2 big-rounded bg-white" [ngClass]="rtlDir? 'fast-links-arabic' : 'fast-links-english'">
+    <a [href]="'tel:+2'+hospitalPhone" target="_blank"><span class="my-1 phone-icon" [placement]="rtlDir?'right':'left'" [ngbTooltip]="hospitalPhone" tooltipClass="tooltip"><i
+        class="fa-solid fs-2 fa-square-phone"></i></span></a>
+    <span class="my-1 whatsapp-icon" (click)="openWhatsApp()" [placement]="rtlDir?'right':'left'" ngbTooltip="Whatsapp" tooltipClass="tooltip"><i
+        class="fa-brands fs-2 fa-whatsapp"></i></span>
+    <span class="my-1 telegram-icon" (click)="openTelegram()" [placement]="rtlDir?'right':'left'" ngbTooltip="Telegram" tooltipClass="tooltip"><i
+        class="fa-brands fs-2 fa-telegram"></i></span>
+</div>
+
+<!-- Scroll Up Button -->
+<div class="scroll-up border border-2" (click)="scrollTop()" *ngIf="showScrollBtn">
+    <i class="fas fa-arrow-up fs-4"></i>
+</div>

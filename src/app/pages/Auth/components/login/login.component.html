@@ -1,0 +1,43 @@
+<div class="specialize-component" [dir]=" 'dir' | translate " [lang]="lang">
+  <!-- Sign-In-Sign-up section starts -->
+  <section class="container Login-Register position-relative p-sm-3 mw-100 vh-100" id="Register">
+    <!-- Form Login and Register -->
+    <div class="row align-items-center">
+      <div
+        class="col-lg-6 col-md-7 ms-3 col-9 mb-4 row position-absolute start-75 justify-content-center Sign-in-Sign-up">
+        <!-------------------------------------------------------(Login Form)----------------------------------------------------- -->
+        <form class="flex-column d-flex align-items-center py-0 position-absolute top-50 Sign_In"
+          [formGroup]="loginForm">
+          <h2 class="fs-2 text-secondary my-3 fw-bolder">{{ 'loginPage.title' | translate }}</h2>
+          <div class="input-field mb-3 w-100 h-100 rounded-pill p-2 d-flex">
+            <i class="fa-solid fa-envelope p-2 fs-5"></i>
+            <input type="text" class="ps-3 fw-bolder text-secondary w-100 border-0 lh-1" id="EmailLogin"
+              placeholder="{{ 'loginPage.email' | translate }}" required formControlName="email" />
+          </div>
+          <div
+            *ngIf="loginForm.controls['email']?.invalid && loginForm.controls['email']?.touched && loginForm.controls['email']?.dirty">
+            <p id="EmailLoginError" class="text-danger">
+              {{'loginPage.error4'| translate}}
+            </p>
+          </div>
+          <div class="mb-3 input-field mb-3 w-100 h-100 rounded-pill p-2 d-flex">
+            <i class="fas fa-lock text-center p-2 fs-5"></i>
+            <input type="{{passwordType}}" class="ps-3 fw-bolder text-secondary w-100 border-0 lh-1" id="passwordLogin"
+              placeholder="{{ 'loginPage.password' | translate }}" required formControlName="Password" />
+            <i class="fa-solid {{ passwordType === 'password' ? 'fa-eye' : 'fa-eye-slash' }} text-center p-2 fs-5" (click)="togglePassword()"></i>
+          </div>
+          <p id="passwordLoginError" class="text-danger d-none">
+            {{'loginPage.error7'| translate}}
+          </p>
+          <button type="submit" (click)="login()" class="btn btn-primary rounded-pill text-uppercase my-2"
+            id="submitBtnLogin">
+            {{ 'loginPage.login' | translate }}
+          </button>
+        </form>
+      </div>
+    </div>
+
+
+  </section>
+  <!-- Sign-In-Sign-up section ends -->
+</div>

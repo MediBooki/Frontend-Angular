@@ -1,0 +1,68 @@
+<app-spinner *ngIf="isVisibleSpinner"></app-spinner>
+<div class="appointment-component" [dir]=" 'dir' | translate " [lang]="lang">
+    <!--  =======================================================( landing )======================================================= -->
+  
+    <section class=" position-relative justify-content-center align-content-center">
+      <div class="landing d-flex  align-items-center">
+        <div class=" ms-5 docbooking ">
+          <h1 class=" fw-bolder mb-3">{{'appointmentPage.Doctor'| translate}} {{doctor.name}} -<br>{{'reviewPage.review'| translate}} </h1>
+          <a href="" class="fw-bolder text-success text-decoration-none fs-5">{{'appointmentPage.Home'| translate}} <i
+            [ngClass]="rtlDir? 'fa-angles-left fa-solid ms-2 fs-6' : 'fa-solid fa-angles-right ms-2 fs-6'" ></i></a>
+          <span class=" ms-2 fw-bolder">{{'appointmentPage.Doctor'| translate}} {{doctor.name}} - {{'reviewPage.review'| translate}}</span>
+        </div>
+      </div>
+    </section>
+    <!--  =======================================================( Doctor review )=======================================================  -->
+  
+    <section class=" pt-5">
+      <div class="container">
+        <div class="card docreview mb-3">
+          <div class="row g-0">
+            <div class="col-lg-12 col-md-12 col-10 text-center pt-3 position-relative image mb-3 ms-3 ms-sm-0 doctor_pic">
+              <img [src]="doctor.photo" class="img-fluid rounded-circle px-sm-2   "
+                alt="..." *ngIf="doctor.photo">
+              <img [src]="defaultDoctorImg" class="img-fluid rounded-circle px-sm-2 default-img"
+                alt="..." *ngIf="!doctor.photo">
+            </div>
+            <div class="row justify-content-between col-12">
+              <div class="col-lg-12">
+                <div class="card-body container">
+                  <h4 class=" fs-5 text-center">{{'appointmentPage.Doctor'| translate}} {{doctor.name}} <i class="fa-solid fa-circle-check fs-6"></i></h4>
+  
+                  <form [formGroup]="formReview">
+                    <h3 class="ms-2 fs-2"> {{'reviewPage.overallRating'| translate}}</h3>
+                    <div class="cont d-flex">
+                      <div class="stars">
+                        <ngx-star-rating formControlName="rating1" [id]="'rating'"></ngx-star-rating>
+                      </div>
+                    </div>
+                    <div class="card-body">
+                      <h4 class="mb-2"> {{'reviewPage.title'| translate}}</h4>
+                      <div class="input-field w-100 h-100 rounded p-2 col-lg-12 col-md-12 col-sm-12 form-group mb-3">
+                        <input type="text" class="ps-3 fw-bolder text-secondary w-100 border-0 lh-1 p-2" id="TitleReview"
+                          placeholder="{{ 'reviewPage.TitleReview' | translate }}" required />
+                      </div>
+                      <h4 class="mb-2">{{'reviewPage.yourReview'| translate}}</h4>
+                      <div class="input-field w-100 h-100 rounded-3 p-2 col-lg-12 col-md-12 col-sm-12 form-group mb-3">
+                        <textarea type="text" name="message" class="ps-3 fw-bolder text-secondary w-100 border-0 lh-1 p-2"
+                          id="EmailLogin" placeholder="{{ 'reviewPage.reviewPlaceholder' | translate }}"[value]="reviewdoctor.comment" required formControlName="comment"></textarea>
+                      </div>
+                      <div class="text-center rounded-pill p-2 col-lg-12 col-md-12 col-sm-12 form-group mb-3">
+                        <button type="submit" (click)="submitReview()" [disabled]="formReview.invalid" class="btn btn-primary rounded-pill text-uppercase my-2 " id="submitBtnLogin">
+                          {{'reviewPage.submitReview'| translate}}
+                        </button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+              <div class="col-lg-12 mt-lg-3 ">
+  
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+  

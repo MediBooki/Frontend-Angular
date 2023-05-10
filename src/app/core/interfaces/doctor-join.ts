@@ -1,0 +1,22 @@
+export interface DoctorJoin {
+  name_en:string | undefined | null,
+  name:any,
+  email:any,
+  phone:any,
+  password:any,
+  photo:any,
+  gender:any,
+  section_id:any,
+  title:any,
+  specialization:any,
+  start:any,
+  end:any,
+  patient_time_minute:any,
+  price:any,
+  appointments:number[],
+  experience:any,
+  experience_en:any,
+  education:any,
+  education_en:any,
+
+}

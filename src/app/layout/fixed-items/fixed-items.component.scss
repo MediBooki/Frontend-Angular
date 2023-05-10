@@ -1,0 +1,120 @@
+@import "../../../styles.scss";
+
+
+/*------------------------------------------------( 1.Fast Links )------------------------------------------------  */
+
+
+.fast-links::ng-deep {
+    position: fixed;
+    top: 25%;
+    z-index: 999;
+    box-shadow: rgba(0, 0, 0, 0.4) 6px 2px 16px 0px; 
+
+    a {
+        text-decoration: none !important;
+    }
+
+    span {
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+    }
+
+    .phone-icon {
+        color: #09c;
+    }
+
+    .whatsapp-icon {
+        color: #25d366;
+    }
+
+    .telegram-icon {
+        color: #0088cc;
+    }
+
+    .tooltip
+    {
+        z-index: 999;
+
+        .tooltip-inner {
+ 
+            font-size: 12px;
+            padding: 10px;
+            background-color: #FFFFFF !important;
+            color: rgba(0, 0, 0, .7);
+            border: 1px solid #737373;
+            border-radius: 25px;
+            text-align: left;
+        }
+
+        &.show {
+            opacity: 1;
+        }
+    }
+
+}
+
+
+
+.fast-links-english::ng-deep {
+    right: 20px;
+    .tooltip {
+        .tooltip-arrow {
+            &::before {
+                border-left: 5px solid #999 !important;
+            }
+        }
+    }
+}
+
+.fast-links-arabic::ng-deep {
+    left: 20px;
+    .tooltip {
+        .tooltip-arrow {
+            &::before {
+                border-right: 5px solid #999 !important;
+            }
+        }
+    }
+}
+
+
+
+/*------------------------------------------------( 2.Scroll To Top )------------------------------------------------  */
+
+
+.scroll-up {
+    position: fixed;
+    bottom: 30px;
+    width: 55px;
+    height: 55px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background: $mainColor2;
+    color: #fff;
+    cursor: pointer;
+    transition: all .5s ease-in-out;
+    z-index: 999;
+    left: 30px;
+    &:hover {
+        transform: translateY(-10px);
+    }
+}
+  
+
+
+/*------------------------------------------------( 3.Watson Chatbot )------------------------------------------------  */
+// But put it in styles.css to work properly
+
+// .WACLauncher__ButtonContainer {
+    // left: 30px !important;
+    // right: inherit !important;
+    // box-shadow: 0 0 10px rgba(0,0,0,.3);
+// }
+  
+  // .WACWidget {
+  //   left : var(--WatsonAssistantChat-BASE-right-position) !important;
+  //   right: var(--WatsonAssistantChat-BASE-left-position) !important;
+  // }

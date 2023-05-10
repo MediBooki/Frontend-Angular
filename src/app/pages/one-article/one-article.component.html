@@ -1,0 +1,35 @@
+<div [dir]=" 'dir' | translate " [lang]="lang">
+  <section class=" position-relative justify-content-center align-content-center" #firstSection>
+    <div class="roadmap d-flex  align-items-center justify-content-center">
+      <div class=" ms-5 p-3 text-center ">
+        <h1 class=" fw-bolder mb-3 text-center header title" [class.arabic-font]="rtlDir">{{'navbar.navlink2' | translate}}</h1>
+        <img class="img-fluid lines-img" src="../../../assets/images/roadmap/lines.png" alt="">
+        <div class="mt-2">
+          <a routerLink="/home" class="fw-bolder text-success text-decoration-none fs-5">{{'RoadMap.MainTitle' |
+            translate}} <i class="fa-solid ms-2 fs-6" [ngClass]="rtlDir? 'fa-angles-left' : 'fa-angles-right'"></i>
+          </a>
+          <a routerLink="/articles" class="fw-bolder text-success text-decoration-none fs-5">{{'navbar.navlink2' | translate}} <i class="fa-solid ms-2 fs-6" [ngClass]="rtlDir? 'fa-angles-left' : 'fa-angles-right'"></i>
+          </a>
+          <span class=" ms-2 fw-bolder text-capitalize">{{articale.title}}</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="container ">
+    <div>
+      <h1 class="fw-bold text-center py-5">{{articale.title}}</h1>
+      <div class="m-auto created-fixed-width">
+        <img [src]="articale.photo" class="w-100 h-100" alt="">
+      </div>
+      <div class="created-fixed-width m-auto d-flex justify-content-between fs-5 fw-bold h-auto">
+        <span><i class="fa-solid fa-tags me-1"></i>{{articale.section.name}}</span>
+        <span><i class="far fa-clock me-1"></i>{{articale.created_at}}</span>
+      </div>
+      <div class="containerm py-3">
+        <p>{{articale.description}}</p>
+      </div>
+
+    </div>
+  </section>
+</div>

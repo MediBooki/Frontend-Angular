@@ -1,0 +1,554 @@
+<app-spinner *ngIf="isVisibleSpinner"></app-spinner>
+
+<div class="pharmacy-component" [dir]=" 'dir' | translate "  [lang]="lang">
+
+  <!--  =======================================================( landing )======================================================= -->
+
+
+
+
+  <section class=" position-relative justify-content-center align-content-center" #firstSection>
+    <div class="roadmap d-flex  align-items-center justify-content-center">
+      <div class=" ms-5 p-3 text-center ">
+        <h1 class=" fw-bolder mb-3 text-center header title" [class.arabic-font]="rtlDir">{{rtlDir?'الصيدلية':'Pharmacy'}}</h1>
+        <img class="img-fluid lines-img" src="../../../assets/images/roadmap/lines.png" alt="">
+        
+        <!-- <div class="mt-2">
+            <a routerLink="/home" class="fw-bolder text-success text-decoration-none fs-5">{{'RoadMap.MainTitle' | translate}} <i
+                    class="fa-solid ms-2 fs-6" [ngClass]="rtlDir? 'fa-angles-left' : 'fa-angles-right'"></i>
+            </a>
+            <span class=" ms-2 fw-bolder text-capitalize">{{rtlDir?'الصيدلية':'Pharmacy'}}</span>
+        </div> -->
+        <!-- <ngb-slider [(ngModel)]="rangeValues" [value]="[10, 50]" [high]="100" [step]="5"></ngb-slider> -->
+        <div class="mb-2 filter-count"> {{numOfMedicines}} {{'PharmacyPage.NumMedicines' | translate}}</div>
+
+        <form  [formGroup]="medicineFilterForm" (ngSubmit)="submitForm()">
+        <div class=" main-search-section d-flex justify-content-center my-4">
+            <div
+              class=" main-search-filter bg-white  d-flex justify-content-center align-items-center text-white"
+              [ngClass]="rtlDir? 'main-search-filter-arabic' : 'main-search-filter-english'">
+
+              <label for="searchMedicine1" class="h-100 d-flex justify-content-around align-items-center medicine-search">
+                <i class="fa-solid fa-capsules me-2" *ngIf="medicineFilterForm.controls['name'].value == ''"></i>
+                <i class="fa-solid fa-rotate me-2" *ngIf="medicineFilterForm.controls['name'].value != ''" (click)="resetSearch(nameInput)"></i>
+                <input #nameInput id="searchMedicine1" type="text" class="form-control" name="medicine1-search1"
+                  placeholder="{{'PharmacyPage.SearchName' | translate}}" formControlName="name">
+              </label>
+
+
+              <div class="search-btn-container d-flex justify-content-center w-100">
+                <button type="submit" class="search-btn btn px-4 py-2 border-0"><i
+                    class="fa-solid fa-magnifying-glass me-1"></i>{{'SharedData.MainSearchFilterBtn' | translate}}</button>
+              </div>
+
+            </div>
+          </div>
+        </form>
+
+        
+      </div>
+        </div>
+    </section>
+
+    <!-- =============================================================================================================== -->
+
+    <!-- Second Section Medicine List -->
+
+    <section class="py-1 medicines-list-section">
+        <div class="container">
+            <div class="row py-3">
+                <div id="offset-height" class="col-lg-3 mb-lg-5">
+
+                  <div class="mb-3 medicines-roadmap ps-2">
+                    <a routerLink="/home" class="fw-bolder text-decoration-none fs-5">{{'RoadMap.MainTitle' | translate}} <i
+                      class="fa-solid ms-2 fs-6" [ngClass]="rtlDir? 'fa-angles-left' : 'fa-angles-right'"></i>
+                    </a>
+                    <span class=" ms-2 fw-bolder text-capitalize">{{rtlDir?'الأدوية':'Medicines'}}</span>
+                  </div>
+
+                  <aside id="aside-filter" class="aside-filter position-relative pb-3" *ngIf="noDataError == ''">
+
+                      <div class="accordion" [ngClass]="rtlDir? 'accordion-arabic' : 'accordion-english'" id="accordionExample">
+
+                        <form  [formGroup]="medicineFilterForm" (ngSubmit)="submitPrice()"> <!--  [formGroup]="medicineFilterForm"-->
+                          <div class="accordion-item">
+                              <h2 class="accordion-header">
+                                <div class="accordion-title d-flex align-items-center" >
+                                  <i class="fa-solid fa-filter me-2"></i>
+                                  <h4 class="my-0">{{'SharedData.FiltersWord' | translate}}</h4>
+                                </div>
+                              </h2>
+                          </div>
+
+                          <!-- <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingOne">
+                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                  <i class="fa-solid fa-file-signature me-2"></i>
+                                  Name
+                              </button>
+                            </h2>
+                            <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                              <div class="accordion-body">
+                                <form action="/action_page.php">
+
+                                  <div class="accordion-body-item">
+                                    <input class="form-control" placeholder="Search Medicine Name:" type="text" name="" id="">
+                                  </div>
+                                  <div class="accordion-body-item">
+                                    <input type="checkbox" id="title1" name="title1" value="professor">
+                                    <label for="title1"> Professor</label>
+                                  </div>
+
+                                  <div class="accordion-body-item">
+                                    <input type="checkbox" id="title2" name="title2" value="consultant">
+                                    <label for="title2"> Consultant</label>
+                                  </div>
+
+                                  <div class="accordion-body-item">
+                                    <input type="checkbox" id="title3" name="title3" value="specialist">
+                                    <label for="title3"> Specialist</label>
+                                  </div>
+
+                                </form>
+                              </div>
+                            </div>
+                          </div> -->
+
+                          <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingTwo">
+                              <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                  <!-- <i class="fa-solid fa-venus-mars me-2"></i> -->
+                                  <i class="fa-solid fa-money-bill-1-wave me-2"></i>
+                                  {{'PharmacyPage.Filters.Price' | translate}}
+                              </button>
+                            </h2>
+                            <div id="collapseTwo" class="accordion-collapse collapse show" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                              
+
+                              <div class="accordion-body">
+                                <ngx-slider [(value)]="lowPrice" [(highValue)]="highPrice" [options]="rangeOptions"></ngx-slider> 
+                                <!-- <div>Lower Range Value: {{lowValue}}</div>
+                                <div>High Range Value: {{highValue}}</div> -->
+
+                                  <div class="row price-filter">
+                                    <div class="col-md-6">
+                                      <div class="accordion-body-item">
+                                        <label class="text-muted">{{'PharmacyPage.Filters.MinWord' | translate}}</label>
+                                        <!-- <input type="text" (keypress)="numberOnly($event)" class="form-control mx-auto" id="gender1" name="gender1" formControlName="minPrice"> -->
+                                        <span class="form-control price-value" >{{lowPrice}} {{"SharedData.Currency" | translate}}</span>
+                                      </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                      <div class="accordion-body-item">
+                                        <label class="text-muted">{{'PharmacyPage.Filters.MaxWord' | translate}}</label>
+                                        <!-- type="number" [(ngModel)]="highValue"  -->
+                                        <!-- <input type="text" (keypress)="numberOnly($event)" class="form-control mx-auto" id="gender1" name="gender1" formControlName="maxPrice"> -->
+                                        <span class="form-control price-value" >{{highPrice}} {{"SharedData.Currency" | translate}}</span>
+                                      </div>
+                                    </div>
+                                    <div class="col-md-12 price-search">
+                                      <button type="submit" class="btn w-100 my-2">{{'SharedData.MainSearchFilterBtn' | translate}}</button>
+                                    </div>
+                                  </div>
+
+                              </div>
+                              
+                              <!-- <div class="accordion-body price-filter row">
+                                <div class="col-md-6">
+                                  <div class="accordion-body-item">
+                                    <label class="text-muted" for="">{{'PharmacyPage.Filters.MinWord' | translate}}</label>
+                                    <input type="text" (keypress)="numberOnly($event)" class="form-control mx-auto" id="gender1" name="gender1" formControlName="minPrice">
+                                  </div>
+                                </div>
+                                <div class="col-md-6">
+                                  <div class="accordion-body-item">
+                                    <label class="text-muted" for="">{{'PharmacyPage.Filters.MaxWord' | translate}}</label>
+
+                                    <input type="text" (keypress)="numberOnly($event)" class="form-control mx-auto" id="gender1" name="gender1" formControlName="maxPrice">
+                                  </div>
+                                </div>
+                                <div class="col-md-12 price-search">
+                                  <button type="submit" class="btn w-100 my-2">{{'SharedData.MainSearchFilterBtn' | translate}}</button>
+                                </div>
+                              </div> -->
+
+                            </div>
+                          </div>
+
+                          <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingThree">
+                              <button class="accordion-button " [class.collapsed]="categoryArrayChecked.length==0" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                <i class="fa-solid fa-pen-to-square m-2"></i>
+                                {{'PharmacyPage.Filters.Category' | translate}}
+                              </button>
+                            </h2>
+                            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample" [class.show]="categoryArrayChecked.length>0">
+                              <div class="accordion-body">
+
+                                  <div class="accordion-body-item"  *ngFor="let category of allCategories;let i = index">
+                                    <input type="checkbox" id="category{{category.id}}" name="category{{category.id}}" [value]="category.id" (change)="GetCategoryStats($event)" [checked]="categoryArrayChecked[category.id]"><!--  -->
+                                    <label for="category{{category.id}}"> {{category.name}}</label>
+                                  </div>
+
+
+
+
+
+                              </div>
+                            </div>
+                          </div>
+
+                          <!-- <div class="accordion-item">
+                              <h2 class="accordion-header" id="headingFour">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                  <i class="fa-solid fa-money-bill-wave me-2"></i>
+                                  Examination Fees
+                                </button>
+                              </h2>
+                              <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                  <form action="/action_page.php">
+
+                                    <div class="accordion-body-item">
+                                        <input type="radio" id="fee1" name="Examination_Fee" value="any">
+                                        <label for="fee1">Any</label>
+                                    </div>
+
+                                    <div class="accordion-body-item">
+                                        <input type="radio" id="fee2" name="Examination_Fee" value="less50">
+                                        <label for="fee2">Less than 50</label>
+                                    </div>
+
+                                    <div class="accordion-body-item">
+                                        <input type="radio" id="fee3" name="Examination_Fee" value="from50To100">
+                                        <label for="fee3">From 50 to 100</label>
+                                    </div>
+
+                                    <div class="accordion-body-item">
+                                        <input type="radio" id="fee4" name="Examination_Fee" value="from100To200">
+                                        <label for="fee4">From 100 to 200</label>
+                                    </div>
+
+                                    <div class="accordion-body-item">
+                                        <input type="radio" id="fee5" name="Examination_Fee" value="from200To300">
+                                        <label for="fee5">From 200 to 300</label>
+                                    </div>
+
+                                    <div class="accordion-body-item">
+                                        <input type="radio" id="fee6" name="Examination_Fee" value="greater300">
+                                        <label for="fee6">Greater than 300</label>
+                                    </div>
+
+                                  </form>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div class="accordion-item">
+                              <h2 class="accordion-header" id="headingFive">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                                  <i class="fa-solid fa-house-medical me-2"></i>
+                                  Entity
+                                </button>
+                              </h2>
+                              <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                  <form action="/action_page.php">
+
+                                    <div class="accordion-body-item">
+                                      <input type="checkbox" id="entity1" name="entity1" value="hospital">
+                                      <label for="entity1"> Hospital</label>
+                                    </div>
+
+                                    <div class="accordion-body-item">
+                                      <input type="checkbox" id="entity2" name="entity2" value="clinic">
+                                      <label for="entity2"> Clinic</label>
+                                    </div>
+
+                                  </form>
+                                </div>
+                              </div>
+                            </div> -->
+                          </form>
+                        </div>
+                  </aside>
+                </div>
+                <div class="col-lg-9 ">
+                    <div class="filtered-content" *ngIf="noDataError == ''">
+                      <div  *ngIf="allMedicines.length>0" id="small-filter-btn" class="text-center justify-content-center d-none mb-3">
+                        <div class="accordion-item" (click)="showSmallFilter()">
+                          <h2 class="accordion-header">
+                            <div class="accordion-title rounded d-flex align-items-center" >
+                              <i class="fa-solid fa-filter me-2"></i>
+                              <h4 class="my-0">{{'SharedData.FiltersWord' | translate}}</h4>
+                            </div>
+                          </h2>
+                        </div>
+                      </div>
+
+
+                      <div *ngIf="!noData;else error">
+
+                        <div class="filtered-content-title d-flex text-muted ">
+                          <!-- --><h2 class="filtered-title mb-0 fw-bold" [class.arabic-font]="rtlDir" *ngIf="filteredContent.length != 0">{{"PharmacyPage.ResultTitle1" | translate}} <span class="me-1" *ngFor="let categoryName of filteredContent">{{categoryName}}</span></h2> <!-- -->
+                          <!-- --><h2 class="filtered-title mb-0 fw-bold" [class.arabic-font]="rtlDir" *ngIf="filteredContent.length == 0">{{"PharmacyPage.ResultTitle2" | translate}}</h2> 
+                          <!-- <h2 class="filtered-title mb-0" *ngIf="filteredContent.length != 0">Search By <span class="me-1" *ngFor="let name of filteredContent">{{name}}</span></h2> -->
+                          <p class="ms-2 mb-0"><span class="medicines-num">{{totalRecords}}</span> {{"PharmacyPage.MedicinesWord" | translate}}</p>
+
+                        </div>
+
+                      <div class="medicines-list pb-5 pt-3">
+                        <div class="row">
+                            <app-medicine class="col-xl-4 col-sm-6 py-3" *ngFor="let medicine of allMedicines| paginate :{id:'listing-pagination',
+                            itemsPerPage:numMedicinesPerPage,
+                            currentPage:page,
+                            totalItems:totalRecords }" [medicine]="medicine"></app-medicine>
+                        </div>
+
+                      </div>
+                      <div class="d-flex justify-content-center align-items-center">
+                        <pagination-controls id="listing-pagination"  class="medicines-pagination" (pageChange)="changePage($event)" previousLabel="" nextLabel="" [ngClass]="rtlDir? 'pagination-arabic' : 'pagination-english'">
+
+                        </pagination-controls>
+                      </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+            <ng-template #error>
+
+              <div class=" search-empty text-center bg-white p-5 rounded mb-5">
+                  <div class="my-4">
+                    <i class="fa-solid fa-pills search-icon"></i>
+                  </div>
+                  <div class="search-empty-content">
+                      <div class="my-3">
+                          <h2 class="fw-bold">{{"PharmacyPage.EmptyMedicines.Title" | translate}}</h2>
+                      </div>
+                      <p class="text-muted">{{"PharmacyPage.EmptyMedicines.paragraph" | translate}}</p>
+                  </div>
+              </div>
+
+          </ng-template>
+            <!-- <ng-template #error>
+              <div class="alert alert-danger text-center my-3" role="alert">
+                <div class=" d-flex align-items-center justify-content-center">
+                  <i class="fa-solid fa-triangle-exclamation mx-2"></i>
+                  <div *ngIf="noDataError?.name != null;else noData">
+                    {{noDataError?.name}}
+                  </div>
+                  <ng-template #noData>
+                    {{"SharedData.NoDataError" | translate}}
+                  </ng-template>
+                </div>
+                <h3 class="my-2">{{'SharedData.ErrorMessage' | translate}}</h3>
+
+              </div>
+              <div >
+                <h1></h1>
+              </div>
+            </ng-template> -->
+        </div>
+    </section>
+
+    <!-- End Second Section -->
+
+    <!-- =============================================================================================================== -->
+
+    <!-- Filters in small screens -->
+
+    <div  id="small-filter" class="w-100 vh-100 position-fixed overflow-auto" [ngClass]="smallFilterVisible? 'd-block' : 'd-none'">
+        <form [formGroup]="medicineFilterForm" (ngSubmit)="submitPrice()">
+            <div class="text-center position-relative">
+              <h2 class="py-2 text-white">{{'SharedData.FiltersWord' | translate}}</h2>
+              <div id="filter-close-icon" [ngClass]="rtlDir? 'filter-close-arabic' : 'filter-close-english'" (click)="hideSmallFilter()">
+                  <i class="fa-solid fa-xmark text-white fs-4"></i>
+              </div>
+            </div>
+            <div class="small-filter-content p-3">
+
+              <div class="small-filter-item bg-white py-3 my-3">
+                  <div class="small-filter-head d-flex align-items-baseline px-3">
+                      <i class="fa-solid fa-money-bill-1-wave me-2 fs-5"></i>
+                      <h4>{{'PharmacyPage.Filters.Price' | translate}}</h4>
+                  </div>
+                  <div class="small-filter-body">
+
+                    <div class="price-filter row p-3">
+
+
+
+
+                                <!-- <div>Lower Range Value: {{lowValue}}</div>
+                                <div>High Range Value: {{highValue}}</div> -->
+
+
+
+
+
+                      <div class="col-12">
+                        <!--smallRangeOptions-->
+                        <ngx-slider [(value)]="smallLowPrice" [(highValue)]="smallHighPrice" [options]="smallRangeOptions"></ngx-slider> 
+                      </div>
+
+                      
+                      <div class="col-5">
+                        <div class="">
+                          <label class="text-muted">{{'PharmacyPage.Filters.MinWord' | translate}}</label>
+                          <!-- <input type="text" (keypress)="numberOnly($event)" class="form-control mx-auto" id="gender1" name="gender1" formControlName="minPrice"> -->
+                          <span class="form-control price-value" >{{smallLowPrice}} {{"SharedData.Currency" | translate}}</span>
+                          <!-- <label class="text-muted" for="">{{'PharmacyPage.Filters.MinWord' | translate}}</label>
+                          <input type="text" placeholder="Min Price" (keypress)="numberOnly($event)" class="form-control mx-auto" id="gender1" name="gender1" formControlName="minPrice"> -->
+                        </div>
+                      </div>
+                      <div class="col-2 d-flex align-items-center justify-content-center">
+                        <span><i class="fa-solid fa-arrows-left-right text-muted mt-4"></i></span>
+                      </div>
+                      <div class="col-5">
+                        <div class="">
+                          <label class="text-muted">{{'PharmacyPage.Filters.MaxWord' | translate}}</label>
+                          <!-- type="number" [(ngModel)]="highValue"  -->
+                          <!-- <input type="text" (keypress)="numberOnly($event)" class="form-control mx-auto" id="gender1" name="gender1" formControlName="maxPrice"> -->
+                          <span class="form-control price-value" >{{smallHighPrice}} {{"SharedData.Currency" | translate}}</span>
+
+                          <!-- <label class="text-muted" for="">{{'PharmacyPage.Filters.MaxWord' | translate}}</label>
+
+                          <input type="text" placeholder="Max Price" (keypress)="numberOnly($event)" class="form-control mx-auto" id="gender1" name="gender1" formControlName="maxPrice"> -->
+                        </div>
+                      </div>
+                      <div class="col-6 m-auto price-search">
+                        <button type="submit" class="btn w-100 my-2">{{'SharedData.MainSearchFilterBtn' | translate}}</button>
+                      </div>
+
+                    </div>
+
+                  </div>
+              </div>
+
+              <div class="small-filter-item bg-white py-3 my-3">
+                  <div class="small-filter-head d-flex align-items-baseline px-3">
+                  <i class="fa-solid fa-venus-mars me-2 fs-5"></i>
+                  <h4>{{'PharmacyPage.Filters.Category' | translate}}</h4>
+                  </div>
+                  <div class="small-filter-body">
+
+
+                    
+                    <div class="accordion-body-item p-3 border-bottom"  *ngFor="let category of allCategories;let i = index">
+                      <input type="checkbox" id="small-category{{category.id}}" name="category{{category.id}}" [value]="category.id" (change)="GetCategoryStats($event)" [checked]="categoryArrayChecked[category.id]"><!--  -->
+                      <label for="small-category{{category.id}}"> {{category.name}}</label>
+                    </div>
+
+
+
+                  </div>
+              </div>
+
+              <!-- <div class="small-filter-item bg-white py-3 my-3">
+                  <div class="small-filter-head d-flex align-items-baseline px-3">
+                  <i class="fa-solid fa-calendar-days me-2 fs-5"></i>
+                  <h4>Availability</h4>
+                  </div>
+                  <div class="small-filter-body">
+
+
+                      <div class="accordion-body-item p-3 border-bottom">
+                      <input type="checkbox" id="small-availability1" name="availability1" value="anyDay">
+                      <label for="small-availability1"> Any Day</label>
+                      </div>
+
+                      <div class="accordion-body-item p-3 border-bottom">
+                      <input type="checkbox" id="small-availability2" name="availability2" value="today">
+                      <label for="small-availability2"> Today</label>
+                      </div>
+
+                      <div class="accordion-body-item p-3">
+                      <input type="checkbox" id="small-availability3" name="availability3" value="tomorrow">
+                      <label for="small-availability3"> Tomorrow</label>
+                      </div>
+
+
+                  </div>
+              </div>
+
+              <div class="small-filter-item bg-white py-3 my-3">
+                  <div class="small-filter-head d-flex align-items-baseline px-3">
+                  <i class="fa-solid fa-money-bill-wave me-2 fs-5"></i>
+                  <h4>Examination Fees</h4>
+                  </div>
+                  <div class="small-filter-body">
+
+
+                      <div class="accordion-body-item p-3 border-bottom">
+                      <input type="radio" id="small-fee1" name="Examination_Fee" value="any">
+                      <label for="small-fee1">Any</label>
+                      </div>
+
+                      <div class="accordion-body-item p-3 border-bottom">
+                      <input type="radio" id="small-fee2" name="Examination_Fee" value="less50">
+                      <label for="small-fee2">Less than 50</label>
+                      </div>
+
+                      <div class="accordion-body-item p-3 border-bottom">
+                      <input type="radio" id="small-fee3" name="Examination_Fee" value="from50To100">
+                      <label for="small-fee3">From 50 to 100</label>
+                      </div>
+
+                      <div class="accordion-body-item p-3 border-bottom">
+
+                          <input type="radio" id="small-fee4" name="Examination_Fee" value="from100To200">
+                      <label for="small-fee4">From 100 to 200</label>
+                      </div>
+
+                      <div class="accordion-body-item p-3 border-bottom">
+                      <input type="radio" id="small-fee5" name="Examination_Fee" value="from200To300">
+                      <label for="small-fee5">From 200 to 300</label>
+                      </div>
+
+                      <div class="accordion-body-item p-3">
+                      <input type="radio" id="small-fee6" name="Examination_Fee" value="greater300">
+                      <label for="small-fee6">Greater than 300</label>
+                      </div>
+
+
+                  </div>
+              </div>
+
+              <div class="small-filter-item bg-white py-3 my-3">
+                  <div class="small-filter-head d-flex align-items-baseline px-3">
+                      <i class="fa-solid fa-house-medical me-2 fs-5"></i>
+                      <h4>Entity</h4>
+                  </div>
+                  <div class="small-filter-body">
+
+
+                      <div class="accordion-body-item p-3 border-bottom">
+                      <input type="checkbox" id="small-entity1" name="entity1" value="hospital">
+                      <label for="small-entity1"> Hospital</label>
+                      </div>
+
+                      <div class="accordion-body-item p-3">
+                      <input type="checkbox" id="small-entity2" name="entity2" value="clinic">
+                      <label for="small-entity2"> Clinic</label>
+                      </div>
+
+
+                  </div>
+              </div> -->
+
+            </div>
+
+            <!-- <div class="small-filter-buttons d-flex justify-content-around align-items-center mb-4">
+              <button type="submit" class="btn btn-success">Show Results</button>
+              <button id="filter-close-icon2" class="btn btn-danger" (click)="hideSmallFilter()">Close</button>
+            </div> -->
+            <div class="small-filter-buttons d-flex justify-content-around align-items-center mb-4">
+              <!-- <button type="submit" class="btn btn-success">{{'DoctorsPage.Filters.ShowResultBtn' | translate}}</button> -->
+              <button type="button" id="filter-close-icon2" class="btn btn-danger" (click)="hideSmallFilter()">{{'SharedData.CloseBtn' | translate}}</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- =============================================================================================================== -->
+
+    </div>

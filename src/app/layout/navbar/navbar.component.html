@@ -1,0 +1,153 @@
+<div class="navbar-component" [dir]=" 'dir' | translate " [lang]="lang">
+  <div class="bg-fixed-nav fixed-nav start-0 end-0 position-fixed z-index-high" #navbar>
+    <div class="container py-2 text-white d-flex">
+      <div class="me-auto">
+        <div class="d-inline" *ngIf="!is_login">
+          <!-- <span class="d-md-inline d-none" >
+            <a class="text-decoration-none text-white fw-bold" routerLink="/Login">{{'navbar.Login'
+              | translate}}</a>
+            <span class="mx-1">|</span>
+            <a class="text-decoration-none text-white fw-bold" routerLink="/Register">{{'navbar.Register' |
+              translate}}</a>
+          </span> -->
+          <span class="d-inline">
+            <a class="text-decoration-none text-white fw-bold" routerLink="/Login"><i class="fa-solid fa-right-to-bracket mx-2"></i>{{'navbar.Login'
+              | translate}}</a>
+          </span>
+        </div>
+        <div class="d-inline" *ngIf="is_login">
+          <span>
+            <a class="text-decoration-none text-white fw-bold rounded-circle dropdown-toggle" ><img class="rounded-circle" [src]="userPhoto" width="30px" height="30px" alt=""></a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item text-center fw-bold" routerLink="/my-profile"><i class="fa-solid fa-user pe-2"></i>{{'navbar.my-profile'
+                | translate}}</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="text-decoration-none text-dark fw-bold dropdown-item text-center" style="cursor: pointer;" (click)="logout()" ><i class="fa-solid fa-right-from-bracket pe-2"></i>{{'navbar.logout'
+                | translate}}</a></li>
+            </ul>
+              <!-- <span class="mx-1">|</span>
+              <a class="text-decoration-none text-white fw-bold" style="cursor: pointer;" (click)="logout()" >{{'navbar.logout'
+                | translate}}</a> -->
+          </span>
+        </div>
+        <span class="d-none d-md-inline"><i class=" px-2 fa-brands fa-facebook-f"></i><i class=" px-2 fa-brands fa-instagram"></i><i
+            class="px-2 fa-brands fa-twitter"></i></span>
+      </div>
+      <div class="ms-auto">
+        <span>
+          <!-- <select name="" id="" (change)="translate($event)">
+            <option value="en">English</option>
+            <option value="ar">Arabic</option>
+          </select> -->
+          <!-- <a class="text-decoration-none text-white fw-bold px-2" href="#">العربية<i
+              class="ps-2 fa-solid fa-globe"></i></a> -->
+          <!-- [ngClass]="rtlDir?'d-block' : 'd-none'" -->
+          <div class="d-inline dropdown-toggle">
+            <div class="d-inline">
+              <button [ngClass]="rtlDir?'d-none' : 'd-inline'" value="ar"
+                class="bg-transparent border-0 text-white fw-bold px-2">العربية<i
+                  class="ps-2 fa-solid fa-globe"></i></button>
+            </div>
+            <!-- [ngClass]="rtlDir?'d-none' : 'd-block'" -->
+            <div class="d-inline">
+              <button [ngClass]="rtlDir?'d-inline' : 'd-none'" value="en"
+                class="bg-transparent border-0 text-white fw-bold px-2">EN<i class="ps-2 fa-solid fa-globe"></i></button>
+            </div>
+          </div>
+          <ul class="dropdown-menu text-center">
+            <div class="dropdown-item">
+              <button value="ar" (click)="translate('ar')"
+                class="bg-transparent border-0 text-dark fw-bold px-2">العربية<i
+                  class="ps-2 fa-solid fa-globe"></i></button>
+            </div>
+            <!-- [ngClass]="rtlDir?'d-none' : 'd-block'" -->
+            <li><hr class="dropdown-divider"></li>
+            <div class="dropdown-item">
+              <button value="en" (click)="translate('en')"
+                class="bg-transparent border-0 text-dark fw-bold px-2">EN<i class="ps-2 fa-solid fa-globe"></i></button>
+            </div>
+            <!-- <li><a class="dropdown-item" href="#">Action</a></li>
+            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li> -->
+          </ul>
+          <!-- <div class="d-inline">
+            <button [ngClass]="rtlDir?'d-none' : 'd-inline'" value="ar" (click)="translate('ar')"
+              class="bg-transparent border-0 text-dark fw-bold px-2">العربية<i
+                class="ps-2 fa-solid fa-globe"></i></button>
+          </div> -->
+          <!-- [ngClass]="rtlDir?'d-none' : 'd-block'" -->
+          <!-- <div class="d-inline">
+            <button [ngClass]="rtlDir?'d-inline' : 'd-none'" value="en" (click)="translate('en')"
+              class="bg-transparent border-0 text-dark fw-bold px-2">EN<i class="ps-2 fa-solid fa-globe"></i></button>
+          </div> -->
+          <a class="text-decoration-none text-white fw-bold px-2 border-start border-end border-info"
+            href="#">{{'navbar.Egypt' | translate}}
+            <img class="rounded-circle" src="../../../assets/images/navbar-footer/egypt.png" width="20px"
+              height="20px"></a>
+          <div class="d-inline mx-2">
+            <button routerLink="/cart" class="bg-transparent border-0 text-white fw-bold px-2"><i
+                class="fa-solid fa-cart-shopping position-relative"><span
+                  class="cart-num text-white rounded-circle position-absolute text-center d-flex justify-content-center align-items-center ">{{cartQty}}</span></i></button>
+          </div>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <nav class="navbar navbar-expand-lg navbar-light bg-light" *ngIf="islog">
+    <div class="container">
+      <a class="navbar-brand" routerLink="/home"><img src="../../../assets/images/GP2.png" /></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav m-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link link-hover justify-content-center d-flex" routerLink="/home"
+              [routerLinkActive]="['active-link']">{{'navbar.navlink1' | translate}}</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link link-hover justify-content-center d-flex" [routerLink]="['/articles']" [routerLinkActive]="['active-link']">{{'navbar.navlink2' | translate}}</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link link-hover justify-content-center d-flex"
+              routerLink="/specializations" [routerLinkActive]="['active-link']">{{'navbar.navlink3' | translate}}</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link link-hover justify-content-center d-flex" routerLink="/pharmacy"
+              [routerLinkActive]="['active-link']">{{'navbar.navlink4' | translate}}</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link link-hover justify-content-center d-flex" routerLink="/joinus" [routerLinkActive]="['active-link']">{{'navbar.navlink5' | translate}}</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link link-hover justify-content-center d-flex" routerLink="/doctors"
+              [routerLinkActive]="['active-link']">{{'navbar.navlink6' | translate}}</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link link-hover justify-content-center d-flex" href="#">{{'navbar.navlink7' | translate}}</a>
+          </li>
+          <li class="nav-item text-center d-md-none">
+              <a class="nav-link" routerLink="/Login">{{'navbar.Login'
+                | translate}}</a>
+          </li>
+          <li class="nav-item text-center d-md-none">
+              <a class="nav-link" routerLink="/Register">{{'navbar.Register' |
+                translate}}</a>
+          </li>
+          <li class="nav-item text-center d-md-none">
+            <span><i class=" px-2 fa-brands fa-facebook-f"></i><i class=" px-2 fa-brands fa-instagram"></i><i
+              class="px-2 fa-brands fa-twitter"></i></span>
+          </li>
+        </ul>
+        <span [ngClass]="rtlDir?'contact-us-rounded-ar' : 'contact-us-rounded-en'"
+          class="contact-us bg-fixed-nav p-2 d-none d-lg-block"><a href="#"
+            class="text-white fw-bold text-decoration-none"><i
+              class="text-main5 bg-white p-1 me-1 rounded-circle fa-solid fa-phone"></i>{{'navbar.ContactUs' |
+            translate}}</a></span>
+      </div>
+    </div>
+  </nav>
+</div>

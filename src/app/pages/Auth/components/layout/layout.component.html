@@ -1,0 +1,63 @@
+<div class="layout ">
+</div>
+<!-- <div class="specialize-component" [dir]=" 'dir' | translate " [lang]="lang"> -->
+<section class="container Login-Register position-absolute overflow-hidden p-sm-3 mw-100 vh-100" id="Register"
+  [class.Register-mode]="login === false">
+  <!-- Form Login and Register -->
+  <!-- -----------------------------------------------------(panels-container)----------------------------------------------------- -->
+  <div
+    class="col-lg-7 row me-5 panels-container text-center d-flex justify-content-between flex-column position-absolute w-100 h-100 top-0 start-0 flex-md-row justify-content-md-around">
+    <!-- -----------------------------------------------------(left-panel)----------------------------------------------------- -->
+    <div class="panel left-panel d-flex flex-column text-center col-lg-6 col-md-6">
+      <div class="content text-light">
+        <h3 class="fw-bolder lh-1 fs-2 mt-3">{{ 'loginPage.New here' | translate }}</h3>
+        <p class="fs-5 py-1">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum,
+          delectus at tenetur non vel asperiores nostrum consequatur.
+        </p>
+        <button type="submit" class="btn transparent btn-primary rounded-pill text-uppercase m-0" (click)="click()"
+          id="RegisterForm" routerLink="/Register">
+          {{ 'loginPage.register' | translate }}
+        </button>
+      </div>
+      <img src="../../../../../assets/images/Sign_In_Up/doctors_login.svg" class="img-fluid" alt="" />
+    </div>
+    <!-- -----------------------------------------------------(right-panel)----------------------------------------------------- -->
+    <div class="panel right-panel d-flex flex-column align-items-end text-center col-lg-6 col-md-6">
+      <div class="content text-light">
+        <h3 class="fw-bolder lh-1 fs-2 mt-3">{{ 'registerPage.oneOfUs' | translate }}</h3>
+        <p class="fs-5 py-1">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum,
+          delectus at tenetur non vel asperiores nostrum consequatur.
+        </p>
+        <button type="submit" class="btn transparent btn-primary rounded-pill text-uppercase mb-4" (click)="click()"
+          id="Sign-In" routerLink="/Login">
+          {{ 'registerPage.signin' | translate }}
+        </button>
+      </div>
+      <img src="../../../../../assets/images/Sign_In_Up/medical_care_register.svg" class="img-fluid" alt="" />
+    </div>
+  </div>
+</section>
+
+<button data-bs-toggle="modal" class="d-none" data-bs-target="#staticBackdrop" #modalBtn>Show Modal</button>
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+  aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Adding Product to Cart</h5>
+
+      </div>
+      <div class="modal-body">
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Temporibus facere error qui id, nulla provident nisi
+        quibusdam odit non unde nam iste incidunt officia, fugit laudantium eligendi, enim beatae ullam!
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success m-auto" data-bs-dismiss="modal">OK</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- </div> -->

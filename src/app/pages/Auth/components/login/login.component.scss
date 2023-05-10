@@ -1,0 +1,155 @@
+/* =======================================================( Login and Register )======================================================= */
+
+
+/* =======================================================( Sign-in-Sign-up )======================================================= */
+
+.Login-Register {
+  /* =======================================================( container )======================================================= */
+
+  min-height: 100vh;
+  overflow-x: hidden;
+
+  .Sign-in-Sign-up {
+    transform: translate(-50%, -50%);
+    left: 75%;
+    transition: 1s 0.7s ease-in-out;
+    z-index: 5;
+    top: 40%;
+
+
+
+    /* Style form  */
+    form {
+      transition: all 0.2s 0.7s;
+      padding: 0rem 3rem !important;
+    }
+
+  }
+
+  &.Register-mode {
+    .Register {
+      z-index: 2;
+      opacity: 1;
+    }
+
+    .Sign_In {
+      opacity: 0;
+      z-index: 1;
+    }
+
+    .Sign-in-Sign-up {
+      left: 25%;
+    }
+  }
+
+  /* Style Sign_In  */
+  .Sign_In {
+    z-index: 2;
+    transform: translate(-5%, -50%);
+  }
+
+  /* Style input-field  */
+  .input-field {
+    background-color: #f0f0f0;
+  }
+
+  .input-field svg {
+    color: #acacac;
+  }
+
+  .input-field input,
+  .input-field select {
+    outline: none !important;
+    background: none;
+  }
+
+  .btn {
+    width: 150px;
+    height: 50px;
+    outline: none;
+    transition: 0.5s;
+  }
+
+  /* Style Register  */
+  .Register {
+    z-index: 1;
+    transform: translate(0, 20%);
+
+    .username {
+      height: 8%;
+    }
+
+    .firstnameError {
+      p {
+        position: relative;
+        right: 0;
+      }
+    }
+
+    .lastnameError {
+      p {
+        position: relative;
+        margin-left: 40px;
+      }
+    }
+  }
+
+  /* Animation */
+
+
+}
+
+
+/* Style Media_Queries   */
+
+@media (max-width: 870px) {
+  .Login-Register {
+    height: 100vh;
+    min-height: 1000px;
+    overflow-y: hidden;
+
+    .Sign_In {
+      z-index: 2;
+      transform: translate(-5%, -120%)
+    }
+
+    .Sign-in-Sign-up {
+      width: 100%;
+      left: 50% !important;
+      top: 75% !important;
+      transform: translate(-50%, -100%) !important;
+
+      .Register {
+        padding-right: 1rem !important;
+        transform: translate(0, 0) !important;
+
+        p {
+          font-size: 13px;
+        }
+
+        .btn {
+          .transparent {
+            width: 110px;
+            height: 35px;
+            font-size: 0.7rem;
+          }
+        }
+      }
+    }
+
+    &.Register-mode {
+      .Sign-in-Sign-up {
+        top: 5% !important;
+        transform: translate(-50%, 0) !important;
+        left: 50% !important;
+      }
+    }
+  }
+}
+
+
+@media (max-width: 570px) {
+  form {
+    padding: 0 2rem !important;
+  }
+}
