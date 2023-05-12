@@ -6,7 +6,7 @@ import { Section } from '../interfaces/section';
 import { Medicine } from '../interfaces/medicine';
 import { MedicineCategory } from '../interfaces/medicine-category';
 import { Appointments } from '../interfaces/appointments';
-import { patientReview } from '../interfaces/patients';
+
 
 @Injectable({
   providedIn: 'root'
@@ -15,8 +15,7 @@ export class DataService {
 
   defaultNoImg:string = "../../../assets/images/No_Image_Available.png"
   curruntService = new BehaviorSubject("details")
-  isreview = new BehaviorSubject(false)
-  updatereview = new BehaviorSubject(false)
+
   userPhoto= new BehaviorSubject('../../../assets/images/user_male.jpeg')
   firstSectionHeight: any = 0; // variable to know first component section height to show scrollToTop Btn
   _lang = new BehaviorSubject(this.getLocalLang());
@@ -126,32 +125,7 @@ export class DataService {
 
 
 
-  getFilteredDoctors(model: any, lang: string, page: number): Observable<any> {
 
-    let params = new HttpParams();
-
-    for (let obj in model) {
-      console.log(typeof (model[obj]))
-      if (typeof (model[obj]) == 'object') {
-        console.log(typeof (model[obj]) == 'object');
-        model[obj].forEach((gg: string) => {
-          params = params.append(`${obj}[]`, gg);
-        })
-      } else {
-        params = params.append(`${obj}`, model[obj]);
-      }
-
-    }
-
-    // const parse = JSON.parse(par)
-    console.log(model.genders)
-    // console.log(params)
-    return this._HttpClient.get<any[]>(`${this.sharedApi}/filter/doctors?lang=${lang}&page=${page}`, { params: params }).pipe(catchError((e: any) => {
-      console.log(e)
-      return throwError(e)
-    }));
-
-  }
 
   changePassword(model:any):Observable<any>{
     return this._HttpClient.post(this.sharedApi + '/patient/change/password', model, {  headers: this.authAcceptHeaders  });
@@ -202,19 +176,7 @@ export class DataService {
     return this._HttpClient.post(this.sharedApi + '/patient/insurance', model, {  headers: this.authHeader  });
   }
 
-  createReviewPatient(model: patientReview) {
-    return this._HttpClient.post(this.sharedApi + '/patient/DoctorReview', model, { headers: this.authAcceptHeaders });
-  }
 
-
-  updateReviewPatient(model: patientReview) {
-    return this._HttpClient.post(this.sharedApi + '/patient/DoctorReview', model, { headers: this.authAcceptHeaders });
-  }
-
-
-  getReviewPatient(id: string):Observable<any> {
-    return this._HttpClient.get<any>(`${this.sharedApi}/patient/DoctorReview/${id}`, { headers: this.authAcceptHeaders });
-  }
   getInvoices(lang: string): Observable<any> {
     this.authHeader = new HttpHeaders({
       authorization : `${localStorage.getItem('token')}`
@@ -265,12 +227,8 @@ export class DataService {
     }));
   }
 
-  gethospitalDetails(): Observable<any> {
-    return this._HttpClient.get<any[]>(`${this.sharedApi}/settings`).pipe(catchError((e: any) => {
-      console.log(e)
-      return throwError(e)
-    }));
-  }
+
+
 
   getDistinguishedDoctors(lang: string): Observable<any> {
     return this._HttpClient.get<any[]>(`${this.sharedApi}/best/doctors?lang=${lang}`).pipe(catchError((e: any) => {

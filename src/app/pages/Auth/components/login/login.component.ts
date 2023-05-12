@@ -54,7 +54,7 @@ export class LoginComponent implements OnInit {
       this._DataService.is_login.next(true);
       this.router.navigate(['/home'])
     }, (error) => {
-      this.toastr.error(!this.rtlDir?`Email Or Password is incorrect`:`البريد الالكتروني او كلمة المرور خاطئة`, error.error.data.error )
+      this.toastr.error(!this.rtlDir?`Email Or Password is incorrect`:`البريد الالكتروني او كلمة المرور خاطئة`, error.error.message.error )
       console.log(error)
     })
     console.log(this.loginForm.value)

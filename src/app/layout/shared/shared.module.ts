@@ -16,7 +16,7 @@ import { NgSelect2Module } from 'ng-select2';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { ToastrModule } from 'ngx-toastr';
-import { MedicineComponent } from 'src/app/pages/pharmacy/medicine/medicine.component';
+import { MedicineComponent } from 'src/app/pages/pharmacy/component/medicine/medicine.component';
 // import { PharmacyModule } from 'src/app/pages/pharmacy/pharmacy.module';
 // import { MedicineModule } from 'src/app/pages/pharmacy/medicine/medicine.module';
 

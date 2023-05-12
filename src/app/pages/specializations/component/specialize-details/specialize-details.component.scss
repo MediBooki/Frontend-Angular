@@ -1,0 +1,33 @@
+/* =======================================================( Common )======================================================= */
+@import '../../../../../styles.scss';
+
+@mixin PaginationBtnsShared {
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  width: 45px;
+  height: 45px;
+  padding: 0;
+  border-radius: 10px;
+}
+
+
+
+.specialize-details-section {
+    background-color: $lightGreyColor;
+    cursor: pointer;
+
+    .specialize-details-img {
+      img {
+        max-height: 550px;
+      }
+    }
+
+    .specialize-details-content {
+        h2 {
+            font-size: 1.75rem;
+            margin-bottom: 1.5rem;
+            // font-weight: 600;
+        }
+    }
+}

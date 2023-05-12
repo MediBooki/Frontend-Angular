@@ -4,20 +4,21 @@ import { AppointmentsComponent } from './pages/appointments/component/appointmen
 import { LoginComponent } from './pages/Auth/components/login/login.component';
 import { RegisterComponent } from './pages/Auth/components/register/register.component';
 import { CartComponent } from './pages/cart/component/cart/cart.component';
-import { DoctorsComponent } from './pages/doctors/doctors.component';
+import { DoctorsComponent } from './pages/doctors/component/doctors/doctors.component';
 import { HomeComponent } from './pages/home/home.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
-import { PatientProfileComponent } from './pages/patient-profile/patient-profile.component';
-import { PharmacyComponent } from './pages/pharmacy/pharmacy.component';
-import { SpecializationsComponent } from './pages/specializations/specializations.component';
-import { MedicineDetailsComponent } from './pages/pharmacy/medicine-details/medicine-details.component';
+import { PatientProfileComponent } from './pages/patient-profile/component/patient-profile/patient-profile.component';
+import { PharmacyComponent } from './pages/pharmacy/component/pharmacy/pharmacy.component';
+import { SpecializationsComponent } from './pages/specializations/component/specializations/specializations.component';
+import { MedicineDetailsComponent } from './pages/pharmacy/component/medicine-details/medicine-details.component';
 import { DoctorRegisterComponent } from './pages/doctor-register/component/doctor-register/doctor-register.component';
 import { CheckoutComponent } from './pages/cart/component/checkout/checkout.component';
 import { CheckoutSuccessComponent } from './pages/cart/component/checkout-success/checkout-success.component';
-import { ReviewComponent } from './pages/review/review.component';
+import { ReviewComponent } from './pages/review/component/review/review.component';
 import { ArticlesComponent } from './pages/articles/component/articles/articles.component';
-import { OneArticleComponent } from './pages/one-article/one-article.component';
+import { OneArticleComponent } from './pages/articles/component/article-details/one-article.component';
 import { ContactUsComponent } from './pages/contact-us/component/contact-us/contact-us.component';
+import { SpecializeDetailsComponent } from './pages/specializations/component/specialize-details/specialize-details.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -45,6 +46,7 @@ const routes: Routes = [
     ]
   },
   { path: 'specializations', component: SpecializationsComponent },
+  { path : 'specialize/:id' , component:SpecializeDetailsComponent},
   { path: 'Register', component: RegisterComponent, data: { animation: 'Register' } },
   { path: 'Login', component: LoginComponent, data: { animation: 'login' } },
   { path: 'joinus', component: DoctorRegisterComponent },

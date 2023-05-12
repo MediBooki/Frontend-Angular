@@ -1,0 +1,132 @@
+/* =======================================================( Common )======================================================= */
+@import '../../../../../styles.scss';
+
+@mixin PaginationBtnsShared {
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  width: 45px;
+  height: 45px;
+  padding: 0;
+  border-radius: 10px;
+}
+
+
+
+
+/* =======================================================( Pagination )======================================================= */
+
+
+.doctors-pagination ::ng-deep {
+  .ngx-pagination {
+      padding-left: 0px !important;
+      margin-top: 1rem !important;
+      display: flex;
+      flex-wrap: wrap;
+
+      .current {
+          background: $mainColor6;
+          @include PaginationBtnsShared();
+          box-shadow: rgba(149, 157, 165, 0.5) 0px 8px 24px;
+      }
+
+      li {
+          margin: 4px 6px !important;
+
+          a {
+              text-decoration: none;
+              background-color: white;
+              color: $mainColor;
+              @include PaginationBtnsShared();
+
+              &:hover {
+                  background-color: #dbd9d9 !important;
+              }
+          }
+      }
+
+      
+      .ellipsis {
+          display: flex !important;
+          align-items: center;
+
+          a {
+              color: #0a0a0a;
+              display: block !important;
+              padding: .1875rem .625rem;
+              border-radius: 0;
+              background-color: transparent;
+              border-radius: 0 !important;
+              width: auto !important;
+              height: auto !important;
+
+              &:hover {
+                  background-color: transparent !important;
+                  color: #3d3d3d !important;
+              }  
+          }
+      }
+
+      .pagination-next,
+      .pagination-previous {
+          display: flex !important;
+          align-items: center;
+
+          a {
+              background-color: white;
+              color: #34B0DE;
+              @include PaginationBtnsShared();
+          }
+      }
+
+      // .pagination-previous {
+      //     &::before {
+      //         font-family: "Font Awesome 5 Free"; 
+      //         font-weight: 900;
+      //         content: "\f104";
+      //     }
+
+      //     a {
+      //         &::before {
+      //             font-family: "Font Awesome 5 Free"; 
+      //             font-weight: 900;
+      //             content: "\f104";
+      //             margin-right: 0 !important;
+      //         }
+      //     }
+      // }
+
+      // .pagination-next {
+      //     >span {
+      //         &::after {
+      //             font-family: "Font Awesome 5 Free"; 
+      //             font-weight: 900;
+      //             content: "\f105";
+      //             margin-left: 0 !important;
+      //         }
+      //     }
+      // }
+
+      .pagination-next a::after, .pagination-next.disabled::after {
+          font-family: "Font Awesome 5 Free"; 
+                  font-weight: 900;
+          content: "\f105";
+          display: inline-block;
+          margin-left: 0 !important;
+        }
+
+        .pagination-previous a::before, .pagination-previous.disabled::before {
+          font-family: "Font Awesome 5 Free"; 
+                  font-weight: 900;
+          content: "\f104";
+          display: inline-block;
+          margin-right: 0 !important;
+        }
+
+        .pagination-next.disabled,
+        .pagination-previous.disabled {
+          background-color: #dbd9d9;
+          @include PaginationBtnsShared();
+        }
+  }
+}

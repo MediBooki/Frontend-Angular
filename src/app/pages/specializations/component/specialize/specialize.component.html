@@ -1,0 +1,20 @@
+<div class="medicine-component" [dir]=" 'dir' | translate "  [lang]="lang">
+    <div class="Specialties_service" >
+      <a routerLink="/specialize/{{specialize.id}}"
+        class="text-decoration-none"> <!--[routerLink]="rtlDir ? '/doctors/'+specialize.name.split(' ').slice(1): '/doctors/'+specialize.name.split(' ')[0]"-->
+    
+        <div class="card">
+          <div class="overflow-hidden">
+            <img [src]="specialize.photo" class="img-fluid card-img-top" alt="..." *ngIf="specialize.photo">
+            <img [src]="defaultSpecializationImg" class="img-fluid card-img-top default-img" alt="..." *ngIf="!specialize.photo">
+          </div>
+          <div class="card-body">
+            <h5 class="card-title my-3 text-dark fw-bolder"> {{specialize.name}}
+            </h5>
+            <p class="card-text my-3 text-muted">{{specialize.description}}</p>
+          </div>
+        </div>
+      </a>
+    </div>
+
+</div>

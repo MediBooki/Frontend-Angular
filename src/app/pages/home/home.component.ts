@@ -1,6 +1,7 @@
 import { Component, HostListener, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { DataService } from '../../core/services/data.service';
+import { DoctorService } from '../doctors/service/doctor.service';
 import { AuthService } from '../Auth/services/auth.service';
 import * as $ from 'jquery';
 import 'select2';
@@ -67,7 +68,7 @@ export class HomeComponent implements OnInit {
 
   /*=============================================( Initialization Methods )=============================================*/
 
-  constructor(private _DataService: DataService, private _AuthService: AuthService , private _TranslateService:TranslateService, private _FormBuilder:FormBuilder, private toastr: ToastrService, private router: Router) {
+  constructor(private _DataService: DataService,private _DoctorService:DoctorService, private _AuthService: AuthService , private _TranslateService:TranslateService, private _FormBuilder:FormBuilder, private toastr: ToastrService, private router: Router) {
     // Declare FilterForm
     this.filterForm = this._FormBuilder.group({
       sections: new FormArray([])
@@ -342,7 +343,7 @@ getFilteredDoctors() {
           this.direction = 'rtl'; }
 
 
-  this._DataService.getFilteredDoctors(this.filterForm.value,this.lang, 1).subscribe({
+  this._DoctorService.getFilteredDoctors(this.filterForm.value,this.lang, 1).subscribe({
     next: (doctors) => {
       
         console.log(doctors.data)

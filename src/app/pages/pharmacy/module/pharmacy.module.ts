@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PharmacyComponent } from '../pharmacy.component';
-import { MedicineDetailsComponent } from '../medicine-details/medicine-details.component';
+import { PharmacyComponent } from '../component/pharmacy/pharmacy.component';
+import { MedicineDetailsComponent } from '../component/medicine-details/medicine-details.component';
 import { SharedModule } from 'src/app/layout/shared/shared.module';
 import { NgxSliderModule } from '@angular-slider/ngx-slider';
 

@@ -9,8 +9,8 @@ import { createAccount } from 'src/app/core/interfaces/patients';
   providedIn: 'root'
 })
 export class AuthService {
-  // _sharedApi: string = "http://medibookidashbord.test/api";
-  _sharedApi:string = "http://127.0.0.1:8000/api";
+  _sharedApi: string = "http://medibookidashbord.test/api";
+  // _sharedApi:string = "http://127.0.0.1:8000/api";
 
   constructor(private http: HttpClient, private router: Router) { }
   AuthlayoutLeft = new BehaviorSubject(false);

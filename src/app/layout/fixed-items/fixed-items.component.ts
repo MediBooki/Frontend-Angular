@@ -1,5 +1,6 @@
 import { Component, ElementRef, HostListener, Input, OnInit, ViewChild } from '@angular/core';
 import { DataService } from '../../core/services/data.service';
+import { DoctorService } from 'src/app/pages/doctors/service/doctor.service';
 
 // to initiate Watson Chatbot
 declare global {
@@ -35,7 +36,7 @@ export class FixedItemsComponent implements OnInit {
 
   /*=============================================( Initialization Methods )=============================================*/
 
-  constructor(private _DataService: DataService) { }
+  constructor(private _DataService: DataService,private _DoctorService: DoctorService) { }
 
   ngOnInit(): void {
     this._DataService._lang.subscribe((language) => {
@@ -156,7 +157,7 @@ export class FixedItemsComponent implements OnInit {
   //----- Method 5
   // Get Hospital Details
   gethospitalDetails() {
-    this._DataService.gethospitalDetails().subscribe({
+    this._DoctorService.gethospitalDetails().subscribe({
       next:(details)=>{
         console.log(details.data[0])
         this.hospitalPhone = details.data[0].phone;

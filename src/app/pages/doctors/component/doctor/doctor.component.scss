@@ -1,0 +1,53 @@
+@import '../../../../../styles.scss';
+
+
+.specific-doctor {
+    border-radius: 15px;
+
+    a {
+        text-decoration: none;
+        outline: none !important;
+    }
+
+    .doctor-img {
+        img {
+            width: 120px;
+            height: 120px;
+            border: 1px solid $mainColor;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+    }
+
+    .doctor-specialization {
+        color: $mainColor;
+        transition: all .3s ease;
+        &:hover {
+            color: #298bae;
+        }
+    }
+
+    .doctor-name {
+        font-size: 20px;
+        @extend .doctor-specialization;
+    }
+
+    .doctor-info {
+        h6 {
+            font-size: 12px;
+        }
+
+        .doctor-stars {
+            .flip-star {
+                transform: scaleX(-1);
+            }
+        }
+    }
+
+    .doctor-job-info {
+        h3 {
+            margin: 8px 0;
+            font-size: 16px;
+        }
+    }
+}
