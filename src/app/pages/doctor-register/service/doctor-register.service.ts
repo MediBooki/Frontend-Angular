@@ -8,8 +8,8 @@ import { Section } from 'src/app/core/interfaces/section';
 })
 export class DoctorRegisterService {
 
-  sharedApi: string = "http://127.0.0.1:8000/api";
-  // sharedApi: string = "http://medibookidashbord.test/api";
+  // sharedApi: string = "http://127.0.0.1:8000/api";
+  sharedApi: string = "http://medibookidashbord.test/api";
   //header config
   joinUsHeaders = new HttpHeaders().set('Accept', 'application/json');
   authAcceptHeaders = new HttpHeaders({

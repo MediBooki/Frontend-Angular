@@ -76,7 +76,7 @@ export class PatientProfileComponent implements OnInit {
 
   // API Variables
   allDiagnosis: any[] = [];
-  allDiagnosis_notempty?:boolean;
+  allDiagnosis_notempty?:boolean=true;
   diagnosisSubscription = new Subscription();
   diagnosisAPIres: any;
   allInsurance: any[] = [];
@@ -89,23 +89,23 @@ export class PatientProfileComponent implements OnInit {
   favMedicines:Medicine[] = [];
   medicinesSubscription = new Subscription();
   favMedicinesAPIres: any;
-  allFav_notempty?:boolean;
+  allFav_notempty?:boolean=true;
   allInvoices:any[]=[];
   invoicesSubscription = new Subscription();
   invoicesAPIres:any;
-  allInvoices_notempty?:boolean;
+  allInvoices_notempty?:boolean=true;
   orders:any[]=[];
   ordersSubscription = new Subscription();
   ordersAPIres:any;
-  allOrders_notempty?:boolean;
+  allOrders_notempty?:boolean=true;
   Appointments:any[]=[];
   AppointmentsSubscription = new Subscription();
   AppointmentsAPIres:any;
-  allAppointment_notempty?:boolean;
+  allAppointment_notempty?:boolean=true;
   allPatientReviews:any[]=[];
   PatientReviewsSubscription = new Subscription();
   PatientReviewsAPIres:any;
-  allReviews_notempty?:boolean;
+  allReviews_notempty?:boolean=true;
   orderDetails:any;
   oneOrderSubscription = new Subscription();
   oneOrderAPIres:any;
@@ -170,7 +170,7 @@ export class PatientProfileComponent implements OnInit {
           "password": this.changePassword.value.password,
           "password_confirmation": this.changePassword.value.password_confirmation
         }
-        this._DataService.changePassword(model).subscribe({
+        this._PatientProfileService.changePassword(model).subscribe({
           next: (response) => {
             console.log(response);
             this.toastr.success(!this.rtlDir?`Password changed successfully!`:`تم تغيير كلمة المرور بنجاح`);
@@ -199,7 +199,7 @@ export class PatientProfileComponent implements OnInit {
   getDiagnosis(){
     this._DataService._lang.subscribe({next:(language)=>{
     // to get all diagnosis
-    this.diagnosisSubscription = this._DataService.getDiagnosis(language).subscribe({
+    this.diagnosisSubscription = this._PatientProfileService.getDiagnosis(language).subscribe({
       next: (diagnosis) => {
         this.allDiagnosis = diagnosis.data;
         this.allDiagnosis_notempty = diagnosis.count > 0;
@@ -219,7 +219,7 @@ export class PatientProfileComponent implements OnInit {
   getInsurance(){
     this._DataService._lang.subscribe({next:(language)=>{
     // to get all diagnosis
-      this.insuranceSubscription = this._DataService.getInsuranceCompanies(language).subscribe({
+      this.insuranceSubscription = this._PatientProfileService.getInsuranceCompanies(language).subscribe({
       next: (insurance) => {
         this.allInsurance = insurance.data;
         this.insuranceAPIres = insurance;
@@ -236,7 +236,7 @@ export class PatientProfileComponent implements OnInit {
   //----- Method 7
   //----- get all insurance
   getPatientInfo(){
-    this.patientInfoSubscription = this._DataService.getPatientInfo().subscribe({
+    this.patientInfoSubscription = this._PatientProfileService.getPatientInfo().subscribe({
       next: (patientInfo) => {
         this.patientInfo = patientInfo.data;
         this.patientName = patientInfo.data.name
@@ -285,7 +285,7 @@ export class PatientProfileComponent implements OnInit {
         }
       })
       console.log(this.updateFormdata)
-      this._DataService.updateProfile(this.updateFormdata).subscribe({
+      this._PatientProfileService.updateProfile(this.updateFormdata).subscribe({
         next: (response) => {
           console.log(response);
           this.toastr.success(!this.rtlDir?`profile updated successfully!`:`تم تحديث الملف الشخصي بنجاح`);
@@ -326,7 +326,7 @@ export class PatientProfileComponent implements OnInit {
           "insurance_number": this.addInsuranceForm.value.insurance_number,
           "insurance_date": this.addInsuranceForm.value.expiry_date
         }
-        this._DataService.addInsurance(model).subscribe({
+        this._PatientProfileService.addInsurance(model).subscribe({
           next: (response) => {
             console.log(response);
             this.toastr.success(!this.rtlDir?`Insurance added successfully!`:`تم اضافة تأمينك بنجاح`);
@@ -352,7 +352,7 @@ export class PatientProfileComponent implements OnInit {
   getInvoices(){
     this._DataService._lang.subscribe({next:(language)=>{
     // to get all diagnosis
-      this.invoicesSubscription = this._DataService.getInvoices(language).subscribe({
+      this.invoicesSubscription = this._PatientProfileService.getInvoices(language).subscribe({
       next: (invoices) => {
         this.allInvoices = invoices.data;
         this.invoicesAPIres = invoices;
@@ -370,7 +370,7 @@ export class PatientProfileComponent implements OnInit {
   //----- Method 13
   getOrders(){
     // to get all orders
-    this.ordersSubscription = this._DataService.getOrders().subscribe({
+    this.ordersSubscription = this._PatientProfileService.getOrders().subscribe({
       next: (orders) => {
         this.orders = orders.data;
         this.ordersAPIres = orders;
@@ -457,7 +457,7 @@ export class PatientProfileComponent implements OnInit {
   getAppointments(){
     this._DataService._lang.subscribe({next:(language)=>{
     // to get all diagnosis
-      this.AppointmentsSubscription = this._DataService.getPatientAppointments(language).subscribe({
+      this.AppointmentsSubscription = this._PatientProfileService.getPatientAppointments(language).subscribe({
       next: (Appointments) => {
         this.Appointments = Appointments.data;
         this.AppointmentsAPIres = Appointments;
@@ -475,7 +475,7 @@ export class PatientProfileComponent implements OnInit {
   getOrderData(id:number){
     this._DataService._lang.subscribe({next:(language)=>{
       // to get all diagnosis
-        this.oneOrderSubscription = this._DataService.getOrderDetails(id,language).subscribe({
+        this.oneOrderSubscription = this._PatientProfileService.getOrderDetails(id,language).subscribe({
         next: (order) => {
           this.orderDetails = order.data;
           this.oneOrderAPIres = order;
@@ -506,7 +506,7 @@ export class PatientProfileComponent implements OnInit {
   getPatientReviews(){
     this._DataService._lang.subscribe({next:(language)=>{
     // to get all PatientReviews
-      this.PatientReviewsSubscription = this._DataService.getPatientReviews(language).subscribe({
+      this.PatientReviewsSubscription = this._PatientProfileService.getPatientReviews(language).subscribe({
       next: (PatientReviews) => {
         this.allPatientReviews = PatientReviews.data;
         this.PatientReviewsAPIres = PatientReviews;

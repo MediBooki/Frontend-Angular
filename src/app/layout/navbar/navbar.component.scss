@@ -122,3 +122,43 @@ nav {
   background-color: #f4f5fa;
   color: #000;
 }
+
+.cart-items-en {
+  right: 15%;
+  border-top: 3px solid black;
+}
+
+.cart-items-ar {
+  left: 15%;
+  border-top: 3px solid black;
+}
+
+.empty.cart-items-en::before {
+  right: var(--right, 47%);
+}
+
+.cart-items-ar::before {
+  right: var(--right, 36%) !important;
+}
+
+.empty.cart-items-ar::before {
+  right: var(--right, 40%) !important;
+}
+
+.cart-items-ar::before, .cart-items-en::before{
+  position: absolute;
+  content: "";
+  width: 0;
+  height: 0;
+  top: -15px;
+  right: var(--right,50%);
+  border-left-width: 6px;
+  border-left-color: transparent;
+  border-right-width: 6px;
+  border-right-color: transparent;
+  border-bottom-width: 6px;
+  border-top-width: 0;
+  border-style: solid;
+  transform: translateX(-50%) translateY(100%);
+  transition: all .35s;
+}

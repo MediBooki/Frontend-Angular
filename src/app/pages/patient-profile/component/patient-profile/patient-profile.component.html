@@ -485,7 +485,7 @@
         <div class="m-4 p-3 bg-white rounded" *ngIf="curruntService == 'orders'">
           <h2 class="fw-bold">{{'patientProfile.sidenav9' | translate}}</h2>
           <div *ngIf="ordersAPIres.success && allOrders_notempty else noorders">
-            <div *ngFor="let order of orders" class="rounded border border-1 p-3 my-2">
+            <div *ngFor="let order of orders" class="big-rounded border border-1 p-3 my-4 shadow">
               <div class="border-bottom pb-2">
                 <div class="d-flex align-items-center justify-content-between">
                   <div class="d-md-flex align-items-center my-2">

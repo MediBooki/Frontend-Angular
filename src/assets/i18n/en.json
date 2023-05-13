@@ -255,7 +255,8 @@
     "error4": "Enter Valid Email *ex: lorem@gmail.com*!",
     "error5": "Enter Valid Phone Number *Egyptian Numbers*!",
     "error6": "password and confirm password doesn't match",
-    "error7": "Enter Valid Password *minimum 8 letters or numbers but should contains at least one letter and one number*!"
+    "error7": "Enter Valid Password *minimum 8 letters or numbers but should contains at least one letter and one number*!",
+    "error8": "Enter minimum 30 character"
   },
   "loginPage": {
     "title": "Sign In",

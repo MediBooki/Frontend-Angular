@@ -48,18 +48,19 @@
             <p *ngIf="phoneNumber?.errors?.['required'] " class="text-danger">{{'registerPage.error'| translate}}</p>
           </div>
           <div class="input-field mb-3 w-100 h-100 rounded-pill p-2 d-flex">
-            <i class="fa-solid fa-mobile-button p-2 fs-5"></i>
+            <i class="fa-solid fa-location-dot p-2 fs-5"></i>
             <input type="text" class="ps-3 fw-bolder text-secondary w-100 border-0 lh-1" id="addressRegister"
               placeholder="{{ 'registerPage.address' | translate }}" required formControlName="address" />
           </div>
           <div *ngIf="address?.touched && address?.dirty">
             <p *ngIf="address?.errors?.['required']" class="text-danger">{{'registerPage.error'| translate}}</p>
+            <p *ngIf="address?.errors?.['minlength']" class="text-danger">{{'registerPage.error8'| translate}}</p>
           </div>
           <div class="mb-3 input-field mb-3 w-100 h-100 rounded-pill p-2 d-flex">
             <i class="fas fa-lock text-center p-2 fs-5"></i>
             <input type="{{ showPassword ? 'text' : 'password' }}" class="ps-3 fw-bolder text-secondary w-100 border-0 lh-1" id="PasswordRegister"
               placeholder="{{ 'registerPage.password' | translate }}" formControlName="password" />
-              <i class="fa-solid {{showPassword ? 'fa-eye' : 'fa-eye-slash' }} text-center p-2 fs-5" (click)="togglePassword()"></i>  
+              <i class="fa-solid {{showPassword ? 'fa-eye' : 'fa-eye-slash' }} text-center p-2 fs-5" (click)="togglePassword()"></i>
           </div>
           <div *ngIf="password?.invalid && password?.touched && password?.dirty">
             <p id="PasswordRegisterError" class="text-danger" *ngIf="password?.errors?.['pattern']">
@@ -72,7 +73,7 @@
             <input type="{{ showConfirmPassword ? 'text' : 'password' }}"  class="ps-3 fw-bolder text-secondary w-100 border-0 lh-1"
               id="confirmPasswordRegister" placeholder="{{ 'registerPage.confirmPassword' | translate }}"
               formControlName="confirmPassword" />
-              <i class="fa-solid {{ showConfirmPassword? 'fa-eye' : 'fa-eye-slash' }} text-center p-2 fs-5" (click)="toggleConfirmPassword()"></i>  
+              <i class="fa-solid {{ showConfirmPassword? 'fa-eye' : 'fa-eye-slash' }} text-center p-2 fs-5" (click)="toggleConfirmPassword()"></i>
           </div>
           <div *ngIf="confirmPassword?.touched && confirmPassword?.dirty">
             <p id="PasswordRegisterError" class="text-danger"
@@ -100,7 +101,7 @@
             </p>
           </div>
           <div class="input-field mb-3 w-100 h-100 rounded-pill p-2 d-flex">
-            <i class="fa-solid fa-venus-mars p-2 fs-5"></i>
+            <i class="fa-solid fa-vial p-2 fs-5"></i>
             <select name="User_blood_group" required id="User_blood_group_form" formControlName="gender"
               class="form-select ps-3 fw-bolder text-secondary w-100 border-0 lh-1"
               aria-label="Floating label select example" formControlName="blood_group">
@@ -131,11 +132,7 @@
               {{'registerPage.error'| translate}}
             </p>
           </div>
-          <div class="form-check form-switch">
-            <input class="form-check-input is-valid" type="checkbox" id="flexSwitchCheckDefault" />
-            <label class="form-check-label" for="flexSwitchCheckDefault">{{ 'registerPage.healthInsurance' | translate
-              }}</label>
-          </div>
+
 
           <button type="submit" class="btn btn-primary rounded-pill text-uppercase my-2"
             [disabled]="patientForm.invalid" (click)="submit()" id="submitBtn">

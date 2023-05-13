@@ -17,7 +17,7 @@
         </div>
         <div class="d-inline" *ngIf="is_login">
           <span>
-            <a class="text-decoration-none text-white fw-bold rounded-circle dropdown-toggle" ><img class="rounded-circle" [src]="userPhoto" width="30px" height="30px" alt=""></a>
+            <a class="text-decoration-none text-white fw-bold rounded-circle dropdown-toggle" role="button"><img class="rounded-circle" [src]="userPhoto" width="30px" height="30px" alt=""></a>
             <ul class="dropdown-menu">
               <li><a class="dropdown-item text-center fw-bold" routerLink="/my-profile"><i class="fa-solid fa-user pe-2"></i>{{'navbar.my-profile'
                 | translate}}</a></li>
@@ -30,6 +30,7 @@
                 | translate}}</a> -->
           </span>
         </div>
+        <span class="px-1 d-none d-md-inline">|</span>
         <span class="d-none d-md-inline"><i class=" px-2 fa-brands fa-facebook-f"></i><i class=" px-2 fa-brands fa-instagram"></i><i
             class="px-2 fa-brands fa-twitter"></i></span>
       </div>
@@ -43,28 +44,27 @@
               class="ps-2 fa-solid fa-globe"></i></a> -->
           <!-- [ngClass]="rtlDir?'d-block' : 'd-none'" -->
           <div class="d-inline dropdown-toggle">
-            <div class="d-inline">
-              <button [ngClass]="rtlDir?'d-none' : 'd-inline'" value="ar"
+            <div class="d-inline" [ngClass]="!rtlDir?'d-none' : 'd-inline'">
+              <button  value="ar"
                 class="bg-transparent border-0 text-white fw-bold px-2">العربية<i
                   class="ps-2 fa-solid fa-globe"></i></button>
             </div>
             <!-- [ngClass]="rtlDir?'d-none' : 'd-block'" -->
-            <div class="d-inline">
-              <button [ngClass]="rtlDir?'d-inline' : 'd-none'" value="en"
-                class="bg-transparent border-0 text-white fw-bold px-2">EN<i class="ps-2 fa-solid fa-globe"></i></button>
+            <div class="d-inline" [ngClass]="!rtlDir?'d-inline' : 'd-none'">
+              <button  value="en"
+                class="bg-transparent border-0 text-white fw-bold px-2">English<i class="ps-2 fa-solid fa-globe"></i></button>
             </div>
           </div>
           <ul class="dropdown-menu text-center">
-            <div class="dropdown-item">
-              <button value="ar" (click)="translate('ar')"
-                class="bg-transparent border-0 text-dark fw-bold px-2">العربية<i
-                  class="ps-2 fa-solid fa-globe"></i></button>
+            <div class="dropdown-item" (click)="translate('ar')">
+              <button value="ar"
+                class="bg-transparent border-0 text-dark fw-bold px-2">العربية</button>
             </div>
             <!-- [ngClass]="rtlDir?'d-none' : 'd-block'" -->
             <li><hr class="dropdown-divider"></li>
-            <div class="dropdown-item">
-              <button value="en" (click)="translate('en')"
-                class="bg-transparent border-0 text-dark fw-bold px-2">EN<i class="ps-2 fa-solid fa-globe"></i></button>
+            <div class="dropdown-item" (click)="translate('en')">
+              <button value="en"
+                class="bg-transparent border-0 text-dark fw-bold px-2">English</button>
             </div>
             <!-- <li><a class="dropdown-item" href="#">Action</a></li>
             <li><a class="dropdown-item" href="#">Another action</a></li>
@@ -81,15 +81,36 @@
             <button [ngClass]="rtlDir?'d-inline' : 'd-none'" value="en" (click)="translate('en')"
               class="bg-transparent border-0 text-dark fw-bold px-2">EN<i class="ps-2 fa-solid fa-globe"></i></button>
           </div> -->
-          <a class="text-decoration-none text-white fw-bold px-2 border-start border-end border-info"
-            href="#">{{'navbar.Egypt' | translate}}
-            <img class="rounded-circle" src="../../../assets/images/navbar-footer/egypt.png" width="20px"
+          <span >|</span>
+          <a class="text-decoration-none text-white fw-bold px-2">
+            <span class="mx-1">{{'navbar.Egypt' | translate}}</span>
+            <img class="rounded-circle mb-1" src="../../../assets/images/navbar-footer/egypt.png" width="20px"
               height="20px"></a>
-          <div class="d-inline mx-2">
-            <button routerLink="/cart" class="bg-transparent border-0 text-white fw-bold px-2"><i
+              <span [ngClass]="{'d-none': !is_login}">|</span>
+          <div class="d-inline mx-2 " *ngIf="is_login">
+            <button routerLink="/cart" class="bg-transparent border-0 text-white fw-bold px-2 dropdown-toggle"><i
                 class="fa-solid fa-cart-shopping position-relative"><span
                   class="cart-num text-white rounded-circle position-absolute text-center d-flex justify-content-center align-items-center ">{{cartQty}}</span></i></button>
+                  <div class="dropdown-menu my-1" [ngClass]="{'cart-items-en': !rtlDir,'cart-items-ar': rtlDir,'empty': cartQty==0}">
+                    <div *ngIf="cartQty>0">
+                      <p class="px-3 text-secondary">Suptotal: <span class="fw-bold">${{medicinesPurchased.total}}</span></p>
+                      <div class="d-flex border-top border-bottom px-3 py-1" *ngFor="let medicine of medicinesPurchased.user_cart_items">
+                        <div class="rounded mx-2">
+                          <img class="rounded" width="50px" height="50px" [src]="medicine.photo" alt="">
+                        </div>
+                        <div class="px-3">
+                          <p class="m-0 text-end">{{medicine.medicine_name}}</p>
+                          <P class="m-0 text-end"><span class="text-secondary">{{medicine.qty}} x </span> <span class="text-danger">${{medicine.price}}</span></P>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="p-5 text-center" *ngIf="cartQty==0">
+                      <i class="fa-solid fa-xmark fs-1 text-danger"></i>
+                      <p>No products in the cart.</p>
+                    </div>
+                  </div>
           </div>
+
         </span>
       </div>
     </div>
@@ -143,7 +164,7 @@
           </li>
         </ul>
         <span [ngClass]="rtlDir?'contact-us-rounded-ar' : 'contact-us-rounded-en'"
-          class="contact-us bg-fixed-nav p-2 d-none d-lg-block"><a href="#"
+          class="contact-us bg-fixed-nav p-2 d-none d-lg-block"><a routerLink="/contactus"
             class="text-white fw-bold text-decoration-none"><i
               class="text-main5 bg-white p-1 me-1 rounded-circle fa-solid fa-phone"></i>{{'navbar.ContactUs' |
             translate}}</a></span>

@@ -1,4 +1,4 @@
-@import '../../../styles.scss';
+@import '../../../../../styles.scss';
 
 .spinner {
     z-index: 98;
@@ -35,17 +35,17 @@
         .accordion-button {
             color: $mainColor;
             box-shadow: none !important;
-    
+
             /* removing accordion arrow to put our arrow */
             &::after {
                 background-image: none;
-                font-family: "Font Awesome 5 Free"; 
+                font-family: "Font Awesome 5 Free";
                 font-weight: 900;
                 content: "\f078";
                 display: flex;
                 justify-content: center;
             }
-    
+
             &:not(.collapsed) {
                 &::after {
                     background-image: none;
@@ -60,13 +60,13 @@
             .accordion-title {
                 cursor: default !important;
                 color: white;
-                box-shadow: inset 0 -1px 0 rgba(0,0,0,.125); 
+                box-shadow: inset 0 -1px 0 rgba(0,0,0,.125);
                 width: 100%;
                 padding: 1rem 1.25rem;
                 font-size: 1rem;
                 text-align: left;
                 background: $mainColor2;
-    
+
                 h4 {
                     font-size: 18px;
                 }
@@ -166,12 +166,12 @@
         position: sticky;
         top: 50px;
     }
-    
+
     #small-filter-btn {
         .accordion-title{
             cursor: pointer !important;
             color: white;
-            box-shadow: inset 0 -1px 0 rgba(0,0,0,.125); 
+            box-shadow: inset 0 -1px 0 rgba(0,0,0,.125);
             width: 100%;
             padding: 1rem 1.25rem;
             font-size: 1rem;
@@ -185,13 +185,13 @@
             border-top-left-radius: 1rem;
             border-top-right-radius: 1rem;
         }
-    } 
+    }
 
 }
-  
+
 
 /* =======================================================( small-filter )======================================================= */
-  
+
 
 #small-filter {
     background-color: $lightGreyColor;
@@ -238,7 +238,7 @@
             height: 45px;
         }
     }
-    
+
 }
 
 
@@ -252,7 +252,7 @@
 
     h2 {
         font-size: 20px;
-    }    
+    }
 
     .filtered-title {
         font-family: "Roboto Condensed", sans-serif;
@@ -291,7 +291,7 @@
             }
         }
 
-        
+
         .ellipsis {
             display: flex !important;
             align-items: center;
@@ -309,7 +309,7 @@
                 &:hover {
                     background-color: transparent !important;
                     color: #3d3d3d !important;
-                }  
+                }
             }
         }
 
@@ -327,14 +327,14 @@
 
         // .pagination-previous {
         //     &::before {
-        //         font-family: "Font Awesome 5 Free"; 
+        //         font-family: "Font Awesome 5 Free";
         //         font-weight: 900;
         //         content: "\f104";
         //     }
 
         //     a {
         //         &::before {
-        //             font-family: "Font Awesome 5 Free"; 
+        //             font-family: "Font Awesome 5 Free";
         //             font-weight: 900;
         //             content: "\f104";
         //             margin-right: 0 !important;
@@ -345,7 +345,7 @@
         // .pagination-next {
         //     >span {
         //         &::after {
-        //             font-family: "Font Awesome 5 Free"; 
+        //             font-family: "Font Awesome 5 Free";
         //             font-weight: 900;
         //             content: "\f105";
         //             margin-left: 0 !important;
@@ -364,7 +364,7 @@
 
 .pagination-english ::ng-deep {
     .pagination-next a::after, .pagination-next.disabled::after {
-        font-family: "Font Awesome 5 Free"; 
+        font-family: "Font Awesome 5 Free";
                 font-weight: 900;
         content: "\f105";
         display: inline-block;
@@ -372,7 +372,7 @@
       }
 
       .pagination-previous a::before, .pagination-previous.disabled::before {
-        font-family: "Font Awesome 5 Free"; 
+        font-family: "Font Awesome 5 Free";
                 font-weight: 900;
         content: "\f104";
         display: inline-block;
@@ -382,7 +382,7 @@
 
 .pagination-arabic ::ng-deep {
     .pagination-previous a::before, .pagination-previous.disabled::before {
-        font-family: "Font Awesome 5 Free"; 
+        font-family: "Font Awesome 5 Free";
                 font-weight: 900;
         content: "\f105";
         display: inline-block;
@@ -390,7 +390,7 @@
       }
 
       .pagination-next a::after, .pagination-next.disabled::after {
-        font-family: "Font Awesome 5 Free"; 
+        font-family: "Font Awesome 5 Free";
                 font-weight: 900;
         content: "\f104";
         display: inline-block;
@@ -416,7 +416,7 @@
     .medicines-roadmap {
         text-align: center;
     }
-    
+
     .accordion {
         display: none;
     }
@@ -442,8 +442,8 @@
     p {
         font-size: 15px;
       }
-} 
-  
+}
+
 
 .ggg {
     height: 10px;
@@ -472,7 +472,7 @@ border-radius: 30px;
             }
         }
     }
-    
+
 }
 .price-search {
     button {
@@ -517,7 +517,7 @@ border-radius: 30px;
 /* first search filter method */
 
 .main-search-section {
-    // background-color: $mainColor; //#98C8F4 
+    // background-color: $mainColor; //#98C8F4
     // position: relative;
 
     .main-search-title {
@@ -599,7 +599,7 @@ border-radius: 30px;
                 background-color: rgb(13, 260, 300);
                 color: white;
                 box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px;
-            
+
                 &:hover {
                     box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
                 }
@@ -608,7 +608,7 @@ border-radius: 30px;
     }
 
 }
-  
+
 .medicines-roadmap {
     a {
         color: $mainColor6;
@@ -637,7 +637,7 @@ border-radius: 30px;
     top: 4px !important;
     border-top: 1px solid #aaa !important;
 }
-  
+
 ::ng-deep .select2-dropdown--above {
     top: -4px !important;
     border-bottom: 1px solid #aaa !important;

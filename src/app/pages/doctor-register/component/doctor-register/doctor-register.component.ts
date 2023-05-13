@@ -77,7 +77,7 @@ export class DoctorRegisterComponent implements OnInit {
     name_en: new FormControl("", [Validators.required, Validators.minLength(5), Validators.maxLength(20)]),
     name : new FormControl("", [Validators.required, Validators.minLength(5), Validators.maxLength(20)]),
     email : new FormControl("", [Validators.required, Validators.email]),
-    phone : new FormControl("", [Validators.required]),
+    phone : new FormControl("", [Validators.required, Validators.pattern(/^\+?(002)?[\d\s()-]{4,}$/)]),
     password : new FormControl("", [Validators.required, Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$@!%&*?])[A-Za-z\d#$@!%&*?]{8,30}$/)]),
     re_password : new FormControl("", [Validators.required]),
     // Min 1 uppercase letter,Min 1 lowercase letter.,Min 1 special character.,Min 1 number.,Min 8 characters.,Max 30 characters.

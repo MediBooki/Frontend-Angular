@@ -7,9 +7,9 @@ import { AppointmentsPatient } from 'src/app/core/interfaces/patients';
   providedIn: 'root'
 })
 export class AppointmentsService {
-  _sharedApi: string = "http://127.0.0.1:8000/api";
+  // _sharedApi: string = "http://127.0.0.1:8000/api";
 
-  // _sharedApi: string = "http://medibookidashbord.test/api"
+  _sharedApi: string = "http://medibookidashbord.test/api"
 
   constructor(private _HttpClient: HttpClient) { }
 

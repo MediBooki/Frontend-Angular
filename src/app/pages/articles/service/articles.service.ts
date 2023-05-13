@@ -7,8 +7,8 @@ import { Observable, catchError, throwError } from 'rxjs';
 })
 export class ArticlesService {
 
-  sharedApi: string = "http://127.0.0.1:8000/api";
-  // sharedApi: string = "http://medibookidashbord.test/api";
+  // sharedApi: string = "http://127.0.0.1:8000/api";
+  sharedApi: string = "http://medibookidashbord.test/api";
 
   constructor(private _HttpClient: HttpClient) { }
 

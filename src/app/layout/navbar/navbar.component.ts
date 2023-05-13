@@ -12,6 +12,7 @@ import { CartService } from 'src/app/pages/cart/service/cart.service';
 export class NavbarComponent implements OnInit {
 
   cartQty: number = 0;
+  medicinesPurchased:any;
   islog: boolean = true;
   lang:string = "en";
   rtlDir:boolean = false;
@@ -86,6 +87,7 @@ export class NavbarComponent implements OnInit {
         next: (medicinesPurchased) => { // to calculate quantity for first time (when refreshing)
           console.log(medicinesPurchased)
           console.log(medicinesPurchased.data.length != 0)
+          this.medicinesPurchased = medicinesPurchased.data
           this.cartQty = 0;
           if(typeof(medicinesPurchased.data)!='string' && (typeof(medicinesPurchased.data)=='object' && medicinesPurchased.data.length!=0) && medicinesPurchased.data.user_cart_items.length != 0){
             medicinesPurchased.data.user_cart_items.forEach((element: any) => {
@@ -93,7 +95,7 @@ export class NavbarComponent implements OnInit {
             });
           } else {
             console.log("ggg")
-                
+
               }
 
         },
@@ -104,6 +106,14 @@ export class NavbarComponent implements OnInit {
 
       this._CartService.medicinesQty.subscribe((qty) => { // to calculate quantity each time it changes
         this.cartQty = qty;
+        this._CartService.getAllPurchasedMedicines("en").subscribe({
+          next: (medicinesPurchased) => { // to calculate quantity for first time (when refreshing)
+            this.medicinesPurchased = medicinesPurchased.data
+          },
+          error: (error) => {
+            console.log(error)
+          }
+        });
       });
     }
   }
