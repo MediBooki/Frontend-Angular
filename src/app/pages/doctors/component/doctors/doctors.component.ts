@@ -11,7 +11,7 @@ import { Specialize } from 'src/app/core/interfaces/specialize';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 
-
+// hi
 @Component({
   selector: 'app-doctors',
   templateUrl: './doctors.component.html',
