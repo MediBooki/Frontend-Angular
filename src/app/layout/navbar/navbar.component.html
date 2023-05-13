@@ -99,16 +99,23 @@
                           <img class="rounded" width="50px" height="50px" [src]="medicine.photo" alt="">
                         </div>
                         <div class="px-3">
-                          <p class="m-0 text-end">{{medicine.medicine_name}}</p>
+                          <p class="m-0 text-end fw-bold">{{medicine.medicine_name}}</p>
                           <P class="m-0 text-end"><span class="text-secondary">{{medicine.qty}} x </span> <span class="text-danger">${{medicine.price}}</span></P>
                         </div>
+                      </div>
+                      <div class="d-flex justify-content-between py-1 px-4">
+                        <button type="button" class="btn btn-info rounded-pill">View Cart</button>
+                        <button type="button" class="btn btn-success rounded-pill">Checkout</button>
                       </div>
                     </div>
                     <div class="p-5 text-center" *ngIf="cartQty==0">
                       <i class="fa-solid fa-xmark fs-1 text-danger"></i>
                       <p>No products in the cart.</p>
                     </div>
+
+
                   </div>
+
           </div>
 
         </span>

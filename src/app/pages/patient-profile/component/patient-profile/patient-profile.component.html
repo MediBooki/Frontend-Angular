@@ -3,7 +3,7 @@
 <div [dir]=" 'dir' | translate " [lang]="lang">  <div *ngIf="is_login else nolog">
   <!----------------------------------------------------- ( side nav ) ---------------------------------------------------->
  <div class="row w-100">
-  <div class="col-lg-3">
+  <div class="col-lg-2" [ngClass]="{'border-side-en': !rtlDir, 'border-side-ar': rtlDir}">
     <!-- <div>
         <div class="px-5 pt-3 pb-3 d-flex justify-content-center">
             <img class="w-75 rounded-circle" [src]="userPhoto" width="200" height="200"/>
@@ -21,42 +21,44 @@
         </div>
     </div> -->
     <ul class="list-unstyled w-100 side-nav-ul">
-        <li class="px-3 py-2" [ngClass]="{'bg-light-gray': curruntService== 'details'}" (click)="getServive('details')">
-                  <a class="text-dark text-decoration-none fw-bold" ><i class="fa-solid fa-user m-2 p-2 rounded text-black bg-light-gray" [ngClass]="{'text-white bg-icon': curruntService== 'details'}"></i>{{'patientProfile.sidenav1' | translate}}</a>
+        <li class="m-2 rounded text-dark" [ngClass]="{'side-active': curruntService== 'details'}" (click)="getServive('details')">
+                  <a class=" text-decoration-none fw-bold text-dark" [ngClass]="{'text-white': curruntService== 'details'}" ><i class="fa-solid fa-user m-2 p-2 rounded text-black bg-light-gray" [ngClass]="{'text-white bg-transparent': curruntService== 'details'}"></i>{{'patientProfile.sidenav1' | translate}}</a>
         </li>
-        <li class="px-3 py-2" [ngClass]="{'bg-light-gray': curruntService== 'password'}" (click)="getServive('password')">
-            <a class="text-dark text-decoration-none fw-bold"><i class="fa-solid fa-key m-2 p-2 rounded text-black bg-light-gray" [ngClass]="{'text-white bg-icon': curruntService== 'password'}"></i>{{'patientProfile.sidenav2' | translate}}</a>
+        <li class="m-2 rounded text-dark" [ngClass]="{'side-active': curruntService== 'password'}" (click)="getServive('password')">
+            <a class="text-dark text-decoration-none fw-bold text-dark" [ngClass]="{'text-white': curruntService== 'password'}"><i class="fa-solid fa-key m-2 p-2 rounded text-black bg-light-gray" [ngClass]="{'text-white bg-transparent': curruntService== 'password'}"></i>{{'patientProfile.sidenav2' | translate}}</a>
         </li>
-        <li class="px-3 py-2" [ngClass]="{'bg-light-gray': curruntService== 'insurance'}" (click)="getServive('insurance')">
-            <a class="text-dark text-decoration-none fw-bold" ><i class="fa-solid fa-shield m-2 p-2 rounded text-black bg-light-gray" [ngClass]="{'text-white bg-icon': curruntService== 'insurance'}"></i>{{'patientProfile.sidenav3' | translate}}</a>
+        <li class="m-2 rounded text-dark" [ngClass]="{'side-active': curruntService== 'insurance'}" (click)="getServive('insurance')">
+            <a class="text-dark text-decoration-none fw-bold text-dark" [ngClass]="{'text-white': curruntService== 'insurance'}" ><i class="fa-solid fa-shield m-2 p-2 rounded text-black bg-light-gray" [ngClass]="{'text-white bg-transparent': curruntService== 'insurance'}"></i>{{'patientProfile.sidenav3' | translate}}</a>
         </li>
-        <li class="px-3 py-2" [ngClass]="{'bg-light-gray': curruntService== 'appointments'}" (click)="getServive('appointments')">
-            <a class="text-dark text-decoration-none fw-bold" ><i class="fa-solid fa-calendar-check m-2 p-2 rounded text-black bg-light-gray" [ngClass]="{'text-white bg-icon': curruntService== 'appointments'}"></i>{{'patientProfile.sidenav4' | translate}}</a>
+        <li class="m-2 rounded text-dark" [ngClass]="{'side-active': curruntService== 'appointments'}" (click)="getServive('appointments')">
+            <a class="text-dark text-decoration-none fw-bold text-dark" [ngClass]="{'text-white': curruntService== 'appointments'}" ><i class="fa-solid fa-calendar-check m-2 p-2 rounded text-black bg-light-gray" [ngClass]="{'text-white bg-transparent': curruntService== 'appointments'}"></i>{{'patientProfile.sidenav4' | translate}}</a>
         </li>
-        <li class="px-3 py-2" [ngClass]="{'bg-light-gray': curruntService== 'history'}" (click)="getServive('history')">
-          <a class="text-dark text-decoration-none fw-bold"><i class="fa-solid fa-clock-rotate-left m-2 p-2 rounded text-black bg-light-gray" [ngClass]="{'text-white bg-icon': curruntService== 'history'}"></i>{{'patientProfile.sidenav5' | translate}}</a>
+        <li class="m-2 rounded text-dark" [ngClass]="{'side-active': curruntService== 'history'}" (click)="getServive('history')">
+          <a class="text-dark text-decoration-none fw-bold text-dark" [ngClass]="{'text-white': curruntService== 'history'}"><i class="fa-solid fa-clock-rotate-left m-2 p-2 rounded text-black bg-light-gray" [ngClass]="{'text-white bg-transparent': curruntService== 'history'}"></i>{{'patientProfile.sidenav5' | translate}}</a>
         </li>
-        <li class="px-3 py-2" [ngClass]="{'bg-light-gray': curruntService== 'bills'}" (click)="getServive('bills')">
-          <a class="text-dark text-decoration-none fw-bold"><i class="fa-solid fa-money-bills m-2 p-2 rounded text-black bg-light-gray" [ngClass]="{'text-white bg-icon': curruntService== 'bills'}"></i>{{'patientProfile.sidenav6' | translate}}</a>
+        <li class="m-2 rounded text-dark" [ngClass]="{'side-active': curruntService== 'bills'}" (click)="getServive('bills')">
+          <a class="text-dark text-decoration-none fw-bold text-dark" [ngClass]="{'text-white': curruntService== 'bills'}"><i class="fa-solid fa-money-bills m-2 p-2 rounded text-black bg-light-gray" [ngClass]="{'text-white bg-transparent': curruntService== 'bills'}"></i>{{'patientProfile.sidenav6' | translate}}</a>
         </li>
-        <!-- <li class="px-3 py-2" [ngClass]="{'bg-light-gray': curruntService== 'statements'}" (click)="getServive('statements')">
-        <a class="text-dark text-decoration-none fw-bold"><i class="fa-solid fa-file-invoice m-2 p-2 rounded text-black bg-light-gray" [ngClass]="{'text-white bg-icon': curruntService== 'statements'}"></i>{{'patientProfile.sidenav7' | translate}}</a>
+        <!-- <li class="m-2 rounded text-dark" [ngClass]="{'side-active': curruntService== 'statements'}" (click)="getServive('statements')">
+        <a class="text-dark text-decoration-none fw-bold text-dark" [ngClass]="{'text-white': curruntService== 'details'}"><i class="fa-solid fa-file-invoice m-2 p-2 rounded text-black bg-light-gray" [ngClass]="{'text-white bg-transparent': curruntService== 'statements'}"></i>{{'patientProfile.sidenav7' | translate}}</a>
         </li> -->
-        <li class="px-3 py-2" [ngClass]="{'bg-light-gray': curruntService== 'fav'}" (click)="getServive('fav')">
-          <a class="text-dark text-decoration-none fw-bold"><i class="fa-solid fa-heart m-2 p-2 rounded text-black bg-light-gray" [ngClass]="{'text-white bg-icon': curruntService== 'fav'}"></i>{{'patientProfile.sidenav8' | translate}}</a>
+        <li class="m-2 rounded text-dark" [ngClass]="{'side-active': curruntService== 'fav'}" (click)="getServive('fav')">
+          <a class="text-dark text-decoration-none fw-bold text-dark" [ngClass]="{'text-white': curruntService== 'fav'}"><i class="fa-solid fa-heart m-2 p-2 rounded text-black bg-light-gray" [ngClass]="{'text-white bg-transparent': curruntService== 'fav'}"></i>{{'patientProfile.sidenav8' | translate}}</a>
         </li>
-        <li class="px-3 py-2" [ngClass]="{'bg-light-gray': curruntService== 'orders'}" (click)="getServive('orders')">
-            <a class="text-dark text-decoration-none fw-bold"><i class="fa-solid fa-tablets m-2 p-2 rounded text-black bg-light-gray" [ngClass]="{'text-white bg-icon': curruntService== 'orders'}"></i>{{'patientProfile.sidenav9' | translate}}</a>
+        <li class="m-2 rounded text-dark" [ngClass]="{'side-active': curruntService== 'orders'}" (click)="getServive('orders')">
+            <a class="text-dark text-decoration-none fw-bold text-dark" [ngClass]="{'text-white': curruntService== 'orders'}"><i class="fa-solid fa-tablets m-2 p-2 rounded text-black bg-light-gray" [ngClass]="{'text-white bg-transparent': curruntService== 'orders'}"></i>{{'patientProfile.sidenav9' | translate}}</a>
         </li>
-        <li class="px-3 py-2" [ngClass]="{'bg-light-gray': curruntService== 'review'}" (click)="getServive('review')">
-          <a class="text-dark text-decoration-none fw-bold"><i class="fa-solid fa-star m-2 p-2 rounded text-black bg-light-gray" [ngClass]="{'text-white bg-icon': curruntService== 'review'}"></i>{{'patientProfile.sidenav10' | translate}}</a>
+        <li class="m-2 rounded text-dark" [ngClass]="{'side-active': curruntService== 'review'}" (click)="getServive('review')">
+          <a class="text-dark text-decoration-none fw-bold text-dark" [ngClass]="{'text-white': curruntService== 'review'}"><i class="fa-solid fa-star m-2 p-2 rounded text-black bg-light-gray" [ngClass]="{'text-white bg-transparent': curruntService== 'review'}"></i>{{'patientProfile.sidenav10' | translate}}</a>
         </li>
     </ul>
   </div>
+
+<div class="col-lg-10 bg-light-gray">
 <!-------------------------------------------- ( profile details ) ------------------------------------------------------>
-<div class="col-lg-9 bg-light-gray">
-<div class="m-4 p-3 bg-white rounded" *ngIf="curruntService == 'details'">
-  <h2 class="fw-bold">{{'patientProfile.sidenav1' | translate }}</h2>
+
+<div class="m-4 p-3 rounded bg-white" *ngIf="curruntService == 'details'">
+  <h2 class="fw-bold text-center mb-3">{{'patientProfile.sidenav1' | translate }}</h2>
   <div class="row">
 
     <!-- user image div -->
@@ -69,6 +71,11 @@
                 <i class="fa-solid fa-camera fs-5 bg-light-gray p-2 w-100 h-100"></i>
                 <span><input type="file" id="myfile" name="myfile"></span>
             </label> -->
+          </div>
+          <div class=" d-flex justify-content-center">
+            <!-- <input type="submit" value="Update" class="btn btn-main border-0 m-auto" [disabled]="updateProfile.invalid"/> -->
+            <!-- <input value="Update" class="btn btn-main border-0 m-auto" data-bs-toggle="modal" data-bs-target="#exampleModal"/> -->
+            <button class="btn btn-main border-0" data-bs-toggle="modal" data-bs-target="#exampleModal">Update</button>
           </div>
       </div>
       <!-- edit form div -->
@@ -105,11 +112,11 @@
                         <!-- <input formControlName="address"  type="text" class="form-control" [(ngModel)]="patientInfo.address"> -->
                       </div>
                     </div>
-                    <div class=" d-flex justify-content-center">
+                    <!-- <div class=" d-flex justify-content-end"> -->
                       <!-- <input type="submit" value="Update" class="btn btn-main border-0 m-auto" [disabled]="updateProfile.invalid"/> -->
                       <!-- <input value="Update" class="btn btn-main border-0 m-auto" data-bs-toggle="modal" data-bs-target="#exampleModal"/> -->
-                      <button class="btn btn-main border-0 m-auto" data-bs-toggle="modal" data-bs-target="#exampleModal">Update</button>
-            </div>
+                      <!-- <button class="btn btn-main border-0" data-bs-toggle="modal" data-bs-target="#exampleModal">Update</button>
+                    </div> -->
             <!-- Modal -->
           <form [formGroup]="updateProfile" (ngSubmit)="updateProfileSupmit()" >
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -178,7 +185,7 @@
 <!----------------------------------------------------- ( change password ) -------------------------------------------->
 
           <div class="m-4 p-3 bg-white rounded" *ngIf="curruntService == 'password'">
-              <h2 class="fw-bold">{{'patientProfile.sidenav2' | translate}}</h2>
+              <h2 class="fw-bold text-center">{{'patientProfile.sidenav2' | translate}}</h2>
               <form [formGroup]="changePassword" (ngSubmit)="changePasswordFun()">
                   <div class="w-100">
                     <div class="pb-2 pe-2">
@@ -231,7 +238,7 @@
           </div>
 <!----------------------------------------------------- ( My insurance ) ------------------------------------------------>
           <div class="m-4 p-3 bg-white rounded" *ngIf="curruntService == 'insurance'">
-              <h2 class="fw-bold">{{'patientProfile.sidenav3' | translate}}</h2>
+              <h2 class="fw-bold text-center">{{'patientProfile.sidenav3' | translate}}</h2>
               <div class="py-3"><img src="../../../assets/images/Patient_Profile/Insurance.png"/></div>
               <p>{{'patientProfile.tap3h' | translate}}</p>
               <form [formGroup]="addInsuranceForm" (ngSubmit)="addInsuranceFun()">
@@ -258,7 +265,7 @@
           </div>
 <!----------------------------------------------------- ( My Appointments ) --------------------------------------------->
           <div class="m-4 p-3 bg-white rounded" *ngIf="curruntService == 'appointments'">
-              <h2 class="fw-bold">{{'patientProfile.sidenav4' | translate}}</h2>
+              <h2 class="fw-bold text-center">{{'patientProfile.sidenav4' | translate}}</h2>
               <table *ngIf="AppointmentsAPIres.success && allAppointment_notempty else noAppointments" class="w-100 text-center table table-striped">
                 <thead class="text-white bg-icon">
                     <th class="table-header">{{'patientProfile.tap4col1' | translate}}</th>
@@ -343,7 +350,7 @@
           </div>
 <!----------------------------------------------------- ( Medical History )--------------------------------------------->
           <div class="m-4 p-3 bg-white rounded" *ngIf="curruntService == 'history'">
-            <h2 class="fw-bold">{{'patientProfile.sidenav5' | translate}}</h2>
+            <h2 class="fw-bold text-center">{{'patientProfile.sidenav5' | translate}}</h2>
 
 
             <div class="timeline timeline-ar my-5 position-relative" [ngClass]="{'timeline-ar': rtlDir,'timeline-en': !rtlDir }">
@@ -374,7 +381,7 @@
         </div>
 <!--------------------------------------------------------- ( Bills ) -------------------------------------------------->
         <div class="m-4 p-3 bg-white rounded" *ngIf="curruntService == 'bills'">
-          <h2 class="fw-bold">{{'patientProfile.sidenav6' | translate}}</h2>
+          <h2 class="fw-bold text-center">{{'patientProfile.sidenav6' | translate}}</h2>
           <table *ngIf="invoicesAPIres.success && allInvoices_notempty else noInvoices" class="w-100 text-center table table-striped">
               <thead class="text-white bg-icon">
                   <th class="table-header">{{'patientProfile.tap6col2' | translate}}</th>
@@ -470,7 +477,7 @@
         </div> -->
 <!----------------------------------------------------- ( My Favorites ) --------------------------------------------->
         <div class="m-4 p-3 bg-white rounded" *ngIf="curruntService == 'fav'">
-          <h2 class="fw-bold">{{'patientProfile.sidenav8' | translate}}</h2>
+          <h2 class="fw-bold text-center">{{'patientProfile.sidenav8' | translate}}</h2>
             <div class="row bg-light-gray rounded box-s" *ngIf="favMedicinesAPIres.success && allFav_notempty else nofav">
               <!-- <h3 class="fw-bold text-center my-2"><i class="fa-solid fa-tablets fs-4"></i> {{'patientProfile.tap8medicine' | translate}}</h3> -->
               <app-medicine class="col-xl-4 col-sm-6 py-3 rounded p-2" *ngFor="let medicine of favMedicines" [medicine]="medicine" (emitChanges)="getMedicines()"></app-medicine>
@@ -483,7 +490,7 @@
         </div>
 <!----------------------------------------------------- ( My orders ) --------------------------------------------->
         <div class="m-4 p-3 bg-white rounded" *ngIf="curruntService == 'orders'">
-          <h2 class="fw-bold">{{'patientProfile.sidenav9' | translate}}</h2>
+          <h2 class="fw-bold text-center">{{'patientProfile.sidenav9' | translate}}</h2>
           <div *ngIf="ordersAPIres.success && allOrders_notempty else noorders">
             <div *ngFor="let order of orders" class="big-rounded border border-1 p-3 my-4 shadow">
               <div class="border-bottom pb-2">
@@ -581,7 +588,7 @@
 
 <!----------------------------------------------------- ( my reviews ) --------------------------------------------->
         <div class="m-4 p-3 bg-white rounded" *ngIf="curruntService == 'review'">
-          <h2 class="fw-bold">{{'patientProfile.sidenav10' | translate}}</h2>
+          <h2 class="fw-bold text-center">{{'patientProfile.sidenav10' | translate}}</h2>
           <div class="row" *ngIf="PatientReviewsAPIres.success && allReviews_notempty else noreviews">
             <div class="col-md-6 p-2" *ngFor="let review of allPatientReviews">
               <div class="border rounded py-2">

@@ -8,6 +8,11 @@
   background-color: $lightGreyColor;
 }
 
+.side-active {
+  background-color: $mainColor6;
+  color: white;
+}
+
 .bg-icon {
   background:$mainColor2;
 }
@@ -157,3 +162,11 @@ label span input {
   box-shadow:  20px 20px 60px #bebebe,
                -20px -20px 60px #ffffff;
   }
+
+.border-side-en {
+  border-right: 2px solid rgba(0, 0, 0,0.1);
+}
+
+.border-side-ar {
+  border-left: 2px solid rgba(0, 0, 0,0.1);
+}

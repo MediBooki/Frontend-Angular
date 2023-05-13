@@ -134,15 +134,15 @@ nav {
 }
 
 .empty.cart-items-en::before {
-  right: var(--right, 47%);
+  right: var(--right, 44%);
 }
 
 .cart-items-ar::before {
-  right: var(--right, 36%) !important;
+  right: var(--right, 44%) !important;
 }
 
 .empty.cart-items-ar::before {
-  right: var(--right, 40%) !important;
+  right: var(--right, 44%) !important;
 }
 
 .cart-items-ar::before, .cart-items-en::before{
@@ -151,7 +151,7 @@ nav {
   width: 0;
   height: 0;
   top: -15px;
-  right: var(--right,50%);
+  right: var(--right,44%);
   border-left-width: 6px;
   border-left-color: transparent;
   border-right-width: 6px;

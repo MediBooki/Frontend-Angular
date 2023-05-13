@@ -1,5 +1,5 @@
 import { DataService } from 'src/app/core/services/data.service';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { AuthService } from 'src/app/pages/Auth/services/auth.service';
 import { ReviewService } from 'src/app/pages/review/service/review.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
@@ -16,7 +16,7 @@ import { reviews } from 'src/app/core/interfaces/patients';
   templateUrl: './patient-profile.component.html',
   styleUrls: ['./patient-profile.component.scss']
 })
-export class PatientProfileComponent implements OnInit {
+export class PatientProfileComponent implements OnInit, OnDestroy {
 
   constructor(private _AuthService: AuthService,private _ReviewService:ReviewService, private _DataService:DataService, private _PatientProfileService:PatientProfileService, private toastr: ToastrService ,  private router: Router,private _cartservice : CartService) { }
 
@@ -537,5 +537,9 @@ export class PatientProfileComponent implements OnInit {
         })
       }
     }
+  }
+
+  ngOnDestroy(){
+    this._DataService.curruntService.next("details");
   }
 }
