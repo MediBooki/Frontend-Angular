@@ -14,7 +14,6 @@ import { FormGroup, FormBuilder, FormArray, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 
-// import {  } from '../../core/'
 
 @Component({
   selector: 'app-home',
