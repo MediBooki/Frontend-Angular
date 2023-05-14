@@ -96,6 +96,28 @@
         margin-left: 40px;
       }
     }
+    .terms-conditions-btn {
+      cursor: pointer;
+    }
+    
+    .terms-conditions-btn:hover {
+      color: var(--main);
+    }
+
+  }
+  .terms-conditions-item * {
+    font-size: 16px;
+  }
+  .modal-footer button {
+    width: auto !important;
+    height: auto !important;
+  }
+  
+  .modal-dialog {
+    max-width: 1000px;
+  }
+  #exampleModalScrollable {
+    width: 95%;
   }
 
   /* Animation */

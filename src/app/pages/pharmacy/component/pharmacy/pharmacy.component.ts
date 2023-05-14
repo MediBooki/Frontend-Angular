@@ -134,7 +134,7 @@ export class PharmacyComponent implements OnInit {
         this.isVisibleSpinner = true;
 
         // to get all doctors
-        this.medicinesSubscription = this._DataService.getFilteredMedicines(this.medicineFilterForm.value, lang, this.page).subscribe({
+        this.medicinesSubscription = this._PharmacyService.getFilteredMedicines(this.medicineFilterForm.value, lang, this.page).subscribe({
           next: (medicines)=>{
             this.noData = medicines.data.length == 0 ? true : false // no data will be true in case that filteredDoctors is empty
             this.totalRecords = medicines.count.count
@@ -172,7 +172,7 @@ export class PharmacyComponent implements OnInit {
           this.direction = 'rtl';
         }
 
-        this._DataService.getCategories(this.lang).subscribe({
+        this._PharmacyService.getCategories(this.lang).subscribe({
           next:(categories)=>{
             this.allCategories = categories.data;
             console.log(this.allCategories)

@@ -3,6 +3,7 @@ import { DataService } from 'src/app/core/services/data.service';
 import { DoctorService } from '../../service/doctor.service';
 import { Doctor } from 'src/app/core/interfaces/doctor';
 import { AuthService } from 'src/app/pages/Auth/services/auth.service';
+import { SpecializationService } from 'src/app/pages/specializations/service/specializations.service';
 import { Subscription } from 'rxjs';
 // import * as $ from 'jquery';
 // import 'select2';
@@ -70,7 +71,7 @@ export class DoctorsComponent implements OnInit {
 
   /*=============================================( Initialization Methods )=============================================*/
 
-  constructor(private _DataService: DataService, private _DoctorService: DoctorService, private _AuthService: AuthService, private _FormBuilder:FormBuilder, private toastr: ToastrService, private router: Router) {
+  constructor(private _DataService: DataService, private _SpecializationService:SpecializationService, private _DoctorService: DoctorService, private _AuthService: AuthService, private _FormBuilder:FormBuilder, private toastr: ToastrService, private router: Router) {
     // Declare FilterForm
     this.filterForm = this._FormBuilder.group({
       titles: new FormArray([]),
@@ -185,7 +186,7 @@ export class DoctorsComponent implements OnInit {
           this.direction = 'rtl';
         }
 
-        this._DataService.getSections(this.lang).subscribe({
+        this._SpecializationService.getSpecialization(this.lang,this.page).subscribe({
           next:(specializations)=>{
             this.allSpecializations = specializations.data;
             console.log(this.allSpecializations)

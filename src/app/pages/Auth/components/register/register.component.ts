@@ -42,6 +42,71 @@ export class RegisterComponent implements OnInit {
   showPassword:boolean=false
   showConfirmPassword:boolean=false
 
+  /*============================================( Terms & Conditions )============================================*/
+
+// variable contains all terms and conditions
+ termsConditions = [
+  {
+      termsConditionsHead:'Create Agreement' , 
+      termsConditionsContent:[
+          `Thank you for visiting our website ‘MediBooki’.` , 
+          `By accessing our services, you are thus entering into an agreement between you, whether you are an independent individual or you are on behalf of an organization or otherwise, and ’MediBooki‘ site administration and therefore you agree to follow the terms and conditions set out on this page, and you must verify that you have checked the checkbox beside Agree to The Terms and Conditions sentence to confirm that you agree to these terms.`
+      ]
+  } ,
+  {
+      termsConditionsHead:'Privacy Policy' , 
+      termsConditionsContent:[
+          `We use your personal information (name, address, phone number, email, etc.) to provide and improve the services you request.` , 
+          `By using that service, you are consent to the collection and use of this information according to that Policy.` , 
+          `This policy applies only to our site. Therefore, if you left our site through another link, you would comply with the policy and terms of the other site, as we have no control over the policy or terms of the other site to which you moved.`
+      ]
+  } ,
+  {
+      termsConditionsHead:'Patient Account & Registration' , 
+      termsConditionsContent:[
+          `You do not have to log in to visit our website, you can visit it without logging in, but to enjoy some services you will need to create a new account through the registration process in our website.` , 
+          `When creating an account, you must provide the correct and complete registration information so that we can perform the services as required, and in case of changing any of this information, you must notify us immediately, and if you fail to provide or update this information, you will not be able to properly receive the requested information through the Website.` , 
+          `You have to create a strong password and difficult to hack and keep it confidential at all times and not give it to anyone under any circumstances so you will not face any kind of problem because you will be responsible for any activities that take place on your user account by unauthorized parties. You must notify us if you strongly believe that your account has been hacked.` , 
+          `By accessing and using our Services, you consent to our use of your email address, phone number, and other contact information to send notifications related to the Service, changes to features or special offers.` , 
+          `The administration of ‘MediBooki’ site reserves the right to determine who may be eligible for an account and can refuse or cancel any account at any time without incurring any liability.`
+      ]
+  } ,
+  {
+      termsConditionsHead:'Use of information' , 
+      termsConditionsContent:[
+          `We may use the information we collect online for the following purposes:` , 
+          `- Providing and improving services and fulfilling your requests` , 
+          `- contact you` , 
+          `- Sending information about clinical services or home care` , 
+          `Note: No information provided by patients during medical consultations is ever used for marketing purposes as we do not share confidential information with third parties.`
+      ]
+  } ,
+  {
+      termsConditionsHead:'Protection and security' , 
+      termsConditionsContent:[
+          `On our site, we use many means to protect your personal information from loss, unauthorized access, modification, and destruction.` , 
+          `We regularly scan our website for security holes and vulnerabilities in order to ensure that your visit to our site is as secure as possible.` , 
+          `We ensure the protection of your account by converting the password to another text using hashing algorithms and by helping us also by setting a strong password, this will increase the level of security of your account but you must understand that the security of the stored information cannot be guaranteed by 100%, but we are trying to ensure the largest percentage of security for your information.` , 
+          `Our website must be used in the correct and proper manner and must not be used in other illegal ways; do not try to interfere with its security features of the website, prevent others from accessing it, or cause any damage or destruction to the information on the website.` , 
+          `In case of detecting any damage occurred on our site, we will refer the case to the relevant law enforcement authorities.` , 
+      ]
+  } ,
+  {
+      termsConditionsHead:'Medical Insurance' , 
+      termsConditionsContent:[
+          `In case you have medical insurance, then the medication you are dispensing will be discounted, but if it is proven that you are dispensing the medicine and then sell it for financial profit, your medical insurance will be suspended, and the necessary legal action will be taken.`
+      ]
+  } ,
+  {
+      termsConditionsHead:'Changes to the Terms and Conditions' , 
+      termsConditionsContent:[
+          `We may update the Terms and Conditions from time to time and will publish the new ones on this page.  Therefore, we advise you to review the terms and conditions periodically to always know the latest updates.` , 
+          `These terms and conditions were last updated on [February 20, 2022].`
+      ]
+  }
+];
+
+
 
 
   constructor(private fb: FormBuilder, private router: Router, private _AuthService: AuthService, private _DataService: DataService) {

@@ -132,6 +132,11 @@
               {{'registerPage.error'| translate}}
             </p>
           </div>
+          <div class="terms-conditions">
+            <input type="checkbox" class="me-1" required name="termsConditions" value="checked" id="termsConditions">
+            <label for="termsConditions">I agree to the <a class="terms-conditions-btn" data-bs-toggle="modal"
+                data-bs-target="#exampleModalScrollable">Terms & Conditions</a></label>
+          </div>
 
 
           <button type="submit" class="btn btn-primary rounded-pill text-uppercase my-2"
@@ -139,6 +144,27 @@
             {{ 'registerPage.register' | translate }}
           </button>
         </form>
+      </div>
+    </div>
+
+    <!-- Terms and Conditions Modal -->
+    <div class="modal fade mx-3" id="exampleModalScrollable" tabindex="-1" aria-labelledby="exampleModalScrollableTitle"
+      aria-hidden="true">
+      <div class="modal-dialog modal-dialog-scrollable">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalScrollableTitle">Terms & Conditions</h5>
+          </div>
+          <div class="modal-body">
+            <div class="terms-conditions-item my-3" *ngFor="let termsCondition of termsConditions">
+              <h3 class="mb-2 text-decoration-underline fw-bold">{{termsCondition.termsConditionsHead}}:</h3>
+              <p class="text-muted" *ngFor="let termsConditionContent of termsCondition.termsConditionsContent">{{termsConditionContent}}</p>                                       
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
       </div>
     </div>
 

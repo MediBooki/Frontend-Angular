@@ -8,8 +8,7 @@ import { BehaviorSubject, catchError, Observable, throwError } from 'rxjs';
   providedIn: 'root'
 })
 export class CartService {
-  // sharedApi: string = "http://medibookidashbord.test/api";
-  sharedApi:string = "http://127.0.0.1:8000/api";
+  sharedApi: string = "http://medibookidashbord.test/api";
   medicinesQty = new BehaviorSubject(0);
   favoritesId = new BehaviorSubject<number[]>([]); // medicines IDs added to favorite
 

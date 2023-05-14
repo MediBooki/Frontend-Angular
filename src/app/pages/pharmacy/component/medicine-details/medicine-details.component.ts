@@ -145,7 +145,7 @@ export class MedicineDetailsComponent implements OnInit {
       console.log(this.medicineDetails.category.id)
       this.medicineFilterForm.value["categories"].push(this.medicineDetails.category.id)
       console.log(this.medicineFilterForm.value["categories"])
-      this._DataService.getFilteredMedicines(this.medicineFilterForm.value, this.lang, 1).subscribe({
+      this._PharmacyService.getFilteredMedicines(this.medicineFilterForm.value, this.lang, 1).subscribe({
         next:(res)=>{
           console.log(res.data)
           const filteredMedicines = res.data.filter((medicine:any) => medicine.id !== this.medicineDetails.id);
@@ -210,7 +210,7 @@ export class MedicineDetailsComponent implements OnInit {
           console.log(rere)
         })
         // to get all medicines
-        this.medicineSubscription = this._DataService.getSpecificMedicine(this.medicineId,this.lang).subscribe({
+        this.medicineSubscription = this._PharmacyService.getSpecificMedicine(this.medicineId,this.lang).subscribe({
           next: (medicine)=>{
             this.medicineDetails = medicine.data;
             // this.setMedicineAmount();

@@ -13,6 +13,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { DoctorJoin } from 'src/app/core/interfaces/doctor-join';
 import { DoctorRegisterService } from '../../service/doctor-register.service';
+import { SpecializationService } from 'src/app/pages/specializations/service/specializations.service';
 
 @Component({
   selector: 'app-doctor-register',
@@ -21,7 +22,7 @@ import { DoctorRegisterService } from '../../service/doctor-register.service';
 })
 export class DoctorRegisterComponent implements OnInit {
 /*=============================================( Initialization Methods )=============================================*/
-  constructor(private _DataService:DataService, private _AuthService: AuthService , private _TranslateService:TranslateService,  private router: Router, private toastr: ToastrService,private _DoctorRegisterService:DoctorRegisterService) { }
+  constructor(private _DataService:DataService, private _AuthService: AuthService , private _TranslateService:TranslateService,  private router: Router, private toastr: ToastrService,private _DoctorRegisterService:DoctorRegisterService, private _SpecializationService:SpecializationService) { }
 
 
   ngOnInit(): void {
@@ -57,6 +58,8 @@ export class DoctorRegisterComponent implements OnInit {
   rtlDir:boolean = false;
   direction:any = 'ltr' ;
   stepNum:number = 1;
+
+  page:number=1
 
   // API Variables
   allSections: Section[] = [];
@@ -145,7 +148,7 @@ export class DoctorRegisterComponent implements OnInit {
   getSections(){
     this._DataService._lang.subscribe({next:(language)=>{
       // to get all sections
-    this.sectionsSubscription = this._DataService.getSections(language).subscribe({
+    this.sectionsSubscription = this._SpecializationService.getSpecialization(language , this.page).subscribe({
       next: (sections) => {
         this.allSections = sections.data;
       },
@@ -237,7 +240,7 @@ export class DoctorRegisterComponent implements OnInit {
   getAppointments(){
     this._DataService._lang.subscribe({next:(language)=>{
       // to get all sections
-    this.appointmentsSubscription = this._DataService.getAppointments(language).subscribe({
+    this.appointmentsSubscription = this._DoctorRegisterService.getAppointments(language).subscribe({
       next: (appointments) => {
         this.allAppointments = appointments.data;
         this.dropdownList = this.allAppointments;

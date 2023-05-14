@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';1
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HomeComponent } from './pages/home/home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { ContactUsComponent } from './pages/contact-us/component/contact-us/contact-us.component';
@@ -17,13 +16,12 @@ import { DoctorRegisterModule } from './pages/doctor-register/module/doctor-regi
 import { PatientProfileModule } from './pages/patient-profile/module/patient-profile/patient-profile.module';
 import { ReviewModule } from './pages/review/module/review/review.module';
 import { SpecializationsModule } from './pages/specializations/module/specializations/specializations.module';
-
+import { HomeModule } from './pages/home/module/home/home.module';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
     NotFoundComponent,
     ContactUsComponent,
 
@@ -42,7 +40,8 @@ import { SpecializationsModule } from './pages/specializations/module/specializa
     DoctorRegisterModule,
     PatientProfileModule,
     ReviewModule,
-    SpecializationsModule
+    SpecializationsModule,
+    HomeModule
     
   ],
   providers: [],

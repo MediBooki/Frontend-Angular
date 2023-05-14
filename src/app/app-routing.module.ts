@@ -5,7 +5,7 @@ import { LoginComponent } from './pages/Auth/components/login/login.component';
 import { RegisterComponent } from './pages/Auth/components/register/register.component';
 import { CartComponent } from './pages/cart/component/cart/cart.component';
 import { DoctorsComponent } from './pages/doctors/component/doctors/doctors.component';
-import { HomeComponent } from './pages/home/home.component';
+import { HomeComponent } from './pages/home/component/Home/home.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { PatientProfileComponent } from './pages/patient-profile/component/patient-profile/patient-profile.component';
 import { PharmacyComponent } from './pages/pharmacy/component/pharmacy/pharmacy.component';
@@ -19,6 +19,7 @@ import { ArticlesComponent } from './pages/articles/component/articles/articles.
 import { OneArticleComponent } from './pages/articles/component/article-details/one-article.component';
 import { ContactUsComponent } from './pages/contact-us/component/contact-us/contact-us.component';
 import { SpecializeDetailsComponent } from './pages/specializations/component/specialize-details/specialize-details.component';
+import { AuthGuard } from './core/guards/auth.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -30,15 +31,17 @@ const routes: Routes = [
     ]
   },
   { path: 'appointments/:id', component: AppointmentsComponent },
-  { path: 'review/:id', component: ReviewComponent },
-  { path: 'cart', children: [
-    { path: '', component: CartComponent },
+  { path: 'review/:id', component: ReviewComponent,canActivateChild:[AuthGuard] },
+  { path: 'cart',
+   canActivateChild:[AuthGuard], 
+   children: [
+    { path: '', component: CartComponent,canActivate:[AuthGuard]},
     { path: 'checkout', children: [
       { path: '', component: CheckoutComponent },
       { path: 'checkout-success', component: CheckoutSuccessComponent }
     ] }
-  ] },
-  { path: 'my-profile', component: PatientProfileComponent },
+  ]},
+  { path: 'my-profile', component: PatientProfileComponent,canActivate:[AuthGuard]  },
   {
     path: 'pharmacy', children: [
       { path: '', component: PharmacyComponent },

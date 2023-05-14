@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, throwError } from 'rxjs';
 import { Section } from 'src/app/core/interfaces/section';
+import { Appointments } from 'src/app/core/interfaces/appointments';
 
 @Injectable({
   providedIn: 'root'
@@ -25,5 +26,12 @@ export class DoctorRegisterService {
 
   doctorJoinus(model: any) :Observable<any> {
     return this._HttpClient.post(this.sharedApi + '/doctors', model, {  headers: this.joinUsHeaders  });
+  }
+
+  getAppointments(lang: string): Observable<any> {
+    return this._HttpClient.get<Appointments[]>(`${this.sharedApi}/appointments?lang=${lang}`).pipe(catchError((e: any) => {
+      console.log(e)
+      return throwError(e)
+    }));
   }
 }

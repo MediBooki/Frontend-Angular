@@ -1,8 +1,10 @@
 import { Component, HostListener, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { OwlOptions } from 'ngx-owl-carousel-o';
-import { DataService } from '../../core/services/data.service';
-import { DoctorService } from '../doctors/service/doctor.service';
-import { AuthService } from '../Auth/services/auth.service';
+import { DataService } from 'src/app/core/services/data.service';
+import { DoctorService } from 'src/app/pages/doctors/service/doctor.service';
+import { AuthService } from 'src/app/pages/Auth/services/auth.service';
+import { HomeService } from '../../service/home.service';
+import { SpecializationService } from 'src/app/pages/specializations/service/specializations.service';
 import * as $ from 'jquery';
 import 'select2';
 import { TranslateService } from '@ngx-translate/core';
@@ -22,7 +24,7 @@ import { Router } from '@angular/router';
 })
 
 export class HomeComponent implements OnInit {
-
+ 
   /*=============================================( Variables )=============================================*/
 
   // Direction Variables
@@ -53,6 +55,7 @@ export class HomeComponent implements OnInit {
   doctorsCounter: number = 0;
   usersCounter: number = 0;
   specializationCounter: number = 0;
+  page:number=1
 
   // each Counter stop point
   numOfDoctors: number = 0;
@@ -71,7 +74,7 @@ export class HomeComponent implements OnInit {
 
   /*=============================================( Initialization Methods )=============================================*/
 
-  constructor(private _DataService: DataService,private _DoctorService:DoctorService, private _AuthService: AuthService , private _TranslateService:TranslateService, private _FormBuilder:FormBuilder, private toastr: ToastrService, private router: Router) {
+  constructor(private _DataService: DataService,private _SpecializationService:SpecializationService, private _DoctorService:DoctorService,private _HomeService:HomeService, private _AuthService: AuthService , private _TranslateService:TranslateService, private _FormBuilder:FormBuilder, private toastr: ToastrService, private router: Router) {
     // Declare FilterForm
     this.filterForm = this._FormBuilder.group({
       sections: new FormArray([])
@@ -308,7 +311,7 @@ export class HomeComponent implements OnInit {
           this.direction = 'rtl';
         }
 
-        this._DataService.getSections(this.lang).subscribe({
+        this._SpecializationService.getSpecialization(this.lang , this.page).subscribe({
           next:(specializations)=>{
             this.allSpecializations = specializations.data;
             this.latestSpecializations = specializations.data.slice(0,5); // get latest specializations added
@@ -386,7 +389,7 @@ bookDoctor(eve:any) {
             this.direction = 'rtl'; }
 
 
-        this._DataService.getDistinguishedDoctors(lang).subscribe({
+        this._HomeService.getDistinguishedDoctors(lang).subscribe({
           next:(doctors)=>{
             this.distinguishedDoctors = doctors.data;
             console.log(doctors)
@@ -418,7 +421,7 @@ bookDoctor(eve:any) {
           this.rtlDir = true;
           this.direction = 'rtl'; 
         }
-        this._DataService.getSliderImages(this.lang).subscribe({
+        this._HomeService.getSliderImages(this.lang).subscribe({
           next:(res)=>{
             console.log(res)
             this.sliderImages = res.data;

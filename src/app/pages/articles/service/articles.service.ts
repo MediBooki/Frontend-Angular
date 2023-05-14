@@ -26,4 +26,11 @@ export class ArticlesService {
         }));
     }
   }
+
+  getOneArticale(lang: string, id:number): Observable<any> {
+    return this._HttpClient.get(`${this.sharedApi}/blogs/${id}?lang=${lang}`).pipe(catchError((e: any) => {
+    console.log(e)
+    return throwError(e)
+    }));
+  }
 }

@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/pages/Auth/services/auth.service';
 import { DataService } from 'src/app/core/services/data.service';
 import { ActivatedRoute } from '@angular/router';
+import { ArticlesService } from '../../service/articles.service';
 
 @Component({
   selector: 'app-one-article',
@@ -13,7 +14,7 @@ export class OneArticleComponent implements OnInit {
 
   defaultImg:string = this._DataService.defaultNoImg;
 
-  constructor(private _AuthService: AuthService,private _DataService: DataService,private _activatedRouting: ActivatedRoute ) { }
+  constructor(private _AuthService: AuthService,private _DataService: DataService,private _activatedRouting: ActivatedRoute,private _ArticlesService:ArticlesService ) { }
 
   ngOnInit(): void {
     Promise.resolve().then(() => this._AuthService.isLogedIn.next(true));
@@ -64,7 +65,7 @@ export class OneArticleComponent implements OnInit {
   getArticle(){
     this._DataService._lang.subscribe({next:(language)=>{
       // to get all sections
-      this.articleSubscription = this._DataService.getOneArticale(language,this.articleId).subscribe({
+      this.articleSubscription = this._ArticlesService.getOneArticale(language,this.articleId).subscribe({
         next: (article) => {
           this.articale = article.data;
           console.log(article);
