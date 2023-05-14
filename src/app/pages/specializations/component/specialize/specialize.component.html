@@ -5,8 +5,7 @@
     
         <div class="card">
           <div class="overflow-hidden">
-            <img [src]="specialize.photo" class="img-fluid card-img-top" alt="..." *ngIf="specialize.photo">
-            <img [src]="defaultSpecializationImg" class="img-fluid card-img-top default-img" alt="..." *ngIf="!specialize.photo">
+            <img [src]="specialize.photo || defaultSpecializationImg" class="img-fluid card-img-top default-img" alt="...">
           </div>
           <div class="card-body">
             <h5 class="card-title my-3 text-dark fw-bolder"> {{specialize.name}}

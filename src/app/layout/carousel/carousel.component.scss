@@ -81,6 +81,119 @@
 
 /* =======================================================( Specialization )======================================================= */
 
+
+/* =======================================================( Main )======================================================= */
+
+
+
+
+.main-section {
+  background-color: $whiteColor;
+
+
+
+
+
+  /*----------------------------------( Main Carousel )----------------------------------*/
+  /* carousel dots */
+  .main-carousel::ng-deep {
+
+    .item {
+      height: 70vh;
+  
+      img {
+        min-height: 95%;
+      }
+    }
+    
+    .owl-carousel {
+      counter-reset: dots; // to change dots content to counter numbers
+      .owl-dots {
+        position: absolute;
+        top: 50%;
+        transform: translate(0,-50%);
+        display: flex;
+        flex-direction: column;
+        align-content: flex-start;
+  
+        .owl-dot {
+          outline: none !important;
+
+          span {
+            width: 35px;
+            height: 35px;
+            background-color: #999;
+            transition: all .2s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            &::after {
+              counter-increment: dots;
+              content: counter(dots) ;
+            }
+          }
+
+          &:hover {
+            span {
+              background-color: $whiteColor;
+            }
+          }
+
+          &.active {
+            span {
+              background: $mainColor2;
+              color: white;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // English Style
+  .main-carousel-english::ng-deep {
+    .owl-dots {
+      left: 1.5rem;
+    }
+  }
+
+  // Arabic Style
+  .main-carousel-arabic::ng-deep {
+    .owl-dots {
+      right: 1.5rem;
+    }
+  }
+};
+
+.main-carousle-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+}
+  
+.item {
+  img {
+    min-height: 100% !important;
+  }
+
+  .main-carousle-title {
+    position: absolute;
+    top: 15%;
+    left: 7%;
+    width: 500px;
+    color: rgba(255,255,255,0.8);
+    text-align: center;
+
+    h2 {
+      font-weight: 900;
+      font-size: 4rem !important;
+    }
+  }
+}
   
 /*------------------------------------------------( 2.specialization Carousel )------------------------------------------------  */
 

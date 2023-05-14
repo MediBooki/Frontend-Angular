@@ -31,8 +31,7 @@
                 <section class="py-5 bg-white rounded row">
                     <div class="col-md-6 d-flex align-items-center justify-content-center">
                         <div class="specialize-details-img">
-                            <img class="img-fluid rounded" [src]="specializeDetails.photo" alt="Medicine image" *ngIf="specializeDetails.photo"/>
-                            <img class="img-fluid rounded default-img" [src]="defaultMedicineImg" alt="Medicine image" *ngIf="!specializeDetails.photo"/>
+                            <img class="img-fluid rounded default-img" [src]="specializeDetails.photo || defaultMedicineImg" alt="Medicine image"/>
                         </div>
                     </div>
                     <div class="p-4 col-md-6 specialize-details-content d-flex align-items-center">

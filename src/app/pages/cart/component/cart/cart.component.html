@@ -38,8 +38,7 @@
                         <tr *ngFor="let medicine of allMedicinesPurchased">
                             <th><i (click)="removeCart(medicine.id)" class="fa-solid fa-xmark fs-4 text-danger"></i></th>
                             <td class="text-center product-img">
-                                <img [routerLink]="['/pharmacy/medicineDetails' , medicine.id]" class="img-fluid" [src]="medicine.photo" alt="Medicine Image" *ngIf="!medicine.photo">
-                                <img [routerLink]="['/pharmacy/medicineDetails' , medicine.id]" class="img-fluid default-img" [src]="defaultMedicineImg" alt="Medicine Image" *ngIf="medicine.photo">
+                                <img [routerLink]="['/pharmacy/medicineDetails' , medicine.id]" class="img-fluid default-img" [src]="medicine.photo || defaultMedicineImg" alt="Medicine Image">
                             </td>
                             <td class="product-name"><span [routerLink]="['/pharmacy/medicineDetails' , medicine.id]">{{medicine.medicine_name}}</span></td>
                             <td>
@@ -76,8 +75,7 @@
                     <div *ngFor="let medicine of allMedicinesPurchased" class="card product-card mb-3" style="max-width: 540px;">
                         <div class="row g-0">
                             <div class="col-4 product-img-details position-relative">
-                                <img [src]="medicine.photo" class="img-fluid h-100 rounded-start shadow" alt="..." *ngIf="medicine.photo">
-                                <img [src]="defaultMedicineImg" class="img-fluid h-100 rounded-start shadow default-img" alt="..." *ngIf="!medicine.photo">
+                                <img [src]="medicine.photo || defaultMedicineImg" class="img-fluid h-100 rounded-start shadow default-img" alt="...">
                                 <div class="delete-product"  [ngClass]="rtlDir? 'delete-product-arabic' : 'delete-product-english'">
                                     <i (click)="removeCart(medicine.id)" class="fa-solid fa-xmark fs-4 text-danger"></i>
                                 </div>

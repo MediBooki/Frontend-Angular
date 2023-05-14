@@ -38,7 +38,8 @@ export class HomeComponent implements OnInit {
   latestSpecializations: Specialize[] = [];
   doctorsCountSubscribtion = new Subscription();
   distinguishedDoctors: Doctor[] = [];
-  
+  sliderImages:any[] = []
+
   // Carousel Variables
   mainCarousel: OwlOptions = {} // Enabling Owl Carousel for Main Section
   specializationCarousel: OwlOptions = {} // Enabling Owl Carousel for Specialization Section
@@ -57,6 +58,9 @@ export class HomeComponent implements OnInit {
   numOfDoctors: number = 0;
   numOfUsers: number = 0;
   numOfSpecializations: number = 0;
+
+  // other Variables
+  isVisibleSpinner:boolean = false;
 
 
   // main section variable to know its height to use as start point to show scroll up button
@@ -88,6 +92,7 @@ export class HomeComponent implements OnInit {
     this.getSpecializations();
     this.getDistinguishedDoctors();
     this.getCounterVals();
+    this.getSliderImages();
   }
 
   // when view load completely
@@ -400,6 +405,31 @@ bookDoctor(eve:any) {
       }
     })
   }
+
+  getSliderImages() {
+    this._DataService._lang.subscribe({
+      next: (lang) => {
+        this.lang = lang;
+        this.isVisibleSpinner = true
+        if (lang == 'en') {
+          this.rtlDir = false;
+          this.direction = 'ltr';
+        } else {
+          this.rtlDir = true;
+          this.direction = 'rtl'; 
+        }
+        this._DataService.getSliderImages(this.lang).subscribe({
+          next:(res)=>{
+            console.log(res)
+            this.sliderImages = res.data;
+            this.isVisibleSpinner = false;
+          }
+        })
+      }
+    }) 
+  }
+
+
 
   ngOnDestroy() {
     $('.specialization-main-select2').select2();

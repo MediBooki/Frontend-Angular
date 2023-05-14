@@ -491,7 +491,7 @@
 <!----------------------------------------------------- ( My orders ) --------------------------------------------->
         <div class="m-4 p-3 bg-white rounded" *ngIf="curruntService == 'orders'">
           <h2 class="fw-bold text-center">{{'patientProfile.sidenav9' | translate}}</h2>
-          <div *ngIf="ordersAPIres.success && allOrders_notempty else noorders">
+          <div *ngIf="ordersAPIres?.success && allOrders_notempty else noorders">
             <div *ngFor="let order of orders" class="big-rounded border border-1 p-3 my-4 shadow">
               <div class="border-bottom pb-2">
                 <div class="d-flex align-items-center justify-content-between">
@@ -563,7 +563,7 @@
                   <div class="col-md-6 p-2" *ngFor="let medicine of orderDetails[0].user_medicine_items">
                     <div class="bg-white rounded pb-1" [routerLink]="['/pharmacy/medicineDetails' , medicine.id]" data-bs-dismiss="modal">
                       <div class="medicine-img">
-                        <img class="rounded w-100 h-100" [src]="medicine.photo" alt="">
+                        <img class="rounded w-100 h-100 default-img" [src]="medicine.photo || defaultImg" alt="">
                       </div>
                       <div class="px-1">
                         <div class="py-2">
@@ -595,7 +595,7 @@
                 <div class="d-flex">
                   <div class="mx-3">
                    <div class="rounded-circle doc-review-img overflow-hidden">
-                     <img [src]="review.doctor.photo" alt="" class="w-100 h-100">
+                     <img [src]="review.doctor.photo ||  defaultImg" alt="" class="w-100 h-100 default-img">
                    </div>
                   </div>
                   <div class="pe-2">

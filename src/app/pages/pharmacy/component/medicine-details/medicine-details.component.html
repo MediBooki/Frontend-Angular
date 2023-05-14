@@ -30,8 +30,7 @@
             <section class="py-5 bg-white rounded row">
                 <div class="col-md-6 d-flex align-items-center justify-content-center">
                     <div class="medicine-details-img">
-                        <img class="img-fluid rounded" [src]="medicineDetails.photo" alt="Medicine image" *ngIf="medicineDetails.photo"/>
-                        <img class="img-fluid rounded default-img" [src]="defaultMedicineImg" alt="Medicine image" *ngIf="!medicineDetails.photo"/>
+                        <img class="img-fluid rounded default-img" [src]="medicineDetails.photo || defaultMedicineImg" alt="Medicine image"/>
                     </div>
                 </div>
                 <div class="p-4 col-md-6 medicine-details-content d-flex align-items-center">

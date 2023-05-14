@@ -34,7 +34,7 @@ export class MedicineComponent implements OnInit {
       id:0,
       name:'',
       description:'',
-      price:'',
+      price:0,
       manufactured_by:'',
       photo:'',
       category: {
@@ -145,23 +145,27 @@ export class MedicineComponent implements OnInit {
   // }
 
   setFavorite() {
-    this._CartService.favoritesId.subscribe({
-      next:(res)=>{
-        // if(res.length != 0) {
-          console.log(res)
-          let favoriteFound = res.find((favoriteId:any) => favoriteId == this.medicine.id)
-          console.log(favoriteFound)
-          if(favoriteFound == undefined) {
-            this.favoriteAdded = false
-          } else {
-            this.favoriteAdded = true
-          }
-          this.favoriteLoaded = true
-        // } 
-        
-      }
-    })
+    if(localStorage.getItem("token") != null) {
+      this._CartService.favoritesId.subscribe({
+        next:(res)=>{
+          // if(res.length != 0) {
+            console.log(res)
+            let favoriteFound = res.find((favoriteId:any) => favoriteId == this.medicine.id)
+            console.log(favoriteFound)
+            if(favoriteFound == undefined) {
+              this.favoriteAdded = false
+            } else {
+              this.favoriteAdded = true
+            }
+            this.favoriteLoaded = true
+          // } 
+          
+        }
+      })
+    }
+    
   }
+
 
   // @Input() medicineFavorite:number[] = [];
 

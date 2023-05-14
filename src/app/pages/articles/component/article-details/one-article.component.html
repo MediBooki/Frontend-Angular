@@ -20,7 +20,7 @@
     <div>
       <h1 class="fw-bold text-center py-5">{{articale.title}}</h1>
       <div class="m-auto created-fixed-width">
-        <img [src]="articale.photo" class="w-100 h-100" alt="">
+        <img [src]="articale.photo || defaultImg" class="w-100 h-100 default-img" alt="">
       </div>
       <div class="created-fixed-width m-auto d-flex justify-content-between fs-5 fw-bold h-auto">
         <span><i class="fa-solid fa-tags me-1"></i>{{articale.section.name}}</span>

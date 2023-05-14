@@ -2,7 +2,7 @@ export interface Medicine {
     id:number,
     name:string,
     description:string,
-    price:string,
+    price:number,
     manufactured_by:string,
     photo:string,
     category: {

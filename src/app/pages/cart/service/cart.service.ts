@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams  } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 // import { MedicinePurchased } from '../../interfaces/medicine-purchased';
 import { MedicinePurchased } from 'src/app/core/interfaces/medicine-purchased';
@@ -8,8 +8,8 @@ import { BehaviorSubject, catchError, Observable, throwError } from 'rxjs';
   providedIn: 'root'
 })
 export class CartService {
-  sharedApi: string = "http://medibookidashbord.test/api";
-  // sharedApi:string = "http://127.0.0.1:8000/api";
+  // sharedApi: string = "http://medibookidashbord.test/api";
+  sharedApi:string = "http://127.0.0.1:8000/api";
   medicinesQty = new BehaviorSubject(0);
   favoritesId = new BehaviorSubject<number[]>([]); // medicines IDs added to favorite
 
@@ -112,13 +112,12 @@ export class CartService {
     );
   }
 
-  paymentOrder(num:number=0):Observable<any> {
+  paymentOrder(num:number):Observable<any> {
     let model = {}
-    if(num==1) {
-      model = {
-        "status":1
-      }
+    model = {
+      "status":num
     }
+
     let headers = new HttpHeaders();
     headers = this.createAuthorizationHeader(headers);
     return this.http.post(this.sharedApi + `/patient/payments` , model , {headers: headers}).pipe(
@@ -150,4 +149,25 @@ export class CartService {
   //   //       this.favoriteAdded = true
   //   //     }
   // }
+
+  savePaymentOnline(model: any): Observable<any> {
+
+    let params = new HttpParams();
+
+    for (let obj in model) {
+      params = params.append(`${obj}`, model[obj]);
+    }
+
+    let headers = new HttpHeaders();
+    headers = this.createAuthorizationHeader(headers);
+    // const parse = JSON.parse(par)
+    console.log(model.genders)
+    // console.log(params)
+    return this.http.get<any[]>(`${this.sharedApi}/patient/callback`, { params: params ,  headers: headers}).pipe(catchError((e: any) => {
+      console.log(e)
+      return throwError(e)
+    }));
+
+  }
+
 }

@@ -23,8 +23,7 @@
       <div class="card docinfo mb-3">
         <div class="row g-0">
           <div class="col-lg-3 col-md-5 col-11 text-center pt-3 position-relative image mb-3 ms-3 ms-sm-0 ">
-            <img [src]="doctor.photo" class="img-fluid rounded-4 px-sm-2 w-100 h-100  " alt="..." *ngIf="doctor.photo">
-            <img [src]="defaultDoctorImg" class="img-fluid rounded-4 px-sm-2 w-100 h-100 default-img" alt="..." *ngIf="!doctor.photo">
+            <img [src]="doctor.photo || defaultDoctorImg" class="img-fluid rounded-4 px-sm-2 w-100 h-100 default-img" alt="...">
           </div>
           <div class="row justify-content-between col-lg-9 col-md-7">
             <div class="col-lg-6">

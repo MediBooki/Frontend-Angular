@@ -19,8 +19,8 @@ export class DataService {
   userPhoto= new BehaviorSubject('../../../assets/images/user_male.jpeg')
   firstSectionHeight: any = 0; // variable to know first component section height to show scrollToTop Btn
   _lang = new BehaviorSubject(this.getLocalLang());
-  // sharedApi: string = "http://127.0.0.1:8000/api";
-  sharedApi: string = "http://medibookidashbord.test/api";
+  sharedApi: string = "http://127.0.0.1:8000/api";
+  // sharedApi: string = "http://medibookidashbord.test/api";
   isPageLoaded = new BehaviorSubject(false);
   idReview = new BehaviorSubject<number>(0);
   is_login = new BehaviorSubject(localStorage.getItem('token')!=null);
@@ -136,4 +136,12 @@ export class DataService {
       return throwError(e)
       }));
   }
+
+  getSliderImages(lang: string): Observable<any> {
+    return this._HttpClient.get(`${this.sharedApi}/sliders?lang=${lang}`).pipe(catchError((e: any) => {
+      console.log(e)
+      return throwError(e)
+      }));
+  }
+
 }

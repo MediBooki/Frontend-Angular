@@ -2,7 +2,7 @@
   <div class="p-1">
     <div class="card p-2 " [routerLink]="['/article', article.id]">
       <div class="card-img-link overflow-hidden">
-        <img [src]="article.photo" class="w-100 rounded w-100 h-100" alt="...">
+        <img [src]="article.photo || defaultImg" class="w-100 rounded w-100 h-100 default-img" alt="...">
       </div>
 
       <div class="card-body">

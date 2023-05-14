@@ -2,8 +2,7 @@
     <div class="medicine">
         <div class=" h-100 rounded">
             <div class="medicine-img overflow-hidden rounded position-relative">
-                <img class="img-fluid h-100 w-100" [src]="medicine.photo" alt="Medicine image" *ngIf="medicine.photo">
-                <img class="img-fluid h-100 w-100 default-img" [src]="defaultMedicineImg" alt="Medicine image" *ngIf="!medicine.photo">
+                <img class="img-fluid h-100 w-100 default-img" [src]="medicine.photo || defaultMedicineImg" alt="Medicine image">
                 <div class="img-layer w-100 rounded" >
                     <div class="position-relative w-100 h-100" >
                         <div class="favorite-container" [ngClass]="rtlDir? 'favorite-container-arabic' : 'favorite-container-english'" *ngIf="favoriteLoaded">

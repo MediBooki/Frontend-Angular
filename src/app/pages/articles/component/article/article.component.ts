@@ -20,6 +20,8 @@ export class ArticleComponent implements OnInit {
   rtlDir:boolean = false;
   lang:string = "en";
 
+  defaultImg:string = this._DataService.defaultNoImg;
+
   @Input() article:any;
 
   /*=============================================( Component Created Methods )=============================================*/

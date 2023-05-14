@@ -11,6 +11,8 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class OneArticleComponent implements OnInit {
 
+  defaultImg:string = this._DataService.defaultNoImg;
+
   constructor(private _AuthService: AuthService,private _DataService: DataService,private _activatedRouting: ActivatedRoute ) { }
 
   ngOnInit(): void {

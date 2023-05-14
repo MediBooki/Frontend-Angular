@@ -124,7 +124,7 @@ export class CheckoutComponent implements OnInit {
             this.toastr.success(!this.rtlDir?`Your Order has been Submitted Successfully`:`تم تسجيل طلبك بنجاح`, !this.rtlDir?`Checkout Result`:`ناتج عملية الشراء`);
             this._CartService.medicinesQty.next(0);
             if(this.paymentMethod == 'delivery') {
-              this._CartService.paymentOrder().subscribe({
+              this._CartService.paymentOrder(2).subscribe({
                 next:(res)=>{
                   console.log(res)
                 },
@@ -138,9 +138,12 @@ export class CheckoutComponent implements OnInit {
               this.isVisibleSpinner = true
               this._CartService.paymentOrder(1).subscribe({
                 next:(res)=>{
+                  // this._DataService.curruntService.next('orders')
                   this.isVisibleSpinner = false;
+                  localStorage.setItem("currentPaymentId" , JSON.stringify(res.details.payment_id))
                   window.location.href = `${res.details.redirect_url}`;
                   console.log(res)
+
                 },
                 error:(error)=>{
                   console.log(error)

@@ -4,7 +4,7 @@ import { AuthService } from 'src/app/pages/Auth/services/auth.service';
 import { ReviewService } from 'src/app/pages/review/service/review.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Medicine } from 'src/app/core/interfaces/medicine';
 import { CartService } from 'src/app/pages/cart/service/cart.service';
@@ -18,9 +18,13 @@ import { reviews } from 'src/app/core/interfaces/patients';
 })
 export class PatientProfileComponent implements OnInit, OnDestroy {
 
-  constructor(private _AuthService: AuthService,private _ReviewService:ReviewService, private _DataService:DataService, private _PatientProfileService:PatientProfileService, private toastr: ToastrService ,  private router: Router,private _cartservice : CartService) { }
+  defaultImg:string = this._DataService.defaultNoImg;
+
+
+  constructor(private _AuthService: AuthService,private _ReviewService:ReviewService, private _DataService:DataService, private _PatientProfileService:PatientProfileService, private toastr: ToastrService ,  private router: Router,private route: ActivatedRoute,private _cartservice : CartService) { }
 
   ngOnInit(): void {
+    this.savePaymentOnline(); // to save payment details incase he place order and paid online
     Promise.resolve().then(() => this._AuthService.isLogedIn.next(true));
     Promise.resolve().then(() => this._DataService.isPageLoaded.next(false));
     this._DataService.curruntService.subscribe(
@@ -538,6 +542,51 @@ export class PatientProfileComponent implements OnInit, OnDestroy {
       }
     }
   }
+  
+
+  
+  savePaymentOnline() {
+    console.log("fiiiiiiiiiiiiiiiiirst")
+    this.route.queryParams.subscribe(params => {
+      // Access the "pending" parameter here
+      const isPending = params['order'];
+      console.log(isPending);
+      if(localStorage.getItem('currentPaymentId') != null) {
+      console.log("seeeeeeeeeeeeeeeeeeecond")
+
+      console.log(isPending == JSON.parse(localStorage.getItem('currentPaymentId')!))
+        if(isPending!=null && isPending == JSON.parse(localStorage.getItem('currentPaymentId')!) && params['success']=='true') {
+        console.log("thiiiiiiiiiiiiird")
+
+          let model = {
+            "amount_cents" : params['amount_cents'],
+            "success" : params['success'],
+            "order" : params['order'],
+            "created_at" : params['created_at'],
+            "currency" : params['currency'],
+            "updated_at" : params['updated_at'],
+            "source_data" : params['source_data.type'],
+            "source_subdata" : params['source_data.sub_type']
+          }
+          this._cartservice.savePaymentOnline(model).subscribe({
+            next:(res)=>{
+              console.log(res)
+              localStorage.removeItem('currentPaymentId');
+            }
+          })
+          this._DataService.curruntService.next('orders')
+          // this.curruntService = 'orders';
+          console.log(params['success'])
+
+          console.log("gggggggggggggggggg")
+          // call API to save patient information
+        }
+      }
+      
+    });
+  }
+
+
 
   ngOnDestroy(){
     this._DataService.curruntService.next("details");

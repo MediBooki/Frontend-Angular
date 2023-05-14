@@ -1,3 +1,5 @@
+<app-spinner *ngIf="isVisibleSpinner"></app-spinner>
+
 <div class="home-component" [dir]=" 'dir' | translate " [lang]="lang">
 
   <!-- =============================================================================================================== -->
@@ -48,37 +50,7 @@
     </form>
 
     <div class="position-relative">
-      <owl-carousel-o [options]="mainCarousel" class="main-carousel" [ngClass]="rtlDir? 'main-carousel-arabic' : 'main-carousel-english'">
-        <ng-template carouselSlide>
-          <div class="item">
-            <a href="#">
-              <img class="img-fluid" src="../../../assets/images/home/main-carousel/carousels2.jpg" alt="">
-            </a>
-          </div>
-        </ng-template>
-        <ng-template carouselSlide>
-          <div class="item">
-            <a href="#">
-              <img class="img-fluid" src="../../../assets/images/home/main-carousel/carousels4.jpg" alt="">
-            </a>
-          </div>
-        </ng-template>
-        <ng-template carouselSlide>
-          <div class="item">
-            <a href="#">
-              <img class="img-fluid" src="../../../assets/images/home/main-carousel/carousels6.jpg" alt="">
-            </a>
-          </div>
-        </ng-template>
-        <ng-template carouselSlide>
-          <div class="item">
-            <a href="#">
-              <img class="img-fluid" src="../../../assets/images/home/main-carousel/carousels8.jpg" alt="">
-            </a>
-          </div>
-        </ng-template>
-      </owl-carousel-o>
-
+      <app-carousel [carouselClass]="'main-section'" [carouselType]="mainCarousel" [carouselItems]="sliderImages"></app-carousel>
     </div>
 
   </section>

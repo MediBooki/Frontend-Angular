@@ -64,7 +64,7 @@ export class MedicineDetailsComponent implements OnInit {
       id:0,
       name:'',
       description:'',
-      price:'',
+      price:0,
       manufactured_by:'',
       photo:'',
       category: {
