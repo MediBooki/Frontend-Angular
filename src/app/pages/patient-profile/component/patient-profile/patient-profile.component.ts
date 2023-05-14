@@ -572,6 +572,10 @@ export class PatientProfileComponent implements OnInit, OnDestroy {
             next:(res)=>{
               console.log(res)
               localStorage.removeItem('currentPaymentId');
+              this._cartservice.medicinesQty.next(0)
+              this.toastr.success(!this.rtlDir?`Your Order has been Submitted Successfully`:`تم تسجيل طلبك بنجاح`, !this.rtlDir?`Checkout Result`:`ناتج عملية الشراء`);
+            }, error:()=>{
+              this.toastr.error(this.rtlDir?`An Error has occured`:`حدث خطأ ما`)
             }
           })
           this._DataService.curruntService.next('orders')

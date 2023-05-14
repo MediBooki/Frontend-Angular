@@ -114,18 +114,18 @@ export class CheckoutComponent implements OnInit {
       this.invalidForm = true
       this.toastr.info(!this.rtlDir?`Please Fill the Required Inputs First`:`برجاء اكمال الحقول المطلوبة أولا`, !this.rtlDir?`Checkout Result`:`ناتج عملية الشراء`)
     } else {
-      // if(this.paymentMethod == 'delivery') {
+      // if(this.paymentMethod == 'cash') {
         this.invalidForm = false
         this.checkoutForm.controls["total"].setValue(this.totalPrice)
         console.log(this.checkoutForm)
         this._CartService.checkoutDetails(this.checkoutForm.value).subscribe({
           next:(res)=>{
             console.log(res)
-            this.toastr.success(!this.rtlDir?`Your Order has been Submitted Successfully`:`تم تسجيل طلبك بنجاح`, !this.rtlDir?`Checkout Result`:`ناتج عملية الشراء`);
             this._CartService.medicinesQty.next(0);
-            if(this.paymentMethod == 'delivery') {
+            if(this.paymentMethod == 'cash') {
               this._CartService.paymentOrder(2).subscribe({
                 next:(res)=>{
+                  this.toastr.success(!this.rtlDir?`Your Order has been Submitted Successfully`:`تم تسجيل طلبك بنجاح`, !this.rtlDir?`Checkout Result`:`ناتج عملية الشراء`);
                   console.log(res)
                 },
                 error:(error)=>{
@@ -136,6 +136,7 @@ export class CheckoutComponent implements OnInit {
               this.router.navigate(['/my-profile'])
             } else if(this.paymentMethod == 'online') {
               this.isVisibleSpinner = true
+              this.toastr.success(!this.rtlDir?`You will be redirected to paymob to complete your online payment`:`سيتم توجيهك الى صفحة paymob لاكمال عملية الدفع الالكترونية`, !this.rtlDir?`Checkout Result`:`ناتج عملية الشراء`);
               this._CartService.paymentOrder(1).subscribe({
                 next:(res)=>{
                   // this._DataService.curruntService.next('orders')
@@ -161,7 +162,7 @@ export class CheckoutComponent implements OnInit {
   }
 
 
-  paymentMethod:string = 'delivery'
+  paymentMethod:string = 'cash'
   changePaymentMethod(paymentMethod:any) {
     this.paymentMethod = paymentMethod;
   }

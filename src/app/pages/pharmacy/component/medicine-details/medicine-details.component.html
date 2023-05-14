@@ -46,7 +46,7 @@
                                 <button class="btn btn-plus py-2" (click)="increase()">+</button>
                             </div> -->
                             <span>{{medicineQuantity}}</span>
-                            <button (click)="addCart(medicineDetails.id)" class="btn cart-btn ms-2 me-3 my-2" type="button"><i class="fa-solid fa-cart-shopping me-2"></i>{{"SharedData.AddToCartBtn" | translate}}</button>
+                            <button (click)="addCart(medicineDetails.id)" class="btn cart-btn ms-2 me-3 my-2" type="button" [disabled]="medicineQuantity>=5"><i class="fa-solid fa-cart-shopping me-2"></i>{{"SharedData.AddToCartBtn" | translate}}</button>
                             <div class="d-flex align-items-center favorite-btn" *ngIf="isLogedIn">
                                 <button (click)="addFavorite($event)" class="btn d-flex align-items-center" [ngClass]="favoriteAdded? 'btn-active' : 'btn-not-active'"><i class="fa-solid favorite-icon fs-5" [ngClass]="favoriteAdded? ['fa-heart-circle-check','favorite-container-active'] : ['fa-heart-circle-plus','favorite-container-not-active']" ></i>{{favoriteAdded? ('SharedData.RemoveFromFavoriteBtn' | translate) :('SharedData.AddToFavoriteBtn' | translate)}}</button>
                                 

@@ -301,24 +301,27 @@ export class MedicineDetailsComponent implements OnInit {
     if (localStorage.getItem("token") == null) {
       this.toastr.info(!this.rtlDir?`You Should Login First!`:`يجب أن تسجل الدخول أولا!`)
     } else {
-      this.isVisibleSpinner = true;
-      this._CartService.addCart(medicineId).subscribe({
-        next:(message)=>{
-          console.log(message)
-          this._CartService.calculateTotalQty();
-          this.getMedicineQuantity();
-          setTimeout(() => {
-            this.isVisibleSpinner = false;
-            this.toastr.success(!this.rtlDir?`This Medicine Added to Cart`:`تم اضافة الدواء الى عربة الشراء`, !this.rtlDir?`Cart Result`:`ناتج عربة الشراء`)
-          }, 700);
-        },
-        error:(error)=>{
-          this.toastr.error(this.rtlDir?`An Error has occured`:`حدث خطأ ما` , `${error}`)
-        }
-      })
-      // this._CartService.calculateTotalQty();
-      // this._CartService.medicinesPurchasedSetter = {medicine:this.medicineDetails , quantity:this.amount};
-      // console.log(this.medicineQuantity)
+      console.log(this.medicineQuantity)
+      if(this.medicineQuantity<5) {
+        this.isVisibleSpinner = true;
+        this._CartService.addCart(medicineId).subscribe({
+          next:(message)=>{
+            console.log(message)
+            this._CartService.calculateTotalQty();
+            this.getMedicineQuantity();
+            setTimeout(() => {
+              this.isVisibleSpinner = false;
+              this.toastr.success(!this.rtlDir?`This Medicine Added to Cart`:`تم اضافة الدواء الى عربة الشراء`, !this.rtlDir?`Cart Result`:`ناتج عربة الشراء`)
+            }, 700);
+          },
+          error:(error)=>{
+            this.toastr.error(this.rtlDir?`An Error has occured`:`حدث خطأ ما` , `${error}`)
+          }
+        })
+        // this._CartService.calculateTotalQty();
+        // this._CartService.medicinesPurchasedSetter = {medicine:this.medicineDetails , quantity:this.amount};
+        // console.log(this.medicineQuantity)
+      }
     }
     
 

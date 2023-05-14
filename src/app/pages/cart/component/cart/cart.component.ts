@@ -52,41 +52,49 @@ export class CartComponent implements OnInit {
 
   //----- Method 1
   // increase medicine amount
-  increase(medicineId:number) {
-    this.isVisibleSpinner = true;
-    this._CartService.addCart(medicineId).subscribe({
-      next:(message)=>{
-        console.log(message)
-        this.getPurchasedMedicines(); // to update UI
-        setTimeout(() => {
-          this.toastr.success(!this.rtlDir?`Medicine's Quantity increased by one`:`تم زيادة كمية الدواء المضافة الى عربة الشراء`, !this.rtlDir?`Cart Result`:`ناتج عربة الشراء`)
+  increase(medicineId:number , medicineQty:number) {
+    if(medicineQty<5) {
+      this.isVisibleSpinner = true;
+      this._CartService.addCart(medicineId).subscribe({
+        next:(message)=>{
+          console.log(message)
+          this.getPurchasedMedicines(); // to update UI
+          setTimeout(() => {
+            this.toastr.success(!this.rtlDir?`Medicine's Quantity increased by one`:`تم زيادة كمية الدواء المضافة الى عربة الشراء`, !this.rtlDir?`Cart Result`:`ناتج عربة الشراء`)
+            this.isVisibleSpinner = false;
+          }, 700);
+        },
+        error:(error)=>{
+          this.toastr.error(!this.rtlDir?`Too Many Requests please try again in a while`:`طلبات كثيرة جدًا ، يرجى المحاولة مرة أخرى بعد فترة`) 
           this.isVisibleSpinner = false;
-        }, 700);
-      },
-      error:(error)=>{
-        this.toastr.error(this.rtlDir?`An Error has occured`:`حدث خطأ ما` , `${error}`)
-      }
-    })
+        }
+      })
+    }
     
   }
 
   //----- Method 2
   // decrease medicine amount
-  decrease(medicineId:number) {
-    this.isVisibleSpinner = true;
-    this._CartService.decreaseCart(medicineId).subscribe({
-      next:(message)=>{
-        console.log(message)
-        this.getPurchasedMedicines(); // to update UI
-        setTimeout(() => {
-          this.toastr.success(!this.rtlDir?`Medicine's Quantity decreased by one`:`تم تقليل كمية الدواء المضافة الى عربة الشراء`, !this.rtlDir?`Cart Result`:`ناتج عربة الشراء`)
+  decrease(medicineId:number , medicineQty:number) {
+    if(medicineQty>1) {
+      console.log(medicineQty)
+      this.isVisibleSpinner = true;
+      this._CartService.decreaseCart(medicineId).subscribe({
+        next:(message)=>{
+          console.log(message)
+          this.getPurchasedMedicines(); // to update UI
+          setTimeout(() => {
+            this.toastr.success(!this.rtlDir?`Medicine's Quantity decreased by one`:`تم تقليل كمية الدواء المضافة الى عربة الشراء`, !this.rtlDir?`Cart Result`:`ناتج عربة الشراء`)
+            this.isVisibleSpinner = false;
+          }, 700);
+        },
+        error:(error)=>{
+          this.toastr.error(!this.rtlDir?`Too Many Requests please try again in a while`:`طلبات كثيرة جدًا ، يرجى المحاولة مرة أخرى بعد فترة`) 
           this.isVisibleSpinner = false;
-        }, 700);
-      },
-      error:(error)=>{
-        this.toastr.error(this.rtlDir?`An Error has occured`:`حدث خطأ ما` , `${error}`)
-      }
-  })
+        }
+      })
+    }
+    
     
   }
 
@@ -104,7 +112,8 @@ export class CartComponent implements OnInit {
         }, 700);
       },
       error:(error)=>{
-        this.toastr.error(this.rtlDir?`An Error has occured`:`حدث خطأ ما` , `${error}`)
+        this.toastr.error(!this.rtlDir?`Too Many Requests please try again in a while`:`طلبات كثيرة جدًا ، يرجى المحاولة مرة أخرى بعد فترة`) 
+        this.isVisibleSpinner = false;
       }
     })
     
@@ -141,7 +150,11 @@ export class CartComponent implements OnInit {
         },
       error:(error)=>{
         console.log(error);
-        this.noData = true;
+        if(error.error.message == 'Too Many Attempts.') {
+          this.toastr.error(!this.rtlDir?`Too Many Requests please try again in a while`:`طلبات كثيرة جدًا ، يرجى المحاولة مرة أخرى بعد فترة`) 
+        } else {
+          this.noData = true;
+        }
         // this.noDataError = error;
         this.isVisibleSpinner = false;
       }});

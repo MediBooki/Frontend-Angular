@@ -168,15 +168,15 @@
                           </div>
                         </div>
                         <div class="my-4 bg-white rounded p-3 voucher-payment">
-                          <p class="fw-bold"><i class="fa-regular fa-credit-card me-2"></i>Payment Method</p>
+                          <p class="fw-bold"><i class="fa-regular fa-credit-card me-2"></i>{{'CheckOutPage.Voucher.paymentMethod' | translate}}</p>
                           
-                          <label class="input-group p-2 my-2 rounded d-flex align-items-center" for="cashDelivery" [class.checked-payment]="paymentMethod=='delivery'"> <!--[class.bg-danger]="{checked: isChecked == 1}"-->
-                              <input (click)="changePaymentMethod('delivery')"  id="cashDelivery" name="payment_method" class="form-check-input rounded-circle mt-0"  type="radio" value="0" aria-label="Radio button for following text input" checked>
-                            <span class="ms-2">Cash On Delivery</span>
+                          <label class="input-group p-2 my-2 rounded d-flex align-items-center" for="cashDelivery" [class.checked-payment]="paymentMethod=='cash'"> <!--[class.bg-danger]="{checked: isChecked == 1}"-->
+                              <input (click)="changePaymentMethod('cash')"  id="cashDelivery" name="payment_method" class="form-check-input rounded-circle mt-0"  type="radio" value="0" aria-label="Radio button for following text input" checked>
+                            <span class="ms-2">{{'CheckOutPage.Voucher.delivery' | translate}}</span>
                           </label>
                           <label class="input-group p-2 my-2 rounded d-flex align-items-center" for="cashOnline" [class.checked-payment]="paymentMethod=='online'">
                             <input (click)="changePaymentMethod('online')" id="cashOnline" name="payment_method" class="form-check-input rounded-circle mt-0" type="radio" value="1" aria-label="Radio button for following text input">
-                          <span class="ms-2">Cash Online (electronic wallet)</span>
+                          <span class="ms-2">{{'CheckOutPage.Voucher.online' | translate}}</span>
                           </label>
 
                           <!-- <div class="form-check">
@@ -196,8 +196,27 @@
                           <p>{{'CheckOutPage.Voucher.paragraph' | translate}}</p>
                         </div>
                         <div class="voucher-btn my-4">
-                          <button [disabled]="noData" type="submit" class="btn w-100 fw-bold">Place Order</button>
+                          <button [disabled]="noData || checkoutForm.invalid" type="button" class="btn w-100 fw-bold" data-bs-toggle="modal" data-bs-target="#exampleModal">{{'CheckOutPage.Voucher.submitBtn' | translate}}</button>
                         </div>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                          <div class="modal-dialog d-flex justify-content-center">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Payment Confirmation</h1>
+                              </div>
+                              <div class="modal-body">
+                                Your Order will be placed and Payment method will be {{paymentMethod}}
+                              </div>
+                              <div class="modal-footer d-flex justify-content-between flex-nowrap">
+                                <button type="button" class="btn cancel-btn btn-outline-secondary rounded-pill px-5 py-2" data-bs-dismiss="modal">Cancel</button>
+                                <button type="submit" class="btn btn-outline-info confirm-btn text-white rounded-pill px-5 py-2" data-bs-dismiss="modal">Confirm</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
                     </div>
                     
                   </div>

@@ -404,7 +404,11 @@
     "Voucher" : {
       "title" : "Your order",
       "total" : "Total",
-      "paragraph" : "Your personal data will be used to process your order, support your experience throughout this website, and for other purposes described in our privacy policy."
+      "paragraph" : "Your personal data will be used to process your order, support your experience throughout this website, and for other purposes described in our privacy policy.",
+      "paymentMethod" : "Payment Method",
+      "delivery" : "Cash on Delivery",
+      "online" : "Online (electronic wallet)",
+      "submitBtn" : "Place Order"
     },
     "Placeholders" : {
       "Email" : "Write an Email Address",

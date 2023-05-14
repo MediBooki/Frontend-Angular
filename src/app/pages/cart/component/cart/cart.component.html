@@ -51,10 +51,10 @@
                             <td>
                                 <div class="d-flex flex-wrap align-items-center add-to-cart-block">
                                     <div class="quantity-counter">
-                                        <button class="btn btn-minus py-2" (click)="decrease(medicine.id)">-</button>
+                                        <button class="btn btn-minus py-2" [disabled]="medicine.qty<=1" (click)="decrease(medicine.id , medicine.qty)">-</button>
                                         <!-- <input class="form-control rounded-0  bg-transparent py-2 m-0" type="text" maxlength="5" (keypress)="numberOnly($event)" accept="number" [value]="medicine.qty" name="quantity"> [(ngModel)]="medicine.qty" -->
                                         <span class="fw-light fs-6 mx-1">{{medicine.qty}}</span>
-                                        <button class="btn btn-plus py-2" (click)="increase(medicine.id)">+</button>
+                                        <button class="btn btn-plus py-2" [disabled]="medicine.qty>=5" (click)="increase(medicine.id , medicine.qty)">+</button>
                                     </div>
                                 </div>
                             </td>
@@ -88,9 +88,9 @@
                                 <div class="d-flex flex-wrap align-items-center add-to-cart-block my-3">
                                     <span class="fw-bold">{{"CartPage.product-card-list.Quantity" | translate}} </span>
                                     <div class="quantity-counter ms-2">
-                                        <button class="btn btn-minus py-2" (click)="decrease(medicine.id)">-</button>
+                                        <button class="btn btn-minus py-2" [disabled]="medicine.qty<=1" (click)="decrease(medicine.id , medicine.qty)">-</button>
                                         <span class="fw-light fs-6 mx-1">{{medicine.qty}}</span>
-                                        <button class="btn btn-plus py-2" (click)="increase(medicine.id)">+</button>
+                                        <button class="btn btn-plus py-2" [disabled]="medicine.qty>=5" (click)="increase(medicine.id , medicine.qty)">+</button>
                                     </div>
                                 </div>
                                 <p class="card-text">{{"CartPage.product-card-list.SubTotal" | translate}} <span class="fw-light">{{medicine.price*medicine.qty}} {{"SharedData.Currency" | translate}}</span></p>

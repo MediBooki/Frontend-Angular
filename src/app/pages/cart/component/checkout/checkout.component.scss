@@ -76,3 +76,23 @@ form {
 [type="email"], [type="number"], [type="tel"], [type="url"] {
     direction: inherit !important;
 }
+
+.confirm-btn {
+    transition: all .4s ease;
+    background-color: $mainColor;
+    border: 1px solid $mainColor;
+    &:hover {
+        background-color: $mainColor6;
+        border: 1px solid $mainColor6;
+    }
+}
+
+.modal-content {
+
+    width: 75%;
+}
+
+// .cancel-btn {
+//     background-color: transparent;
+    
+// }
