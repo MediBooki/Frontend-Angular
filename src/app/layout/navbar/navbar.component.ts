@@ -83,7 +83,17 @@ export class NavbarComponent implements OnInit {
 
   getCartQty() {
     if (localStorage.getItem("token") != null) {
-      this._CartService.getAllPurchasedMedicines("en").subscribe({
+      this._DataService._lang.subscribe({
+        next: (lang) => {
+          this.lang = lang;
+          if (lang == 'en') {
+            this.rtlDir = false;
+            this.direction = 'ltr';
+          } else {
+            this.rtlDir = true;
+            this.direction = 'rtl'; 
+          }
+      this._CartService.getAllPurchasedMedicines(lang).subscribe({
         next: (medicinesPurchased) => { // to calculate quantity for first time (when refreshing)
           console.log(medicinesPurchased)
           console.log(medicinesPurchased.data.length != 0)
@@ -103,7 +113,7 @@ export class NavbarComponent implements OnInit {
           console.log(error)
         }
       });
-
+    }})
       this._CartService.medicinesQty.subscribe((qty) => { // to calculate quantity each time it changes
         this.cartQty = qty;
         this._CartService.getAllPurchasedMedicines("en").subscribe({
@@ -153,5 +163,29 @@ export class NavbarComponent implements OnInit {
   //     localStorage.setItem("language",JSON.stringify(this.lang));
   //   }
   // }
+
+
+  //----- Method 3
+  // decrease medicine amount
+  removeCart(medicineId:number) {
+    this._CartService.removeCart(medicineId).subscribe({
+      next:(message)=>{
+        console.log(message)
+        this.getCartQty();
+      },
+      error:(error)=>{
+      }
+    })
+    
+  }
+
+
+
+  isVisibleCartArrow:boolean = false;
+  displayCartArrow(isVisibleCartArrow:any) {
+    this.isVisibleCartArrow = isVisibleCartArrow;
+  }
+
+
 
 }

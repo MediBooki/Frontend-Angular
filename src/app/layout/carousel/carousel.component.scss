@@ -183,14 +183,14 @@
   .main-carousle-title {
     position: absolute;
     top: 15%;
-    left: 7%;
+    left: 6%;
     width: 500px;
     color: rgba(255,255,255,0.8);
     text-align: center;
 
     h2 {
       font-weight: 900;
-      font-size: 4rem !important;
+      font-size: 4rem;
     }
   }
 }
@@ -685,6 +685,20 @@
           }
     
         } 
+      }
+
+      .main-carousle-title {
+        position: absolute;
+        top: 12% !important;
+        left: 5% !important;
+        width: 250px !important;
+        color: rgba(255,255,255,0.8);
+        text-align: center;
+    
+        h2 {
+          font-weight: 900;
+          font-size: 2rem !important;
+        }
       }
 }
 

@@ -123,16 +123,85 @@ nav {
   color: #000;
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+.view-cart-btn {
+  background-color: #24aeb1;
+border-color: #24aeb1;
+&:hover {
+  background-color: #1e9092;
+  border-color: #1e9092;
+}
+}
+
+.checkout-btn {
+  background-color: #eb3a7b;
+border-color: #eb3a7b;
+  &:hover {
+    background-color: #cd336c;
+    border-color: #cd336c;
+  }
+}
+
+
+
+
+.cart-medicine-img {
+  cursor: pointer;
+  img {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+.cart-price {
+  font-size: 1.5rem;
+}
+.cart-items {
+  i {
+    cursor: pointer;
+    // font-size: 1rem;
+  }
+  min-width: 300px;
+  
+  border-top: 2px solid rgb(91, 91, 91);
+}
+
+
 .cart-items-en {
   right: 15%;
-  border-top: 3px solid black;
 }
 
 .cart-items-ar {
   left: 15%;
-  border-top: 3px solid black;
 }
 
+.cart-medicine-qty {
+  i {
+    font-size: .7rem;
+  }
+}
+
+p {
+  &.cart-medicine-name {
+    cursor: pointer;
+    transition: all .4s ease;
+    &:hover {
+      color: $mainColor;
+    }
+  }
+}
 .empty.cart-items-en::before {
   right: var(--right, 44%);
 }
@@ -145,20 +214,101 @@ nav {
   right: var(--right, 44%) !important;
 }
 
-.cart-items-ar::before, .cart-items-en::before{
+// .cart-items-ar::before, .cart-items-en::before{
+//   position: absolute;
+//   content: "";
+//   width: 0;
+//   height: 0;
+//   top: -12px;
+//   right: var(--right,44%);
+//   border-left-width: 6px;
+//   border-left-color: transparent;
+//   border-right-width: 6px;
+//   border-right-color: transparent;
+//   border-top-color: rgb(91, 91, 91) !important;
+//   border-bottom-color: rgb(91, 91, 91) !important;
+//   border-bottom-width: 6px;
+//   border-top-width: 0;
+//   border-style: solid;
+//   transform: translateX(-50%) translateY(100%);
+//   transition: all .35s;
+// }
+
+// .cart-icon {
+//   position: relative;
+
+//   &::after {
+//     display: none;
+//     position: absolute;
+//     content: "";
+//     width: 0px;
+//     height: 0px;
+//     bottom: -1px;
+//     left: 55%;
+//     border-left-width: 6px;
+//     border-left-color: transparent;
+//     border-right-width: 6px;
+//     border-right-color: transparent;
+//     border-top-color: rgb(91, 91, 91) !important;
+//     border-bottom-color: rgb(91, 91, 91) !important;
+//     border-bottom-width: 6px;
+//     border-top-width: 0;
+//     border-style: solid;
+//     transform: translateX(-50%) translateY(100%);
+//     transition: all .35s;
+//   }
+// }
+
+.cart-btn-icon {
+  &:hover {
+    .cart-icon {
+      .cart-arrow {
+        display: block !important;
+      }
+    }
+  }
+}
+
+
+// .cart-items:hover + .cart-btn-icon i.cart-icon {
+//   color: #24aeb1;
+// }
+// .cart-items:hover ~ .cart-btn-icon .cart-icon {
+//   color: red;
+// }
+
+.cart-items:hover + .cart-btn-icon .cart-icon {
+  color: red;
+}
+
+
+
+.cart-arrow {
+  display: none;
   position: absolute;
   content: "";
-  width: 0;
-  height: 0;
-  top: -15px;
-  right: var(--right,44%);
+  width: 0px;
+  height: 0px;
+  bottom: -1px;
+  left: 55%;
   border-left-width: 6px;
   border-left-color: transparent;
   border-right-width: 6px;
   border-right-color: transparent;
+  border-top-color: rgb(91, 91, 91) !important;
+  border-bottom-color: rgb(91, 91, 91) !important;
   border-bottom-width: 6px;
   border-top-width: 0;
   border-style: solid;
   transform: translateX(-50%) translateY(100%);
   transition: all .35s;
 }
+
+
+
+
+// @media (width <768px) {
+//   .cart-items-ar::before, .cart-items-en::before {
+//     display: none;
+//   }
+// }

@@ -86,7 +86,9 @@
     "navlink4": "الصيدلية",
     "navlink5": "تسجيل الأطباء",
     "navlink6": "الأطباء",
-    "navlink7": "الأسئلة الشائعة"
+    "navlink7": "الأسئلة الشائعة",
+    "viewCartBtn" : "عربة الشراء",
+    "checkoutBtn" : "أتمم الشراء"
   },
   "footer": {
     "SearchBy": "ابحث عن",

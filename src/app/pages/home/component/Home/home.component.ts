@@ -426,6 +426,9 @@ bookDoctor(eve:any) {
             console.log(res)
             this.sliderImages = res.data;
             this.isVisibleSpinner = false;
+          } , 
+          error:()=>{
+            this.isVisibleSpinner = false;
           }
         })
       }

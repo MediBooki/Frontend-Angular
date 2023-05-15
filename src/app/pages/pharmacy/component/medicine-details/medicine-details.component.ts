@@ -215,6 +215,7 @@ export class MedicineDetailsComponent implements OnInit {
             this.medicineDetails = medicine.data;
             // this.setMedicineAmount();
             console.log(this.medicineDetails)
+            this.isVisibleSpinner = false;
             // this.isVisibleSpinner = false;
             window.scroll({ 
               top: this.firstSection?.nativeElement.offsetHeight, 

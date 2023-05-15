@@ -114,7 +114,7 @@ export class DoctorsComponent implements OnInit {
 
   //----- Method 2
   gethospitalDetails() {
-    this._DoctorService.gethospitalDetails().subscribe({
+    this._DataService.gethospitalDetails().subscribe({
       next:(details)=>{
         console.log(details.data[0])
         this.hospitalPhone = details.data[0].phone;

@@ -12,12 +12,6 @@ export class DoctorService {
   constructor(private _HttpClient: HttpClient) { }
 
 
-  gethospitalDetails(): Observable<any> {
-    return this._HttpClient.get<any[]>(`${this.sharedApi}/settings`).pipe(catchError((e: any) => {
-      console.log(e)
-      return throwError(e)
-    }));
-  }
 
 
   getFilteredDoctors(model: any, lang: string, page: number): Observable<any> {

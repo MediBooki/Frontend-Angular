@@ -6,8 +6,8 @@
 
   <!-- First Section Main -->
 
-  <section class=" main-section position-relative " #mainSection >
-    <form (ngSubmit)="bookDoctor(doctors)"> <!--  -->
+  <section class=" main-section position-relative " #mainSection>
+    <form (ngSubmit)="bookDoctor(doctors)" [class.d-none]="sliderImages.length == 0"> <!--  -->
       <div class="big-rounded main-search position-absolute p-2 d-flex justify-content-between align-items-center text-white">
 
         <div class="mx-3 my-2 m d-flex align-items-center w-100 d-flex justify-content-center">

@@ -157,7 +157,7 @@ export class FixedItemsComponent implements OnInit {
   //----- Method 5
   // Get Hospital Details
   gethospitalDetails() {
-    this._DoctorService.gethospitalDetails().subscribe({
+    this._DataService.gethospitalDetails().subscribe({
       next:(details)=>{
         console.log(details.data[0])
         this.hospitalPhone = details.data[0].phone;

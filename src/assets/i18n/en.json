@@ -86,7 +86,9 @@
     "navlink4": "Pharmacy",
     "navlink5": "Doctors registration",
     "navlink6": "Doctors",
-    "navlink7": "FAQs"
+    "navlink7": "FAQs",
+    "viewCartBtn" : "View Cart",
+    "checkoutBtn" : "Checkout"
   },
   "footer": {
     "SearchBy": "Search By",

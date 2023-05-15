@@ -13,7 +13,6 @@ import { SpecializationsComponent } from './pages/specializations/component/spec
 import { MedicineDetailsComponent } from './pages/pharmacy/component/medicine-details/medicine-details.component';
 import { DoctorRegisterComponent } from './pages/doctor-register/component/doctor-register/doctor-register.component';
 import { CheckoutComponent } from './pages/cart/component/checkout/checkout.component';
-import { CheckoutSuccessComponent } from './pages/cart/component/checkout-success/checkout-success.component';
 import { ReviewComponent } from './pages/review/component/review/review.component';
 import { ArticlesComponent } from './pages/articles/component/articles/articles.component';
 import { OneArticleComponent } from './pages/articles/component/article-details/one-article.component';
@@ -35,11 +34,8 @@ const routes: Routes = [
   { path: 'cart',
    canActivateChild:[AuthGuard], 
    children: [
-    { path: '', component: CartComponent,canActivate:[AuthGuard]},
-    { path: 'checkout', children: [
-      { path: '', component: CheckoutComponent },
-      { path: 'checkout-success', component: CheckoutSuccessComponent }
-    ] }
+    { path: '', component: CartComponent},
+    { path: 'checkout', component: CheckoutComponent}
   ]},
   { path: 'my-profile', component: PatientProfileComponent,canActivate:[AuthGuard]  },
   {
