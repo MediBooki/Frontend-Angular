@@ -3,7 +3,7 @@
 <div [dir]=" 'dir' | translate " [lang]="lang">  <div *ngIf="is_login else nolog">
   <!----------------------------------------------------- ( side nav ) ---------------------------------------------------->
  <div class="row w-100">
-  <div class="col-lg-2" [ngClass]="{'border-side-en': !rtlDir, 'border-side-ar': rtlDir}">
+  <div class="col-lg-2 py-3" [ngClass]="{'border-side-en': !rtlDir, 'border-side-ar': rtlDir}">
     <!-- <div>
         <div class="px-5 pt-3 pb-3 d-flex justify-content-center">
             <img class="w-75 rounded-circle" [src]="userPhoto" width="200" height="200"/>
@@ -307,9 +307,19 @@
                 </tbody>
             </table>
             <ng-template #noAppointments>
-              <div class="alert alert-danger text-center my-3" role="alert">
+              <!-- <div class="alert alert-danger text-center my-3" role="alert">
                 <h3 class="my-2">{{'errors.no-appointments' | translate}}</h3>
-              </div>
+              </div> -->
+              <div class=" search-empty text-center bg-white p-5 rounded mb-5">
+                <div class="my-4">
+                  <i class="fa-solid fa-calendar-check search-icon"></i>
+                </div>
+                <div class="search-empty-content">
+                    <div class="my-3">
+                        <h2 class="fw-bold">{{'errors.no-appointments' | translate}}</h2>
+                    </div>
+                </div>
+            </div>
             </ng-template>
             <!-- Modal -->
             <div class="modal fade" id="appointmentcolModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -353,8 +363,8 @@
             <h2 class="fw-bold text-center">{{'patientProfile.sidenav5' | translate}}</h2>
 
 
-            <div class="timeline timeline-ar my-5 position-relative" [ngClass]="{'timeline-ar': rtlDir,'timeline-en': !rtlDir }">
-              <ul class="list-unstyled" *ngIf="diagnosisAPIres.success && allDiagnosis_notempty else nodiagnosis">
+            <div class="timeline timeline-ar my-5 position-relative" [ngClass]="{'timeline-ar': rtlDir,'timeline-en': !rtlDir }" *ngIf="diagnosisAPIres.success && allDiagnosis_notempty else nodiagnosis">
+              <ul class="list-unstyled" >
                 <li class="position-relative w-100 py-4 px-5" *ngFor="let item of allDiagnosis">
                   <div class="content p-3 border rounded bg-light-gray">
                     <h3 class="mb-3">{{'patientProfile.tap5dr' | translate}}{{item.doctor.name}}</h3>
@@ -372,12 +382,23 @@
                   </div>
                 </li>
               </ul>
-              <ng-template #nodiagnosis>
-                <div class="alert alert-danger text-center my-3" role="alert">
-                  <h3 class="my-2">{{'errors.no-Diagnosis' | translate}}</h3>
-                </div>
-              </ng-template>
             </div>
+              <ng-template #nodiagnosis>
+                <!-- <div class="alert alert-danger text-center my-3" role="alert">
+                  <h3 class="my-2">{{'errors.no-Diagnosis' | translate}}</h3>
+                </div> -->
+                <div class=" search-empty text-center bg-white p-5 rounded mb-5">
+                  <div class="my-4">
+                    <i class="fa-solid fa-clock-rotate-left search-icon"></i>
+                  </div>
+                  <div class="search-empty-content">
+                      <div class="my-3">
+                          <h2 class="fw-bold">{{'errors.no-Diagnosis' | translate}}</h2>
+                      </div>
+                  </div>
+              </div>
+              </ng-template>
+
         </div>
 <!--------------------------------------------------------- ( Bills ) -------------------------------------------------->
         <div class="m-4 p-3 bg-white rounded" *ngIf="curruntService == 'bills'">
@@ -423,14 +444,24 @@
               </tbody>
           </table>
           <ng-template #noInvoices>
-            <div class="alert alert-danger text-center my-3" role="alert">
+            <!-- <div class="alert alert-danger text-center my-3" role="alert">
               <h3 class="my-2">{{'errors.no-invoices' | translate}}</h3>
-            </div>
+            </div> -->
+            <div class=" search-empty text-center bg-white p-5 rounded mb-5">
+              <div class="my-4">
+                <i class="fa-solid fa-money-bills search-icon"></i>
+              </div>
+              <div class="search-empty-content">
+                  <div class="my-3">
+                      <h2 class="fw-bold">{{'errors.no-invoices' | translate}}</h2>
+                  </div>
+              </div>
+          </div>
           </ng-template>
           <!-- Modal -->
-          <div class="modal fade" id="colModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal fade" id="colModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
             <div class="modal-dialog">
-              <div class="modal-content">
+              <div class="modal-content" *ngIf="allInvoices[colDataIndex]!=undefined">
                 <div class="modal-header">
                   <h1 class="modal-title fs-5" id="exampleModalLabel">{{allInvoices[colDataIndex].service}}</h1>
                 </div>
@@ -483,9 +514,19 @@
               <app-medicine class="col-xl-4 col-sm-6 py-3 rounded p-2" *ngFor="let medicine of favMedicines" [medicine]="medicine" (emitChanges)="getMedicines()"></app-medicine>
             </div>
             <ng-template #nofav>
-              <div class="alert alert-danger text-center my-3" role="alert">
+              <!-- <div class="alert alert-danger text-center my-3" role="alert">
                 <h3 class="my-2">{{'errors.no-fav' | translate}}</h3>
-              </div>
+              </div> -->
+              <div class=" search-empty text-center bg-white p-5 rounded mb-5">
+                <div class="my-4">
+                  <i class="fa-solid fa-heart search-icon"></i>
+                </div>
+                <div class="search-empty-content">
+                    <div class="my-3">
+                        <h2 class="fw-bold">{{'errors.no-fav' | translate}}</h2>
+                    </div>
+                </div>
+            </div>
             </ng-template>
         </div>
 <!----------------------------------------------------- ( My orders ) --------------------------------------------->
@@ -547,9 +588,19 @@
             </div>
           </div>
           <ng-template #noorders>
-            <div class="alert alert-danger text-center my-3" role="alert">
+            <!-- <div class="alert alert-danger text-center my-3" role="alert">
               <h3 class="my-2">{{'errors.no-orders' | translate}}</h3>
-            </div>
+            </div> -->
+            <div class=" search-empty text-center bg-white p-5 rounded mb-5">
+              <div class="my-4">
+                <i class="fa-solid fa-tablets search-icon"></i>
+              </div>
+              <div class="search-empty-content">
+                  <div class="my-3">
+                      <h2 class="fw-bold">{{'errors.no-orders' | translate}}</h2>
+                  </div>
+              </div>
+          </div>
           </ng-template>
 
           <!-- Modal -->
@@ -620,9 +671,19 @@
             </div>
           </div>
           <ng-template #noreviews>
-            <div class="alert alert-danger text-center my-3" role="alert">
+            <!-- <div class="alert alert-danger text-center my-3" role="alert">
               <h3 class="my-2">{{'errors.no-reviews' | translate}}</h3>
-            </div>
+            </div> -->
+            <div class=" search-empty text-center bg-white p-5 rounded mb-5">
+              <div class="my-4">
+                <i class="fa-solid fa-star search-icon"></i>
+              </div>
+              <div class="search-empty-content">
+                  <div class="my-3">
+                      <h2 class="fw-bold">{{'errors.no-reviews' | translate}}</h2>
+                  </div>
+              </div>
+          </div>
           </ng-template>
         </div>
 

@@ -16,24 +16,24 @@
       <!-- <div class="bg-white w-75 doctor-registeration rounded" id="main-sec" [ngSwitch]="stepNum"> -->
       <div class="bg-white w-75 doctor-registeration rounded" id="main-sec">
 
-        <div class="doctor-register-nav d-flex rounded">
-          <div id="step1tab" class="doctor-register-nav-link d-flex justify-content-center align-items-center py-2" [ngClass]="{'active-en' : stepNum==1 && lang =='en', 'active-ar' : stepNum==1 && lang =='ar' , 'bg-main oldactive' : stepNum >1 }">
+        <div class="doctor-register-nav row rounded w-100 m-auto">
+          <div id="step1tab" class="col-lg doctor-register-nav-link d-flex justify-content-md-center justify-content-start ps-md-0 ps-4 align-items-center py-2" [ngClass]="{'active-en' : stepNum==1 && lang =='en', 'active-ar' : stepNum==1 && lang =='ar' , 'bg-main oldactive' : stepNum >1 }">
             <span class="d-flex justify-content-center align-items-center"><i class="fa-solid fa-1"></i></span>
             <p class="m-0">{{'joinus.tap1' | translate}}</p>
           </div>
-          <div id="step2tab" class="doctor-register-nav-link d-flex justify-content-center align-items-center py-2" [ngClass]="{'active-en' : stepNum==2 && lang =='en', 'active-ar' : stepNum==2 && lang =='ar' , 'bg-main oldactive' : stepNum >2 }">
+          <div id="step2tab" class="col-lg doctor-register-nav-link d-flex justify-content-md-center justify-content-start ps-md-0 ps-4 align-items-center py-2" [ngClass]="{'active-en' : stepNum==2 && lang =='en', 'active-ar' : stepNum==2 && lang =='ar' , 'bg-main oldactive' : stepNum >2 }">
             <span class="d-flex justify-content-center align-items-center"><i class="fa-solid fa-2"></i></span>
             <p class="m-0">{{'joinus.tap2' | translate}}</p>
           </div>
-          <div id="step3tab" class="doctor-register-nav-link d-flex justify-content-center align-items-center py-2" [ngClass]="{'active-en' : stepNum==3 && lang =='en', 'active-ar' : stepNum==3 && lang =='ar' , 'bg-main oldactive' : stepNum >3 }">
+          <div id="step3tab" class="col-lg doctor-register-nav-link d-flex justify-content-md-center justify-content-start ps-md-0 ps-4 align-items-center py-2" [ngClass]="{'active-en' : stepNum==3 && lang =='en', 'active-ar' : stepNum==3 && lang =='ar' , 'bg-main oldactive' : stepNum >3 }">
             <span class="d-flex justify-content-center align-items-center"><i class="fa-solid fa-3"></i></span>
             <p class="m-0">{{'joinus.tap3' | translate}}</p>
           </div>
-          <div id="step4tab" class="doctor-register-nav-link d-flex justify-content-center align-items-center py-2" [ngClass]="{'active-en' : stepNum==4 && lang =='en', 'active-ar' : stepNum==4 && lang =='ar', 'bg-main oldactive' : stepNum >4}">
+          <div id="step4tab" class="col-lg doctor-register-nav-link d-flex justify-content-md-center justify-content-start ps-md-0 ps-4 align-items-center py-2" [ngClass]="{'active-en' : stepNum==4 && lang =='en', 'active-ar' : stepNum==4 && lang =='ar', 'bg-main oldactive' : stepNum >4}">
             <span class="d-flex justify-content-center align-items-center"><i class="fa-solid fa-4"></i></span>
             <p class="m-0">{{'joinus.tap5' | translate}}</p>
           </div>
-          <div id="step4tab" class="doctor-register-nav-link d-flex justify-content-center align-items-center py-2" [ngClass]="{'active-en' : stepNum==5 && lang =='en', 'active-ar' : stepNum==5 && lang =='ar'}">
+          <div id="step4tab" class="col-lg doctor-register-nav-link d-flex justify-content-md-center justify-content-start ps-md-0 ps-4 align-items-center py-2" [ngClass]="{'active-en' : stepNum==5 && lang =='en', 'active-ar' : stepNum==5 && lang =='ar'}">
             <span class="d-flex justify-content-center align-items-center"><i class="fa-solid fa-5"></i></span>
             <p class="m-0">{{'joinus.tap4' | translate}}</p>
           </div>
