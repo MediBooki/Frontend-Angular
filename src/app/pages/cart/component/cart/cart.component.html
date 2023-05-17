@@ -26,7 +26,7 @@
                 <table class="table" *ngIf="allMedicinesPurchased.length > 0">
                     <thead class="text-muted text-uppercase">
                         <tr>
-                            <th scope="col"></th>
+                            <th scope="col"><i (click)="deleteAllCart()" [title]="('CartPage.TableRemoveAll' | translate)" class="fa-solid fa-trash-can text-danger delete-all"></i></th>
                             <th scope="col"></th>
                             <th scope="col">{{"CartPage.TableTitle1" | translate}}</th>
                             <th scope="col">{{"CartPage.TableTitle2" | translate}}</th>
@@ -51,10 +51,15 @@
                             <td>
                                 <div class="d-flex flex-wrap align-items-center add-to-cart-block">
                                     <div class="quantity-counter">
-                                        <button class="btn btn-minus py-2" [disabled]="medicine.qty<=1" (click)="decrease(medicine.id , medicine.qty)">-</button>
+                                        <button class="btn btn-minus py-2" [disabled]="medicine.qty<=1" (click)="decrease(medicine.id , medicine.qty)">-</button> <!-- || isVisibleAddRemoveSpinner -->
                                         <!-- <input class="form-control rounded-0  bg-transparent py-2 m-0" type="text" maxlength="5" (keypress)="numberOnly($event)" accept="number" [value]="medicine.qty" name="quantity"> [(ngModel)]="medicine.qty" -->
+                                        <!-- <div class="d-flex justify-content-center align-items-center">
+                                            <span class="fw-light fs-6 mx-2" *ngIf="!isVisibleAddRemoveSpinner">{{medicine.qty}}</span>
+                                            <div class="spinner" *ngIf="isVisibleAddRemoveSpinner"></div>
+                                        </div> -->
                                         <span class="fw-light fs-6 mx-1">{{medicine.qty}}</span>
-                                        <button class="btn btn-plus py-2" [disabled]="medicine.qty>=5" (click)="increase(medicine.id , medicine.qty)">+</button>
+
+                                        <button class="btn btn-plus py-2" [disabled]="medicine.qty>=5" (click)="increase(medicine.id , medicine.qty)">+</button> <!-- || isVisibleAddRemoveSpinner -->
                                     </div>
                                 </div>
                             </td>
@@ -72,7 +77,8 @@
                     </tbody>
                 </table>
                 <div class="product-card-list d-none">
-                    <div *ngFor="let medicine of allMedicinesPurchased" class="card product-card mb-3" style="max-width: 540px;">
+                    <span (click)="deleteAllCart()" class="text-danger delete-all"><i class="fa-solid fa-trash-can mx-1"></i><span>{{'CartPage.TableRemoveAll' | translate}}</span></span>
+                    <div *ngFor="let medicine of allMedicinesPurchased" class="card product-card my-3" style="max-width: 540px;">
                         <div class="row g-0">
                             <div class="col-4 product-img-details position-relative">
                                 <img [src]="medicine.photo || defaultMedicineImg" class="img-fluid h-100 rounded-start shadow default-img" alt="...">
@@ -88,9 +94,14 @@
                                 <div class="d-flex flex-wrap align-items-center add-to-cart-block my-3">
                                     <span class="fw-bold">{{"CartPage.product-card-list.Quantity" | translate}} </span>
                                     <div class="quantity-counter ms-2">
-                                        <button class="btn btn-minus py-2" [disabled]="medicine.qty<=1" (click)="decrease(medicine.id , medicine.qty)">-</button>
+                                        <button class="btn btn-minus py-2" [disabled]="medicine.qty<=1" (click)="decrease(medicine.id , medicine.qty)">-</button> <!-- || isVisibleAddRemoveSpinner -->
+                                        <!-- <div class="d-flex justify-content-center align-items-center">
+                                            <span class="fw-light fs-6 mx-2" *ngIf="!isVisibleAddRemoveSpinner">{{medicine.qty}}</span>
+                                            <div class="spinner" *ngIf="isVisibleAddRemoveSpinner"></div>
+                                        </div> -->
                                         <span class="fw-light fs-6 mx-1">{{medicine.qty}}</span>
-                                        <button class="btn btn-plus py-2" [disabled]="medicine.qty>=5" (click)="increase(medicine.id , medicine.qty)">+</button>
+
+                                        <button class="btn btn-plus py-2" [disabled]="medicine.qty>=5" (click)="increase(medicine.id , medicine.qty)">+</button> <!-- || isVisibleAddRemoveSpinner -->
                                     </div>
                                 </div>
                                 <p class="card-text">{{"CartPage.product-card-list.SubTotal" | translate}} <span class="fw-light">{{medicine.price*medicine.qty}} {{"SharedData.Currency" | translate}}</span></p>

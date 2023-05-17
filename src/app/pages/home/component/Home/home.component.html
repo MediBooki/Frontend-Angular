@@ -51,6 +51,35 @@
 
     <div class="position-relative">
       <app-carousel [carouselClass]="'main-section'" [carouselType]="mainCarousel" [carouselItems]="sliderImages"></app-carousel>
+
+
+      <!-- <owl-carousel-o *ngIf="carouselClass=='main-section'" [options]="carouselType" class="main-carousel" [ngClass]="rtlDir? 'main-carousel-arabic' : 'main-carousel-english'">
+        <ng-template carouselSlide *ngFor="let image of carouselItems">
+          <div class="item">
+            <div class="position-relative h-100">
+              <img class="img-fluid h-100 w-100 default-img" [src]="image.photo || defaultImg" alt="">
+              <div class="main-carousle-layer"></div>
+              <div class="main-carousle-title">
+                <h2>{{image.title}}</h2>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+      </owl-carousel-o> -->
+<!-- 
+      <owl-carousel class="main-carousel" [options]="mainCarousel" [items]="sliderImages" [carouselClasses]="['owl-theme', 'sliding']" [ngClass]="rtlDir? 'main-carousel-arabic' : 'main-carousel-english'" >
+        <div class="item" *ngFor="let image of sliderImages;let i = index">
+          <div class="item">
+            <div class="position-relative h-100">
+              <img class="img-fluid h-100 w-100 default-img" [src]="image.photo">
+              <div class="main-carousle-layer"></div>
+              <div class="main-carousle-title">
+                <h2>{{image.title}}</h2>
+              </div>
+            </div>
+          </div>
+        </div>
+        </owl-carousel> -->
     </div>
 
   </section>
@@ -72,20 +101,7 @@
 
       <app-carousel [carouselClass]="'specialization-section'" [carouselType]="specializationCarousel" [carouselItems]="latestSpecializations"></app-carousel>
 
-      <!-- <owl-carousel-o [options]="specializationCarousel" class="specialization-carousel" [ngClass]="rtlDir? 'specialization-carousel-arabic' : 'specialization-carousel-english'">
-        <ng-template carouselSlide *ngFor="let specialization of latestSpecializations">
-                <div class="specialization">
-                  <div class=" h-100 rounded">
-                    <div class="overflow-hidden">
-                      <img class="img-fluid rounded" [src]="specialization.photo" alt="">
-                    </div>
-                    <div class="specialization-info p-3">
-                      <h4 class="my-2 fw-bold">{{specialization.name}}</h4>
-                      <p class="card-text text-muted">{{specialization.description}}</p>
-                    </div>
-                  </div>
-                </div>
-        </ng-template>   -->
+
 
 
 

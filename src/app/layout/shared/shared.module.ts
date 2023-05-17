@@ -19,6 +19,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { MedicineComponent } from 'src/app/pages/pharmacy/component/medicine/medicine.component';
 // import { PharmacyModule } from 'src/app/pages/pharmacy/pharmacy.module';
 // import { MedicineModule } from 'src/app/pages/pharmacy/medicine/medicine.module';
+import { OwlModule } from 'ngx-owl-carousel';
 
 
 
@@ -49,7 +50,8 @@ import { MedicineComponent } from 'src/app/pages/pharmacy/component/medicine/med
         NgxPaginationModule,
         CarouselModule,
         MedicineComponent,
-        RouterModule
+        RouterModule,
+        OwlModule
 
     ],
     imports: [
@@ -76,6 +78,8 @@ import { MedicineComponent } from 'src/app/pages/pharmacy/component/medicine/med
         NgSelect2Module,
         NgxPaginationModule,
         CarouselModule,
+        OwlModule
+
         // MedicineModule
     ]
 })

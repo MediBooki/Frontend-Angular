@@ -44,27 +44,7 @@
     outline: none !important;
     color: $mainColor !important;
     border: 1px solid $mainColor !important;
-  
-    &:hover {
-      background: $mainColor2 !important;
-      color: $whiteColor !important;
-    }    position: absolute !important;
-    top: 50% !important;
-    transform: translate(0,-50%) !important;
-    font-size: 35px !important;
-    transition: all .2s ease-in-out !important;
-    z-index: 3 !important;
-    margin: 0 !important;
-    width: 50px !important;
-    height: 50px !important;
-    border-radius: 50% !important;
-    display: flex !important;
-    justify-content: center !important;
-    align-items: center !important;
-    outline: none !important;
-    color: $mainColor !important;
-    border: 1px solid $mainColor !important;
-  
+    background: #D6D6D6;
     &:hover {
       background: $mainColor2 !important;
       color: $whiteColor !important;
@@ -731,7 +711,7 @@
           /* Carousel Dots in Mobiles */
           .owl-dots {
             margin-top: 2rem;
-            display: flex;
+            // display: flex;
             flex-wrap: wrap;
             justify-content: center;
     

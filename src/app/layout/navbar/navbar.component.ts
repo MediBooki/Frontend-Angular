@@ -172,6 +172,7 @@ export class NavbarComponent implements OnInit {
       next:(message)=>{
         console.log(message)
         this.getCartQty();
+        this._CartService.calculateTotalQty()
       },
       error:(error)=>{
       }

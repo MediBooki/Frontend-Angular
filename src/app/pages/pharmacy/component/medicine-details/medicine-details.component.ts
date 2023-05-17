@@ -56,6 +56,7 @@ export class MedicineDetailsComponent implements OnInit {
   @ViewChild('firstSection') firstSection: ElementRef | undefined; 
   defaultMedicineImg:string = this._DataService.defaultNoImg;
   
+  categoriesLoaded:boolean = false;
 
   /*=============================================( Initialization Methods )=============================================*/
   
@@ -96,8 +97,8 @@ export class MedicineDetailsComponent implements OnInit {
     this.getLang();
     
     this.getMedicineQuantity();
+    this.listenTotalQty();
     // this.setFavorite();
-    // this.filterMedicinesCategory(this.medicineDetails.category.id);
     console.log(this.medicineId);
     
   }
@@ -127,7 +128,7 @@ export class MedicineDetailsComponent implements OnInit {
         0: {
           items: 1
         },
-        600: {
+        768: {
           items: 2
         },
         900: {
@@ -151,6 +152,7 @@ export class MedicineDetailsComponent implements OnInit {
           const filteredMedicines = res.data.filter((medicine:any) => medicine.id !== this.medicineDetails.id);
           this.categoryMedicines = filteredMedicines;
           console.log(filteredMedicines)
+          this.categoriesLoaded = true
           // this.isVisibleSpinner = false;
         }
       })
@@ -182,8 +184,6 @@ export class MedicineDetailsComponent implements OnInit {
           this.direction = 'rtl';
         }
 
-    // this.filterMedicinesCategory();
-    // this.filterMedicinesCategory();
       }
     })
       
@@ -308,7 +308,6 @@ export class MedicineDetailsComponent implements OnInit {
         this._CartService.addCart(medicineId).subscribe({
           next:(message)=>{
             console.log(message)
-            this._CartService.calculateTotalQty();
             this.getMedicineQuantity();
             setTimeout(() => {
               this.isVisibleSpinner = false;
@@ -330,7 +329,7 @@ export class MedicineDetailsComponent implements OnInit {
 
   getMedicineQuantity() {
     if (localStorage.getItem("token") != null) {
-      this._CartService.getAllPurchasedMedicines("en").subscribe({
+      this._CartService.getAllPurchasedMedicines(this.lang).subscribe({
         next:(medicines)=>{
           if(typeof(medicines.data)!='string' && (typeof(medicines.data)=='object' && medicines.data.length!=0) && medicines.data.user_cart_items != 0) {
             console.log(medicines.data.user_cart_items)
@@ -343,6 +342,7 @@ export class MedicineDetailsComponent implements OnInit {
         }
       })
     }
+    this._CartService.calculateTotalQty();
   }
 
 
@@ -433,7 +433,31 @@ export class MedicineDetailsComponent implements OnInit {
   }
   */
 
-  
+
+
+  listenTotalQty() {
+    this._CartService.medicinesQty.subscribe((qty) => { // to calculate quantity each time it changes
+      this.isVisibleSpinner = true
+
+      this._CartService.getAllPurchasedMedicines(this.lang).subscribe({
+        next:(medicines)=>{
+          if(typeof(medicines.data)!='string' && (typeof(medicines.data)=='object' && medicines.data.length!=0) && medicines.data.user_cart_items != 0) {
+            console.log(medicines.data.user_cart_items)
+            let medicineQuantityFound = medicines.data.user_cart_items.find((medicine:any)=>medicine.id == this.medicineDetails.id);
+            console.log(medicineQuantityFound)
+            if(medicineQuantityFound == null || qty == 0) {
+              this.medicineQuantity = 0;
+            } else {
+              this.medicineQuantity = medicineQuantityFound.qty
+            }
+          } else {
+            this.medicineQuantity = 0;
+          }
+          this.isVisibleSpinner = false
+        }
+      })
+    });
+  }
     /*=============================================( Destroying Method )=============================================*/
 
     ngOnDestroy() {

@@ -47,6 +47,12 @@ export class CartService {
     return this.http.delete(this.sharedApi + `/patient/orders/${medicineId}` , {headers: headers})
   }
 
+  deleteAllCart():Observable<any> {
+    let headers = new HttpHeaders();
+    headers = this.createAuthorizationHeader(headers);
+    return this.http.get(this.sharedApi + `/patient/delete/items/cart` , {headers: headers})
+  }
+  
   getTotalQty() {
     this.calculateTotalQty();
     return this.medicinesQty.value;

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, HostListener, Input, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { OwlOptions } from 'ngx-owl-carousel-o';
@@ -79,4 +79,11 @@ export class CarouselComponent implements OnInit {
   }
 
 
+    // @HostListener('window:resize', ['$event'])
+    // onResize(event:any) {
+    //   let tez = event.target.innerWidth
+    //   $('.main-carousel .owl-carousel .owl-item').css('width' , `${tez}px`)
+    //   console.log(event.target.innerWidth);
+    // }
+  
 }

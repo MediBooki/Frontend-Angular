@@ -92,8 +92,13 @@
     justify-content: center;
     align-items: center;
     border-radius: 50%;
-    background: $mainColor2;
+    background: #2A7687;
     color: #fff;
+
+    // background-color: #78bdcc;
+    // color: rgba(0, 0, 0, .7);
+    // box-shadow: var(--WatsonAssistantChat-BASE-box-shadow);
+    
     cursor: pointer;
     transition: all .5s ease-in-out;
     z-index: 999;

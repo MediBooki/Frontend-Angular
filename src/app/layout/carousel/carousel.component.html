@@ -1,90 +1,27 @@
 <div [class]="carouselClass">
-    <owl-carousel-o *ngIf="carouselClass=='specialization-section'" [options]="carouselType" class="specialization-carousel" [ngClass]="rtlDir? 'specialization-carousel-arabic' : 'specialization-carousel-english'">
-        <ng-template carouselSlide *ngFor="let specialization of carouselItems">
-            <div class="specialization" (click)="filterDoctors(specialization.id, specialization.name) ">
-                <div class=" h-100 rounded">
-                <div class="overflow-hidden">
-                    <img class="img-fluid rounded default-img" [src]="specialization.photo || defaultImg" alt="">
-                    <!-- <img class="img-fluid rounded default-img" [src]="defaultImg" alt="" *ngIf="!specialization.photo"> -->
-                </div>
-                <div class="specialization-info p-3">
-                    <h4 class="my-2 fw-bold">{{specialization.name}}</h4>
-                    <p class="card-text text-muted">{{specialization.description}}</p>
-                </div>
-                </div>
-            </div> 
-        </ng-template> 
-         
-    </owl-carousel-o>
 
-    <owl-carousel-o *ngIf="carouselClass=='related-section'" [options]="carouselType" class="related-carousel" [ngClass]="rtlDir? 'related-carousel-arabic' : 'related-carousel-english'">
-        <ng-template carouselSlide *ngFor="let medicine of carouselItems">
-            <div class="related">
-                <app-medicine class="col-xl-4 col-sm-6 py-3" [medicine]="medicine"></app-medicine>
-            </div> 
-        </ng-template> 
-    </owl-carousel-o>
+  <!-- ===================================================(Main)=================================================== -->
 
-    <owl-carousel-o *ngIf="carouselClass=='doctors-section'" [options]="carouselType" class="doctors-carousel">
-        <ng-template carouselSlide *ngFor="let doctor of carouselItems">
-          <div class="doctor pt-0 mb-3 mt-0">
-            <div class="h-100 rounded">
-              <div class="doctor-info ">
-                <div class="d-flex justify-content-center">
-                  <div class="doctor-img" routerLink="/appointments/{{doctor.id}}">
-                    <span>
-                      <img class="img-fluid default-img" [src]="doctor.photo || defaultImg" alt="">
-                    </span>
-                  </div>
-                </div>
-              </div>
-              <div class="doctor-layer pb-3">
-                <span class="d-flex justify-content-center my-3">
-                  <h3 class="mt-3 text-center" routerLink="/appointments/{{doctor.id}}">{{doctor.name}}</h3>
-                </span>
-                <h5 class=" px-3"><i class="fa-solid fa-suitcase-medical me-1 fs-6"></i>{{doctor.section.name}}</h5>
-                <h6 class="text-muted  px-3"><i class="fa-solid fa-notes-medical me-1 fs-6"></i>{{doctor.specialization}}</h6>
-              
-  
-                <div class="doctor-ratings text-muted my-3 d-flex justify-content-around align-items-center py-2">
-                  <p><i class="fa-solid fa-eye me-1"></i>{{doctor.reviews.length}}</p>
-                  <p><i class="fa-solid fa-star text-warning me-1"></i>{{doctor.review_rating_avg| number : '1.2-2' }}</p>
-                </div>
-  
-                <!-- <div class="doctor-job-info px-3">
-                  <span>
-                    <h5 class="fw-bold"><i class="fa-solid fa-square-h me-1 fs-6"></i>Misr Eldawly Hospital</h5>
-                  </span>
-                  <p class="text-muted"><i class="fa-solid fa-location-dot me-1 fs-6"></i>hospital location</p>
-                </div> -->
-  
-                <div class="doctor-booking-info my-3 d-flex justify-content-around align-items-center py-2 text-center">
-                  <div>
-                    <i class="fa-solid fa-phone fs-4 mb-2"></i>
-                    <p class="text-muted mb-1">{{"HomePage.BookedBy" | translate}}</p>
-                    <p>{{doctor.invoices_count}} {{"HomePage.Person" | translate}}</p>
-                  </div>
-                  <div>
-                    <i class="fa-solid fa-dollar-sign fs-3 mb-2 fw-bold"></i>
-                    <p class="text-muted mb-1">{{"HomePage.BookingPrice" | translate}}</p>
-                    <p>{{doctor.price}} {{"SharedData.Currency" | translate}}</p>
-                  </div>
-                </div>
-                <div class="text-center">
-                  <button routerLink="/appointments/{{doctor.id}}" class="btn px-5 book-btn big-rounded fs-5">{{"SharedData.searchBtn" | translate}}</button>
-                </div>
-              </div>
-            </div>
+  <!-- <owl-carousel-o *ngIf="carouselClass=='main-section'" [options]="carouselType" class="main-carousel" [ngClass]="rtlDir? 'main-carousel-arabic' : 'main-carousel-english'">
+    <ng-template carouselSlide *ngFor="let image of carouselItems">
+      <div class="item">
+        <div class="position-relative h-100">
+          <img class="img-fluid h-100 w-100 default-img" [src]="image.photo || defaultImg" alt="">
+          <div class="main-carousle-layer"></div>
+          <div class="main-carousle-title">
+            <h2>{{image.title}}</h2>
           </div>
-        </ng-template>
-    </owl-carousel-o>
+        </div>
+      </div>
+    </ng-template>
+  </owl-carousel-o> -->
 
-
-    <owl-carousel-o *ngIf="carouselClass=='main-section'" [options]="carouselType" class="main-carousel" [ngClass]="rtlDir? 'main-carousel-arabic' : 'main-carousel-english'">
-      <ng-template carouselSlide *ngFor="let image of carouselItems">
+  <!--     <owl-carousel-o *ngIf="carouselClass=='main-section'" [options]="carouselType" class="main-carousel" [ngClass]="rtlDir? 'main-carousel-arabic' : 'main-carousel-english'">
+    <ng-container *ngFor="let image of carouselItems">
+      <ng-template carouselSlide>
         <div class="item">
           <div class="position-relative h-100">
-            <img class="img-fluid h-100 w-100 default-img" [src]="image.photo || defaultImg" alt="">
+            <img class="img-fluid h-100 w-100 default-img" [title]="image.title" [src]="image.photo || defaultImg" alt="">
             <div class="main-carousle-layer"></div>
             <div class="main-carousle-title">
               <h2>{{image.title}}</h2>
@@ -92,5 +29,177 @@
           </div>
         </div>
       </ng-template>
-    </owl-carousel-o>
+    </ng-container>
+  </owl-carousel-o> -->
+    
+  <owl-carousel *ngIf="carouselClass=='main-section'" class="main-carousel" [options]="carouselType" [items]="carouselItems" [carouselClasses]="['owl-theme', 'sliding']" [ngClass]="rtlDir? 'main-carousel-arabic' : 'main-carousel-english'" >
+    <div *ngFor="let image of carouselItems;let i = index">
+      <div class="item">
+        <div class="position-relative h-100">
+          <img class="img-fluid h-100 w-100 default-img" [src]="image.photo || defaultImg" alt=""> <!-- || defaultImg" alt=""-->
+          <div class="main-carousle-layer"></div>
+          <div class="main-carousle-title">
+            <h2>{{image.title}}</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+  </owl-carousel>
+
+  <!-- ===================================================(Specializations)=================================================== -->
+
+  <owl-carousel *ngIf="carouselClass=='specialization-section'" class="specialization-carousel" [options]="carouselType" [items]="carouselItems" [carouselClasses]="['owl-theme', 'sliding']" [ngClass]="rtlDir? 'specialization-carousel-arabic' : 'specialization-carousel-english'" >
+    <div *ngFor="let specialization of carouselItems;let i = index">
+      <div class="specialization" (click)="filterDoctors(specialization.id, specialization.name) ">
+        <div class=" h-100 rounded">
+        <div class="overflow-hidden">
+            <img class="img-fluid rounded default-img" [src]="specialization.photo || defaultImg" alt="">
+            <!-- <img class="img-fluid rounded default-img" [src]="defaultImg" alt="" *ngIf="!specialization.photo"> -->
+        </div>
+        <div class="specialization-info p-3">
+            <h4 class="my-2 fw-bold">{{specialization.name}}</h4>
+            <p class="card-text text-muted">{{specialization.description}}</p>
+        </div>
+        </div>
+    </div> 
+    </div>
+  </owl-carousel>
+
+  <!-- <owl-carousel-o *ngIf="carouselClass=='specialization-section'" [options]="carouselType" class="specialization-carousel" [ngClass]="rtlDir? 'specialization-carousel-arabic' : 'specialization-carousel-english'">
+      <ng-template carouselSlide *ngFor="let specialization of carouselItems">
+          <div class="specialization" (click)="filterDoctors(specialization.id, specialization.name) ">
+              <div class=" h-100 rounded">
+              <div class="overflow-hidden">
+                  <img class="img-fluid rounded default-img" [src]="specialization.photo || defaultImg" alt="">
+              </div>
+              <div class="specialization-info p-3">
+                  <h4 class="my-2 fw-bold">{{specialization.name}}</h4>
+                  <p class="card-text text-muted">{{specialization.description}}</p>
+              </div>
+              </div>
+          </div> 
+      </ng-template> 
+  </owl-carousel-o> -->
+
+  <!-- ===================================================(Doctors)=================================================== -->
+
+  <owl-carousel *ngIf="carouselClass=='doctors-section'" class="doctors-carousel" [options]="carouselType" [items]="carouselItems" [carouselClasses]="['owl-theme', 'sliding']" >
+    <div *ngFor="let doctor of carouselItems">
+      <div class="doctor pt-0 mb-3 mt-0">
+        <div class="h-100 rounded">
+          <div class="doctor-info ">
+            <div class="d-flex justify-content-center">
+              <div class="doctor-img" routerLink="/appointments/{{doctor.id}}">
+                <span>
+                  <img class="img-fluid default-img" [src]="doctor.photo || defaultImg" alt="">
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="doctor-layer pb-3">
+            <span class="d-flex justify-content-center my-3">
+              <h3 class="mt-3 text-center" routerLink="/appointments/{{doctor.id}}">{{doctor.name}}</h3>
+            </span>
+            <h5 class=" px-3"><i class="fa-solid fa-suitcase-medical me-1 fs-6"></i>{{doctor.section.name}}</h5>
+            <h6 class="text-muted  px-3"><i class="fa-solid fa-notes-medical me-1 fs-6"></i>{{doctor.specialization}}</h6>
+          
+
+            <div class="doctor-ratings text-muted my-3 d-flex justify-content-around align-items-center py-2">
+              <p><i class="fa-solid fa-eye me-1"></i>{{doctor.reviews.length}}</p>
+              <p><i class="fa-solid fa-star text-warning me-1"></i>{{doctor.review_rating_avg| number : '1.2-2' }}</p>
+            </div>
+
+            <!-- <div class="doctor-job-info px-3">
+              <span>
+                <h5 class="fw-bold"><i class="fa-solid fa-square-h me-1 fs-6"></i>Misr Eldawly Hospital</h5>
+              </span>
+              <p class="text-muted"><i class="fa-solid fa-location-dot me-1 fs-6"></i>hospital location</p>
+            </div> -->
+
+            <div class="doctor-booking-info my-3 d-flex justify-content-around align-items-center py-2 text-center">
+              <div>
+                <i class="fa-solid fa-phone fs-4 mb-2"></i>
+                <p class="text-muted mb-1">{{"HomePage.BookedBy" | translate}}</p>
+                <p>{{doctor.invoices_count}} {{"HomePage.Person" | translate}}</p>
+              </div>
+              <div>
+                <i class="fa-solid fa-dollar-sign fs-3 mb-2 fw-bold"></i>
+                <p class="text-muted mb-1">{{"HomePage.BookingPrice" | translate}}</p>
+                <p>{{doctor.price}} {{"SharedData.Currency" | translate}}</p>
+              </div>
+            </div>
+            <div class="text-center">
+              <button routerLink="/appointments/{{doctor.id}}" class="btn px-5 book-btn big-rounded fs-5">{{"SharedData.searchBtn" | translate}}</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </owl-carousel>
+
+  <!-- <owl-carousel-o *ngIf="carouselClass=='doctors-section'" [options]="carouselType" class="doctors-carousel">
+    <ng-template carouselSlide *ngFor="let doctor of carouselItems">
+      <div class="doctor pt-0 mb-3 mt-0">
+        <div class="h-100 rounded">
+          <div class="doctor-info ">
+            <div class="d-flex justify-content-center">
+              <div class="doctor-img" routerLink="/appointments/{{doctor.id}}">
+                <span>
+                  <img class="img-fluid default-img" [src]="doctor.photo || defaultImg" alt="">
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="doctor-layer pb-3">
+            <span class="d-flex justify-content-center my-3">
+              <h3 class="mt-3 text-center" routerLink="/appointments/{{doctor.id}}">{{doctor.name}}</h3>
+            </span>
+            <h5 class=" px-3"><i class="fa-solid fa-suitcase-medical me-1 fs-6"></i>{{doctor.section.name}}</h5>
+            <h6 class="text-muted  px-3"><i class="fa-solid fa-notes-medical me-1 fs-6"></i>{{doctor.specialization}}</h6>
+          
+            <div class="doctor-ratings text-muted my-3 d-flex justify-content-around align-items-center py-2">
+              <p><i class="fa-solid fa-eye me-1"></i>{{doctor.reviews.length}}</p>
+              <p><i class="fa-solid fa-star text-warning me-1"></i>{{doctor.review_rating_avg| number : '1.2-2' }}</p>
+            </div>
+
+            <div class="doctor-booking-info my-3 d-flex justify-content-around align-items-center py-2 text-center">
+              <div>
+                <i class="fa-solid fa-phone fs-4 mb-2"></i>
+                <p class="text-muted mb-1">{{"HomePage.BookedBy" | translate}}</p>
+                <p>{{doctor.invoices_count}} {{"HomePage.Person" | translate}}</p>
+              </div>
+              <div>
+                <i class="fa-solid fa-dollar-sign fs-3 mb-2 fw-bold"></i>
+                <p class="text-muted mb-1">{{"HomePage.BookingPrice" | translate}}</p>
+                <p>{{doctor.price}} {{"SharedData.Currency" | translate}}</p>
+              </div>
+            </div>
+            <div class="text-center">
+              <button routerLink="/appointments/{{doctor.id}}" class="btn px-5 book-btn big-rounded fs-5">{{"SharedData.searchBtn" | translate}}</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+  </owl-carousel-o> -->
+
+  <!-- ===================================================(Related *owl-carousel-o*)=================================================== -->
+
+  <!-- <owl-carousel *ngIf="carouselClass=='related-section'" class="related-carousel" [options]="carouselType" [items]="carouselItems" [carouselClasses]="['owl-theme', 'sliding']" [ngClass]="rtlDir? 'related-carousel-arabic' : 'related-carousel-english'" >
+    <div *ngFor="let medicine of carouselItems">
+      <div class="related">
+        <app-medicine class="col-xl-4 col-sm-6 py-3" [medicine]="medicine"></app-medicine>
+      </div>
+    </div>
+  </owl-carousel> -->
+
+  <owl-carousel-o *ngIf="carouselClass=='related-section'" [options]="carouselType" class="related-carousel" [ngClass]="rtlDir? 'related-carousel-arabic' : 'related-carousel-english'">
+      <ng-template carouselSlide *ngFor="let medicine of carouselItems">
+          <div class="related">
+              <app-medicine class="col-xl-4 col-sm-6 py-3" [medicine]="medicine"></app-medicine>
+          </div> 
+      </ng-template> 
+  </owl-carousel-o>
+
+
 </div>

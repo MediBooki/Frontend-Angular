@@ -136,6 +136,7 @@
     "articalesp": "Here are the best medical articles written by our best doctors"
   },
   "CartPage": {
+    "TableRemoveAll": "Remove All Medicines from Cart",
     "TableTitle1": "Product",
     "TableTitle2": "Price",
     "TableTitle3": "Quantity",

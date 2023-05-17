@@ -11,6 +11,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { Doctor } from 'src/app/core/interfaces/doctor';
 import { Subscription } from 'rxjs';
 import { Specialize } from 'src/app/core/interfaces/specialize';
+import { MainCarousel } from 'src/app/core/interfaces/main-carousel';
 // import { FormGroup } from '@angular/forms';
 import { FormGroup, FormBuilder, FormArray, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
@@ -40,7 +41,7 @@ export class HomeComponent implements OnInit {
   latestSpecializations: Specialize[] = [];
   doctorsCountSubscribtion = new Subscription();
   distinguishedDoctors: Doctor[] = [];
-  sliderImages:any[] = []
+  sliderImages:MainCarousel[] = []
 
   // Carousel Variables
   mainCarousel: OwlOptions = {} // Enabling Owl Carousel for Main Section
@@ -148,7 +149,7 @@ export class HomeComponent implements OnInit {
       },
       autoplay: true,
       autoplayTimeout: 3500,
-      // autoplayHoverPause:true
+      autoplayHoverPause:true
     };
 
     this.specializationCarousel = {
@@ -158,17 +159,23 @@ export class HomeComponent implements OnInit {
       nav: true,
       autoplay: true,
       autoplayTimeout: 3500,
-      // autoplayHoverPause:true,
+      autoplayHoverPause:true,
       navText: this.navText,
       responsive: {
         0: {
-          items: 1
+          items: 1,
+          nav:false,
+          dots:true
         },
         600: {
-          items: 2
+          items: 2,
+          nav:true,
+          dots:false
         },
-        900: {
-          items: 3
+        1000: {
+          items: 3,
+          nav:true,
+          dots:false
         }
       }
     };
@@ -180,7 +187,7 @@ export class HomeComponent implements OnInit {
       nav: false,
       autoplay: true,
       autoplayTimeout: 3500,
-      // autoplayHoverPause:true,
+      autoplayHoverPause:true,
       navText: this.navText,
       responsive: {
         0: {
@@ -189,7 +196,7 @@ export class HomeComponent implements OnInit {
         600: {
           items: 2
         },
-        900: {
+        1000: {
           items: 3
         }
       }
