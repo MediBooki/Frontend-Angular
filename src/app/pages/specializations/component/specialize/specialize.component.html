@@ -4,7 +4,7 @@
         class="text-decoration-none"> <!--[routerLink]="rtlDir ? '/doctors/'+specialize.name.split(' ').slice(1): '/doctors/'+specialize.name.split(' ')[0]"-->
     
         <div class="card">
-          <div class="overflow-hidden">
+          <div class="overflow-hidden img-container">
             <img [src]="specialize.photo || defaultSpecializationImg" class="img-fluid card-img-top default-img" alt="...">
           </div>
           <div class="card-body">

@@ -339,6 +339,12 @@ export class MedicineDetailsComponent implements OnInit {
               this.medicineQuantity = medicineQuantityFound.qty
             }
           }
+          // else {
+          //   this.medicineQuantity = 0;
+          //   console.log("whhhhhhhhhhhhhhhy")
+          // }
+        } , error:(error)=>{
+          console.log(error)
         }
       })
     }
@@ -361,6 +367,8 @@ export class MedicineDetailsComponent implements OnInit {
         })
         this._CartService.favoritesId.next(favoritesId);
         console.log(favoritesId)
+      } , error:(error)=>{
+        console.log(error)
       }
     })
   // }
@@ -436,27 +444,30 @@ export class MedicineDetailsComponent implements OnInit {
 
 
   listenTotalQty() {
-    this._CartService.medicinesQty.subscribe((qty) => { // to calculate quantity each time it changes
-      this.isVisibleSpinner = true
-
-      this._CartService.getAllPurchasedMedicines(this.lang).subscribe({
-        next:(medicines)=>{
-          if(typeof(medicines.data)!='string' && (typeof(medicines.data)=='object' && medicines.data.length!=0) && medicines.data.user_cart_items != 0) {
-            console.log(medicines.data.user_cart_items)
-            let medicineQuantityFound = medicines.data.user_cart_items.find((medicine:any)=>medicine.id == this.medicineDetails.id);
-            console.log(medicineQuantityFound)
-            if(medicineQuantityFound == null || qty == 0) {
-              this.medicineQuantity = 0;
+    if (localStorage.getItem("token") != null) {
+      this._CartService.medicinesQty.subscribe((qty) => { // to calculate quantity each time it changes
+        this.isVisibleSpinner = true
+  
+        this._CartService.getAllPurchasedMedicines(this.lang).subscribe({
+          next:(medicines)=>{
+            if(typeof(medicines.data)!='string' && (typeof(medicines.data)=='object' && medicines.data.length!=0) && medicines.data.user_cart_items != 0) {
+              console.log(medicines.data.user_cart_items)
+              let medicineQuantityFound = medicines.data.user_cart_items.find((medicine:any)=>medicine.id == this.medicineDetails.id);
+              console.log(medicineQuantityFound)
+              if(medicineQuantityFound == null || qty == 0) {
+                this.medicineQuantity = 0;
+              } else {
+                this.medicineQuantity = medicineQuantityFound.qty
+              }
             } else {
-              this.medicineQuantity = medicineQuantityFound.qty
+              this.medicineQuantity = 0;
             }
-          } else {
-            this.medicineQuantity = 0;
+            this.isVisibleSpinner = false
           }
-          this.isVisibleSpinner = false
-        }
-      })
-    });
+        })
+      });
+    }
+    
   }
     /*=============================================( Destroying Method )=============================================*/
 

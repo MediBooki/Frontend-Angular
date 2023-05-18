@@ -21,13 +21,18 @@
         color: var(--main);
         overflow: hidden;
         margin-bottom: 10px;
-  
-        img {
-          height: 300px;
+        border-radius: 1rem;
+
+        .img-container {
           padding: 10px;
-          border-radius: 1rem;
-          transition: 0.5s ease-in-out;
+
+          img {
+            height: 300px;
+            border-radius: 1rem;
+            transition: 0.5s ease-in-out;
+          }
         }
+        
       }
   
       &:hover {

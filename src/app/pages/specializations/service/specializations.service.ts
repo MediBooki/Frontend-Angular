@@ -26,5 +26,13 @@ export class SpecializationService {
       return throwError(e)
     }));
   };
+
+  getAllSpecializations(lang: string): Observable<any> {
+    //get data from local file json
+    return this._HttpClient.get<any>(`${this._sharedApi}/get/section?lang=${lang}`).pipe(catchError((e: any) => {
+      console.log(e)
+      return throwError(e)
+    }));
+  };
 }
 

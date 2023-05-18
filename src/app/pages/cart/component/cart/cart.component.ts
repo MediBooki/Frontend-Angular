@@ -50,27 +50,33 @@ export class CartComponent implements OnInit {
 
 
   /*=============================================( Component Created Methods )=============================================*/
-  // isVisibleAddRemoveSpinner:boolean = false;
+  isVisibleAddRemoveSpinner:boolean = false;
   //----- Method 1
   // increase medicine amount
   increase(medicineId:number , medicineQty:number) {
     if(medicineQty<5) {
-      // this.isVisibleAddRemoveSpinner = true;
-      this.isVisibleSpinner = true;
+      this.selectedAddRemoveMedicine = medicineId;
+      this.isVisibleAddRemoveSpinner = true;
+      // this.isVisibleSpinner = true;
       this._CartService.addCart(medicineId).subscribe({
         next:(message)=>{
           console.log(message)
           this.getPurchasedMedicines(); // to update UI
           setTimeout(() => {
             this.toastr.success(!this.rtlDir?`Medicine's Quantity increased by one`:`تم زيادة كمية الدواء المضافة الى عربة الشراء`, !this.rtlDir?`Cart Result`:`ناتج عربة الشراء`)
-            // this.isVisibleAddRemoveSpinner = false;
-            this.isVisibleSpinner = false;
+            this.isVisibleAddRemoveSpinner = false;
+            // this.isVisibleSpinner = false;
+            this.selectedAddRemoveMedicine = 0;
+
           }, 700);
         },
         error:(error)=>{
           this.toastr.error(!this.rtlDir?`Too Many Requests please try again in a while`:`طلبات كثيرة جدًا ، يرجى المحاولة مرة أخرى بعد فترة`) 
-          // this.isVisibleAddRemoveSpinner = false;
-          this.isVisibleSpinner = false;
+          this.isVisibleAddRemoveSpinner = false;
+          // this.isVisibleSpinner = false;
+
+          this.selectedAddRemoveMedicine = 0;
+
         }
       })
     }
@@ -81,23 +87,28 @@ export class CartComponent implements OnInit {
   // decrease medicine amount
   decrease(medicineId:number , medicineQty:number) {
     if(medicineQty>1) {
+      this.selectedAddRemoveMedicine = medicineId;
       console.log(medicineQty)
-      // this.isVisibleAddRemoveSpinner = true;
-      this.isVisibleSpinner = true;
+      this.isVisibleAddRemoveSpinner = true;
+      // this.isVisibleSpinner = true;
       this._CartService.decreaseCart(medicineId).subscribe({
         next:(message)=>{
           console.log(message)
           this.getPurchasedMedicines(); // to update UI
           setTimeout(() => {
             this.toastr.success(!this.rtlDir?`Medicine's Quantity decreased by one`:`تم تقليل كمية الدواء المضافة الى عربة الشراء`, !this.rtlDir?`Cart Result`:`ناتج عربة الشراء`)
-            // this.isVisibleAddRemoveSpinner = false;
-            this.isVisibleSpinner = false;
+            this.isVisibleAddRemoveSpinner = false;
+            // this.isVisibleSpinner = false;
+            this.selectedAddRemoveMedicine = 0;
+
           }, 700);
         },
         error:(error)=>{
           this.toastr.error(!this.rtlDir?`Too Many Requests please try again in a while`:`طلبات كثيرة جدًا ، يرجى المحاولة مرة أخرى بعد فترة`) 
-          // this.isVisibleAddRemoveSpinner = false;
-          this.isVisibleSpinner = false;
+          this.isVisibleAddRemoveSpinner = false;
+          this.selectedAddRemoveMedicine = 0;
+
+          // this.isVisibleSpinner = false;
         }
       })
     }
@@ -105,24 +116,38 @@ export class CartComponent implements OnInit {
     
   }
 
+  isVisibleDeleteSpinner:boolean = false;
+  selectedDeleteMedicine:number = 0;
+  selectedAddRemoveMedicine:number = 0;
+
+
   //----- Method 3
   // decrease medicine amount
   removeCart(medicineId:number) {
-    this.isVisibleSpinner = true;
-    this._CartService.removeCart(medicineId).subscribe({
-      next:(message)=>{
-        console.log(message)
-        this.getPurchasedMedicines(); // to update UI
-        setTimeout(() => {
-          this.toastr.info(!this.rtlDir?`Medicine was removed from cart`:`تم حذف الدواء من عربة الشراء`, !this.rtlDir?`Cart Result`:`ناتج عربة الشراء`)
-          this.isVisibleSpinner = false;
-        }, 700);
-      },
-      error:(error)=>{
-        this.toastr.error(!this.rtlDir?`Too Many Requests please try again in a while`:`طلبات كثيرة جدًا ، يرجى المحاولة مرة أخرى بعد فترة`) 
-        this.isVisibleSpinner = false;
-      }
-    })
+    if(!this.isVisibleAddRemoveSpinner) {
+      // this.isVisibleSpinner = true;
+      this.selectedDeleteMedicine = medicineId;
+      this.isVisibleDeleteSpinner = true;
+      this._CartService.removeCart(medicineId).subscribe({
+        next:(message)=>{
+          console.log(message)
+          this.getPurchasedMedicines(); // to update UI
+          setTimeout(() => {
+            this.toastr.info(!this.rtlDir?`Medicine was removed from cart`:`تم حذف الدواء من عربة الشراء`, !this.rtlDir?`Cart Result`:`ناتج عربة الشراء`)
+            // this.isVisibleSpinner = false;
+            this.isVisibleDeleteSpinner = false;
+            this.selectedDeleteMedicine = 0;
+          }, 700);
+        },
+        error:(error)=>{
+          this.toastr.error(!this.rtlDir?`Too Many Requests please try again in a while`:`طلبات كثيرة جدًا ، يرجى المحاولة مرة أخرى بعد فترة`) 
+          // this.isVisibleSpinner = false;
+            this.isVisibleDeleteSpinner = false;
+            this.selectedDeleteMedicine = 0;
+        }
+      })
+    }
+    
     
   }
 
@@ -171,41 +196,45 @@ export class CartComponent implements OnInit {
   }
 
   listenTotalQty() {
-    this._CartService.medicinesQty.subscribe((qty) => { // to calculate quantity each time it changes
-      // this.isVisibleSpinner = true
-      this._CartService.getAllPurchasedMedicines(this.lang).subscribe({
-        next: (medicinesPurchased) => { // to calculate quantity for first time (when refreshing)
-          if(typeof(medicinesPurchased.data)=='string' || (typeof(medicinesPurchased.data)=='object' && medicinesPurchased.data.length==0) || medicinesPurchased.data.user_cart_items.length == 0) {
-            this.noData = true;
-          } else {
-            this.allMedicinesPurchased = medicinesPurchased.data.user_cart_items
+    if (localStorage.getItem("token") != null) {
+      this._CartService.medicinesQty.subscribe((qty) => { // to calculate quantity each time it changes
+        // this.isVisibleSpinner = true
+        this._CartService.getAllPurchasedMedicines(this.lang).subscribe({
+          next: (medicinesPurchased) => { // to calculate quantity for first time (when refreshing)
+            if(typeof(medicinesPurchased.data)=='string' || (typeof(medicinesPurchased.data)=='object' && medicinesPurchased.data.length==0) || medicinesPurchased.data.user_cart_items.length == 0) {
+              this.noData = true;
+            } else {
+              this.allMedicinesPurchased = medicinesPurchased.data.user_cart_items
+            }
+            // this.isVisibleSpinner = false;
+          },
+          error: (error) => {
+            console.log(error)
+            // this.isVisibleSpinner = false;
           }
-          // this.isVisibleSpinner = false;
-        },
-        error: (error) => {
-          console.log(error)
-          // this.isVisibleSpinner = false;
-        }
+        });
       });
-    });
+    }
   }
 
   // to remove all medicines from cart
   deleteAllCart() {
-    this.isVisibleSpinner = true;
-    this._CartService.deleteAllCart().subscribe({
-      next:(message)=>{
-        console.log(message)
-        this.getPurchasedMedicines(); // to update UI
-        setTimeout(() => {
-          this.toastr.info(!this.rtlDir?`All Medicines were removed from cart`:`تم حذف جميع الأدوية من عربة الشراء`, !this.rtlDir?`Cart Result`:`ناتج عربة الشراء`)
+    if(!this.isVisibleAddRemoveSpinner) {
+      this.isVisibleSpinner = true;
+      this._CartService.deleteAllCart().subscribe({
+        next:(message)=>{
+          console.log(message)
+          this.getPurchasedMedicines(); // to update UI
+          setTimeout(() => {
+            this.toastr.info(!this.rtlDir?`All Medicines were removed from cart`:`تم حذف جميع الأدوية من عربة الشراء`, !this.rtlDir?`Cart Result`:`ناتج عربة الشراء`)
+            this.isVisibleSpinner = false;
+          }, 700);
+        },
+        error:(error)=>{
+          this.toastr.error(!this.rtlDir?`Error has occured`:`حدث خطأ ما`) 
           this.isVisibleSpinner = false;
-        }, 700);
-      },
-      error:(error)=>{
-        this.toastr.error(!this.rtlDir?`Error has occured`:`حدث خطأ ما`) 
-        this.isVisibleSpinner = false;
-      }
-    })
+        }
+      })
+    }
   }
 }

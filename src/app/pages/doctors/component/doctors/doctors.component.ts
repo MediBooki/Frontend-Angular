@@ -186,7 +186,7 @@ export class DoctorsComponent implements OnInit {
           this.direction = 'rtl';
         }
 
-        this._SpecializationService.getSpecialization(this.lang,this.page).subscribe({
+        this._SpecializationService.getAllSpecializations(this.lang).subscribe({
           next:(specializations)=>{
             this.allSpecializations = specializations.data;
             console.log(this.allSpecializations)

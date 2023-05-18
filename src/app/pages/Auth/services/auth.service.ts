@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable, catchError, throwError } from 'rxjs';
 import { Login } from 'src/app/core/interfaces/patients';
 import { createAccount } from 'src/app/core/interfaces/patients';
 
@@ -40,4 +40,10 @@ export class AuthService {
     this.router.navigate(['/home']);
   }
 
+  getTerms(lang: string): Observable<any> {
+    return this.http.get(`${this._sharedApi}/terms?lang=${lang}`).pipe(catchError((e: any) => {
+      console.log(e)
+      return throwError(e)
+      }));
+  }
 }
