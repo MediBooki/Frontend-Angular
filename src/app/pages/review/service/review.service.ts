@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { patientReview } from 'src/app/core/interfaces/patients';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class ReviewService {
   isreview = new BehaviorSubject(false)
   updatereview = new BehaviorSubject(false)
   // sharedApi: string = "http://127.0.0.1:8000/api";
-  sharedApi: string = "http://medibookidashbord.test/api";
+  sharedApi: string = environment.apimain;
 
   constructor(private _HttpClient: HttpClient) { }
 

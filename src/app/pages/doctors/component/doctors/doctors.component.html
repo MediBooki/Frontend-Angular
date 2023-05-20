@@ -14,7 +14,8 @@
                 class="fa-solid fa-phone mx-2"></i>{{hospitalPhone}}</a></h3>
           <ul class="px-0">
             <li><i class="fa-solid fa-circle me-2"></i>{{numOfDoctors}} {{'DoctorsPage.MainSearchSectionList1' | translate}}</li>
-            <li><i class="fa-solid fa-circle me-2"></i>{{'DoctorsPage.MainSearchSectionList3.1' | translate}} {{numOfSpecializations}}
+            <li><i class="fa-solid fa-circle me-2"></i>
+              <span *ngIf="numOfSpecializations>0">{{'DoctorsPage.MainSearchSectionList3.1' | translate}}{{numOfSpecializations}}</span><span *ngIf="numOfSpecializations==0">{{numOfSpecializations+1}}</span>
               {{'DoctorsPage.MainSearchSectionList3.2' | translate}}</li>
           </ul>
         </div>
@@ -70,7 +71,7 @@
               class="fa-solid ms-2 fs-6" [ngClass]="rtlDir? 'fa-angles-left' : 'fa-angles-right'"></i>
             </a>
             <span class=" ms-2 fw-bolder text-capitalize">{{rtlDir?'الأطباء':'Doctors'}}</span>
-          
+
           </div>
           <aside id="aside-filter" class="aside-filter position-relative pb-3" *ngIf="noDataError == ''">
 
@@ -117,13 +118,13 @@
                 <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
                   data-bs-parent="#accordionExample" [class.show]="genderArrayChecked.length>0">
                   <div class="accordion-body">
-                    
+
 
                       <div class="accordion-body-item" *ngFor="let gender of gendersArray">
-                        <input type="checkbox" id="gender{{gender.id}}" name="gender{{gender.id}}" [value]="gender.id" (change)="GetGenderStats($event)" [checked]="genderArrayChecked[gender.id]"> 
+                        <input type="checkbox" id="gender{{gender.id}}" name="gender{{gender.id}}" [value]="gender.id" (change)="GetGenderStats($event)" [checked]="genderArrayChecked[gender.id]">
                         <label for="gender{{gender.id}}">{{rtlDir?gender.name_ar:gender.name}}</label>
                       </div>
-                    
+
                   </div>
                 </div>
               </div>
@@ -147,7 +148,7 @@
                   </div>
                 </div>
               </div>
-              
+
             </form>
             </div>
           </aside>
@@ -171,25 +172,25 @@
             <div   *ngIf="!noData;else error">
               <div class="filtered-content-title d-flex text-muted ">
                 <h2 class="filtered-title mb-0 fw-bold" [class.arabic-font]="rtlDir" *ngIf="filteredContent.length != 0">{{"DoctorsPage.ResultTitle1" | translate}} <span class="me-1" *ngFor="let specializationName of filteredContent">{{specializationName}}</span></h2>
-                <h2 class="filtered-title mb-0 fw-bold" [class.arabic-font]="rtlDir" *ngIf="filteredContent.length == 0">{{"DoctorsPage.ResultTitle2" | translate}}</h2> 
+                <h2 class="filtered-title mb-0 fw-bold" [class.arabic-font]="rtlDir" *ngIf="filteredContent.length == 0">{{"DoctorsPage.ResultTitle2" | translate}}</h2>
                 <!-- <h2 class="filtered-title mb-0" *ngIf="filteredContent.length != 0">Search By <span class="me-1" *ngFor="let name of filteredContent">{{name}}</span></h2> -->
                 <p class="ms-2 mb-0"><span class="doctors-num">{{totalRecords}}</span> {{'DoctorsPage.MainSearchSectionList1' | translate}}</p>
               </div>
-  
+
               <div class="doctors-list">
                 <app-doctor *ngFor="let doctor of allDoctors| paginate :{id:'listing-pagination',
                       itemsPerPage:numDoctorsPerPage,
                       currentPage:page,
                       totalItems:totalRecords }" [doctor]="doctor"></app-doctor>
               </div>
-  
+
               <div class="d-flex justify-content-center align-items-center">
                 <pagination-controls id="listing-pagination" class="doctors-pagination" (pageChange)="changePage($event)" previousLabel="" nextLabel="" [ngClass]="rtlDir? 'pagination-arabic' : 'pagination-english'">
-  
+
                 </pagination-controls>
               </div>
             </div>
-            
+
 
           </div>
         </div>
@@ -253,7 +254,7 @@
           <div class="small-filter-body">
 
             <div class="accordion-body-item p-3 border-bottom" *ngFor="let gender of gendersArray">
-              <input type="checkbox" id="small-gender{{gender.id}}" name="gender{{gender.id}}" [value]="gender.id" (change)="GetGenderStats($event)" [checked]="genderArrayChecked[gender.id]"> 
+              <input type="checkbox" id="small-gender{{gender.id}}" name="gender{{gender.id}}" [value]="gender.id" (change)="GetGenderStats($event)" [checked]="genderArrayChecked[gender.id]">
               <label for="small-gender{{gender.id}}">{{rtlDir?gender.name_ar:gender.name}}</label>
             </div>
 

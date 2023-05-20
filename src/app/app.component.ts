@@ -5,6 +5,8 @@ import { AuthService } from './pages/Auth/services/auth.service';
 import {  slider } from './pages/Auth/animation/route-animation';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { registerLocaleData } from '@angular/common';
+import { Subscription, find } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 
 @Component({
@@ -18,12 +20,16 @@ export class AppComponent implements OnInit {
   login?: boolean;
   // loaded: boolean = false;
   layoutleft?: boolean
+  allTenants: any[] = [];
+  tenantsSubscription = new Subscription();
 
   constructor(private _DataService: DataService, private service: AuthService,private renderer: Renderer2,private router: Router) {
 
   }
 
   ngOnInit() {
+    this.getAllTanant();
+    this.setMainCountry();
     this.service.AuthlayoutLeft.subscribe(res => {
       this.layoutleft = res
     });
@@ -62,6 +68,28 @@ export class AppComponent implements OnInit {
     });
   }
 
+  getAllTanant() {
+    this.tenantsSubscription =this._DataService.getAllTenants().subscribe({
+      next:(tenants)=>{
+        this.allTenants = tenants.data
+        environment.tenants = tenants.data;
+      }
+    })
+  }
+
+  setMainCountry() {
+    if(localStorage.getItem('tenant')==null){
+      localStorage.setItem('tenant','http://medibookidashbord.test/api')
+      environment.apimain='http://medibookidashbord.test/api'
+    }else {
+      environment.apimain = localStorage.getItem('tenant')!;
+      // const currentCountry= localStorage.getItem('tenant')
+      // let currentTenant = this.allTenants.find((tenant:any)=>tenant.name == currentCountry);
+      //       if(currentTenant != null) {
+      //         environment.apimain=`https//`+currentTenant.domain+`/api`
+      //       }
+    }
+  }
 
 
 }

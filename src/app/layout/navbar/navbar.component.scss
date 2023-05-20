@@ -174,7 +174,7 @@ border-color: #eb3a7b;
     // font-size: 1rem;
   }
   min-width: 300px;
-  
+
   border-top: 2px solid rgb(91, 91, 91);
 }
 
@@ -304,6 +304,37 @@ p {
   transition: all .35s;
 }
 
+.lang-dropdown {
+  transform: translateX(-25%);
+}
+
+.tanant-dropdown {
+  transform: translateX(50%);
+}
+
+.user-dropdown {
+  transform: translateX(-40%);
+}
+
+.lang-dropdown-ar {
+  transform: translateX(25%);
+}
+
+.tanant-dropdown-ar {
+  transform: translateX(-50%);
+}
+
+.user-dropdown-ar {
+  transform: translateX(40%);
+}
+
+.dropdown-toggle {
+  padding-bottom: 5px;
+}
+
+.dropdown-menu {
+  margin-top: -3px;
+}
 
 
 

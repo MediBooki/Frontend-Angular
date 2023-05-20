@@ -16,24 +16,24 @@
       <!-- <div class="bg-white w-75 doctor-registeration rounded" id="main-sec" [ngSwitch]="stepNum"> -->
       <div class="bg-white w-75 doctor-registeration rounded" id="main-sec">
 
-        <div class="doctor-register-nav row rounded w-100 m-auto">
-          <div id="step1tab" class="col-lg doctor-register-nav-link d-flex justify-content-md-center justify-content-start ps-md-0 ps-4 align-items-center py-2" [ngClass]="{'active-en' : stepNum==1 && lang =='en', 'active-ar' : stepNum==1 && lang =='ar' , 'bg-main oldactive' : stepNum >1 }">
+        <div class="doctor-register-nav row rounded w-100 m-auto justify-content-center">
+          <div id="step1tab" class="col-lg col-md-6 doctor-register-nav-link d-flex justify-content-md-center justify-content-start ps-md-0 ps-4 align-items-center py-2" [ngClass]="{'active-en' : stepNum==1 && lang =='en', 'active-ar' : stepNum==1 && lang =='ar' , 'bg-main oldactive' : stepNum >1 }">
             <span class="d-flex justify-content-center align-items-center"><i class="fa-solid fa-1"></i></span>
             <p class="m-0">{{'joinus.tap1' | translate}}</p>
           </div>
-          <div id="step2tab" class="col-lg doctor-register-nav-link d-flex justify-content-md-center justify-content-start ps-md-0 ps-4 align-items-center py-2" [ngClass]="{'active-en' : stepNum==2 && lang =='en', 'active-ar' : stepNum==2 && lang =='ar' , 'bg-main oldactive' : stepNum >2 }">
+          <div id="step2tab" class="col-lg col-md-6 doctor-register-nav-link d-flex justify-content-md-center justify-content-start ps-md-0 ps-4 align-items-center py-2" [ngClass]="{'active-en' : stepNum==2 && lang =='en', 'active-ar' : stepNum==2 && lang =='ar' , 'bg-main oldactive' : stepNum >2 }">
             <span class="d-flex justify-content-center align-items-center"><i class="fa-solid fa-2"></i></span>
             <p class="m-0">{{'joinus.tap2' | translate}}</p>
           </div>
-          <div id="step3tab" class="col-lg doctor-register-nav-link d-flex justify-content-md-center justify-content-start ps-md-0 ps-4 align-items-center py-2" [ngClass]="{'active-en' : stepNum==3 && lang =='en', 'active-ar' : stepNum==3 && lang =='ar' , 'bg-main oldactive' : stepNum >3 }">
+          <div id="step3tab" class="col-lg col-md-6 doctor-register-nav-link d-flex justify-content-md-center justify-content-start ps-md-0 ps-4 align-items-center py-2" [ngClass]="{'active-en' : stepNum==3 && lang =='en', 'active-ar' : stepNum==3 && lang =='ar' , 'bg-main oldactive' : stepNum >3 }">
             <span class="d-flex justify-content-center align-items-center"><i class="fa-solid fa-3"></i></span>
             <p class="m-0">{{'joinus.tap3' | translate}}</p>
           </div>
-          <div id="step4tab" class="col-lg doctor-register-nav-link d-flex justify-content-md-center justify-content-start ps-md-0 ps-4 align-items-center py-2" [ngClass]="{'active-en' : stepNum==4 && lang =='en', 'active-ar' : stepNum==4 && lang =='ar', 'bg-main oldactive' : stepNum >4}">
+          <div id="step4tab" class="col-lg col-md-6 doctor-register-nav-link d-flex justify-content-md-center justify-content-start ps-md-0 ps-4 align-items-center py-2" [ngClass]="{'active-en' : stepNum==4 && lang =='en', 'active-ar' : stepNum==4 && lang =='ar', 'bg-main oldactive' : stepNum >4}">
             <span class="d-flex justify-content-center align-items-center"><i class="fa-solid fa-4"></i></span>
             <p class="m-0">{{'joinus.tap5' | translate}}</p>
           </div>
-          <div id="step4tab" class="col-lg doctor-register-nav-link d-flex justify-content-md-center justify-content-start ps-md-0 ps-4 align-items-center py-2" [ngClass]="{'active-en' : stepNum==5 && lang =='en', 'active-ar' : stepNum==5 && lang =='ar'}">
+          <div id="step4tab" class="col-lg col-md-6 doctor-register-nav-link d-flex justify-content-md-center justify-content-start ps-md-0 ps-4 align-items-center py-2" [ngClass]="{'active-en' : stepNum==5 && lang =='en', 'active-ar' : stepNum==5 && lang =='ar'}">
             <span class="d-flex justify-content-center align-items-center"><i class="fa-solid fa-5"></i></span>
             <p class="m-0">{{'joinus.tap4' | translate}}</p>
           </div>
@@ -49,92 +49,104 @@
 
             <div class="w-75 m-auto row">
               <div class="col-lg-6 my-2">
-                <label>{{'joinus.step1.input1' | translate}}</label>
-                <!-- name en -->
-                <input formControlName="name_en" type="text" class="form-control w-90" placeholder="{{'joinus.step1.input1place' | translate}}" id="inbutStep1" />
-                <div class="mt-1" *ngIf="joinusForm.controls.name_en.touched && joinusForm.controls.name_en.dirty">
-                  <p class="text-danger" *ngIf="joinusForm.controls.name_en?.errors?.['required']">
-                      {{'errors.required' | translate}}
-                  </p>
-                  <p class="text-danger" *ngIf="joinusForm.controls.name_en.errors?.['minlength']">
-                      {{'errors.minlength5' | translate}}
-                  </p>
-                  <p class="text-danger" *ngIf="joinusForm.controls.name_en.errors?.['maxlength']">
-                      {{'errors.minlength5Max20' | translate}}
-                  </p>
+                <div class="w-90 m-auto">
+                  <label>{{'joinus.step1.input1' | translate}}</label>
+                  <!-- name en -->
+                  <input formControlName="name_en" type="text" class="form-control " placeholder="{{'joinus.step1.input1place' | translate}}" id="inbutStep1" />
+                  <div class="mt-1" *ngIf="joinusForm.controls.name_en.touched && joinusForm.controls.name_en.dirty">
+                    <p class="text-danger" *ngIf="joinusForm.controls.name_en?.errors?.['required']">
+                        {{'errors.required' | translate}}
+                    </p>
+                    <p class="text-danger" *ngIf="joinusForm.controls.name_en.errors?.['minlength']">
+                        {{'errors.minlength5' | translate}}
+                    </p>
+                    <p class="text-danger" *ngIf="joinusForm.controls.name_en.errors?.['maxlength']">
+                        {{'errors.minlength5Max20' | translate}}
+                    </p>
+                  </div>
                 </div>
               </div>
               <div class="col-lg-6 my-2">
-                <label>{{'joinus.step1.input2' | translate}}</label>
-                <!-- name ar -->
-                <input formControlName="name" type="text" class="form-control w-90" placeholder="{{'joinus.step1.input2place' | translate}}" id="inbutStep1" />
-                <div class="mt-1" *ngIf="joinusForm.controls.name.touched && joinusForm.controls.name.dirty">
-                  <p class="text-danger" *ngIf="joinusForm.controls.name?.errors?.['required']">
-                      {{'errors.required' | translate}}
-                  </p>
-                  <p class="text-danger" *ngIf="joinusForm.controls.name.errors?.['minlength']">
-                      {{'errors.minlength5' | translate}}
-                  </p>
-                  <p class="text-danger" *ngIf="joinusForm.controls.name.errors?.['maxlength']">
-                      {{'errors.minlength5Max20' | translate}}
-                  </p>
-                </div>
-              </div>
-
-              <div class="col-lg-6 my-2">
-                <label>{{'joinus.step1.input3' | translate}}</label>
-                <!-- email -->
-                <input formControlName="email" type="text" class="form-control w-90" placeholder="{{'joinus.step1.input3place' | translate}}" id="inbutStep1" />
-                <div class="mt-1" *ngIf="joinusForm.controls.email.touched && joinusForm.controls.email.dirty">
-                  <p class="text-danger" *ngIf="joinusForm.controls.email?.errors?.['required']">
-                      {{'errors.required' | translate}}
-                  </p>
-                  <p class="text-danger" *ngIf="joinusForm.controls.email.errors?.['email']">
-                      {{'errors.email' | translate}}
-                  </p>
+                <div class="w-90 m-auto">
+                  <label>{{'joinus.step1.input2' | translate}}</label>
+                  <!-- name ar -->
+                  <input formControlName="name" type="text" class="form-control" placeholder="{{'joinus.step1.input2place' | translate}}" id="inbutStep1" />
+                  <div class="mt-1" *ngIf="joinusForm.controls.name.touched && joinusForm.controls.name.dirty">
+                    <p class="text-danger" *ngIf="joinusForm.controls.name?.errors?.['required']">
+                        {{'errors.required' | translate}}
+                    </p>
+                    <p class="text-danger" *ngIf="joinusForm.controls.name.errors?.['minlength']">
+                        {{'errors.minlength5' | translate}}
+                    </p>
+                    <p class="text-danger" *ngIf="joinusForm.controls.name.errors?.['maxlength']">
+                        {{'errors.minlength5Max20' | translate}}
+                    </p>
+                  </div>
                 </div>
               </div>
 
               <div class="col-lg-6 my-2">
-                <label>{{'joinus.step1.input4' | translate}}</label>
-                <!-- phone -->
-                <input formControlName="phone" type="text" class="form-control w-90" id="inbutStep1" placeholder="{{'joinus.step1.input4place' | translate}}" />
-                <div class="mt-1" *ngIf="joinusForm.controls.phone.touched && joinusForm.controls.phone.dirty">
-                  <p class="text-danger" *ngIf="joinusForm.controls.phone?.errors?.['required']">
-                      {{'errors.required' | translate}}
-                  </p>
-                  <p class="text-danger" *ngIf="joinusForm.controls.phone.errors?.['pattern']">
-                    {{'errors.phonePattern' | translate}}
-                  </p>
+                <div class="w-90 m-auto">
+                  <label>{{'joinus.step1.input3' | translate}}</label>
+                  <!-- email -->
+                  <input formControlName="email" type="text" class="form-control" placeholder="{{'joinus.step1.input3place' | translate}}" id="inbutStep1" />
+                  <div class="mt-1" *ngIf="joinusForm.controls.email.touched && joinusForm.controls.email.dirty">
+                    <p class="text-danger" *ngIf="joinusForm.controls.email?.errors?.['required']">
+                        {{'errors.required' | translate}}
+                    </p>
+                    <p class="text-danger" *ngIf="joinusForm.controls.email.errors?.['email']">
+                        {{'errors.email' | translate}}
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-lg-6 my-2">
+                <div class="w-90 m-auto">
+                  <label>{{'joinus.step1.input4' | translate}}</label>
+                  <!-- phone -->
+                  <input formControlName="phone" type="text" class="form-control" id="inbutStep1" placeholder="{{'joinus.step1.input4place' | translate}}" />
+                  <div class="mt-1" *ngIf="joinusForm.controls.phone.touched && joinusForm.controls.phone.dirty">
+                    <p class="text-danger" *ngIf="joinusForm.controls.phone?.errors?.['required']">
+                        {{'errors.required' | translate}}
+                    </p>
+                    <p class="text-danger" *ngIf="joinusForm.controls.phone.errors?.['pattern']">
+                      {{'errors.phonePattern' | translate}}
+                    </p>
+                  </div>
                 </div>
               </div>
               <div class="col-lg-6 my-2">
-                <label>{{'joinus.step1.input5' | translate}}</label>
-                <!-- pass -->
-                <input formControlName="password" type="password" class="form-control w-90" placeholder="{{'joinus.step1.input5place' | translate}}" id="inbutStep1" />
-                <div class="mt-1" *ngIf="joinusForm.controls.password.touched && joinusForm.controls.password.dirty">
-                  <p class="text-danger" *ngIf="joinusForm.controls.password?.errors?.['required']">
-                      {{'errors.required' | translate}}
-                  </p>
-                  <p class="text-danger" *ngIf="joinusForm.controls.password.errors?.['minlength']">
-                    {{'errors.minlength8' | translate}}
-                  </p>
-                  <p class="text-danger" *ngIf="joinusForm.controls.password.errors?.['pattern']">
-                    {{'errors.passwordPattern' | translate}}
-                  </p>
+                <div class="w-90 m-auto">
+                  <label>{{'joinus.step1.input5' | translate}}</label>
+                  <!-- pass -->
+                  <input formControlName="password" type="password" class="form-control" placeholder="{{'joinus.step1.input5place' | translate}}" id="inbutStep1" />
+                  <div class="mt-1" *ngIf="joinusForm.controls.password.touched && joinusForm.controls.password.dirty">
+                    <p class="text-danger" *ngIf="joinusForm.controls.password?.errors?.['required']">
+                        {{'errors.required' | translate}}
+                    </p>
+                    <p class="text-danger" *ngIf="joinusForm.controls.password.errors?.['minlength']">
+                      {{'errors.minlength8' | translate}}
+                    </p>
+                    <p class="text-danger" *ngIf="joinusForm.controls.password.errors?.['pattern']">
+                      {{'errors.passwordPattern' | translate}}
+                    </p>
+                  </div>
                 </div>
               </div>
               <div class="col-lg-6 my-2">
-                <label>{{'joinus.step1.input6' | translate}}</label>
-                <!-- re-pass -->
-                <input formControlName="re_password" type="password" class="form-control w-90" placeholder="{{'joinus.step1.input6place' | translate}}" id="inbutStep1" />
-                <div class="mt-1" *ngIf="joinusForm.controls.re_password.touched && joinusForm.controls.re_password.dirty">
-                  <p class="text-danger" *ngIf="joinusForm.controls.re_password?.errors?.['required']">
-                      {{'errors.required' | translate}}
-                  </p>
-                  <p class="text-danger" *ngIf="joinusForm.controls.re_password.value != joinusForm.controls.password.value">
-                    {{'errors.repassword' | translate}}
-                  </p>
+                <div class="w-90 m-auto">
+                  <label>{{'joinus.step1.input6' | translate}}</label>
+                  <!-- re-pass -->
+                  <input formControlName="re_password" type="password" class="form-control" placeholder="{{'joinus.step1.input6place' | translate}}" id="inbutStep1" />
+                  <div class="mt-1" *ngIf="joinusForm.controls.re_password.touched && joinusForm.controls.re_password.dirty">
+                    <p class="text-danger" *ngIf="joinusForm.controls.re_password?.errors?.['required']">
+                        {{'errors.required' | translate}}
+                    </p>
+                    <p class="text-danger" *ngIf="joinusForm.controls.re_password.value != joinusForm.controls.password.value">
+                      {{'errors.repassword' | translate}}
+                    </p>
+                  </div>
                 </div>
               </div>
 
@@ -148,72 +160,82 @@
             <p class="text-center text-muted my-1 mb-4">{{'joinus.step2.step2p' | translate}}</p>
             <div class="w-75 m-auto row justify-content-center">
               <div class="col-lg-6 my-2">
-                <label>{{'joinus.step2.input1' | translate}}</label>
-                <!-- photo -->
-                <input formControlName="photo" #photo (change)="onFileChange($event)" name="photo" type="file" class="form-control w-90" id="inbutStep2" />
-                <!-- <div class="mt-1" *ngIf="joinusForm.controls.photo.touched && joinusForm.controls.photo.dirty">
-                  <p class="text-danger" *ngIf="joinusForm.controls.photo?.errors?.['required']">
-                      {{'errors.required' | translate}}
-                  </p>
-                </div> -->
+                <div class="w-90 m-auto">
+                  <label>{{'joinus.step2.input1' | translate}}</label>
+                  <!-- photo -->
+                  <input formControlName="photo" #photo (change)="onFileChange($event)" name="photo" type="file" class="form-control" id="inbutStep2" />
+                  <!-- <div class="mt-1" *ngIf="joinusForm.controls.photo.touched && joinusForm.controls.photo.dirty">
+                    <p class="text-danger" *ngIf="joinusForm.controls.photo?.errors?.['required']">
+                        {{'errors.required' | translate}}
+                    </p>
+                  </div> -->
+                </div>
               </div>
               <div class="col-lg-6 my-2">
-                <label class="d-block">{{'joinus.step2.input2' | translate}}</label>
-                <!-- gender -->
-                <select class="form-select w-90 gender-select2">
-                  <option selected disabled></option>
-                  <option value="0">{{'joinus.step2.gender1' | translate}}</option>
-                  <option value="1">{{'joinus.step2.gender2' | translate}}</option>
-                </select>
-                <!-- <div class="mt-1" *ngIf="joinusForm.controls.gender.touched && joinusForm.controls.gender.dirty">
-                  <p class="text-danger" *ngIf="joinusForm.controls.gender?.errors?.['required']">
-                      {{'errors.required' | translate}}
-                  </p>
-                </div> -->
+                <div class="w-90 m-auto">
+                  <label class="d-block">{{'joinus.step2.input2' | translate}}</label>
+                  <!-- gender -->
+                  <select class="form-select gender-select2">
+                    <option selected disabled></option>
+                    <option value="0">{{'joinus.step2.gender1' | translate}}</option>
+                    <option value="1">{{'joinus.step2.gender2' | translate}}</option>
+                  </select>
+                  <!-- <div class="mt-1" *ngIf="joinusForm.controls.gender.touched && joinusForm.controls.gender.dirty">
+                    <p class="text-danger" *ngIf="joinusForm.controls.gender?.errors?.['required']">
+                        {{'errors.required' | translate}}
+                    </p>
+                  </div> -->
+                </div>
               </div>
               <div class="col-lg-6 my-2">
-                <label  class="d-block">{{'joinus.step2.input3' | translate}}</label>
-                <!-- section -->
-                <select class="form-select w-90 section-select2">
-                  <option selected disabled></option>
-                  <option *ngFor="let section of allSections" [value]="section.id">{{section.name}}</option>
-                </select>
-                <!-- <div class="mt-1" *ngIf="joinusForm.controls.section_id.touched && joinusForm.controls.section_id.dirty">
-                  <p class="text-danger" *ngIf="joinusForm.controls.section_id?.errors?.['required']">
-                      {{'errors.required' | translate}}
-                  </p>
-                </div> -->
+                <div class="w-90 m-auto">
+                  <label  class="d-block">{{'joinus.step2.input3' | translate}}</label>
+                  <!-- section -->
+                  <select class="form-select section-select2">
+                    <option selected disabled></option>
+                    <option *ngFor="let section of allSections" [value]="section.id">{{section.name}}</option>
+                  </select>
+                  <!-- <div class="mt-1" *ngIf="joinusForm.controls.section_id.touched && joinusForm.controls.section_id.dirty">
+                    <p class="text-danger" *ngIf="joinusForm.controls.section_id?.errors?.['required']">
+                        {{'errors.required' | translate}}
+                    </p>
+                  </div> -->
+                </div>
               </div>
               <div class="col-lg-6 my-2">
-                <label class="d-block">{{'joinus.step2.input4' | translate}}</label>
-                <!-- title -->
-                <select class="form-select w-90 title-select2">
-                  <option selected disabled></option>
-                  <option value="0">{{'joinus.step2.title1' | translate}}</option>
-                  <option value="1">{{'joinus.step2.title2' | translate}}</option>
-                  <option value="2">{{'joinus.step2.title3' | translate}}</option>
-                </select>
-                <!-- <div class="mt-1" *ngIf="joinusForm.controls.title.touched && joinusForm.controls.title.dirty">
-                  <p class="text-danger" *ngIf="joinusForm.controls.title?.errors?.['required']">
-                      {{'errors.required' | translate}}
-                  </p>
-                </div> -->
+                <div class="w-90 m-auto">
+                  <label class="d-block">{{'joinus.step2.input4' | translate}}</label>
+                  <!-- title -->
+                  <select class="form-select title-select2">
+                    <option selected disabled></option>
+                    <option value="0">{{'joinus.step2.title1' | translate}}</option>
+                    <option value="1">{{'joinus.step2.title2' | translate}}</option>
+                    <option value="2">{{'joinus.step2.title3' | translate}}</option>
+                  </select>
+                  <!-- <div class="mt-1" *ngIf="joinusForm.controls.title.touched && joinusForm.controls.title.dirty">
+                    <p class="text-danger" *ngIf="joinusForm.controls.title?.errors?.['required']">
+                        {{'errors.required' | translate}}
+                    </p>
+                  </div> -->
+                </div>
               </div>
 
               <div class="col-lg-6 my-2">
-                <label>{{'joinus.step2.input5' | translate}}</label>
-                <!-- Specialization -->
-                <input formControlName="specialization" type="text" class="form-control w-90" id="inbutStep2" placeholder="{{'joinus.step2.input5place' | translate}}" />
-                <div class="mt-1" *ngIf="joinusForm.controls.specialization.touched && joinusForm.controls.specialization.dirty">
-                  <p class="text-danger" *ngIf="joinusForm.controls.specialization?.errors?.['required']">
-                      {{'errors.required' | translate}}
-                  </p>
-                  <p class="text-danger" *ngIf="joinusForm.controls.specialization.errors?.['minlength']">
-                      {{'errors.minlength5' | translate}}
-                  </p>
-                  <p class="text-danger" *ngIf="joinusForm.controls.specialization.errors?.['maxlength']">
-                      {{'errors.minlength5Max20' | translate}}
-                  </p>
+                <div class="w-90 m-auto">
+                  <label>{{'joinus.step2.input5' | translate}}</label>
+                  <!-- Specialization -->
+                  <input formControlName="specialization" type="text" class="form-control" id="inbutStep2" placeholder="{{'joinus.step2.input5place' | translate}}" />
+                  <div class="mt-1" *ngIf="joinusForm.controls.specialization.touched && joinusForm.controls.specialization.dirty">
+                    <p class="text-danger" *ngIf="joinusForm.controls.specialization?.errors?.['required']">
+                        {{'errors.required' | translate}}
+                    </p>
+                    <p class="text-danger" *ngIf="joinusForm.controls.specialization.errors?.['minlength']">
+                        {{'errors.minlength5' | translate}}
+                    </p>
+                    <p class="text-danger" *ngIf="joinusForm.controls.specialization.errors?.['maxlength']">
+                        {{'errors.minlength5Max20' | translate}}
+                    </p>
+                  </div>
                 </div>
               </div>
 
@@ -227,62 +249,72 @@
             <p class="text-center text-muted my-1 mb-4">{{'joinus.step3.step3p' | translate}}</p>
             <div class="w-75 m-auto row justify-content-center">
               <div class="col-lg-6 my-2">
-                <label>{{'joinus.step3.input1' | translate}}</label>
-                <!-- start -->
-                <input formControlName="start" type="time" class="form-control w-90">
-                <div class="mt-1" *ngIf="joinusForm.controls.start.touched && joinusForm.controls.start.dirty">
-                  <p class="text-danger" *ngIf="joinusForm.controls.start?.errors?.['required']">
-                      {{'errors.required' | translate}}
-                  </p>
+                <div class="w-90 m-auto">
+                  <label>{{'joinus.step3.input1' | translate}}</label>
+                  <!-- start -->
+                  <input formControlName="start" type="time" class="form-control">
+                  <div class="mt-1" *ngIf="joinusForm.controls.start.touched && joinusForm.controls.start.dirty">
+                    <p class="text-danger" *ngIf="joinusForm.controls.start?.errors?.['required']">
+                        {{'errors.required' | translate}}
+                    </p>
+                  </div>
                 </div>
               </div>
               <div class="col-lg-6 my-2">
-                <label>{{'joinus.step3.input2' | translate}}</label>
-                <!-- end -->
-                <input formControlName="end" type="time" class="form-control w-90">
-                <div class="mt-1" *ngIf="joinusForm.controls.end.touched && joinusForm.controls.end.dirty">
-                  <p class="text-danger" *ngIf="joinusForm.controls.end?.errors?.['required']">
-                      {{'errors.required' | translate}}
-                  </p>
+                <div class="w-90 m-auto">
+                  <label>{{'joinus.step3.input2' | translate}}</label>
+                  <!-- end -->
+                  <input formControlName="end" type="time" class="form-control">
+                  <div class="mt-1" *ngIf="joinusForm.controls.end.touched && joinusForm.controls.end.dirty">
+                    <p class="text-danger" *ngIf="joinusForm.controls.end?.errors?.['required']">
+                        {{'errors.required' | translate}}
+                    </p>
+                  </div>
                 </div>
               </div>
               <div class="col-lg-6 my-2">
-                <label>{{'joinus.step3.input3' | translate}}</label>
-                <!-- patient_time_minute -->
-                <input formControlName="patient_time_minute" type="number" class="form-control w-90">
-                <div class="mt-1" *ngIf="joinusForm.controls.patient_time_minute.touched && joinusForm.controls.patient_time_minute.dirty">
-                  <p class="text-danger" *ngIf="joinusForm.controls.patient_time_minute?.errors?.['required']">
-                      {{'errors.required' | translate}}
-                  </p>
-                  <p class="text-danger" *ngIf="joinusForm.controls.patient_time_minute?.errors?.['min']">
-                    {{'errors.positiveNum' | translate}}
-                  </p>
+                <div class="w-90 m-auto">
+                  <label>{{'joinus.step3.input3' | translate}}</label>
+                  <!-- patient_time_minute -->
+                  <input formControlName="patient_time_minute" type="number" class="form-control">
+                  <div class="mt-1" *ngIf="joinusForm.controls.patient_time_minute.touched && joinusForm.controls.patient_time_minute.dirty">
+                    <p class="text-danger" *ngIf="joinusForm.controls.patient_time_minute?.errors?.['required']">
+                        {{'errors.required' | translate}}
+                    </p>
+                    <p class="text-danger" *ngIf="joinusForm.controls.patient_time_minute?.errors?.['min']">
+                      {{'errors.positiveNum' | translate}}
+                    </p>
+                  </div>
                 </div>
               </div>
               <div class="col-lg-6 my-2">
-                <label>{{'joinus.step3.input4' | translate}}</label>
-                <!-- price -->
-                <input formControlName="price" type="number" class="form-control w-90">
-                <div class="mt-1" *ngIf="joinusForm.controls.price.touched && joinusForm.controls.price.dirty">
-                  <p class="text-danger" *ngIf="joinusForm.controls.price?.errors?.['required']">
-                      {{'errors.required' | translate}}
-                  </p>
-                  <p class="text-danger" *ngIf="joinusForm.controls.price?.errors?.['min']">
-                    {{'errors.positiveNum' | translate}}
-                  </p>
+                <div class="w-90 m-auto">
+                  <label>{{'joinus.step3.input4' | translate}}</label>
+                  <!-- price -->
+                  <input formControlName="price" type="number" class="form-control">
+                  <div class="mt-1" *ngIf="joinusForm.controls.price.touched && joinusForm.controls.price.dirty">
+                    <p class="text-danger" *ngIf="joinusForm.controls.price?.errors?.['required']">
+                        {{'errors.required' | translate}}
+                    </p>
+                    <p class="text-danger" *ngIf="joinusForm.controls.price?.errors?.['min']">
+                      {{'errors.positiveNum' | translate}}
+                    </p>
+                  </div>
                 </div>
               </div>
               <div class="col-lg-6 my-2 appointment-select-div">
-                <label>{{'joinus.step3.input5' | translate}}</label>
-                <!-- dayes -->
-                <ng-multiselect-dropdown formControlName="appointments"
-                [settings]="dropdownSettings"
-                [data]="dropdownList" [(ngModel)]='selectedItems'>
-                </ng-multiselect-dropdown>
-                <div class="mt-1" *ngIf="joinusForm.controls.appointments.touched && joinusForm.controls.appointments.dirty">
-                  <p class="text-danger" *ngIf="joinusForm.controls.appointments?.errors?.['required']">
-                      {{'errors.required' | translate}}
-                  </p>
+                <div class="w-90 m-auto">
+                  <label>{{'joinus.step3.input5' | translate}}</label>
+                  <!-- dayes -->
+                  <ng-multiselect-dropdown formControlName="appointments"
+                  [settings]="dropdownSettings"
+                  [data]="dropdownList" [(ngModel)]='selectedItems'>
+                  </ng-multiselect-dropdown>
+                  <div class="mt-1" *ngIf="joinusForm.controls.appointments.touched && joinusForm.controls.appointments.dirty">
+                    <p class="text-danger" *ngIf="joinusForm.controls.appointments?.errors?.['required']">
+                        {{'errors.required' | translate}}
+                    </p>
+                  </div>
                 </div>
               <!-- <select class="p-2 appointments-select2" name="state">
                 <option selected disabled ></option>
@@ -377,7 +409,7 @@
               </div>
               <div class="col-lg-5 align-items-center justify-content-center d-flex">
                 <img class="w-50"
-                  src="../../../assets/images/Doctor-register/41263466-male-doctor-giving-ok-sign-with-laptop.webp">
+                  src="../../../../../assets/images/Doctor-register/41263466-male-doctor-giving-ok-sign-with-laptop_040429.png">
               </div>
             </div>
           </div>

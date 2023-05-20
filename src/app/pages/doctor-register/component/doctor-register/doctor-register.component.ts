@@ -59,8 +59,6 @@ export class DoctorRegisterComponent implements OnInit {
   direction:any = 'ltr' ;
   stepNum:number = 1;
 
-  page:number=1
-
   // API Variables
   allSections: Section[] = [];
   sectionsSubscription = new Subscription();
@@ -148,7 +146,7 @@ export class DoctorRegisterComponent implements OnInit {
   getSections(){
     this._DataService._lang.subscribe({next:(language)=>{
       // to get all sections
-    this.sectionsSubscription = this._SpecializationService.getSpecialization(language , this.page).subscribe({
+    this.sectionsSubscription = this._SpecializationService.getAllSpecializations(language ).subscribe({
       next: (sections) => {
         this.allSections = sections.data;
       },

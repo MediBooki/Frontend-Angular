@@ -18,7 +18,7 @@
         <div class="d-inline" *ngIf="is_login">
           <span>
             <a class="text-decoration-none text-white fw-bold rounded-circle dropdown-toggle" role="button"><img class="rounded-circle" [src]="userPhoto" width="30px" height="30px" alt=""></a>
-            <ul class="dropdown-menu">
+            <ul class="dropdown-menu " [ngClass]="{'user-dropdown': !rtlDir, 'user-dropdown-ar': rtlDir}">
               <li><a class="dropdown-item text-center fw-bold" routerLink="/my-profile"><i class="fa-solid fa-user pe-2"></i>{{'navbar.my-profile'
                 | translate}}</a></li>
               <li><hr class="dropdown-divider"></li>
@@ -43,34 +43,36 @@
           <!-- <a class="text-decoration-none text-white fw-bold px-2" href="#">العربية<i
               class="ps-2 fa-solid fa-globe"></i></a> -->
           <!-- [ngClass]="rtlDir?'d-block' : 'd-none'" -->
-          <div class="d-inline dropdown-toggle">
-            <div class="d-inline" [ngClass]="!rtlDir?'d-none' : 'd-inline'">
-              <button  value="ar"
-                class="bg-transparent border-0 text-white fw-bold px-2">العربية<i
-                  class="ps-2 fa-solid fa-globe"></i></button>
+          <div class="dropdown d-inline ">
+            <div class="d-inline dropdown-toggle">
+              <div class="d-inline" [ngClass]="!rtlDir?'d-none' : 'd-inline'">
+                <button  value="ar"
+                  class="bg-transparent border-0 text-white fw-bold px-2">العربية<i
+                    class="ps-2 fa-solid fa-globe"></i></button>
+              </div>
+              <!-- [ngClass]="rtlDir?'d-none' : 'd-block'" -->
+              <div class="d-inline" [ngClass]="!rtlDir?'d-inline' : 'd-none'">
+                <button  value="en"
+                  class="bg-transparent border-0 text-white fw-bold px-2">English<i class="ps-2 fa-solid fa-globe"></i></button>
+              </div>
             </div>
-            <!-- [ngClass]="rtlDir?'d-none' : 'd-block'" -->
-            <div class="d-inline" [ngClass]="!rtlDir?'d-inline' : 'd-none'">
-              <button  value="en"
-                class="bg-transparent border-0 text-white fw-bold px-2">English<i class="ps-2 fa-solid fa-globe"></i></button>
-            </div>
+            <ul class="dropdown-menu text-center " [ngClass]="{'lang-dropdown': !rtlDir, 'lang-dropdown-ar': rtlDir}">
+              <div class="dropdown-item" (click)="translate('ar')">
+                <button value="ar"
+                  class="bg-transparent border-0 text-dark fw-bold px-2">العربية</button>
+              </div>
+              <!-- [ngClass]="rtlDir?'d-none' : 'd-block'" -->
+              <li><hr class="dropdown-divider"></li>
+              <div class="dropdown-item" (click)="translate('en')">
+                <button value="en"
+                  class="bg-transparent border-0 text-dark fw-bold px-2">English</button>
+              </div>
+              <!-- <li><a class="dropdown-item" href="#">Action</a></li>
+              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li> -->
+            </ul>
           </div>
-          <ul class="dropdown-menu text-center">
-            <div class="dropdown-item" (click)="translate('ar')">
-              <button value="ar"
-                class="bg-transparent border-0 text-dark fw-bold px-2">العربية</button>
-            </div>
-            <!-- [ngClass]="rtlDir?'d-none' : 'd-block'" -->
-            <li><hr class="dropdown-divider"></li>
-            <div class="dropdown-item" (click)="translate('en')">
-              <button value="en"
-                class="bg-transparent border-0 text-dark fw-bold px-2">English</button>
-            </div>
-            <!-- <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li> -->
-          </ul>
           <!-- <div class="d-inline">
             <button [ngClass]="rtlDir?'d-none' : 'd-inline'" value="ar" (click)="translate('ar')"
               class="bg-transparent border-0 text-dark fw-bold px-2">العربية<i
@@ -82,10 +84,24 @@
               class="bg-transparent border-0 text-dark fw-bold px-2">EN<i class="ps-2 fa-solid fa-globe"></i></button>
           </div> -->
           <span >|</span>
-          <a class="text-decoration-none text-white fw-bold px-2">
-            <span class="mx-1">{{'navbar.Egypt' | translate}}</span>
-            <img class="rounded-circle mb-1" src="../../../assets/images/navbar-footer/egypt.png" width="20px"
-              height="20px"></a>
+          <div class="dropdown d-inline ">
+            <a class="text-decoration-none text-white fw-bold px-2 dropdown-toggle">
+              <i class="fa-solid fa-caret-down"></i>
+              <span class="mx-1">{{'navbar.Egypt' | translate}}</span>
+              <img class="rounded-circle mb-1" src="../../../assets/images/navbar-footer/egypt.png" width="20px"
+                height="20px">
+
+              </a>
+                <ul class="dropdown-menu text-center " [ngClass]="{'tanant-dropdown': !rtlDir, 'tanant-dropdown-ar': rtlDir}">
+                  <li (click)="getCountry('medibookidashbord.test')"><a class="dropdown-item" href="">UAE</a></li>
+                  <li *ngFor="let tenant of allTenants" (click)="getCountry(tenant.domain)"><a class="dropdown-item" href="">{{tenant.name | titlecase }}</a></li>
+                  <!-- <li><a class="dropdown-item" href="#">Action</a></li>
+                  <li><a class="dropdown-item" href="#">Another action</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="#">Something else here</a></li> -->
+                </ul>
+          </div>
+
               <span [ngClass]="{'d-none': !is_login}">|</span>
               <div class="d-inline mx-2 " *ngIf="is_login">
                   <button routerLink="/cart" class="bg-transparent border-0 text-white fw-bold px-2 dropdown-toggle cart-btn-icon">
@@ -107,7 +123,7 @@
                             <P class="m-0 cart-medicine-qty" [ngClass]="rtlDir?'text-start':'text-end'"><span class="text-secondary"><span>{{medicine.qty}}</span> <i class="fa-solid fa-xmark mx-1"></i> </span> <span class="text-danger">{{medicine.price}}{{'SharedData.Currency' | translate}}</span></P>
                           </div>
                         </div>
-                        
+
 
                         <div>
                           <i  (click)="removeCart(medicine.id)" class="fa-solid fa-xmark"></i>
@@ -124,7 +140,7 @@
                     </div>
                   </div>
 
-                  
+
           </div>
 
         </span>

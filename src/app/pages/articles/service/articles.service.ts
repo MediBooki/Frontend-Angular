@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, throwError } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +9,7 @@ import { Observable, catchError, throwError } from 'rxjs';
 export class ArticlesService {
 
   // sharedApi: string = "http://127.0.0.1:8000/api";
-  sharedApi: string = "http://medibookidashbord.test/api";
+  sharedApi: string = environment.apimain;
 
   constructor(private _HttpClient: HttpClient) { }
 

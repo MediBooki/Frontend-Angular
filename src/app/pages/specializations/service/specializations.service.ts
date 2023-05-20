@@ -1,12 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, Observable, throwError } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SpecializationService {
-  _sharedApi: string = "http://medibookidashbord.test/api";
+  _sharedApi: string = environment.apimain;
   // _sharedApi: string = "http://127.0.0.1:8000/api";
 
   constructor(private _HttpClient: HttpClient) { }

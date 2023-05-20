@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, catchError, throwError } from 'rxjs';
 import { Section } from 'src/app/core/interfaces/section';
 import { Appointments } from 'src/app/core/interfaces/appointments';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ import { Appointments } from 'src/app/core/interfaces/appointments';
 export class DoctorRegisterService {
 
   // sharedApi: string = "http://127.0.0.1:8000/api";
-  sharedApi: string = "http://medibookidashbord.test/api";
+  sharedApi: string = environment.apimain;
   //header config
   joinUsHeaders = new HttpHeaders().set('Accept', 'application/json');
   authAcceptHeaders = new HttpHeaders({

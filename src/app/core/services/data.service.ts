@@ -1,19 +1,18 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, catchError, Observable, throwError } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
-
+  sharedApi = environment.apimain
   defaultNoImg:string = "../../../assets/images/No_Image_Available.png"
   curruntService = new BehaviorSubject("details")
-
   userPhoto= new BehaviorSubject('../../../assets/images/user_male.jpeg')
   firstSectionHeight: any = 0; // variable to know first component section height to show scrollToTop Btn
   _lang = new BehaviorSubject(this.getLocalLang());
-  sharedApi: string = "http://medibookidashbord.test/api";
   isPageLoaded = new BehaviorSubject(false);
   idReview = new BehaviorSubject<number>(0);
   is_login = new BehaviorSubject(localStorage.getItem('token')!=null);
@@ -46,6 +45,13 @@ export class DataService {
 
   gethospitalDetails(): Observable<any> {
     return this._HttpClient.get<any[]>(`${this.sharedApi}/settings`).pipe(catchError((e: any) => {
+      console.log(e)
+      return throwError(e)
+    }));
+  }
+
+  getAllTenants(): Observable<any> {
+    return this._HttpClient.get<any[]>(`http://medibookidashbord.test/api/tenants`).pipe(catchError((e: any) => {
       console.log(e)
       return throwError(e)
     }));

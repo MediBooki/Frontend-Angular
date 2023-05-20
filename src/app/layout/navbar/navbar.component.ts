@@ -1,8 +1,10 @@
 import { Component, OnInit, HostListener, ViewChild, ElementRef } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core'
+import { Subscription } from 'rxjs';
 import { DataService } from 'src/app/core/services/data.service';
 import { AuthService } from 'src/app/pages/Auth/services/auth.service';
 import { CartService } from 'src/app/pages/cart/service/cart.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-navbar',
@@ -25,7 +27,9 @@ export class NavbarComponent implements OnInit {
       this.is_login = res
     });
   userPhoto?:string= "../../../assets/images/user_male.jpeg" ;
-
+  allTenants: any[] = [];
+  tenantsSubscription = new Subscription();
+  diagnosisAPIres: any;
 
 
   constructor(private _DataService: DataService, private _CartService: CartService, private _TranslateService: TranslateService, private _AuthService: AuthService) { }
@@ -33,11 +37,12 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {
     this.getLang();
     this._TranslateService.use(this.lang);
+    this.getAllTanant();
     this.getCartQty();
     this._DataService.userPhoto.subscribe(res => {
       this.userPhoto = res
     });
-
+    this.setMainCountry();
   }
 
   getLang() {
@@ -85,7 +90,7 @@ export class NavbarComponent implements OnInit {
             this.direction = 'ltr';
           } else {
             this.rtlDir = true;
-            this.direction = 'rtl'; 
+            this.direction = 'rtl';
           }
       this._CartService.getAllPurchasedMedicines(lang).subscribe({
         next: (medicinesPurchased) => { // to calculate quantity for first time (when refreshing)
@@ -171,7 +176,7 @@ export class NavbarComponent implements OnInit {
       error:(error)=>{
       }
     })
-    
+
   }
 
 
@@ -181,6 +186,22 @@ export class NavbarComponent implements OnInit {
     this.isVisibleCartArrow = isVisibleCartArrow;
   }
 
+  getAllTanant() {
+    this.tenantsSubscription =this._DataService.getAllTenants().subscribe({
+      next:(tenants)=>{
+        this.allTenants = tenants.data
+        environment.tenants = tenants.data;
+      }
+    })
+  }
+
+  setMainCountry() {
+
+  }
+
+  getCountry(domain:string) {
+    localStorage.setItem('tenant',`http://${domain}/api`);
+  }
 
 
 }

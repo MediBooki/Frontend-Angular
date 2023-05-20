@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable, catchError, throwError } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class PatientProfileService {
 
   // variables
   // sharedApi: string = "http://127.0.0.1:8000/api";
-  sharedApi: string = "http://medibookidashbord.test/api";
+  sharedApi: string = environment.apimain;
   authAcceptHeaders = new HttpHeaders({
     'Accept': 'application/json',
     authorization : `${localStorage.getItem('token')}`

@@ -3,12 +3,13 @@ import { Injectable } from '@angular/core';
 // import { MedicinePurchased } from '../../interfaces/medicine-purchased';
 import { MedicinePurchased } from 'src/app/core/interfaces/medicine-purchased';
 import { BehaviorSubject, catchError, Observable, throwError } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
-  sharedApi: string = "http://medibookidashbord.test/api";
+  sharedApi: string = environment.apimain;
   medicinesQty = new BehaviorSubject(0);
   favoritesId = new BehaviorSubject<number[]>([]); // medicines IDs added to favorite
 
@@ -52,7 +53,7 @@ export class CartService {
     headers = this.createAuthorizationHeader(headers);
     return this.http.get(this.sharedApi + `/patient/delete/items/cart` , {headers: headers})
   }
-  
+
   getTotalQty() {
     this.calculateTotalQty();
     return this.medicinesQty.value;

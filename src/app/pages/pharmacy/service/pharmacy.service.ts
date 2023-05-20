@@ -3,13 +3,14 @@ import { Injectable } from '@angular/core';
 import { Observable, catchError, throwError } from 'rxjs';
 import { Medicine } from 'src/app/core/interfaces/medicine';
 import { MedicineCategory } from 'src/app/core/interfaces/medicine-category';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PharmacyService {
 
-  sharedApi: string = "http://medibookidashbord.test/api";
+  sharedApi: string = environment.apimain;
 
   constructor(private _HttpClient: HttpClient) { }
 

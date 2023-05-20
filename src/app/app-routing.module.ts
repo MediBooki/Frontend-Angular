@@ -19,6 +19,7 @@ import { OneArticleComponent } from './pages/articles/component/article-details/
 import { ContactUsComponent } from './pages/contact-us/component/contact-us/contact-us.component';
 import { SpecializeDetailsComponent } from './pages/specializations/component/specialize-details/specialize-details.component';
 import { AuthGuard } from './core/guards/auth.guard';
+import { OrderDetailsComponent } from './pages/patient-profile/component/order-details/order-details.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -32,12 +33,13 @@ const routes: Routes = [
   { path: 'appointments/:id', component: AppointmentsComponent },
   { path: 'review/:id', component: ReviewComponent,canActivateChild:[AuthGuard] },
   { path: 'cart',
-   canActivateChild:[AuthGuard], 
+   canActivateChild:[AuthGuard],
    children: [
     { path: '', component: CartComponent},
     { path: 'checkout', component: CheckoutComponent}
   ]},
   { path: 'my-profile', component: PatientProfileComponent,canActivate:[AuthGuard]  },
+  { path: 'order/:id', component:OrderDetailsComponent, canActivate:[AuthGuard]},
   {
     path: 'pharmacy', children: [
       { path: '', component: PharmacyComponent },
