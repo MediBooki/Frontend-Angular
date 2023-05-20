@@ -34,8 +34,8 @@
               <h5 class="text-light pt-md-4 pt-lg-0">{{'footer.needHelp' | translate}}</h5>
               <ul class="list-unstyled">
                 <li><a class="text-decoration-none text-white footer-link-hover" routerLink="/contactus">{{'footer.needHelp1' | translate}}</a></li>
-                <li><a class="text-decoration-none text-white footer-link-hover" href="#">{{'footer.needHelp2' | translate}}</a></li>
-                <li><a class="text-decoration-none text-white footer-link-hover" href="#">{{'footer.needHelp3' | translate}}</a></li>
+                <li><a class="text-decoration-none text-white footer-link-hover" data-bs-toggle="modal" data-bs-target="#exampleModalScrollable">{{'footer.needHelp2' | translate}}</a></li>
+                <!-- <li><a class="text-decoration-none text-white footer-link-hover" href="#">{{'footer.needHe`lp3' | translate}}</a></li> -->
                 <li><a class="text-decoration-none text-white footer-link-hover" href="#">{{'footer.needHelp4' | translate}}</a></li>
               </ul>
             </div>
@@ -67,4 +67,24 @@
       </div>
     </footer>
 
+</div>
+<!-- Terms and Conditions Modal -->
+<div class="modal fade mx-3" id="exampleModalScrollable" tabindex="-1" aria-labelledby="exampleModalScrollableTitle"
+aria-hidden="true" [dir]=" 'dir' | translate " [lang]="lang">
+<div class="modal-dialog modal-dialog-scrollable">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="exampleModalScrollableTitle">Terms & Conditions</h5>
+    </div>
+    <div class="modal-body">
+        <div class="terms-conditions-item my-3" *ngFor="let termsCondition of termsConditions">
+          <h3 class="mb-2 text-decoration-underline fw-bold">{{termsCondition.title}}:</h3>
+          <p class="text-muted terms-description">{{termsCondition.description}}</p>
+        </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+    </div>
+  </div>
+</div>
 </div>

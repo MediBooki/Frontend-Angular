@@ -1,10 +1,7 @@
 @import '../../../../../styles.scss';
 
 
-.spinner {
-  z-index: 98;
-  background-color: rgba(255, 255, 255, 0.8);
-}
+
 
 .medicine-details-section {
     background-color: $lightGreyColor;
@@ -72,9 +69,11 @@
           }
 
           .cart-btn {
-            padding: 10px 20px;
-            border-radius: 30px;
+            // padding: 10px 20px;
+            // border-radius: 30px;
             background-color: $mainColor6 ;
+            font-size: 1.2rem;
+            padding: 10px 25px;
             color: white;
             &:hover{
                 background-color: $mainColor;
@@ -87,22 +86,24 @@
               transition: all .2s ease-in-out;
 
               &.btn-active {
-                background-color: red;
-                border: none;
-                color: white;
+                // background-color: red;
+                // border: none;
+
+                color: rgb(198, 2, 2);
               }
 
               &.btn-not-active {
-                background-color: white;
-                border: 1px solid red;
-                color: red;
+                // background-color: white;
+                // border: 1px solid red;
+                // color: red;
+                color: #636363;
               }
 
               .favorite-icon {
                 transition: all .2s ease-in-out;
                 cursor: pointer;
                 padding: 5px;
-                border-radius: 50%;
+                // border-radius: 50%;
                 pointer-events: none;
                 // width: 40px;
                 // height: 40px;
@@ -112,11 +113,21 @@
 
                 &.favorite-container-active {
                   // background-color: rgba(255, 0, 0, 0.8);
-                  color: white;
+                  // color: white;
+                  color: rgb(198, 2, 2);
                 }
             
                 &.favorite-container-not-active {
-                  color: red;
+                  // color: red;
+                  color: #636363;
+                }
+
+                &:hover {
+                  
+                  &.btn-not-active {
+                    color: #999 !important;
+                  }
+
                 }
               }
     
@@ -190,12 +201,6 @@ align-items: center;
     }
   }
 }
-
-
-
-
-
-
 
 
 

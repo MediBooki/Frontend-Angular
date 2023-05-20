@@ -1,10 +1,6 @@
 @import '../../../../../styles.scss';
 
 
-.spinner {
-    z-index: 98;
-    background-color: rgba(255, 255, 255, 0.8);
-}
 
 .cart-section {
 
@@ -169,8 +165,12 @@
 }
   
 
-.remove-icon {
+.remove-icon-english {
     margin-right: 1rem;
+}
+
+.remove-icon-arabic {
+    margin-left: 1rem;
 }
 
 
@@ -180,38 +180,6 @@
         margin-left: 0.7rem !important;
     }
 }
-
-
-.spinner {
-    width: 30px;
-    height: 30px;
-    // margin: 10px auto;
-    background-color: #2A7687;
-  
-    border-radius: 100%;  
-    -webkit-animation: sk-scaleout 1.0s infinite ease-in-out;
-    animation: sk-scaleout 1.0s infinite ease-in-out;
-  }
-  
-  @-webkit-keyframes sk-scaleout {
-    0% { -webkit-transform: scale(0) }
-    100% {
-      -webkit-transform: scale(1.0);
-      opacity: 0;
-    }
-  }
-  
-  @keyframes sk-scaleout {
-    0% { 
-      -webkit-transform: scale(0);
-      transform: scale(0);
-    } 100% {
-      -webkit-transform: scale(1.0);
-      transform: scale(1.0);
-      opacity: 0;
-    }
-  }
-
 
 
 

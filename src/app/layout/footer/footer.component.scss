@@ -6,6 +6,7 @@
   
   .footer-link-hover:hover {
     text-decoration: underline!important;
+    cursor: pointer;
   }
   
   .w-fit {
@@ -20,4 +21,6 @@
     height: fit-content;
   }
 
-  
+  .terms-description {
+    white-space: pre-line;
+  }

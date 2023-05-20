@@ -42,7 +42,7 @@ export class MedicineDetailsComponent implements OnInit {
 
 
   // Other Variables
-  medicineQuantity:number = 0;
+  // medicineQuantity:number = 0;
   // purchasedFound?:MedicinePurchased;
   favoriteAdded:boolean = false;
   isVisibleSpinner:boolean = false;
@@ -95,9 +95,9 @@ export class MedicineDetailsComponent implements OnInit {
     // Promise.resolve().then(()=>this._DataService.isPageLoaded.next(false));
     // Promise.resolve().then(() => this._AuthService.isLogedIn.next(true));
     this.getLang();
-    
-    this.getMedicineQuantity();
-    this.listenTotalQty();
+    this.isDisableBtn = false;
+    // this.getMedicineQuantity();
+    // this.listenTotalQty();
     // this.setFavorite();
     console.log(this.medicineId);
     
@@ -298,21 +298,40 @@ export class MedicineDetailsComponent implements OnInit {
   //   }
   // }
 
+  isDisableBtn:boolean = false;
+  isVisibleAddSpinner:boolean = false;
+
   addCart(medicineId:number) {
+
     if (localStorage.getItem("token") == null) {
       this.toastr.info(!this.rtlDir?`You Should Login First!`:`يجب أن تسجل الدخول أولا!`)
     } else {
-      console.log(this.medicineQuantity)
-      if(this.medicineQuantity<5) {
-        this.isVisibleSpinner = true;
+            // console.log(this.medicineQuantity)
+      // if(this.medicineQuantity<5) {
+        // this.isVisibleSpinner = true;
+        this.isVisibleAddSpinner = true;
         this._CartService.addCart(medicineId).subscribe({
           next:(message)=>{
-            console.log(message)
-            this.getMedicineQuantity();
-            setTimeout(() => {
-              this.isVisibleSpinner = false;
-              this.toastr.success(!this.rtlDir?`This Medicine Added to Cart`:`تم اضافة الدواء الى عربة الشراء`, !this.rtlDir?`Cart Result`:`ناتج عربة الشراء`)
-            }, 700);
+            if(message.success == true) {
+              console.log(message)
+              // this.getMedicineQuantity();
+              this._CartService.calculateTotalQty();
+  
+              setTimeout(() => {
+                // this.isVisibleSpinner = false;
+                this.isVisibleAddSpinner = false;
+
+                this.toastr.success(!this.rtlDir?`This Medicine Added to Cart`:`تم اضافة الدواء الى عربة الشراء`, !this.rtlDir?`Cart Result`:`ناتج عربة الشراء`)
+              }, 700);
+            } else {
+              this.isDisableBtn = true;
+              setTimeout(() => {
+                // this.isVisibleSpinner = false;
+                this.isVisibleAddSpinner = false;
+                this.toastr.info(!this.rtlDir?`You have reached the Max amount of this medicine`:`لقد وصلت إلى الحد الأقصى المسموح لهذا الدواء`)
+              }, 700);
+            }
+            
           },
           error:(error)=>{
             this.toastr.error(this.rtlDir?`An Error has occured`:`حدث خطأ ما` , `${error}`)
@@ -321,35 +340,35 @@ export class MedicineDetailsComponent implements OnInit {
         // this._CartService.calculateTotalQty();
         // this._CartService.medicinesPurchasedSetter = {medicine:this.medicineDetails , quantity:this.amount};
         // console.log(this.medicineQuantity)
-      }
+      // }
     }
     
 
   }
 
-  getMedicineQuantity() {
-    if (localStorage.getItem("token") != null) {
-      this._CartService.getAllPurchasedMedicines(this.lang).subscribe({
-        next:(medicines)=>{
-          if(typeof(medicines.data)!='string' && (typeof(medicines.data)=='object' && medicines.data.length!=0) && medicines.data.user_cart_items != 0) {
-            console.log(medicines.data.user_cart_items)
-            let medicineQuantityFound = medicines.data.user_cart_items.find((medicine:any)=>medicine.id == this.medicineDetails.id);
-            console.log(medicineQuantityFound)
-            if(medicineQuantityFound != null) {
-              this.medicineQuantity = medicineQuantityFound.qty
-            }
-          }
-          // else {
-          //   this.medicineQuantity = 0;
-          //   console.log("whhhhhhhhhhhhhhhy")
-          // }
-        } , error:(error)=>{
-          console.log(error)
-        }
-      })
-    }
-    this._CartService.calculateTotalQty();
-  }
+  // getMedicineQuantity() {
+  //   if (localStorage.getItem("token") != null) {
+  //     this._CartService.getAllPurchasedMedicines(this.lang).subscribe({
+  //       next:(medicines)=>{
+  //         if(typeof(medicines.data)!='string' && (typeof(medicines.data)=='object' && medicines.data.length!=0) && medicines.data.user_cart_items != 0) {
+  //           console.log(medicines.data.user_cart_items)
+  //           let medicineQuantityFound = medicines.data.user_cart_items.find((medicine:any)=>medicine.id == this.medicineDetails.id);
+  //           console.log(medicineQuantityFound)
+  //           if(medicineQuantityFound != null) {
+  //             this.medicineQuantity = medicineQuantityFound.qty
+  //           }
+  //         }
+  //         // else {
+  //         //   this.medicineQuantity = 0;
+  //         //   console.log("whhhhhhhhhhhhhhhy")
+  //         // }
+  //       } , error:(error)=>{
+  //         console.log(error)
+  //       }
+  //     })
+  //   }
+  //   this._CartService.calculateTotalQty();
+  // }
 
 
 
@@ -443,32 +462,32 @@ export class MedicineDetailsComponent implements OnInit {
 
 
 
-  listenTotalQty() {
-    if (localStorage.getItem("token") != null) {
-      this._CartService.medicinesQty.subscribe((qty) => { // to calculate quantity each time it changes
-        this.isVisibleSpinner = true
+  // listenTotalQty() {
+  //   if (localStorage.getItem("token") != null) {
+  //     this._CartService.medicinesQty.subscribe((qty) => { // to calculate quantity each time it changes
+  //       this.isVisibleSpinner = true
   
-        this._CartService.getAllPurchasedMedicines(this.lang).subscribe({
-          next:(medicines)=>{
-            if(typeof(medicines.data)!='string' && (typeof(medicines.data)=='object' && medicines.data.length!=0) && medicines.data.user_cart_items != 0) {
-              console.log(medicines.data.user_cart_items)
-              let medicineQuantityFound = medicines.data.user_cart_items.find((medicine:any)=>medicine.id == this.medicineDetails.id);
-              console.log(medicineQuantityFound)
-              if(medicineQuantityFound == null || qty == 0) {
-                this.medicineQuantity = 0;
-              } else {
-                this.medicineQuantity = medicineQuantityFound.qty
-              }
-            } else {
-              this.medicineQuantity = 0;
-            }
-            this.isVisibleSpinner = false
-          }
-        })
-      });
-    }
+  //       this._CartService.getAllPurchasedMedicines(this.lang).subscribe({
+  //         next:(medicines)=>{
+  //           if(typeof(medicines.data)!='string' && (typeof(medicines.data)=='object' && medicines.data.length!=0) && medicines.data.user_cart_items != 0) {
+  //             console.log(medicines.data.user_cart_items)
+  //             let medicineQuantityFound = medicines.data.user_cart_items.find((medicine:any)=>medicine.id == this.medicineDetails.id);
+  //             console.log(medicineQuantityFound)
+  //             if(medicineQuantityFound == null || qty == 0) {
+  //               this.medicineQuantity = 0;
+  //             } else {
+  //               this.medicineQuantity = medicineQuantityFound.qty
+  //             }
+  //           } else {
+  //             this.medicineQuantity = 0;
+  //           }
+  //           this.isVisibleSpinner = false
+  //         }
+  //       })
+  //     });
+  //   }
     
-  }
+  // }
     /*=============================================( Destroying Method )=============================================*/
 
     ngOnDestroy() {

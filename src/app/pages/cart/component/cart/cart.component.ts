@@ -124,7 +124,6 @@ export class CartComponent implements OnInit {
   //----- Method 3
   // decrease medicine amount
   removeCart(medicineId:number) {
-    if(!this.isVisibleAddRemoveSpinner) {
       // this.isVisibleSpinner = true;
       this.selectedDeleteMedicine = medicineId;
       this.isVisibleDeleteSpinner = true;
@@ -146,7 +145,7 @@ export class CartComponent implements OnInit {
             this.selectedDeleteMedicine = 0;
         }
       })
-    }
+    
     
     
   }

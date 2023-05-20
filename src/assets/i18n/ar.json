@@ -97,8 +97,7 @@
     "SearchBy3": "الأطباء",
     "needHelp": "تحتاج مساعدة؟",
     "needHelp1": "تواصل معنا",
-    "needHelp2": "شروط الاستخدام",
-    "needHelp3": "سياسة الخصوصية",
+    "needHelp2": "الشروط والأحكام",
     "needHelp4": "سياسة الخصوصية للأطباء",
     "findUs": "تجدنا",
     "findUs1": "عنا",
@@ -406,7 +405,11 @@
       "paymentMethod" : "وسيلة الدفع",
       "delivery" : "الدفع عند التوصيل",
       "online" : "الدفع بمحفظة الكترونية",
-      "submitBtn" : "اطلب الأن"
+      "submitBtn" : "اطلب الأن",
+      "ConfirmationTitle" : "تأكيد الدفع",
+      "ConfirmationDescription" : "سيتم تقديم طلبك, هل تريد تأكيد الطلبية بوسيلة الدفع هذه؟",
+      "ConfirmBtn" : "تأكيد",
+      "CancelBtn" : "رجوع"
     },
     "Placeholders" : {
       "Email" : "ادخل بريد الكترونى",

@@ -199,23 +199,7 @@
                           <button [disabled]="noData || checkoutForm.invalid" type="button" class="btn w-100 fw-bold" data-bs-toggle="modal" data-bs-target="#exampleModal">{{'CheckOutPage.Voucher.submitBtn' | translate}}</button>
                         </div>
 
-                        <!-- Modal -->
-                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                          <div class="modal-dialog d-flex justify-content-center">
-                            <div class="modal-content">
-                              <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="exampleModalLabel">Payment Confirmation</h1>
-                              </div>
-                              <div class="modal-body">
-                                Your Order will be placed and Payment method will be {{paymentMethod}}
-                              </div>
-                              <div class="modal-footer d-flex justify-content-between flex-nowrap">
-                                <button type="button" class="btn cancel-btn btn-outline-secondary rounded-pill px-5 py-2" data-bs-dismiss="modal">Cancel</button>
-                                <button type="submit" class="btn btn-outline-info confirm-btn text-white rounded-pill px-5 py-2" data-bs-dismiss="modal">Confirm</button>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
+                        
 
                     </div>
                     
@@ -227,4 +211,19 @@
             
         </div>
     </section>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" [dir]=" 'dir' | translate " [lang]="lang">
+  <div class="modal-dialog d-flex justify-content-center">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">{{'CheckOutPage.Voucher.ConfirmationTitle' | translate}}</h1>
+      </div>
+      <div class="modal-body">{{'CheckOutPage.Voucher.ConfirmationDescription' | translate}}</div>
+      <div class="modal-footer d-flex justify-content-between flex-nowrap">
+        <button type="button" class="btn cancel-btn btn-outline-secondary rounded-pill px-5 py-2" data-bs-dismiss="modal">{{'CheckOutPage.Voucher.CancelBtn' | translate}}</button>
+        <button type="submit" class="btn btn-outline-info confirm-btn text-white rounded-pill px-5 py-2" data-bs-dismiss="modal">{{'CheckOutPage.Voucher.ConfirmBtn' | translate}}</button>
+      </div>
+    </div>
+  </div>
 </div>

@@ -164,20 +164,30 @@ export class NavbarComponent implements OnInit {
   // }
 
 
+  isVisibleDeleteSpinner:boolean = false;
+  selectedDeleteMedicine:number = 0;
+
   //----- Method 3
   // decrease medicine amount
   removeCart(medicineId:number) {
+    this.selectedDeleteMedicine = medicineId;
+    this.isVisibleDeleteSpinner = true;
     this._CartService.removeCart(medicineId).subscribe({
       next:(message)=>{
         console.log(message)
         this.getCartQty();
         this._CartService.calculateTotalQty()
+        this.isVisibleDeleteSpinner = false;
+        this.selectedDeleteMedicine = 0;
       },
       error:(error)=>{
+        this.isVisibleDeleteSpinner = false;
+        this.selectedDeleteMedicine = 0;
       }
     })
-
+    
   }
+
 
 
 

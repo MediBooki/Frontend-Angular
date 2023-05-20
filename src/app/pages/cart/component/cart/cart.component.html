@@ -37,7 +37,7 @@
                     <tbody>
                         <tr *ngFor="let medicine of allMedicinesPurchased">
                             <th>
-                                <i (click)="removeCart(medicine.id)" class="fa-solid fa-xmark fs-4 text-danger remove-icon" *ngIf="selectedDeleteMedicine!=medicine.id"></i>
+                                <i (click)="removeCart(medicine.id)" class="fa-solid fa-xmark fs-4 text-danger remove-icon" [ngClass]="rtlDir? 'remove-icon-arabic' : 'remove-icon-english'" *ngIf="selectedDeleteMedicine!=medicine.id"></i>
                                 <div class="spinner" *ngIf="isVisibleDeleteSpinner && selectedDeleteMedicine==medicine.id"></div>
                             </th>
                             <td class="text-center product-img">
@@ -86,7 +86,7 @@
                             <div class="col-4 product-img-details position-relative">
                                 <img [src]="medicine.photo || defaultMedicineImg" class="img-fluid h-100 rounded-start shadow default-img" alt="...">
                                 <div class="delete-product"  [ngClass]="rtlDir? 'delete-product-arabic' : 'delete-product-english'">
-                                    <i (click)="removeCart(medicine.id)" class="fa-solid fa-xmark fs-4 text-danger" *ngIf="!isVisibleDeleteSpinner && selectedDeleteMedicine!=medicine.id"></i>
+                                    <i (click)="removeCart(medicine.id)" class="fa-solid fa-xmark fs-4 text-danger" *ngIf="selectedDeleteMedicine!=medicine.id"></i>
                                     <div class="spinner" *ngIf="isVisibleDeleteSpinner && selectedDeleteMedicine==medicine.id"></div>
                                 </div>
                                 <a [routerLink]="['/pharmacy/medicineDetails' , medicine.id]"></a>
@@ -100,7 +100,7 @@
                                     <div class="quantity-counter ms-2">
                                         <button class="btn btn-minus py-2" [disabled]="medicine.qty<=1" (click)="decrease(medicine.id , medicine.qty)">-</button> <!-- || isVisibleAddRemoveSpinner -->
                                         <div class="d-flex justify-content-center align-items-center">
-                                            <span class="fw-light fs-6 mx-2" *ngIf="!isVisibleAddRemoveSpinner && selectedAddRemoveMedicine!=medicine.id">{{medicine.qty}}</span>
+                                            <span class="fw-light fs-6 mx-2" *ngIf="selectedAddRemoveMedicine!=medicine.id">{{medicine.qty}}</span>
                                             <div class="spinner" *ngIf="isVisibleAddRemoveSpinner && selectedAddRemoveMedicine==medicine.id"></div>
                                         </div>
                                         <!-- <span class="fw-light fs-6 mx-1">{{medicine.qty}}</span> -->

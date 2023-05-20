@@ -97,8 +97,7 @@
     "SearchBy3": "Doctors",
     "needHelp": "Need Help?",
     "needHelp1": "Contact Us",
-    "needHelp2": "Terms Of Use",
-    "needHelp3": "Privacy Policy",
+    "needHelp2": "Terms & Conditions",
     "needHelp4": "Doctors Privacy Policy",
     "findUs": "Find Us",
     "findUs1": "About Us",
@@ -411,7 +410,11 @@
       "paymentMethod" : "Payment Method",
       "delivery" : "Cash on Delivery",
       "online" : "Online (electronic wallet)",
-      "submitBtn" : "Place Order"
+      "submitBtn" : "Place Order",
+      "ConfirmationTitle" : "Payment Confirmation",
+      "ConfirmationDescription" : "Your Order will be placed, Do you want to confirm the order with this payment method?",
+      "ConfirmBtn" : "Confirm",
+      "CancelBtn" : "Cancel"
     },
     "Placeholders" : {
       "Email" : "Write an Email Address",
