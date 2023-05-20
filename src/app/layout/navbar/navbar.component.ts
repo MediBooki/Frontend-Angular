@@ -13,7 +13,6 @@ export class NavbarComponent implements OnInit {
 
   cartQty: number = 0;
   medicinesPurchased:any;
-  islog: boolean = true;
   lang:string = "en";
   rtlDir:boolean = false;
   direction:string = 'ltr' ;
@@ -35,11 +34,6 @@ export class NavbarComponent implements OnInit {
     this.getLang();
     this._TranslateService.use(this.lang);
     this.getCartQty();
-    this._AuthService.isLogedIn.subscribe(
-      res=>{
-        this.islog = res
-      }
-    )
     this._DataService.userPhoto.subscribe(res => {
       this.userPhoto = res
     });

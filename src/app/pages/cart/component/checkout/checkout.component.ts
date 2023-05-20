@@ -56,18 +56,18 @@ export class CheckoutComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    Promise.resolve().then(()=>this._DataService.isPageLoaded.next(false));
-    Promise.resolve().then(() => this._AuthService.isLogedIn.next(true));
+    // Promise.resolve().then(()=>this._DataService.isPageLoaded.next(false));
+    // Promise.resolve().then(() => this._AuthService.isLogedIn.next(true));
     this.getPurchasedMedicines();
   }
 
 
-    // when view load completely
-    ngAfterViewInit() {
-      setTimeout(() => {
-        Promise.resolve().then(()=>this._DataService.isPageLoaded.next(true))
-      }, 0);
-    }
+    // // when view load completely
+    // ngAfterViewInit() {
+    //   setTimeout(() => {
+    //     Promise.resolve().then(()=>this._DataService.isPageLoaded.next(true))
+    //   }, 0);
+    // }
 
 
 

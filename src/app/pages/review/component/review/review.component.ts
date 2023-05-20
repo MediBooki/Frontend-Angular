@@ -154,8 +154,8 @@ export class ReviewComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    Promise.resolve().then(() => this._DataService.isPageLoaded.next(false));
-    Promise.resolve().then(() => this._AuthService.isLogedIn.next(true));
+    // Promise.resolve().then(() => this._DataService.isPageLoaded.next(false));
+    // Promise.resolve().then(() => this._AuthService.isLogedIn.next(true));
     this.getDoctorById();
     this.getLang();
     this.createReview();
@@ -166,12 +166,12 @@ export class ReviewComponent implements OnInit {
     this.getreviewPatient()
   }
 
-  // when view load completely
-  ngAfterViewInit() {
-    setTimeout(() => {
-      Promise.resolve().then(() => this._DataService.isPageLoaded.next(true))
-    }, 0);
-  }
+  // // when view load completely
+  // ngAfterViewInit() {
+  //   setTimeout(() => {
+  //     Promise.resolve().then(() => this._DataService.isPageLoaded.next(true))
+  //   }, 0);
+  // }
   /////////////////////////////////////////////
   getLang() {
     this._DataService._lang.subscribe({

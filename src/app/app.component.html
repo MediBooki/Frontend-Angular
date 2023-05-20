@@ -1,12 +1,14 @@
-<app-loading-screen *ngIf="!loaded"></app-loading-screen>
+<!-- <app-loading-screen *ngIf="!loaded"></app-loading-screen> -->
 
-<app-fixed-items></app-fixed-items>
-
-<app-navbar></app-navbar>
-<app-layout *ngIf="!login"></app-layout>
-<div [@routeAnimations]="prepareRoute(outlet)">
-  <router-outlet #outlet="outlet"></router-outlet>
-
+<div class=" position-relative min-vh-100">
+  
+  <app-fixed-items ></app-fixed-items>
+  
+  <app-navbar></app-navbar>
+  <div >
+    <router-outlet #outlet="outlet" class=""></router-outlet>
+  
+  </div>
+  
+  <app-footer  ></app-footer>
 </div>
-
-<app-footer *ngIf="login"></app-footer>

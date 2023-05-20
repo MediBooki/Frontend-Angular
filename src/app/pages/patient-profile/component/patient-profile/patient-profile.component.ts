@@ -25,8 +25,8 @@ export class PatientProfileComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.savePaymentOnline(); // to save payment details incase he place order and paid online
-    Promise.resolve().then(() => this._AuthService.isLogedIn.next(true));
-    Promise.resolve().then(() => this._DataService.isPageLoaded.next(false));
+    // Promise.resolve().then(() => this._AuthService.isLogedIn.next(true));
+    // Promise.resolve().then(() => this._DataService.isPageLoaded.next(false));
     this._DataService.curruntService.subscribe(
       res=>{ this.curruntService = res; }
     )
@@ -49,11 +49,11 @@ export class PatientProfileComponent implements OnInit, OnDestroy {
     this.setFavorite();
   }
   // when view load completely
-  ngAfterViewInit() {
-    setTimeout(() => {
-      Promise.resolve().then(()=>this._DataService.isPageLoaded.next(true))
-    },0);
-  }
+  // ngAfterViewInit() {
+  //   setTimeout(() => {
+  //     Promise.resolve().then(()=>this._DataService.isPageLoaded.next(true))
+  //   },0);
+  // }
 
   /*=============================================( Variables )=============================================*/
   lang:string = "en";

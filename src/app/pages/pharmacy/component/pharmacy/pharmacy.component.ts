@@ -86,8 +86,8 @@ export class PharmacyComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    Promise.resolve().then(()=>this._DataService.isPageLoaded.next(false));
-    Promise.resolve().then(() => this._AuthService.isLogedIn.next(true));
+    // Promise.resolve().then(()=>this._DataService.isPageLoaded.next(false));
+    // Promise.resolve().then(() => this._AuthService.isLogedIn.next(true));
     this.getFilteredForm(); // to set filter form and use localstorage
     this.getFilteredMedicines(); // get filtered medicines from API
     this.getCategories(); // get categories from API
@@ -96,12 +96,12 @@ export class PharmacyComponent implements OnInit {
     this.isVisibleSpinner = true;
   }
 
-   // when view load completely
-   ngAfterViewInit() {
-    setTimeout(() => {
-      Promise.resolve().then(()=>this._DataService.isPageLoaded.next(true))
-    }, 0);
-  }
+  //  // when view load completely
+  //  ngAfterViewInit() {
+  //   setTimeout(() => {
+  //     Promise.resolve().then(()=>this._DataService.isPageLoaded.next(true))
+  //   }, 0);
+  // }
 
 
   /*=============================================( Component Created Methods )=============================================*/

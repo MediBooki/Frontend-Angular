@@ -17,6 +17,7 @@ import { PatientProfileModule } from './pages/patient-profile/module/patient-pro
 import { ReviewModule } from './pages/review/module/review/review.module';
 import { SpecializationsModule } from './pages/specializations/module/specializations/specializations.module';
 import { HomeModule } from './pages/home/module/home/home.module';
+// import { RegisterHabdaComponent } from './pages/Auth/components/register-habda/register-habda.component';
 
 
 @NgModule({
@@ -24,6 +25,7 @@ import { HomeModule } from './pages/home/module/home/home.module';
     AppComponent,
     NotFoundComponent,
     ContactUsComponent,
+    // RegisterHabdaComponent,
 
   ],
   imports: [
@@ -48,5 +50,7 @@ import { HomeModule } from './pages/home/module/home/home.module';
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+// "node_modules/bootstrap/dist/css/bootstrap.rtl.min.css",
 
 

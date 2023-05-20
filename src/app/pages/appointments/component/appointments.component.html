@@ -1,6 +1,6 @@
 <app-spinner *ngIf="isVisibleSpinner"></app-spinner>
 
-<div class="appointment-component" [dir]=" 'dir' | translate " [lang]="lang">
+<div class="appointment-component animate" [dir]=" 'dir' | translate " [lang]="lang">
   <!-- =============================================================================================================== -->
   <!--  =======================================================( landing )======================================================= -->
 
@@ -22,7 +22,7 @@
     <div class="container">
       <div class="card docinfo mb-3">
         <div class="row g-0">
-          <div class="col-lg-3 col-md-5 col-11 text-center pt-3 position-relative image mb-3 ms-3 ms-sm-0 ">
+          <div class="col-lg-3 col-md-5 col-11 text-center pt-3  position-relative image mb-3 ms-3 ms-sm-0 ">
             <img [src]="doctor.photo || defaultDoctorImg" class="img-fluid rounded-4 px-sm-2 w-100 h-100 default-img" alt="...">
           </div>
           <div class="row justify-content-between col-lg-9 col-md-7">
@@ -140,12 +140,19 @@
                 <h4 class="col-lg-9 col-sm-6">{{'appointmentPage.Choose_Your_Date_Time'| translate}}</h4>
                 <div class=" col-lg-3 col-sm-6">
 
-                  <select class="form-select text-light w-auto mb-2 " aria-label="Default select example"
-                    (change)="onDaySelect($event)" [(ngModel)]="selectedDay">
-                    <option value=null selected> {{'appointmentPage.selectedDay'| translate}}</option>
-                    <option selected *ngFor="let appointment of doctor.appointments;" [value]="appointment.name">
+                  <select class="form-select text-light w-90 mb-2 day-select2 " 
+                    (change)="onDaySelect($event)">
+                    <option selected disabled></option>
+                    <!-- <option value=null selected> {{'appointmentPage.selectedDay'| translate}}</option> -->
+                    <option  *ngFor="let appointment of doctor.appointments;" [value]="appointment.name">
                       {{appointment.name}}</option>
                   </select>
+
+                  
+                  <!-- <select #doctors class="p-2 text-white doctors-main-select2" name="doctors">
+                    <option [selected]="selectedDoctor == ''" disabled ></option>
+                    <option *ngFor="let doctor of allDoctors" [value]="doctor.id" [selected]="selectedDoctor == doctor.id">{{doctor.name}}</option>
+                  </select> -->
                 </div>
               </div>
             </div>

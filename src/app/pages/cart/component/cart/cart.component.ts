@@ -35,18 +35,18 @@ export class CartComponent implements OnInit {
   constructor(private _DataService:DataService , private _AuthService:AuthService , private _CartService:CartService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
-    Promise.resolve().then(()=>this._DataService.isPageLoaded.next(false));
-    Promise.resolve().then(() => this._AuthService.isLogedIn.next(true));
+    // Promise.resolve().then(()=>this._DataService.isPageLoaded.next(false));
+    // Promise.resolve().then(() => this._AuthService.isLogedIn.next(true));
     this.getPurchasedMedicines();
     this.listenTotalQty();
   }
 
   // when view load completely
-  ngAfterViewInit() {
-    setTimeout(() => {
-      Promise.resolve().then(()=>this._DataService.isPageLoaded.next(true))
-    }, 0);
-  }
+  // ngAfterViewInit() {
+  //   setTimeout(() => {
+  //     Promise.resolve().then(()=>this._DataService.isPageLoaded.next(true))
+  //   }, 0);
+  // }
 
 
   /*=============================================( Component Created Methods )=============================================*/

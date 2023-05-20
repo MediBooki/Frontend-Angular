@@ -26,22 +26,27 @@ function slideTo(direction: string) {
   return [
     query(':enter, :leave', [
       style({
-        position: 'absolute',
-        top: 0,
-        [direction]: 0,
-        width: '100%'
+        position: 'fixed',
+        // top: 0,
+        // [direction]: 0,
+        top: '50%',
+        left: '50%',
+        transform: 'translate(50%, 50%) scale(0.8)',
+        // width: '100%',
+        opacity: 0
       })
     ], optional),
     query(':enter', [
-      style({ [direction]: '-100%' })
-    ]),
+      
+      animate('100ms', style({ opacity: 1, transform: ' scale(1)' }))
+    ],optional),
     group([
       query(':leave', [
-        animate('2.3s ease', style({ [direction]: '100%' }))
+        animate('100ms', style({ opacity: 0, transform: ' scale(0.8)' }))
       ], optional),
       query(':enter', [
-        animate('2.3s ease', style({ [direction]: '0%' }))
-      ])
+        animate('300ms', style({ opacity: 1, transform: 'scale(1)' }))
+      ],optional)
     ]),
     // Normalize the page style... Might not be necessary
 

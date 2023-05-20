@@ -92,8 +92,8 @@ export class MedicineDetailsComponent implements OnInit {
       // console.log(this._ActivatedRoute.snapshot.data);
     });
     // this.isVisibleSpinner = true;
-    Promise.resolve().then(()=>this._DataService.isPageLoaded.next(false));
-    Promise.resolve().then(() => this._AuthService.isLogedIn.next(true));
+    // Promise.resolve().then(()=>this._DataService.isPageLoaded.next(false));
+    // Promise.resolve().then(() => this._AuthService.isLogedIn.next(true));
     this.getLang();
     
     this.getMedicineQuantity();
@@ -103,12 +103,12 @@ export class MedicineDetailsComponent implements OnInit {
     
   }
 
-   // when view load completely
-   ngAfterViewInit() {
-    setTimeout(() => {
-      Promise.resolve().then(()=>this._DataService.isPageLoaded.next(true))
-    }, 0);
-  }
+  //  // when view load completely
+  //  ngAfterViewInit() {
+  //   setTimeout(() => {
+  //     Promise.resolve().then(()=>this._DataService.isPageLoaded.next(true))
+  //   }, 0);
+  // }
   
 
   categoryMedicines:any;

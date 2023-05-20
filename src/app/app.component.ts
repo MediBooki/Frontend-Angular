@@ -1,9 +1,9 @@
-import { Component, AfterViewInit, OnInit } from '@angular/core';
+import { Component, AfterViewInit, OnInit, Renderer2 } from '@angular/core';
 import { DataService } from './core/services/data.service';
 import * as $ from 'jquery';
 import { AuthService } from './pages/Auth/services/auth.service';
-import { slider } from './pages/Auth/animation/route-animation';
-import { RouterOutlet } from '@angular/router';
+import {  slider } from './pages/Auth/animation/route-animation';
+import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { registerLocaleData } from '@angular/common';
 
 
@@ -16,10 +16,10 @@ import { registerLocaleData } from '@angular/common';
 export class AppComponent implements OnInit {
   title = 'Frontend-Angular';
   login?: boolean;
-  loaded: boolean = false;
+  // loaded: boolean = false;
   layoutleft?: boolean
 
-  constructor(private _DataService: DataService, private service: AuthService,) {
+  constructor(private _DataService: DataService, private service: AuthService,private renderer: Renderer2,private router: Router) {
 
   }
 
@@ -31,25 +31,35 @@ export class AppComponent implements OnInit {
       this.login = res
       console.log(this.login);
     });
-
-
-    this._DataService.isPageLoaded.subscribe((status) => {
-      console.log('called with ' + status)
-      this.loaded = status;
-      if (status == false) {
-        // document.body.classList.add('overflow-hidden');
-        $('body').addClass('overflow-hidden');
-        $('body').removeClass('overflow-auto');
-      } else {
-        $('body').removeClass('overflow-hidden');
-        $('body').addClass('overflow-auto');
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        this.addAnimateClasses();
       }
-    })
+    });
+
+
+
+    // this._DataService.isPageLoaded.subscribe((status) => {
+    //   console.log('called with ' + status)
+    //   this.loaded = status;
+    //   if (status == false) {
+    //     // document.body.classList.add('overflow-hidden');
+    //     $('body').addClass('overflow-hidden');
+    //     $('body').removeClass('overflow-auto');
+    //   } else {
+    //     $('body').removeClass('overflow-hidden');
+    //     $('body').addClass('overflow-auto');
+    //   }
+    // })
 
   }
 
-  prepareRoute(outlet: RouterOutlet) {
-    return outlet && outlet.activatedRouteData && outlet.activatedRouteData['animation'];
+  addAnimateClasses() {
+    const elements = document.querySelectorAll('.animate');
+    elements.forEach((element) => {
+      this.renderer.addClass(element, 'animate__animated');
+      this.renderer.addClass(element, 'animate__fadeIn');
+    });
   }
 
 

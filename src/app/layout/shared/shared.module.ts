@@ -51,7 +51,8 @@ import { OwlModule } from 'ngx-owl-carousel';
         CarouselModule,
         MedicineComponent,
         RouterModule,
-        OwlModule
+        OwlModule 
+        
 
     ],
     imports: [

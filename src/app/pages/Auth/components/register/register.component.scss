@@ -1,181 +1,169 @@
-/* =======================================================( Login and Register )======================================================= */
+/* =======================================================( Common )======================================================= */
+@import '../../../../../styles.scss';
 
 
-/* =======================================================( Sign-in-Sign-up )======================================================= */
-
-.Login-Register {
-  /* =======================================================( container )======================================================= */
-
-  min-height: 100vh;
-  overflow-x: hidden;
-
-  .Sign-in-Sign-up {
-    transform: translate(-50%, -50%);
-    left: 75%;
-    transition: 1s 0.7s ease-in-out;
-    z-index: 5;
-    top: 64%;
-
-
-
-    /* Style form  */
-    form {
-      transition: all 0.2s 0.7s;
-      padding: 0rem 3rem !important;
-      transform: translate(-4%, 0%);
-      .form-switch{
-        width: 240px;
-      }
-    }
-
-  }
-
-  &.Register-mode {
-    .Register {
-      z-index: 2;
-      opacity: 1;
-    }
-
-    .Sign_In {
-      opacity: 0;
-      z-index: 1;
-    }
-
-    .Sign-in-Sign-up {
-      left: 25%;
-    }
-  }
-
-  /* Style Sign_In  */
-  .Sign_In {
-    z-index: 2;
-    transform: translate(-10%, -50%);
-  }
-
-  /* Style input-field  */
-  .input-field {
-    background-color: #f0f0f0;
-  }
-
-  .input-field svg {
-    color: #acacac;
-  }
-
-  .input-field input,
-  .input-field select {
-    outline: none !important;
-    background: none;
-  }
-
-  .btn {
-    width: 150px;
-    height: 50px;
-    outline: none;
-    transition: 0.5s;
-  }
-
-  /* Style Register  */
-  .Register {
-    z-index: 1;
-    transform: translate(0, 20%);
-
-    .username {
-      height: 8%;
-    }
-
-    .firstnameError {
-      p {
-        position: relative;
-        right: 0;
-      }
-    }
-
-    .lastnameError {
-      p {
-        position: relative;
-        margin-left: 40px;
-      }
-    }
-    .terms-conditions-btn {
-      cursor: pointer;
-    }
-    
-    .terms-conditions-btn:hover {
-      color: var(--main);
-    }
-
-  }
-  .terms-conditions-item * {
-    font-size: 16px;
-  }
-  .modal-footer button {
-    width: auto !important;
-    height: auto !important;
-  }
-  
-  .modal-dialog {
-    max-width: 1000px;
-  }
-  #exampleModalScrollable {
-    width: 95%;
-  }
-
-  /* Animation */
-
-
+body{
+  color: #003367;
+  /* direction: rtl; */
 }
 
+.wrapper{
+  background: #ececec;
+  padding: 0 20px 0 20px;
+}
+.login{
+  width: 900px;
+  /* height: 550px; */
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 5px 5px 10px 1px rgba(0,0,0,0.2);
+}
+.side-image{
+  background-image: url("../../../../../assets/images/Sign_In_Up/20230327_compassionate_care-1200x800.webp");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: relative;
+  border-radius: 10px 0 0 10px;
+  /* opacity: 0.5; */
+}
+.layer{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+}
+img{
+  width: 35px;
+}
+[type="email"], [type="number"], [type="tel"], [type="url"] {
+  direction: inherit !important;
+}
+.text{
+  transform: translate(-50%, -50%);
+  left: 50%;
+  z-index: 5;
+}
+.size{
+  font-size: 15px;
+}
+.input-box{
+  /* width: 330px; */
+  box-sizing: border-box;
+}
 
-/* Style Media_Queries   */
-
-@media (max-width: 870px) {
-  .Login-Register {
-    height: 100vh;
-    min-height: 1000px;
-    overflow-y: hidden;
-
-    .Sign_In {
-      z-index: 2;
-      transform: translate(0, 0);
-    }
-
-    .Sign-in-Sign-up {
+.input{
+  height: 45px;
+  border: none;
+  border-bottom: 1px solid rgba(0,0,0,0.2);
+  outline: none;
+  color: #40414a;
+}
+.input-box .input-field label{
+  top: 10px;
+  // left: 10px;
+  pointer-events: none;
+  transition: .5s;
+}
+.input-field .input:focus ~ label{
+  top: -10px;
+  font-size: 13px;
+}
+.input-field .input:valid ~ label{
+  top: -10px;
+  font-size: 13px;
+  color: #5d5076;
+}
+.input-field .input:focus, .input-field .input:valid{
+  border-bottom: 1px solid #743ae1;
+}
+.submit{
+  border: none;
+  outline: none;
+  height: 45px;
+  background: #ececec;
+  border-radius: 5px;
+  transition: .4s;
+}
+.submit:hover{
+  background: rgba(37, 95, 156,0.9);
+  color: #fff;
+}
+.forgotPassword{
+  border-bottom: 2px solid #FF8686;
+  color: #fff;
+  font-size: 16px;
+  &:hover,
+  &:focus{
+    color: #fff !important;
+  }
+}
+a:hover,
+a:active,
+a:focus{
+  text-decoration: none !important;
+  outline: none !important;
+  color: inherit !important;
+}
+select:focus{
+  border: none;
+  outline: none !important;
+  box-shadow: none !important;
+}
+.transparent{
+  background: none;
+  border: 2px solid #fff;
+}
+.signin{
+  font-size: small;
+}
+span a{
+  text-decoration: none;
+  font-weight: 700;
+  color: #000;
+  transition: .5s;
+}
+span a:hover{
+  text-decoration: underline;
+  color: #000;
+}
+.terms-conditions-btn {
+  cursor: pointer;
+}
+.terms-conditions-item * {
+  font-size: 16px;
+} 
+.terms-conditions-btn:hover {
+  color: var(--main);
+}
+.terms-description {
+  white-space: pre-line;
+}
+@media only screen and (max-width: 768px){
+  .side-image{
+      border-radius: 10px 10px 0 0;
+  }
+  .side-image{
+    height: 200px;
+  }
+  img{
+      width: 35px;
+      position: absolute;
+      top: 20px;
+      left: 47%;
+  }
+  .text{
+      position: absolute;
+      top: 70%;
+      text-align: center;
+  }
+  .text p,i{
+      font-size: 17px;
+  }
+  .row{
+      max-width: 420px;
       width: 100%;
-      left: 50% !important;
-      top: 75% !important;
-      transform: translate(-50%, -100%) !important;
-
-      .Register {
-        padding: 1.3rem !important;
-        transform: translate(0, 0) !important;
-
-        p {
-          font-size: 13px;
-        }
-
-        .btn {
-          .transparent {
-            width: 110px;
-            height: 35px;
-            font-size: 0.7rem;
-          }
-        }
-      }
-    }
-
-    &.Register-mode {
-      .Sign-in-Sign-up {
-        top: 5% !important;
-        transform: translate(-50%, 0) !important;
-        left: 50% !important;
-      }
-    }
-  }
-}
-
-
-@media (max-width: 570px) {
-  form {
-    padding: 0 2rem !important;
   }
 }

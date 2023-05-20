@@ -41,18 +41,18 @@ export class SpecializationsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    Promise.resolve().then(() => this._DataService.isPageLoaded.next(false));
-    Promise.resolve().then(() => this._AuthService.isLogedIn.next(true));
+    // Promise.resolve().then(() => this._DataService.isPageLoaded.next(false));
+    // Promise.resolve().then(() => this._AuthService.isLogedIn.next(true));
     this.getSpecializations();
     this.getLang()
   }
 
   // when view load completely
-  ngAfterViewInit() {
-    setTimeout(() => {
-      Promise.resolve().then(() => this._DataService.isPageLoaded.next(true))
-    }, 0);
-  }
+  // ngAfterViewInit() {
+  //   setTimeout(() => {
+  //     Promise.resolve().then(() => this._DataService.isPageLoaded.next(true))
+  //   }, 0);
+  // }
 
   getSpecializations() {
     this._DataService._lang.subscribe({

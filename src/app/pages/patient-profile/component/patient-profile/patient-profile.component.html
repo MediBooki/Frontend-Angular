@@ -1,6 +1,6 @@
 <app-spinner *ngIf="isVisibleSpinner"></app-spinner>
 
-<div [dir]=" 'dir' | translate " [lang]="lang">  <div *ngIf="is_login else nolog">
+<div class="animate" [dir]=" 'dir' | translate " [lang]="lang">  <div *ngIf="is_login else nolog">
   <!----------------------------------------------------- ( side nav ) ---------------------------------------------------->
  <div class="row w-100">
   <div class="col-lg-2 py-3" [ngClass]="{'border-side-en': !rtlDir, 'border-side-ar': rtlDir}">

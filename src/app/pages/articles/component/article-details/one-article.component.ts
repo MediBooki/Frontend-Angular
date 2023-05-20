@@ -17,19 +17,19 @@ export class OneArticleComponent implements OnInit {
   constructor(private _AuthService: AuthService,private _DataService: DataService,private _activatedRouting: ActivatedRoute,private _ArticlesService:ArticlesService ) { }
 
   ngOnInit(): void {
-    Promise.resolve().then(() => this._AuthService.isLogedIn.next(true));
-    Promise.resolve().then(() => this._DataService.isPageLoaded.next(false));
+    // Promise.resolve().then(() => this._AuthService.isLogedIn.next(true));
+    // Promise.resolve().then(() => this._DataService.isPageLoaded.next(false));
     this.getLang();
     this.articleId = this._activatedRouting.snapshot.params['id'];
     this.getArticle();
   }
 
   // when view load completely
-  ngAfterViewInit() {
-    setTimeout(() => {
-      Promise.resolve().then(()=>this._DataService.isPageLoaded.next(true))
-    },0);
-  }
+  // ngAfterViewInit() {
+  //   setTimeout(() => {
+  //     Promise.resolve().then(()=>this._DataService.isPageLoaded.next(true))
+  //   },0);
+  // }
 
   /*=============================================( Variables )=============================================*/
   lang:string = "en";

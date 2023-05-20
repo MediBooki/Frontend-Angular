@@ -71,6 +71,7 @@ export class DoctorsComponent implements OnInit {
 
   /*=============================================( Initialization Methods )=============================================*/
 
+
   constructor(private _DataService: DataService, private _SpecializationService:SpecializationService, private _DoctorService: DoctorService, private _AuthService: AuthService, private _FormBuilder:FormBuilder, private toastr: ToastrService, private router: Router) {
     // Declare FilterForm
     this.filterForm = this._FormBuilder.group({
@@ -83,8 +84,8 @@ export class DoctorsComponent implements OnInit {
   }
   
   ngOnInit(): void {
-    Promise.resolve().then(() => this._DataService.isPageLoaded.next(false));
-    Promise.resolve().then(() => this._AuthService.isLogedIn.next(true));
+    // Promise.resolve().then(() => this._DataService.isPageLoaded.next(false));
+    // Promise.resolve().then(() => this._AuthService.isLogedIn.next(true));
 
     this.gethospitalDetails(); // to get book phone
     this.getFilteredForm(); // to set filter form and use localstorage
@@ -94,11 +95,11 @@ export class DoctorsComponent implements OnInit {
     this.isVisibleSpinner = true;
   }
 
-  ngAfterViewInit() {
-    setTimeout(() => {
-      Promise.resolve().then(() => this._DataService.isPageLoaded.next(true))
-    }, 0);
-  }
+  // ngAfterViewInit() {
+  //   setTimeout(() => {
+  //     Promise.resolve().then(() => this._DataService.isPageLoaded.next(true))
+  //   }, 0);
+  // }
 
 
   /*=============================================( Component Created Methods )=============================================*/
@@ -107,6 +108,16 @@ export class DoctorsComponent implements OnInit {
   @HostListener('window:scroll') // method triggered every scroll
   checkScroll() {
     this._DataService.firstSectionHeight = this.firstSection?.nativeElement.offsetHeight;
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any) {
+    if(window.innerWidth > 992){
+      this.smallFilterVisible = false
+      $('body').addClass('overflow-auto');
+      $('body').removeClass('overflow-hidden');
+    }
+    // this.smallFilterVisible = window.innerWidth < 800; // Adjust the breakpoint as needed
   }
 
 

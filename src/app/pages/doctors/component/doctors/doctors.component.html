@@ -1,6 +1,6 @@
 <app-spinner *ngIf="isVisibleSpinner"></app-spinner>
 
-<div class="doctors-component" [dir]=" 'dir' | translate " [lang]="lang">
+<div class="doctors-component animate" [dir]=" 'dir' | translate " [lang]="lang">
 
   <!-- =============================================================================================================== -->
 
@@ -141,7 +141,7 @@
 
                       <div class="accordion-body-item" *ngFor="let specialization of allSpecializations;let i = index">
                         <input type="checkbox" id="specialization{{specialization.id}}" name="specialization{{specialization.id}}" [value]="specialization.id" (change)="GetSpecializationStats($event)" [checked]="sectionArrayChecked[specialization.id]"> <!-- formControlName="formControl4"-->
-                        <label for="specialization{{specialization.id}}">{{specialization.name}}</label>
+                        <label for="specialization{{specialization.id}}" class="specialization-label">{{specialization.name}}</label>
                       </div>
 
                   </div>

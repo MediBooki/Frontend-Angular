@@ -92,8 +92,16 @@ body {
 }
 
 .tab-content {
-  .form-select {
-    background: $mainColor !important;
+  // .form-select {
+  //   background: $mainColor !important;
+  // }
+  ::ng-deep.select2-selection {
+    .select2-selection__arrow {
+      height: 100% !important;
+    }
+    border-color: #ced4da!important;
+    height: auto !important;
+    padding: .375rem 0.75rem;
   }
 
   .shape {
@@ -169,6 +177,8 @@ body {
     border-radius: 1rem !important;
   }
 }
+
+
 
 
 

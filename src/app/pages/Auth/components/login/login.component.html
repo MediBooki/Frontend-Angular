@@ -1,43 +1,70 @@
-<div class="specialize-component" [dir]=" 'dir' | translate " [lang]="lang">
-  <!-- Sign-In-Sign-up section starts -->
-  <section class="container Login-Register position-relative p-sm-3 mw-100 vh-100" id="Register">
-    <!-- Form Login and Register -->
-    <div class="row align-items-center">
-      <div
-        class="col-lg-6 col-md-7 ms-3 col-9 mb-4 row position-absolute start-75 justify-content-center Sign-in-Sign-up">
-        <!-------------------------------------------------------(Login Form)----------------------------------------------------- -->
-        <form class="flex-column d-flex align-items-center py-0 position-absolute top-50 Sign_In"
-          [formGroup]="loginForm">
-          <h2 class="fs-2 text-secondary my-3 fw-bolder">{{ 'loginPage.title' | translate }}</h2>
-          <div class="input-field mb-3 w-100 h-100 rounded-pill p-2 d-flex">
-            <i class="fa-solid fa-envelope p-2 fs-5"></i>
-            <input type="text" class="ps-3 fw-bolder text-secondary w-100 border-0 lh-1" id="EmailLogin"
-              placeholder="{{ 'loginPage.email' | translate }}" required formControlName="email" />
-          </div>
-          <div
-            *ngIf="loginForm.controls['email']?.invalid && loginForm.controls['email']?.touched && loginForm.controls['email']?.dirty">
-            <p id="EmailLoginError" class="text-danger">
-              {{'loginPage.error4'| translate}}
-            </p>
-          </div>
-          <div class="mb-3 input-field mb-3 w-100 h-100 rounded-pill p-2 d-flex">
-            <i class="fas fa-lock text-center p-2 fs-5"></i>
-            <input type="{{passwordType}}" class="ps-3 fw-bolder text-secondary w-100 border-0 lh-1" id="passwordLogin"
-              placeholder="{{ 'loginPage.password' | translate }}" required formControlName="Password" />
-            <i class="fa-solid {{ passwordType === 'password' ? 'fa-eye' : 'fa-eye-slash' }} text-center p-2 fs-5" (click)="togglePassword()"></i>
-          </div>
-          <p id="passwordLoginError" class="text-danger d-none">
-            {{'loginPage.error7'| translate}}
-          </p>
-          <button type="submit" (click)="login()" class="btn btn-primary rounded-pill text-uppercase my-2"
-            id="submitBtnLogin">
-            {{ 'loginPage.login' | translate }}
-          </button>
-        </form>
+<app-spinner *ngIf="isVisibleSpinner"></app-spinner>
+<div class="specialize-component animate" [dir]=" 'dir' | translate " [lang]="lang">
+  <section class="wrapper">
+      <!-- Sign-In-Sign-up section starts -->
+    <div class="container main d-flex justify-content-center align-items-center min-vh-100">
+      <div class="row login my-5">
+        <div class="col-md-6 right d-flex justify-content-center align-items-center position-relative">
+          <div class="input-box w-100">
+            <form  [formGroup]="loginForm">
+              <header class=" fw-bolder text-center fs-1 text-secondary my-5">Sign In</header>
+              <!-- ////////////////////////////////////user name/////////////////////////////// -->
+              <div class="row">
+                <!-- ///////////////////////////////email//////////////////////////////////// -->
+                
+                <div class="input-field d-flex flex-column position-relative px-3 ">
+                    <input type="text" class="input w-100 bg-transparent mb-4" id="email" required autocomplete="off" formControlName="email">
+                    
+                    <label for="email" class=" position-absolute"><i class="fa-solid fa-envelope pe-2 fs-6"></i>{{ 'registerPage.email' | translate }}</label>
+                    <div
+                    *ngIf="loginForm.controls['email']?.invalid && loginForm.controls['email']?.touched && loginForm.controls['email']?.dirty">
+                    <p id="EmailLoginError" class="text-danger">
+                      {{'loginPage.error4'| translate}}
+                    </p>
+                  </div>
+                </div>
+                <!-- ///////////////////////////////password//////////////////////////////////// -->
+                <div class="input-field d-flex flex-column position-relative px-3 ">
+                    <input type="{{passwordType}}" class="input w-100 bg-transparent mb-4" id="PasswordRegister" required autocomplete="off" formControlName="Password">
+                    
+                    <label for="PasswordRegister" class=" position-absolute"><i class="fas fa-lock  pe-2 fs-6"></i>{{ 'registerPage.password' | translate }}</label>
+                    <i class="fa-solid {{passwordType ? 'fa-eye' : 'fa-eye-slash' }} text-center p-3 fs-6 position-absolute end-0" (click)="togglePassword()"></i>
+                    <div *ngIf="loginForm.controls['Password']?.invalid && loginForm.controls['Password']?.touched && loginForm.controls['Password']?.dirty">
+                        <p id="PasswordRegisterError" class="text-danger" *ngIf="loginForm.controls['Password']?.errors?.['pattern']">
+                          {{'loginPage.error7'| translate}}
+                        </p>
+
+                    </div>
+                </div>
+
+              <!-- /////////////////////////////////////////////////////////////////// -->
+              <div class="row mb-3">
+                  
+                  <div class="input-field d-flex  position-relative justify-content-between align-items-center px-3">
+                    <input type="submit" class="submit w-50 border-circle " value="{{ 'loginPage.login' | translate }}"  [disabled]="loginForm.invalid" (click)="login()" id="submitBtn">
+                    <a href="#" class=" text-decoration-none text-success forgotPassword fs-6 fw-bolder">Forgot password?</a>
+                    
+                  </div>
+              </div>
+            </div>
+          </form>
+        </div>
       </div>
+      <div class="col-md-6 side-image " [ngClass]="{'d-none': isSmallScreen}">
+        <!-------Image-------->
+        <!-- <img src="images/white.png" alt=""> -->
+        <div class="text position-absolute top-50 " >
+          <h2 class=" fw-bolder text-light">New here? </h2>
+          <span class="fst-italic text-info fs-5  fw-bolder">We are pleased to register on our site if you are new to our site </span>
+          <i class=" fw-bolder fs-6 "><a routerLink="/Register" class="text-light w-50 text-decoration-none  ms-4 fs-6 fw-bolder">Register?</a></i>
+        </div>
+        <div class="layer"></div>
+      </div>
+
     </div>
+  </div>
+</section>
 
-
-  </section>
-  <!-- Sign-In-Sign-up section ends -->
 </div>
+
+

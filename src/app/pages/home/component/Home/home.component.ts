@@ -88,8 +88,8 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    Promise.resolve().then(() => this._DataService.isPageLoaded.next(false));
-    Promise.resolve().then(() => this._AuthService.isLogedIn.next(true));
+    // Promise.resolve().then(() => this._DataService.isPageLoaded.next(false));
+    // Promise.resolve().then(() => this._AuthService.isLogedIn.next(true));
     // this.Authservice.isLogedIn.next(true);
     this.getLang();
     this.getFilteredDoctors();
@@ -100,11 +100,11 @@ export class HomeComponent implements OnInit {
   }
 
   // when view load completely
-  ngAfterViewInit() {
-    setTimeout(() => {
-      Promise.resolve().then(() => this._DataService.isPageLoaded.next(true))
-    }, 0);
-  }
+  // ngAfterViewInit() {
+  //   setTimeout(() => {
+  //     Promise.resolve().then(() => this._DataService.isPageLoaded.next(true))
+  //   }, 0);
+  // }
 
 
   /*=============================================( Component Created Methods )=============================================*/

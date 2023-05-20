@@ -10,6 +10,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { AppointmentsPatient, patientAppointment } from 'src/app/core/interfaces/patients';
 import { DatePipe } from '@angular/common';
 import { ToastrService } from 'ngx-toastr';
+import 'select2';
 import { type } from 'jquery';
 
 
@@ -126,24 +127,24 @@ activeIndex = null;
   }
 
   ngOnInit(): void {
-    Promise.resolve().then(() => this._DataService.isPageLoaded.next(false));
-    Promise.resolve().then(() => this._AuthService.isLogedIn.next(true));
+    // Promise.resolve().then(() => this._DataService.isPageLoaded.next(false));
+    // Promise.resolve().then(() => this._AuthService.isLogedIn.next(true));
     this.getLang();
     this.getBookDoctorList(this.convertDate)
     this.getDoctorById();
     this.initFormControl();
     this.createForm();
-
+    this.runSelect()
 
   }
 
 
   // when view load completely
-  ngAfterViewInit() {
-    setTimeout(() => {
-      Promise.resolve().then(() => this._DataService.isPageLoaded.next(true))
-    }, 0);
-  }
+  // ngAfterViewInit() {
+  //   setTimeout(() => {
+  //     Promise.resolve().then(() => this._DataService.isPageLoaded.next(true))
+  //   }, 0);
+  // }
 
   
   /*=============================================( Component Created Methods )=============================================*/
@@ -156,6 +157,7 @@ activeIndex = null;
     getLang() {
       this._DataService._lang.subscribe({
         next: (language) => {
+
           this.lang = language;
           if (language == 'en') {
             this.rtlDir = false;
@@ -164,7 +166,9 @@ activeIndex = null;
             this.rtlDir = true;
             this.direction='rtl';
           }
+          this.runSelect()
         }
+        
       })
     }
 
@@ -226,8 +230,8 @@ activeIndex = null;
 
       //This function is used to select a day of the week and then convert it into a date format
   onDaySelect(day: any) {
-    this.selectedDay = day.target.value; // Bind the selected day value to the component property
-    console.log(typeof (this.selectedDay))
+    this.selectedDay = day; // Bind the selected day value to the component property
+    console.log(this.selectedDay)
     this.dayIndex = this.getDayIndex(this.selectedDay); // Get the index of the selected day
     if (this.dayIndex !== null) {
       console.log(this.dayIndex)
@@ -331,7 +335,7 @@ activeIndex = null;
         this.toastr.success("Book Doctor Success")
         this.isVisibleSpinner = false;
         this._DataService.curruntService.next("appointments")
-        this.router.navigate(['/my-profile'])
+        // this.router.navigate(['/my-profile'])
 
       }else{
         this.toastr.error("You can't book doctor" , "please choose another day");
@@ -381,4 +385,17 @@ activeIndex = null;
 
     })
   }
+
+  runSelect(){
+    $('.day-select2').select2({
+      placeholder: !this.rtlDir?'Select a day':'اختر اليوم',
+      dir:this.direction
+    });
+
+    $('.day-select2').change((event:any)=>{
+      console.log(event.target.value)
+      this.onDaySelect(event.target.value);
+    })
+  }
+
 }

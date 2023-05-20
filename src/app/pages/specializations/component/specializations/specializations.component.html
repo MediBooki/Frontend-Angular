@@ -1,5 +1,5 @@
 <app-spinner *ngIf="isVisibleSpinner"></app-spinner>
-<div class="specialize-component" [dir]=" 'dir' | translate " [lang]="lang">
+<div class="specialize-component animate" [dir]=" 'dir' | translate " [lang]="lang">
   <!--  =======================================================( landing )======================================================= -->
 
   <section class=" position-relative justify-content-center align-content-center" #firstSection>
@@ -28,7 +28,7 @@
       <p class="text-muted text-center ps-lg-5">{{"specializationPage.description" | translate}}.</p>
     </div>
     <div class="row mt-3 p-3"  *ngIf="!noData;else error">
-      <app-specialize class="col-md-4 rounded mt-3 Specialties_service" *ngFor="let specialize of specializations | paginate :{id:'listing-pagination',
+      <app-specialize class="col-md-4 rounded mt-3 Specialties_service animation" *ngFor="let specialize of specializations | paginate :{id:'listing-pagination',
       itemsPerPage:numSepicaistPerPage,
       currentPage:page,
       totalItems:totalRecords }" [specialize]="specialize" ></app-specialize>
