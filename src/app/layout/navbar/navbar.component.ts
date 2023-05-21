@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { DataService } from 'src/app/core/services/data.service';
 import { AuthService } from 'src/app/pages/Auth/services/auth.service';
 import { CartService } from 'src/app/pages/cart/service/cart.service';
+import { PatientProfileService } from 'src/app/pages/patient-profile/service/patient-profile.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -30,9 +31,10 @@ export class NavbarComponent implements OnInit {
   allTenants: any[] = [];
   tenantsSubscription = new Subscription();
   diagnosisAPIres: any;
+  patientInfoSubscription = new Subscription();
 
 
-  constructor(private _DataService: DataService, private _CartService: CartService, private _TranslateService: TranslateService, private _AuthService: AuthService) { }
+  constructor(private _PatientProfileService:PatientProfileService,private _DataService: DataService, private _CartService: CartService, private _TranslateService: TranslateService, private _AuthService: AuthService) { }
 
   ngOnInit(): void {
     this.getLang();
@@ -43,6 +45,12 @@ export class NavbarComponent implements OnInit {
       this.userPhoto = res
     });
     this.setMainCountry();
+    this._DataService.is_login.subscribe(res => {
+      if(res==true) {
+        this.getPatientInfo();
+      }
+    });
+
   }
 
   getLang() {
@@ -185,7 +193,7 @@ export class NavbarComponent implements OnInit {
         this.selectedDeleteMedicine = 0;
       }
     })
-    
+
   }
 
 
@@ -211,6 +219,17 @@ export class NavbarComponent implements OnInit {
 
   getCountry(domain:string) {
     localStorage.setItem('tenant',`http://${domain}/api`);
+  }
+
+  getPatientInfo(){
+    this.patientInfoSubscription = this._PatientProfileService.getPatientInfo().subscribe({
+      next: (patientInfo) => {
+        if(patientInfo.data.photo != ''){
+          this._DataService.userPhoto.next(patientInfo.data.photo)
+          // this.userPhoto = this.patientInfo.photo;
+        }
+      }
+    });
   }
 
 

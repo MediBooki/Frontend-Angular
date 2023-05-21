@@ -44,6 +44,7 @@ export class DataService {
 
 
   gethospitalDetails(): Observable<any> {
+    console.log(`${this.sharedApi}/settings`)
     return this._HttpClient.get<any[]>(`${this.sharedApi}/settings`).pipe(catchError((e: any) => {
       console.log(e)
       return throwError(e)

@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   tenants: [],
-  apimain: 'http://medibookidashbord.testhttp://',
+  apimain: 'http://medibookidashbord.test/api',
 };
 
 /*

@@ -49,27 +49,53 @@
       <div class="col-md-6 d-flex align-items-center">
         <div class="w-100">
 
-          <form class="w-75 m-auto">
+          <form [formGroup]="contactUsForm" class="w-75 m-auto" (ngSubmit)="contactUs()">
             <p class="text-center">{{'contactus.contactus-formp' | translate}}</p>
 
             <div class="form-floating mb-3" [ngClass]="{'form-floating-en': !rtlDir}">
-              <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com">
+              <input formControlName="email" type="text" class="form-control" id="floatingInput" placeholder="name@example.com">
               <label for="floatingInput">{{'contactus.contactus-input1' | translate}}</label>
+              <div class="mt-1" *ngIf="contactUsForm.controls.email.touched && contactUsForm.controls.email.dirty">
+                <p class="text-danger" *ngIf="contactUsForm.controls.email?.errors?.['required']">
+                  {{'errors.required' | translate}}
+                </p>
+                <p class="text-danger" *ngIf="contactUsForm.controls.email?.errors?.['email']">
+                  {{'registerPage.error4' | translate}}
+                </p>
+              </div>
             </div>
             <div class="form-floating mb-3" [ngClass]="{'form-floating-en': !rtlDir}">
-              <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com">
+              <input formControlName="phone" type="text" class="form-control" id="floatingInput" placeholder="name@example.com">
               <label for="floatingInput">{{'contactus.contactus-input2' | translate}}</label>
+              <div class="mt-1" *ngIf="contactUsForm.controls.phone.touched && contactUsForm.controls.phone.dirty">
+                <p class="text-danger" *ngIf="contactUsForm.controls.phone?.errors?.['required']">
+                  {{'errors.required' | translate}}
+                </p>
+                <p class="text-danger" *ngIf="contactUsForm.controls.phone?.errors?.['pattern']">
+                  {{'errors.phonePattern2' | translate}}
+                </p>
+              </div>
             </div>
             <div class="form-floating mb-3" [ngClass]="{'form-floating-en': !rtlDir}">
-              <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com">
+              <input formControlName="name" type="text" class="form-control" id="floatingInput" placeholder="name@example.com">
               <label for="floatingInput">{{'contactus.contactus-input3' | translate}}</label>
+              <div class="mt-1" *ngIf="contactUsForm.controls.name.touched && contactUsForm.controls.name.dirty">
+                <p class="text-danger" *ngIf="contactUsForm.controls.name?.errors?.['required']">
+                  {{'errors.required' | translate}}
+                </p>
+              </div>
             </div>
             <div class="form-floating" [ngClass]="{'form-floating-en': !rtlDir, 'form-floating-ar':rtlDir}">
-              <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
+              <textarea formControlName="description" class="form-control" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
               <label for="floatingTextarea">{{'contactus.contactus-input4' | translate}}</label>
+              <div class="mt-1" *ngIf="contactUsForm.controls.description.touched && contactUsForm.controls.description.dirty">
+                <p class="text-danger" *ngIf="contactUsForm.controls.description?.errors?.['required']">
+                  {{'errors.required' | translate}}
+                </p>
+              </div>
             </div>
             <div class="d-flex justify-content-center">
-              <input type="submit" class="btn btn-main border-0 m-2" />
+              <input type="submit" class="btn btn-main border-0 m-2" [disabled]="contactUsForm.invalid"/>
             </div>
           </form>
         </div>

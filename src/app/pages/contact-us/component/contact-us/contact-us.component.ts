@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/pages/Auth/services/auth.service';
 import { DataService } from 'src/app/core/services/data.service';
+import { ContactUsService } from '../../service/contact-us.service';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-contact-us',
@@ -9,7 +12,7 @@ import { DataService } from 'src/app/core/services/data.service';
 })
 export class ContactUsComponent implements OnInit {
 
-  constructor(private _AuthService: AuthService,private _DataService: DataService ) { }
+  constructor(private _AuthService: AuthService,private _DataService: DataService,private _contactus:ContactUsService,private toastr: ToastrService) { }
 
   ngOnInit(): void {
     // Promise.resolve().then(() => this._AuthService.isLogedIn.next(true));
@@ -29,6 +32,13 @@ export class ContactUsComponent implements OnInit {
   rtlDir:boolean = false;
   direction:string = 'ltr';
 
+  //contact us form
+  contactUsForm = new FormGroup({
+    email: new FormControl("", [Validators.required, Validators.email]),
+    name : new FormControl("", [Validators.required]),
+    phone : new FormControl("", [Validators.required, Validators.pattern(/^\+?(002)?[\d\s()-]{4,}$/)]),
+    description : new FormControl("", [Validators.required])
+  })
   /*=============================================( Component Created Methods )=============================================*/
 
   //----- Method 1
@@ -48,4 +58,25 @@ export class ContactUsComponent implements OnInit {
     }})
   }
 
+  //----- Method 1
+  // Setting Direction
+  contactUs(){
+    console.log(this.contactUsForm)
+    if(this.contactUsForm.valid){
+      this._contactus.contactUs(this.contactUsForm.value).subscribe({
+        next: (response) => {
+          console.log(response);
+          this.toastr.success(!this.rtlDir?`Your inquiry has been sent successfully!`:`تم ارسال استفسارك بنجاح`);
+          // this.router.navigate(['/home']);
+        },
+        error : (error)=> {
+          console.log(error.error.data);
+          this.toastr.error(!this.rtlDir?`Something went wrong try again`:`هناك خطأ ما حاول مجدداً` );
+        }
+      })
+    }else{
+      this.toastr.error(!this.rtlDir?`Please enter all data`:`من فضلك ادخل جميع البيانات` );
+    }
+
+  }
 }
