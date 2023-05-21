@@ -7,16 +7,16 @@
           <!-------Image-------->
           <!-- <img src="images/white.png" alt=""> -->
           <div class="text position-absolute top-50 " >
-            <h2 class=" fw-bolder text-light">Already have an account?</h2>
-            <span class="fst-italic text-info fs-5  fw-bolder">We are pleased to register on our site if you are new to our site </span>
-            <i class=" fw-bolder fs-6 ms-1"><a routerLink="/Login" class="w-50 text-decoration-none forgotPassword  ms-4 fs-6 fw-bolder">Sign In?</a></i>
+            <h2 class=" fw-bolder text-light">{{ 'registerPage.oneOfUs' | translate }}</h2>
+            <span class="fst-italic text-info fs-6  fw-bolder">{{ 'registerPage.title_login' | translate }} </span>
+            <i class=" fw-bolder fs-6 ms-1"><a routerLink="/Login" class="w-50 text-decoration-none forgotPassword  ms-1 fs-6 fw-bolder">{{ 'registerPage.signin' | translate }}</a></i>
           </div>
           <div class="layer"></div>
         </div>
         <div class="col-md-6 right d-flex justify-content-center align-items-center position-relative">
           <div class="input-box w-100">
             <form action="" [formGroup]="patientForm">
-              <header class=" fw-bolder text-center fs-1 text-secondary my-5">New Member</header>
+              <header class=" fw-bolder text-center fs-1 text-secondary my-5">{{ 'registerPage.register' | translate }}</header>
               <!-- ////////////////////////////////////user name/////////////////////////////// -->
               <div class="row">
 
@@ -83,8 +83,8 @@
                         class="form-select input ps-3 input border-none fw-bolder text-secondary w-100 lh-1"
                         aria-label="Floating label select example">
                         <option value="" disabled selected></option>
-                        <option value="male" required>Male</option>
-                        <option value="female" required>Female</option>
+                        <option value="{{ 'registerPage.male' | translate }}" required>Male</option>
+                        <option value="{{ 'registerPage.female' | translate }}" required>Female</option>
                     </select>
                     
                     <label for="UserGender_form" class=" position-absolute"><i class="fa-solid fa-venus-mars pe-2 fs-6"></i>{{ 'registerPage.gender' | translate }}</label>
@@ -158,8 +158,8 @@
               <!-- ////////////terms///////////// -->
               <div class="terms-conditions text-center mb-3">
                   <input type="checkbox" class="me-1" required name="termsConditions" value="checked" id="termsConditions" formControlName="terms_conditions">
-                  <label for="termsConditions">I agree to the <a class="terms-conditions-btn" data-bs-toggle="modal"
-                      data-bs-target="#exampleModalScrollable">Terms & Conditions</a></label>
+                  <label for="termsConditions">{{ 'registerPage.titleterms' | translate }} <a class="terms-conditions-btn" data-bs-toggle="modal"
+                      data-bs-target="#exampleModalScrollable">{{ 'registerPage.terms&Conditions' | translate }}</a></label>
               </div>
               <div *ngIf="terms_conditions?.touched && terms_conditions?.dirty" class="text-center ">
               <p id="terms_conditionsRegisterError" class="text-danger" *ngIf="terms_conditions?.errors?.['required']">

@@ -15,14 +15,6 @@ import { Login, LoginResponse } from 'src/app/core/interfaces/patients';
 export class LoginComponent implements OnInit {
   private navigationSubscription: any;
   constructor(private fb: FormBuilder, private router: Router, private _AuthService: AuthService, private _DataService: DataService, private toastr:ToastrService) {
-    this.navigationSubscription = this.router.events.subscribe((event) => {
-      if (event instanceof NavigationStart && event.url === '/Login') {
-        this.isVisibleSpinner = true;
-        setTimeout(() => {
-          this.isVisibleSpinner = false;
-        }, 10000);
-      }
-    });
    }
   loginForm!: FormGroup
   lang: string = "en";

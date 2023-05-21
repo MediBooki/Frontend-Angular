@@ -28,6 +28,14 @@ export class AuthService {
     return token ? true : false;
   }
 
+  forgetPassword(model: Login) {
+    return this.http.post(this._sharedApi + '/forget/password', model)
+  }
+
+  resetPassword(model: Login) {
+    return this.http.post(this._sharedApi + '/reset/password', model)
+  }
+
   // login(username: string, password: string): void {
   //   // your login code here
   //   const token = 'your_token_value';

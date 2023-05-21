@@ -59,6 +59,8 @@ export class CheckoutComponent implements OnInit {
     // Promise.resolve().then(()=>this._DataService.isPageLoaded.next(false));
     // Promise.resolve().then(() => this._AuthService.isLogedIn.next(true));
     this.getPurchasedMedicines();
+    console.log(this._CartService.getTotalQty())
+
   }
 
 

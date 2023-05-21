@@ -19,7 +19,13 @@ import { OneArticleComponent } from './pages/articles/component/article-details/
 import { ContactUsComponent } from './pages/contact-us/component/contact-us/contact-us.component';
 import { SpecializeDetailsComponent } from './pages/specializations/component/specialize-details/specialize-details.component';
 import { AuthGuard } from './core/guards/auth.guard';
+import { unAuthGuard } from './core/guards/auth.guard';
 import { OrderDetailsComponent } from './pages/patient-profile/component/order-details/order-details.component';
+import { ForgetPasswordComponent } from './pages/Auth/components/forget-password/forget-password.component';
+import { ResetPasswordComponent } from './pages/Auth/components/reset-password/reset-password.component';
+import { ReviewGuard } from './core/guards/review.guard';
+import { CheckoutGuard } from './core/guards/checkout/checkout.guard';
+
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -31,12 +37,12 @@ const routes: Routes = [
     ]
   },
   { path: 'appointments/:id', component: AppointmentsComponent },
-  { path: 'review/:id', component: ReviewComponent,canActivateChild:[AuthGuard] },
+  { path: 'review/:id', component: ReviewComponent,canActivateChild:[AuthGuard],canActivate:[ReviewGuard] },
   { path: 'cart',
    canActivateChild:[AuthGuard],
    children: [
     { path: '', component: CartComponent},
-    { path: 'checkout', component: CheckoutComponent}
+    { path: 'checkout', component: CheckoutComponent, canActivate:[CheckoutGuard]}
   ]},
   { path: 'my-profile', component: PatientProfileComponent,canActivate:[AuthGuard]  },
   { path: 'order/:id', component:OrderDetailsComponent, canActivate:[AuthGuard]},
@@ -48,12 +54,14 @@ const routes: Routes = [
   },
   { path: 'specializations', component: SpecializationsComponent },
   { path : 'specialize/:id' , component:SpecializeDetailsComponent},
-  { path: 'Register', component: RegisterComponent, data: { animation: 'Register' } },
-  { path: 'Login', component: LoginComponent, data: { animation: 'login' } },
+  { path: 'Register', component: RegisterComponent, data: { animation: 'Register' },canActivate:[unAuthGuard] },
+  { path: 'Login', component: LoginComponent, data: { animation: 'login' },canActivate:[unAuthGuard] },
   { path: 'joinus', component: DoctorRegisterComponent },
   { path: 'articles', component: ArticlesComponent },
   { path: 'article/:id', component: OneArticleComponent },
   { path: 'contactus', component: ContactUsComponent },
+  { path:'forgetPassword' , component:ForgetPasswordComponent,canActivate:[unAuthGuard]},
+  { path:'ResetPassword' , component:ResetPasswordComponent,canActivate:[unAuthGuard]},
   { path: '**', component: NotFoundComponent },
 ];
 

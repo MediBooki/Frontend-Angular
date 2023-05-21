@@ -4,14 +4,17 @@ import { RegisterComponent } from '../../components/register/register.component'
 import { LayoutComponent } from '../../components/layout/layout.component';
 import { LoginComponent } from '../../components/login/login.component';
 import { SharedModule } from 'src/app/layout/shared/shared.module';
-
+import { ForgetPasswordComponent } from '../../components/forget-password/forget-password.component';
+import { ResetPasswordComponent } from '../../components/reset-password/reset-password.component';
 
 
 @NgModule({
   declarations: [
     LayoutComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    ForgetPasswordComponent,
+    ResetPasswordComponent
   ],
   imports: [
     CommonModule,
@@ -20,7 +23,9 @@ import { SharedModule } from 'src/app/layout/shared/shared.module';
   exports:[
     LayoutComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    ForgetPasswordComponent,
+    ResetPasswordComponent
   ]
 })
 export class AuthModule { }

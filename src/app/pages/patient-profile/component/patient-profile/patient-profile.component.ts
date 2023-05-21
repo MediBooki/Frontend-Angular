@@ -9,6 +9,7 @@ import { Subscription } from 'rxjs';
 import { Medicine } from 'src/app/core/interfaces/medicine';
 import { CartService } from 'src/app/pages/cart/service/cart.service';
 import { PatientProfileService } from '../../service/patient-profile.service';
+import { AppointmentsService } from 'src/app/pages/appointments/service/appointments.service';
 import { reviews } from 'src/app/core/interfaces/patients';
 
 @Component({
@@ -21,7 +22,7 @@ export class PatientProfileComponent implements OnInit, OnDestroy {
   defaultImg:string = this._DataService.defaultNoImg;
 
 
-  constructor(private _AuthService: AuthService,private _ReviewService:ReviewService, private _DataService:DataService, private _PatientProfileService:PatientProfileService, private toastr: ToastrService ,  private router: Router,private route: ActivatedRoute,private _cartservice : CartService) { }
+  constructor(private _AuthService: AuthService,private _AppointmentsService:AppointmentsService ,private _ReviewService:ReviewService, private _DataService:DataService, private _PatientProfileService:PatientProfileService, private toastr: ToastrService ,  private router: Router,private route: ActivatedRoute,private _cartservice : CartService) { }
 
   ngOnInit(): void {
     this.savePaymentOnline(); // to save payment details incase he place order and paid online
@@ -466,6 +467,7 @@ export class PatientProfileComponent implements OnInit, OnDestroy {
         this.Appointments = Appointments.data;
         this.AppointmentsAPIres = Appointments;
         this.allAppointment_notempty = this.Appointments.length > 0;
+        // this._AppointmentsService.setAppointmentData(this.Appointments)
         console.log(this.Appointments);
       },
       error: (error) => {

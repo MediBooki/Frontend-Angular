@@ -7,7 +7,7 @@
         <div class="col-md-6 right d-flex justify-content-center align-items-center position-relative">
           <div class="input-box w-100">
             <form  [formGroup]="loginForm">
-              <header class=" fw-bolder text-center fs-1 text-secondary my-5">Sign In</header>
+              <header class=" fw-bolder text-center fs-1 text-secondary my-5">{{ 'loginPage.title' | translate }}</header>
               <!-- ////////////////////////////////////user name/////////////////////////////// -->
               <div class="row">
                 <!-- ///////////////////////////////email//////////////////////////////////// -->
@@ -15,7 +15,7 @@
                 <div class="input-field d-flex flex-column position-relative px-3 ">
                     <input type="text" class="input w-100 bg-transparent mb-4" id="email" required autocomplete="off" formControlName="email">
                     
-                    <label for="email" class=" position-absolute"><i class="fa-solid fa-envelope pe-2 fs-6"></i>{{ 'registerPage.email' | translate }}</label>
+                    <label for="email" class=" position-absolute"><i class="fa-solid fa-envelope pe-2 fs-6"></i>{{ 'loginPage.email' | translate }}</label>
                     <div
                     *ngIf="loginForm.controls['email']?.invalid && loginForm.controls['email']?.touched && loginForm.controls['email']?.dirty">
                     <p id="EmailLoginError" class="text-danger">
@@ -27,7 +27,7 @@
                 <div class="input-field d-flex flex-column position-relative px-3 ">
                     <input type="{{passwordType}}" class="input w-100 bg-transparent mb-4" id="PasswordRegister" required autocomplete="off" formControlName="Password">
                     
-                    <label for="PasswordRegister" class=" position-absolute"><i class="fas fa-lock  pe-2 fs-6"></i>{{ 'registerPage.password' | translate }}</label>
+                    <label for="PasswordRegister" class=" position-absolute"><i class="fas fa-lock  pe-2 fs-6"></i>{{ 'loginPage.password' | translate }}</label>
                     <i class="fa-solid {{passwordType ? 'fa-eye' : 'fa-eye-slash' }} text-center p-3 fs-6 position-absolute end-0" (click)="togglePassword()"></i>
                     <div *ngIf="loginForm.controls['Password']?.invalid && loginForm.controls['Password']?.touched && loginForm.controls['Password']?.dirty">
                         <p id="PasswordRegisterError" class="text-danger" *ngIf="loginForm.controls['Password']?.errors?.['pattern']">
@@ -42,7 +42,7 @@
                   
                   <div class="input-field d-flex  position-relative justify-content-between align-items-center px-3">
                     <input type="submit" class="submit w-50 border-circle " value="{{ 'loginPage.login' | translate }}"  [disabled]="loginForm.invalid" (click)="login()" id="submitBtn">
-                    <a href="#" class=" text-decoration-none text-success forgotPassword fs-6 fw-bolder">Forgot password?</a>
+                    <a routerLink="/forgetPassword" class=" text-decoration-none text-success forgotPassword fs-6 fw-bolder">{{ 'loginPage.forgotPass' | translate }}</a>
                     
                   </div>
               </div>
@@ -54,9 +54,9 @@
         <!-------Image-------->
         <!-- <img src="images/white.png" alt=""> -->
         <div class="text position-absolute top-50 " >
-          <h2 class=" fw-bolder text-light">New here? </h2>
-          <span class="fst-italic text-info fs-5  fw-bolder">We are pleased to register on our site if you are new to our site </span>
-          <i class=" fw-bolder fs-6 "><a routerLink="/Register" class="text-light w-50 text-decoration-none  ms-4 fs-6 fw-bolder">Register?</a></i>
+          <h2 class=" fw-bolder text-light">{{ 'loginPage.New here' | translate }}</h2>
+          <span class="fst-italic text-info fs-5  fw-bolder">{{ 'loginPage.title_Patient' | translate }} </span>
+          <i class=" fw-bolder fs-6 "><a routerLink="/Register" class="text-light w-50 text-decoration-none  fs-6 fw-bolder">{{ 'loginPage.register' | translate }}</a></i>
         </div>
         <div class="layer"></div>
       </div>

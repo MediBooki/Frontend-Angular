@@ -1,8 +1,10 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, catchError, throwError } from 'rxjs';
+import { Observable, Subscription, catchError, throwError } from 'rxjs';
 import { AppointmentsPatient } from 'src/app/core/interfaces/patients';
 import { environment } from 'src/environments/environment';
+import { PatientProfileService } from '../../patient-profile/service/patient-profile.service';
+import { DataService } from 'src/app/core/services/data.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,8 +13,13 @@ export class AppointmentsService {
   // _sharedApi: string = "http://127.0.0.1:8000/api";
 
   _sharedApi: string = environment.apimain
+  private appointmentData: any;
+  AppointmentsSubscription = new Subscription();
+  
 
-  constructor(private _HttpClient: HttpClient) { }
+  constructor(private _HttpClient: HttpClient , private _PatientProfileService:PatientProfileService,private _DataService:DataService) { 
+    this.getAppointmentData()
+  }
 
   // General Method to Create Authorization Header
   createAuthorizationHeader(headers: HttpHeaders) {
@@ -47,4 +54,26 @@ export class AppointmentsService {
     }
     return this._HttpClient.get(this._sharedApi + '/check/appointment', { params: params });
   }
+
+
+
+  getAppointmentData() {
+    this._DataService._lang.subscribe({next:(language)=>{
+      // to get all diagnosis
+        this.AppointmentsSubscription = this._PatientProfileService.getPatientAppointments(language).subscribe({
+        next: (Appointments) => {
+          this.appointmentData = Appointments.data;
+          console.log(this.appointmentData);
+        }
+        });
+      }});
+    // this.appointmentData = data;
+    return this.appointmentData
+  }
+  
+  
+  // getAppointmentData() {
+  //   console.log(this.appointmentData)
+  //   return this.appointmentData;
+  // }
 }

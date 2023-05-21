@@ -56,7 +56,7 @@
                   class="bg-transparent border-0 text-white fw-bold px-2">English<i class="ps-2 fa-solid fa-globe"></i></button>
               </div>
             </div>
-            <ul class="dropdown-menu text-center " [ngClass]="{'lang-dropdown': !rtlDir, 'lang-dropdown-ar': rtlDir}">
+            <ul class="dropdown-menu text-center animate__animated animate__fadeIn" [ngClass]="{'lang-dropdown': !rtlDir, 'lang-dropdown-ar': rtlDir}">
               <div class="dropdown-item" (click)="translate('ar')">
                 <button value="ar"
                   class="bg-transparent border-0 text-dark fw-bold px-2">العربية</button>
@@ -91,7 +91,7 @@
               <img class="rounded-circle mb-1" src="../../../assets/images/navbar-footer/egypt.png" width="20px"
                 height="20px">
             </a>
-                <ul class="dropdown-menu text-center " [ngClass]="{'tanant-dropdown': !rtlDir, 'tanant-dropdown-ar': rtlDir}">
+                <ul class="dropdown-menu text-center animate__animated animate__fadeIn" [ngClass]="{'tanant-dropdown': !rtlDir, 'tanant-dropdown-ar': rtlDir}">
                   <li (click)="getCountry('medibookidashbord.test')"><a class="dropdown-item" href="">UAE</a></li>
                   <li *ngFor="let tenant of allTenants" (click)="getCountry(tenant.domain)"><a class="dropdown-item" href="">{{tenant.name | titlecase }}</a></li>
                   <!-- <li><a class="dropdown-item" href="#">Action</a></li>
@@ -109,7 +109,7 @@
                       <div class="cart-arrow" [ngClass]="isVisibleCartArrow?'d-block':'d-none'"></div>
                     </i>
                   </button>
-                  <div class="dropdown-menu cart-items" (mouseenter)="displayCartArrow(true)" (mouseleave)="displayCartArrow(false)" [ngClass]="{'cart-items-en': !rtlDir,'cart-items-ar': rtlDir,'empty': cartQty==0}">
+                  <div class="dropdown-menu cart-items animate__animated animate__fadeIn" (mouseenter)="displayCartArrow(true)" (mouseleave)="displayCartArrow(false)" [ngClass]="{'cart-items-en': !rtlDir,'cart-items-ar': rtlDir,'empty': cartQty==0}">
                     <div *ngIf="cartQty>0">
                       <p class="px-3 text-secondary">{{'CartPage.TableTitle4' | translate}}: <span class="cart-price">${{medicinesPurchased.total}}</span></p>
                       <div class="d-flex justify-content-between align-items-center border-top border-bottom px-3 py-1" *ngFor="let medicine of medicinesPurchased.user_cart_items">

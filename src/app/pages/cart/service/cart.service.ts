@@ -12,6 +12,7 @@ export class CartService {
   sharedApi: string = environment.apimain;
   medicinesQty = new BehaviorSubject(0);
   favoritesId = new BehaviorSubject<number[]>([]); // medicines IDs added to favorite
+  private cartData: any;
 
   constructor(private http:HttpClient) { }
 
@@ -174,6 +175,16 @@ export class CartService {
       return throwError(e)
     }));
 
+  }
+
+  setcartData(data: any) {
+    this.cartData = data;
+    // console.log(this.appointmentData[0].doctor.id)
+  }
+  
+
+  getAppointmentData() {
+    return this.cartData;
   }
 
 }

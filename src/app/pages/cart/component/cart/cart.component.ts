@@ -171,6 +171,7 @@ export class CartComponent implements OnInit {
               this.noData = true;
             } else {
               this.allMedicinesPurchased = purchasedMedicines.data.user_cart_items;
+              this._CartService.setcartData(this.allMedicinesPurchased)
               console.log(purchasedMedicines.data.user_cart_items);
               this.totalPrice = 0;
               purchasedMedicines.data.user_cart_items.forEach((element:any) => {

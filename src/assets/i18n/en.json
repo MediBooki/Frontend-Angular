@@ -246,11 +246,14 @@
     "blood": "Blood Type",
     "BirthOfDate": "Birth Date",
     "healthInsurance": "Add Health Insurance",
-    "register": "Register",
-    "oneOfUs": "One of us?",
-    "signin": "Sign In",
+    "register": "New Member",
+    "oneOfUs": "Already have an account?",
+    "title_login":"We are glad to have you back on our site, register your account on the site",
+    "signin": "Sign In ?",
     "male": "Male",
     "female": "Female",
+    "titleterms":"I agree to the ",
+    "terms&Conditions":"Terms & Conditions",
     "error": "this field is required",
     "error2": "Your Name is Not Valid *no spaces*!",
     "error3": "The name does not contain enough characters",
@@ -261,14 +264,19 @@
     "error8": "Enter minimum 30 character"
   },
   "loginPage": {
-    "title": "Sign In",
+    "title": "Existing Member",
     "email": "Email",
     "password": "password",
-    "register": "Register",
+    "register": "Register?",
     "New here": "New here ?",
+    "title_Patient":"We are pleased to register on our site if you are new to our site",
     "login": "Login",
+    "forgotPass":"forgot password?",
     "error4": "Enter Valid Email *ex: lorem@gmail.com*!",
     "error7": "Enter Valid Password *minimum 8 letters or numbers but should contains at least one letter and one number*!"
+  },
+  "forgetPassword":{
+    "reset":"Reset Password"
   },
   "appointmentPage": {
     "Doctor": "Dr/",

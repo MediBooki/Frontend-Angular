@@ -25,7 +25,6 @@ import { HomeModule } from './pages/home/module/home/home.module';
     AppComponent,
     NotFoundComponent,
     ContactUsComponent,
-    // RegisterHabdaComponent,
 
   ],
   imports: [
