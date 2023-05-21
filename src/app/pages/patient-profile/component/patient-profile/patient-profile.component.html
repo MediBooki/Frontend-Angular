@@ -263,9 +263,44 @@
                 </div>
             </div>
             </ng-template>
-
+            <!-- Modal -->
+            <div class="modal fade" id="appointmentcolModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">{{Appointments[appointmentColDataIndex]?.doctor?.name}}</h1>
+                  </div>
+                  <div class="modal-body row">
+                    <div class="col-6">
+                      <label class="text-secondary">{{'patientProfile.tap4col2' | translate}}</label>
+                      <p class="fw-bold">{{Appointments[appointmentColDataIndex]?.date}}</p>
+                    </div>
+                    <div class="col-6">
+                      <label class="text-secondary">{{'patientProfile.tap4col3' | translate}}</label>
+                      <p class="fw-bold">{{Appointments[appointmentColDataIndex]?.time}}</p>
+                    </div>
+                    <div class="col-6">
+                      <label class="text-secondary">{{'patientProfile.tap4col4' | translate}}</label>
+                      <p class="fw-bold">{{Appointments[appointmentColDataIndex]?.price}}</p>
+                    </div>
+                    <div class="col-6">
+                      <label class="text-secondary">{{'patientProfile.tap4col5' | translate}}</label>
+                      <p class="fw-bold">
+                        <span *ngIf="Appointments[appointmentColDataIndex]?.status==0">{{'patientProfile.tap6status0' | translate}}</span>
+                        <span *ngIf="Appointments[appointmentColDataIndex]?.status==1">{{'patientProfile.tap6status1' | translate}}</span>
+                      </p>
+                    </div>
+                  </div>
+                  <div class="modal-footer" [ngClass]="{'d-flex justify-content-between': Appointments[appointmentColDataIndex]?.status==1}">
+                    <button class="btn btn-main border-0" *ngIf="Appointments[appointmentColDataIndex]?.status==1 && reviewBtn  " [routerLink]="['/review', Appointments[appointmentColDataIndex].doctor.id]" routerLinkActive="router-link-active" data-bs-dismiss="modal" (click)="getifUpdate(0)">{{'patientProfile.tap4col6' | translate}}</button>
+                    <button class="btn btn-main border-0" *ngIf="Appointments[appointmentColDataIndex]?.status==1 && updateReviewBtn " [routerLink]="['/review', Appointments[appointmentColDataIndex].doctor.id ]" [queryParams]="{ id: reviewId }" routerLinkActive="router-link-active" data-bs-dismiss="modal" (click)="getifUpdate(1)">update review</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-<!----------------------------------------------------- ( Medical History )--------------------------------------------->
+          <!----------------------------------------------------- ( Medical History )--------------------------------------------->
           <div class="m-4 p-3 bg-white rounded" *ngIf="curruntService == 'history'">
             <h2 class="fw-bold text-center">{{'patientProfile.sidenav5' | translate}}</h2>
 
@@ -365,42 +400,8 @@
               </div>
           </div>
           </ng-template>
-          <!-- Modal -->
-          <div class="modal fade" id="colModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
-            <div class="modal-dialog">
-              <div class="modal-content" *ngIf="allInvoices[colDataIndex]!=undefined">
-                <div class="modal-header">
-                  <h1 class="modal-title fs-5" id="exampleModalLabel">{{allInvoices[colDataIndex].service}}</h1>
-                </div>
-                <div class="modal-body row">
-                  <div class="col-6">
-                    <label class="text-secondary">{{'patientProfile.tap6col2' | translate}}</label>
-                    <p class="fw-bold">{{allInvoices[colDataIndex].invoice_date}}</p>
-                  </div>
-                  <div class="col-6">
-                    <label class="text-secondary">{{'patientProfile.tap6col3' | translate}}</label>
-                    <p class="fw-bold">{{allInvoices[colDataIndex].doctor}}</p>
-                  </div>
-                  <div class="col-6">
-                    <label class="text-secondary">{{'patientProfile.tap6col4' | translate}}</label>
-                    <p class="fw-bold">{{allInvoices[colDataIndex].total_with_tax}}</p>
-                  </div>
-                  <div class="col-6">
-                    <label class="text-secondary">{{'patientProfile.tap6col5' | translate}}</label>
-                    <p class="fw-bold">
-                      <span *ngIf="allInvoices[colDataIndex].type==2">{{'patientProfile.tap6type2' | translate}}</span>
-                      <span *ngIf="allInvoices[colDataIndex].type==1">{{'patientProfile.tap6type1' | translate}}</span>
-                    </p>
-                  </div>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
-<!--------------------------------------------------------- ( Account Statement ) -------------------------------------------------->
+        <!--------------------------------------------------------- ( Account Statement ) -------------------------------------------------->
         <!-- <div class="m-4 p-3 bg-white rounded" *ngIf="curruntService == 'statements'">
           <h2 class="fw-bold">{{'patientProfile.sidenav7' | translate}}</h2>
           <table class="w-100 text-center table table-striped">
@@ -413,7 +414,7 @@
               </tr>
           </table>
         </div> -->
-<!----------------------------------------------------- ( My Favorites ) --------------------------------------------->
+        <!----------------------------------------------------- ( My Favorites ) --------------------------------------------->
         <div class="m-4 p-3 bg-white rounded" *ngIf="curruntService == 'fav'">
           <h2 class="fw-bold text-center">{{'patientProfile.sidenav8' | translate}}</h2>
             <div class="row bg-light-gray rounded box-s" *ngIf="favMedicinesAPIres.success && allFav_notempty else nofav">
@@ -478,7 +479,7 @@
                     <div class="col-lg-4 col-md-6 pb-3 fs-6">
                      <p class="mx-2">
                        <i class="fa-solid fa-mobile-screen p-1"></i>{{order.phone1}}
-                     </p>
+                      </p>
                     </div>
                     <div class="col-lg-4 col-md-6 pb-3 fs-6">
                      <p class="mx-2">
@@ -522,42 +523,10 @@
           </div>
           </ng-template>
 
-          <!-- Modal -->
-          <div class="modal fade" id="order-details" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-              <div class="modal-content" *ngIf="orderDetails">
-                <div class="modal-header">
-                  <h1 class="modal-title fs-5" id="exampleModalLabel">{{'patientProfile.modalh' | translate}}</h1>
-                </div>
-                <div class="modal-body row bg-light">
-                  <div class="col-md-6 p-2" *ngFor="let medicine of orderDetails[0].user_medicine_items">
-                    <div class="bg-white rounded pb-1" [routerLink]="['/pharmacy/medicineDetails' , medicine.id]" data-bs-dismiss="modal">
-                      <div class="medicine-img">
-                        <img class="rounded w-100 h-100 default-img" [src]="medicine.photo || defaultImg" alt="">
-                      </div>
-                      <div class="px-1">
-                        <div class="py-2">
-                          <span class="bg-icon text-white fw-bold px-2 py-1 rounded mx-2"><i class="fa-solid fa-prescription-bottle m-1"></i> {{medicine.qty}} {{"SharedData.item" | translate}}</span>
-                        </div>
-                        <div>
-                          <span class="mt-2 mb-0 medicine-name"><i class="fa-solid fa-pills me-2"></i>{{medicine.medicine_name}}</span>
-                        </div>
-
-                        <h5 class="medicine-price mt-1 mb-3 text-danger ms-1 fw-bold">{{medicine.price}} {{"SharedData.Currency" | translate}} <span class="text-muted">{{"SingleMedicine.PricePer" | translate}}</span></h5>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
 
 <!----------------------------------------------------- ( my reviews ) --------------------------------------------->
-        <div class="m-4 p-3 bg-white rounded" *ngIf="curruntService == 'review'">
+<div class="m-4 p-3 bg-white rounded" *ngIf="curruntService == 'review'">
           <h2 class="fw-bold text-center">{{'patientProfile.sidenav10' | translate}}</h2>
           <div class="row" *ngIf="PatientReviewsAPIres.success && allReviews_notempty else noreviews">
             <div class="col-md-6 p-2" *ngFor="let review of allPatientReviews">
@@ -599,7 +568,7 @@
               </div>
               <div class="search-empty-content">
                   <div class="my-3">
-                      <h2 class="fw-bold">{{'errors.no-reviews' | translate}}</h2>
+                    <h2 class="fw-bold">{{'errors.no-reviews' | translate}}</h2>
                   </div>
               </div>
           </div>
@@ -619,7 +588,7 @@
         <div class="doctors-empty-content">
             <div class="my-3">
                 <h2 class="fw-bold text-danger">{{"patientProfile.noLogin" | translate}}</h2>
-            </div>
+              </div>
             <button type="button" class="btn btn-danger" routerLink="/home">{{"patientProfile.go2login" | translate}}</button>
         </div>
       </div>
@@ -627,11 +596,11 @@
     </ng-template>
 </div>
 
-                  <!-- Modal -->
+                  <!-- update Modal -->
                   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                       <form [formGroup]="updateProfile" (ngSubmit)="updateProfileSupmit()" >
-                      <div class="modal-content">
+                        <div class="modal-content">
                         <div class="modal-header">
                           <h1 class="modal-title fs-5" id="exampleModalLabel">{{'patientProfile.tap1modaltitle' | translate}}</h1>
                           <!-- <button type="button" class="ms-auto btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
@@ -686,40 +655,3 @@
                     </form>
                     </div>
                   </div>
-
-                              <!-- Modal -->
-            <div class="modal fade" id="appointmentcolModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">{{Appointments[appointmentColDataIndex]?.doctor?.name}}</h1>
-                  </div>
-                  <div class="modal-body row">
-                    <div class="col-6">
-                      <label class="text-secondary">{{'patientProfile.tap4col2' | translate}}</label>
-                      <p class="fw-bold">{{Appointments[appointmentColDataIndex]?.date}}</p>
-                    </div>
-                    <div class="col-6">
-                      <label class="text-secondary">{{'patientProfile.tap4col3' | translate}}</label>
-                      <p class="fw-bold">{{Appointments[appointmentColDataIndex]?.time}}</p>
-                    </div>
-                    <div class="col-6">
-                      <label class="text-secondary">{{'patientProfile.tap4col4' | translate}}</label>
-                      <p class="fw-bold">{{Appointments[appointmentColDataIndex]?.price}}</p>
-                    </div>
-                    <div class="col-6">
-                      <label class="text-secondary">{{'patientProfile.tap4col5' | translate}}</label>
-                      <p class="fw-bold">
-                        <span *ngIf="Appointments[appointmentColDataIndex]?.status==0">{{'patientProfile.tap6status0' | translate}}</span>
-                        <span *ngIf="Appointments[appointmentColDataIndex]?.status==1">{{'patientProfile.tap6status1' | translate}}</span>
-                      </p>
-                    </div>
-                  </div>
-                  <div class="modal-footer" [ngClass]="{'d-flex justify-content-between': Appointments[appointmentColDataIndex]?.status==1}">
-                    <button class="btn btn-main border-0" *ngIf="Appointments[appointmentColDataIndex]?.status==1 && reviewBtn  " [routerLink]="['/review', Appointments[appointmentColDataIndex].doctor.id]" routerLinkActive="router-link-active" data-bs-dismiss="modal" (click)="getifUpdate(0)">{{'patientProfile.tap4col6' | translate}}</button>
-                    <button class="btn btn-main border-0" *ngIf="Appointments[appointmentColDataIndex]?.status==1 && updateReviewBtn " [routerLink]="['/review', Appointments[appointmentColDataIndex].doctor.id ]" [queryParams]="{ id: reviewId }" routerLinkActive="router-link-active" data-bs-dismiss="modal" (click)="getifUpdate(1)">update review</button>
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                  </div>
-                </div>
-              </div>
-            </div>
