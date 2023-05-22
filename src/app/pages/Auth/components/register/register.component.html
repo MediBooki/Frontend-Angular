@@ -191,8 +191,9 @@
  aria-hidden="true"  [dir]=" 'dir' | translate " [lang]="lang">
  <div class="modal-dialog modal-dialog-scrollable">
    <div class="modal-content">
-     <div class="modal-header">
-       <h5 class="modal-title" id="exampleModalScrollableTitle">Terms & Conditions</h5>
+     <div class="modal-header" [ngClass]="rtlDir?'modal-header-arabic':'modal-header-english'">
+       <h5 class="modal-title" id="exampleModalScrollableTitle">{{'SharedData.TermsConditions' | translate}}</h5>
+       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
      </div>
      <div class="modal-body">
          <div class="terms-conditions-item my-3" *ngFor="let termsCondition of termsConditions">
@@ -201,7 +202,7 @@
          </div>
      </div>
      <div class="modal-footer">
-       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{'SharedData.CloseBtn' | translate}}</button>
      </div>
    </div>
  </div>

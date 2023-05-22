@@ -283,7 +283,18 @@
 }
 
 
-
+@media (width <=768px) {
+    .medicine-search {
+        input {
+            width: 160px !important;
+            font-size: 0.9rem;
+        }
+    }
+    .search-btn {
+        width: 110px !important;
+        font-size: 0.8rem;
+    }
+}
 
 
 

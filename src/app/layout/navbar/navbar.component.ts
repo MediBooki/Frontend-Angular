@@ -6,6 +6,7 @@ import { AuthService } from 'src/app/pages/Auth/services/auth.service';
 import { CartService } from 'src/app/pages/cart/service/cart.service';
 import { PatientProfileService } from 'src/app/pages/patient-profile/service/patient-profile.service';
 import { environment } from 'src/environments/environment';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-navbar',
@@ -34,7 +35,7 @@ export class NavbarComponent implements OnInit {
   patientInfoSubscription = new Subscription();
 
 
-  constructor(private _PatientProfileService:PatientProfileService,private _DataService: DataService, private _CartService: CartService, private _TranslateService: TranslateService, private _AuthService: AuthService) { }
+  constructor(private _PatientProfileService:PatientProfileService,private _DataService: DataService, private _CartService: CartService, private _TranslateService: TranslateService, private _AuthService: AuthService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.getLang();
@@ -140,6 +141,8 @@ export class NavbarComponent implements OnInit {
     this._CartService.medicinesQty.next(0);
     this._AuthService.logout();
     this._DataService.is_login.next(false);
+    this.toastr.warning(!this.rtlDir?`You Logged Out From the System!`:`لقد سجلت خروجك من الموقع!`)
+
   }
 
   /*============================================( NAVBAR SCROLL to test )============================================*/

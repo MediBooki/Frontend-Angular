@@ -5,19 +5,19 @@
 
     <section class="position-relative justify-content-center align-content-center" #firstSection>
         <div class="roadmap d-flex  align-items-center justify-content-center">
-            <div class=" ms-5 p-3 text-center ">
+            <div class=" mx-5 p-3 text-center ">
                 <h1 class=" fw-bolder mb-3 text-center header title" [class.arabic-font]="rtlDir">{{rtlDir?'اتمام عملية الشراء':'Checkout'}}</h1>
                 <img class="img-fluid lines-img" src="../../../assets/images/roadmap/lines.png" alt="">
                 <div class="mt-2">
                     <a routerLink="/home" class="fw-bolder text-success text-decoration-none fs-5">
                         {{'RoadMap.MainTitle' | translate}} 
-                        <i class="fa-solid ms-2 fs-6" [ngClass]="rtlDir? 'fa-angles-left' : 'fa-angles-right'"></i>
+                        <i class="fa-solid mx-2 fs-6" [ngClass]="rtlDir? 'fa-angles-left' : 'fa-angles-right'"></i>
                     </a>
                     <a routerLink="/cart" class="fw-bolder text-success text-decoration-none fs-5">
                         {{rtlDir?'عربة الشراء':'Cart'}} 
-                        <i class="fa-solid ms-2 fs-6" [ngClass]="rtlDir? 'fa-angles-left' : 'fa-angles-right'"></i>
+                        <i class="fa-solid mx-2 fs-6" [ngClass]="rtlDir? 'fa-angles-left' : 'fa-angles-right'"></i>
                     </a>
-                <span class=" ms-2 fw-bolder text-capitalize">{{rtlDir?'اتمام عملية الشراء':'Checkout'}}</span>
+                <span class=" mx-2 fw-bolder text-capitalize">{{rtlDir?'اتمام عملية الشراء':'Checkout'}}</span>
                 </div>
             </div>
         </div>
@@ -28,12 +28,12 @@
     <section class="checkout-section py-5">
         <div class="container">
 
-          <form class="row g-3" [formGroup]="checkoutForm" (ngSubmit)="submitCheckout()">
+          <form class="row g-3" [formGroup]="checkoutForm">
             <div class="row">
-                <div class="col-md-8">
+                <div class="col-xl-8 col-lg-7">
                     <div class="row">
                       <div class="col-md-6 mb-4 px-3">
-                        <label for="inputFName" class="form-label">{{'CheckOutPage.FNameLabel' | translate}}<abbr class="required ms-1" title="required"><sup><i class="fa-solid fa-asterisk"></i></sup></abbr></label>
+                        <label for="inputFName" class="form-label">{{'CheckOutPage.FNameLabel' | translate}}<abbr class="required mx-1" title="required"><sup><i class="fa-solid fa-asterisk"></i></sup></abbr></label>
                         <input type="text" class="form-control py-3" id="inputFName" formControlName="first_name" [class.is-valid]="checkoutForm.controls['first_name'].touched && checkoutForm.controls['first_name'].dirty && checkoutForm.controls['first_name'].errors==null">
                         <div class="mt-1" *ngIf="checkoutForm.controls['first_name'].touched && checkoutForm.controls['first_name'].dirty || invalidForm==true">
                           <p class="text-danger" *ngIf="checkoutForm.controls['first_name']?.errors?.['required']">
@@ -49,7 +49,7 @@
                       </div>
   
                       <div class="col-md-6 mb-4 px-3">
-                        <label for="inputLName" class="form-label">{{'CheckOutPage.LNameLabel' | translate}}<abbr class="required ms-1" title="required"><sup><i class="fa-solid fa-asterisk"></i></sup></abbr></label>
+                        <label for="inputLName" class="form-label">{{'CheckOutPage.LNameLabel' | translate}}<abbr class="required mx-1" title="required"><sup><i class="fa-solid fa-asterisk"></i></sup></abbr></label>
                         <input type="text" class="form-control py-3" id="inputLName" formControlName="last_name" [class.is-valid]="checkoutForm.controls['last_name'].touched && checkoutForm.controls['last_name'].dirty && checkoutForm.controls['last_name'].errors==null">
                         <div class="mt-1" *ngIf="checkoutForm.controls['last_name'].touched && checkoutForm.controls['last_name'].dirty || invalidForm==true">
                           <p class="text-danger" *ngIf="checkoutForm.controls['last_name']?.errors?.['required']">
@@ -64,8 +64,8 @@
                         </div>
                       </div>
   
-                      <div class="col-md-12 mb-4 px-3">
-                        <label for="inputEmail" class="form-label">{{'CheckOutPage.EmailLabel' | translate}}<abbr class="required ms-1" title="required"><sup><i class="fa-solid fa-asterisk"></i></sup></abbr></label>
+                      <div class="col-lg-12 mb-4 px-3">
+                        <label for="inputEmail" class="form-label">{{'CheckOutPage.EmailLabel' | translate}}<abbr class="required mx-1" title="required"><sup><i class="fa-solid fa-asterisk"></i></sup></abbr></label>
                         <input type="email" class="form-control py-3" id="inputEmail" placeholder="{{'CheckOutPage.Placeholders.Email'|translate}}" formControlName="email" [class.is-valid]="checkoutForm.controls['email'].touched && checkoutForm.controls['email'].dirty && checkoutForm.controls['email'].errors==null" [dir]="direction">
                         <div class="mt-1" *ngIf="checkoutForm.controls['email'].touched && checkoutForm.controls['email'].dirty || invalidForm==true">
                           <p class="text-danger" *ngIf="checkoutForm.controls['email']?.errors?.['required']">
@@ -77,8 +77,8 @@
                         </div>
                       </div>
   
-                      <div class="col-md-12 mb-4 px-3">
-                        <label for="inputPhone" class="form-label">{{'CheckOutPage.PhoneLabel' | translate}}<abbr class="required ms-1" title="required"><sup><i class="fa-solid fa-asterisk"></i></sup></abbr></label>
+                      <div class="col-lg-12 mb-4 px-3">
+                        <label for="inputPhone" class="form-label">{{'CheckOutPage.PhoneLabel' | translate}}<abbr class="required mx-1" title="required"><sup><i class="fa-solid fa-asterisk"></i></sup></abbr></label>
                         <input type="text" class="form-control py-3" id="inputPhone" placeholder="{{'CheckOutPage.Placeholders.Phone1'|translate}}" formControlName="phone1" [class.is-valid]="checkoutForm.controls['phone1'].touched && checkoutForm.controls['phone1'].dirty && checkoutForm.controls['phone1'].errors==null">
                         <div class="mt-1" *ngIf="checkoutForm.controls['phone1'].touched && checkoutForm.controls['phone1'].dirty || invalidForm==true">
                           <p class="text-danger" *ngIf="checkoutForm.controls['phone1']?.errors?.['required']">
@@ -100,7 +100,7 @@
                       </div>
   
                       <div class="col-12 mb-4 px-3">
-                        <label for="inputAddress" class="form-label">{{'CheckOutPage.AddressLabel' | translate}}<abbr class="required ms-1" title="required"><sup><i class="fa-solid fa-asterisk"></i></sup></abbr></label>
+                        <label for="inputAddress" class="form-label">{{'CheckOutPage.AddressLabel' | translate}}<abbr class="required mx-1" title="required"><sup><i class="fa-solid fa-asterisk"></i></sup></abbr></label>
                         <input type="text" class="form-control py-3" id="inputAddress" placeholder="{{'CheckOutPage.Placeholders.Address1'|translate}}" formControlName="address1" [class.is-valid]="checkoutForm.controls['address1'].touched && checkoutForm.controls['address1'].dirty && checkoutForm.controls['address1'].errors==null">
                         <div class="mt-1" *ngIf="checkoutForm.controls['address1'].touched && checkoutForm.controls['address1'].dirty || invalidForm==true">
                           <p class="text-danger" *ngIf="checkoutForm.controls['address1']?.errors?.['required']">
@@ -111,7 +111,7 @@
                       </div>
   
                       <div class="col-md-6 mb-4 px-3">
-                        <label for="inputCity" class="form-label">{{'CheckOutPage.CityLabel' | translate}}<abbr class="required ms-1" title="required"><sup><i class="fa-solid fa-asterisk"></i></sup></abbr></label>
+                        <label for="inputCity" class="form-label">{{'CheckOutPage.CityLabel' | translate}}<abbr class="required mx-1" title="required"><sup><i class="fa-solid fa-asterisk"></i></sup></abbr></label>
                         <input type="text" class="form-control py-3" id="inputCity" formControlName="city" [class.is-valid]="checkoutForm.controls['city'].touched && checkoutForm.controls['city'].dirty && checkoutForm.controls['city'].errors==null">
                         <div class="mt-1" *ngIf="checkoutForm.controls['city'].touched && checkoutForm.controls['city'].dirty || invalidForm==true">
                           <p class="text-danger" *ngIf="checkoutForm.controls['city']?.errors?.['required']">
@@ -123,8 +123,8 @@
                         </div>
                       </div>
   
-                      <div class="col-md-4 mb-4 px-3">
-                        <label for="inputState" class="form-label">{{'CheckOutPage.StateLabel' | translate}}<abbr class="required ms-1" title="required"><sup><i class="fa-solid fa-asterisk"></i></sup></abbr></label>
+                      <div class="col-md-3 mb-4 px-3">
+                        <label for="inputState" class="form-label">{{'CheckOutPage.StateLabel' | translate}}<abbr class="required mx-1" title="required"><sup><i class="fa-solid fa-asterisk"></i></sup></abbr></label>
                         <input type="text" class="form-control py-3" id="inputState" formControlName="state" [class.is-valid]="checkoutForm.controls['state'].touched && checkoutForm.controls['state'].dirty && checkoutForm.controls['state'].errors==null">
                         <div class="mt-1" *ngIf="checkoutForm.controls['state'].touched && checkoutForm.controls['state'].dirty || invalidForm==true">
                           <p class="text-danger" *ngIf="checkoutForm.controls['state']?.errors?.['required']">
@@ -136,8 +136,8 @@
                         </div>
                       </div>
   
-                      <div class="col-md-2 mb-4 px-3">
-                        <label for="inputZip" class="form-label">{{'CheckOutPage.ZipLabel' | translate}}<abbr class="required ms-1" title="required"><sup><i class="fa-solid fa-asterisk"></i></sup></abbr></label>
+                      <div class="col-md-3 mb-4 px-3">
+                        <label for="inputZip" class="form-label">{{'CheckOutPage.ZipLabel' | translate}}<abbr class="required mx-1" title="required"><sup><i class="fa-solid fa-asterisk"></i></sup></abbr></label>
                         <input type="text" class="form-control py-3" id="inputZip" formControlName="zip_code" [class.is-valid]="checkoutForm.controls['zip_code'].touched && checkoutForm.controls['zip_code'].dirty && checkoutForm.controls['zip_code'].errors==null">
                         <div class="mt-1" *ngIf="checkoutForm.controls['zip_code'].touched && checkoutForm.controls['zip_code'].dirty || invalidForm==true">
                           <p class="text-danger" *ngIf="checkoutForm.controls['zip_code']?.errors?.['required']">
@@ -151,7 +151,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-4 d-flex">
+                <div class="col-xl-4 col-lg-5 d-flex">
                   <div class="container">
                     <div class="voucher p-5">
                       <div class="voucher-title py-2">
@@ -168,15 +168,15 @@
                           </div>
                         </div>
                         <div class="my-4 bg-white rounded p-3 voucher-payment">
-                          <p class="fw-bold"><i class="fa-regular fa-credit-card me-2"></i>{{'CheckOutPage.Voucher.paymentMethod' | translate}}</p>
+                          <p class="fw-bold"><i class="fa-regular fa-credit-card mx-2"></i>{{'CheckOutPage.Voucher.paymentMethod' | translate}}</p>
                           
                           <label class="input-group p-2 my-2 rounded d-flex align-items-center" for="cashDelivery" [class.checked-payment]="paymentMethod=='cash'"> <!--[class.bg-danger]="{checked: isChecked == 1}"-->
                               <input (click)="changePaymentMethod('cash')"  id="cashDelivery" name="payment_method" class="form-check-input rounded-circle mt-0"  type="radio" value="0" aria-label="Radio button for following text input" checked>
-                            <span class="ms-2">{{'CheckOutPage.Voucher.delivery' | translate}}</span>
+                            <span class="mx-2">{{'CheckOutPage.Voucher.delivery' | translate}}</span>
                           </label>
                           <label class="input-group p-2 my-2 rounded d-flex align-items-center" for="cashOnline" [class.checked-payment]="paymentMethod=='online'">
                             <input (click)="changePaymentMethod('online')" id="cashOnline" name="payment_method" class="form-check-input rounded-circle mt-0" type="radio" value="1" aria-label="Radio button for following text input">
-                          <span class="ms-2">{{'CheckOutPage.Voucher.online' | translate}}</span>
+                          <span class="mx-2">{{'CheckOutPage.Voucher.online' | translate}}</span>
                           </label>
 
                           <!-- <div class="form-check">
@@ -222,7 +222,7 @@
       <div class="modal-body">{{'CheckOutPage.Voucher.ConfirmationDescription' | translate}}</div>
       <div class="modal-footer d-flex justify-content-between flex-nowrap">
         <button type="button" class="btn cancel-btn btn-outline-secondary rounded-pill px-5 py-2" data-bs-dismiss="modal">{{'CheckOutPage.Voucher.CancelBtn' | translate}}</button>
-        <button type="submit" class="btn btn-outline-info confirm-btn text-white rounded-pill px-5 py-2" data-bs-dismiss="modal">{{'CheckOutPage.Voucher.ConfirmBtn' | translate}}</button>
+        <button type="submit" class="btn btn-outline-info confirm-btn text-white rounded-pill px-5 py-2" data-bs-dismiss="modal" (click)="submitCheckout()">{{'CheckOutPage.Voucher.ConfirmBtn' | translate}}</button>
       </div>
     </div>
   </div>

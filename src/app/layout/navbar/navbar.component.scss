@@ -178,13 +178,20 @@ border-color: #eb3a7b;
   border-top: 2px solid rgb(91, 91, 91);
 }
 
+.dropdown-toggle {
+  cursor: pointer;
+}
 
 .cart-items-en {
-  right: 15%;
+  right: 10%;
 }
 
 .cart-items-ar {
-  left: 15%;
+  left: 10%;
+}
+
+.fixed-nav-container {
+  width: 75%;
 }
 
 .cart-medicine-qty {

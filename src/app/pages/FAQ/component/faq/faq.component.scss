@@ -1,0 +1,25 @@
+@import '../../../../../styles.scss';
+
+
+.faq-english::ng-deep {
+    .accordion-item {
+        ::after {
+            margin-left: auto !important;
+            margin-right: 0 !important;
+        }
+    }
+}
+
+.faq-arabic::ng-deep {
+    .accordion-item {
+        ::after {
+            margin-right: auto !important;
+            margin-left: 0 !important;
+        }
+    }
+}
+
+.checkout-section {
+    background-image: url('../../../../../assets/images/Mask\ Group\ 4.png');
+    // background-size: 100% 100%;
+}

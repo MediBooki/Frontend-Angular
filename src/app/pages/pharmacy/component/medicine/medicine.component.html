@@ -16,9 +16,9 @@
             </div>
 
             <div class="p-2">
-                <span class="mt-2 mb-0 medicine-name"><i class="fa-solid fa-pills me-2"></i>{{medicine.name}}</span>
+                <span class="mt-2 mb-0 medicine-name"><i class="fa-solid fa-pills mx-2"></i>{{medicine.name}}</span>
                 <h6 class="text-muted"><i class="fa-solid fa-pen-to-square m-2"></i>{{medicine.category.name}}</h6>
-                <h5 class="medicine-price mt-1 mb-3 text-danger ms-1 fw-bold">{{medicine.price}} {{"SharedData.Currency" | translate}} <span class="text-muted">{{"SingleMedicine.PricePer" | translate}}</span></h5>
+                <h5 class="medicine-price mt-1 mb-3 text-danger mx-1 fw-bold">{{medicine.price}} {{"SharedData.Currency" | translate}} <span class="text-muted">{{"SingleMedicine.PricePer" | translate}}</span></h5>
                 <div class="text-white w-75 m-auto d-flex justify-content-center select-btn my-3" [ngClass]="rtlDir? 'select-btn-arabic' : 'select-btn-english'">
                     <!-- <div class="select-container">
                         <select #selection class="h-100" [value]="amount">
@@ -33,7 +33,7 @@
                             <option value="9">9</option>
                         </select>
                     </div> -->
-                    <button [routerLink]="['/pharmacy/medicineDetails' , medicine.id]" class="btn" type="button"><i class="fa-solid fa-circle-info me-2"></i>{{"SingleMedicine.showDetails" | translate}}</button>
+                    <button [routerLink]="['/pharmacy/medicineDetails' , medicine.id]" class="btn" type="button"><i class="fa-solid fa-circle-info mx-2"></i>{{"SingleMedicine.showDetails" | translate}}</button>
                 </div>
             </div>
         </div>

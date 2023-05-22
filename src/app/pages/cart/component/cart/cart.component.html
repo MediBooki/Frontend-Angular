@@ -5,15 +5,15 @@
 
         <section class="position-relative justify-content-center align-content-center" #firstSection>
             <div class="roadmap d-flex  align-items-center justify-content-center">
-                <div class=" ms-5 p-3 text-center ">
+                <div class=" mx-5 p-3 text-center ">
                     <h1 class=" fw-bolder mb-3 text-center header title" [class.arabic-font]="rtlDir">{{rtlDir?'عربة الشراء':'Cart'}}</h1>
                     <img class="img-fluid lines-img" src="../../../assets/images/roadmap/lines.png" alt="">
                     <div class="mt-2">
                         <a routerLink="/home" class="fw-bolder text-success text-decoration-none fs-5">
                             {{'RoadMap.MainTitle' | translate}} 
-                            <i class="fa-solid ms-2 fs-6" [ngClass]="rtlDir? 'fa-angles-left' : 'fa-angles-right'"></i>
+                            <i class="fa-solid mx-2 fs-6" [ngClass]="rtlDir? 'fa-angles-left' : 'fa-angles-right'"></i>
                         </a>
-                    <span class=" ms-2 fw-bolder text-capitalize">{{rtlDir?'عربة الشراء':'Cart'}}</span>
+                    <span class=" mx-2 fw-bolder text-capitalize">{{rtlDir?'عربة الشراء':'Cart'}}</span>
                     </div>
                 </div>
             </div>
@@ -46,8 +46,8 @@
                             <td class="product-name"><span [routerLink]="['/pharmacy/medicineDetails' , medicine.id]">{{medicine.medicine_name}}</span></td>
                             <td>
                                 <div class="d-flex">
-                                    <span>{{medicine.price}}</span>
-                                    <span class="ms-1">{{"SharedData.Currency" | translate}}</span>
+                                    <span>{{medicine.price}}
+                                    {{"SharedData.Currency" | translate}}</span>
                                 </div>
                             </td>
                             
@@ -72,7 +72,7 @@
                             <td colspan="6">
                                 <div class="other-options d-flex justify-content-between align-items-center p-4">
                                     <button routerLink="/pharmacy" class="btn">{{"CartPage.ShoppingBtn" | translate}}</button>
-                                    <span class="total-price text-danger"><span class="me-1">{{"CartPage.TotalPrice" | translate}}</span>{{totalPrice}} {{"SharedData.Currency" | translate}}</span>
+                                    <span class="total-price text-danger"><span class="mx-1">{{"CartPage.TotalPrice" | translate}}</span>{{totalPrice}} {{"SharedData.Currency" | translate}}</span>
                                     <button routerLink="/cart/checkout" class="btn">{{"CartPage.CheckOutBtn" | translate}}</button>
                                 </div>
                             </td>
@@ -97,7 +97,7 @@
                                 <p class="card-text">{{"CartPage.product-card-list.Price" | translate}} <span class="fw-light">{{medicine.price}} {{"SharedData.Currency" | translate}}</span></p>
                                 <div class="d-flex flex-wrap align-items-center add-to-cart-block my-3">
                                     <span class="fw-bold">{{"CartPage.product-card-list.Quantity" | translate}} </span>
-                                    <div class="quantity-counter ms-2">
+                                    <div class="quantity-counter mx-2">
                                         <button class="btn btn-minus py-2" [disabled]="medicine.qty<=1" (click)="decrease(medicine.id , medicine.qty)">-</button> <!-- || isVisibleAddRemoveSpinner -->
                                         <div class="d-flex justify-content-center align-items-center">
                                             <span class="fw-light fs-6 mx-2" *ngIf="selectedAddRemoveMedicine!=medicine.id">{{medicine.qty}}</span>
@@ -116,7 +116,7 @@
                     
                     <div class="other-options d-flex justify-content-between align-items-center">
                         <button routerLink="/pharmacy" class="btn">{{"CartPage.ShoppingBtn" | translate}}</button>
-                        <span class="total-price text-danger fw-bold"><span class="me-1">{{"CartPage.TotalPrice" | translate}}</span>{{totalPrice}}{{"SharedData.Currency" | translate}}</span>
+                        <span class="total-price text-danger fw-bold"><span class="mx-1">{{"CartPage.TotalPrice" | translate}}</span>{{totalPrice}}{{"SharedData.Currency" | translate}}</span>
                         <button routerLink="/cart/checkout" class="btn">{{"CartPage.CheckOutBtn" | translate}}</button>
                     </div>
                 </div>

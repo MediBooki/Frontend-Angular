@@ -116,6 +116,8 @@ export class DoctorsComponent implements OnInit {
       this.smallFilterVisible = false
       $('body').addClass('overflow-auto');
       $('body').removeClass('overflow-hidden');
+      $('.fixed-nav').addClass('d-block')
+      $('.fixed-nav').removeClass('d-none')
     }
     // this.smallFilterVisible = window.innerWidth < 800; // Adjust the breakpoint as needed
   }
@@ -273,6 +275,8 @@ export class DoctorsComponent implements OnInit {
     this.smallFilterVisible = true;
     $('body').removeClass('overflow-auto');
     $('body').addClass('overflow-hidden');
+    $('.fixed-nav').removeClass('d-block')
+    $('.fixed-nav').addClass('d-none')
   }
 
   //----- Method 8
@@ -280,6 +284,8 @@ export class DoctorsComponent implements OnInit {
     this.smallFilterVisible = false;
     $('body').addClass('overflow-auto');
     $('body').removeClass('overflow-hidden');
+    $('.fixed-nav').addClass('d-block')
+    $('.fixed-nav').removeClass('d-none')
   }
 
 

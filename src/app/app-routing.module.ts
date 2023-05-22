@@ -18,14 +18,14 @@ import { ArticlesComponent } from './pages/articles/component/articles/articles.
 import { OneArticleComponent } from './pages/articles/component/article-details/one-article.component';
 import { ContactUsComponent } from './pages/contact-us/component/contact-us/contact-us.component';
 import { SpecializeDetailsComponent } from './pages/specializations/component/specialize-details/specialize-details.component';
-import { AuthGuard } from './core/guards/auth.guard';
-import { unAuthGuard } from './core/guards/auth.guard';
 import { OrderDetailsComponent } from './pages/patient-profile/component/order-details/order-details.component';
 import { ForgetPasswordComponent } from './pages/Auth/components/forget-password/forget-password.component';
 import { ResetPasswordComponent } from './pages/Auth/components/reset-password/reset-password.component';
+import { FAQComponent } from './pages/FAQ/component/faq/faq.component';
+import { AuthGuard } from './core/guards/auth.guard';
+import { unAuthGuard } from './core/guards/auth.guard';
 import { ReviewGuard } from './core/guards/review.guard';
 import { CheckoutGuard } from './core/guards/checkout/checkout.guard';
-
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -60,6 +60,7 @@ const routes: Routes = [
   { path: 'articles', component: ArticlesComponent },
   { path: 'article/:id', component: OneArticleComponent },
   { path: 'contactus', component: ContactUsComponent },
+  { path: 'faq', component: FAQComponent },
   { path:'forgetPassword' , component:ForgetPasswordComponent,canActivate:[unAuthGuard]},
   { path:'ResetPassword' , component:ResetPasswordComponent,canActivate:[unAuthGuard]},
   { path: '**', component: NotFoundComponent },

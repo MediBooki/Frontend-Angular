@@ -1,7 +1,7 @@
 <div class="navbar-component" [dir]=" 'dir' | translate " [lang]="lang">
   <div class="bg-fixed-nav fixed-nav start-0 end-0 position-fixed z-index-high" #navbar>
-    <div class="container py-2 text-white d-flex">
-      <div class="me-auto">
+    <div class="container py-2 text-white d-flex fixed-nav-container">
+      <div [ngClass]="rtlDir?'ms-auto':'me-auto'">
         <div class="d-inline" *ngIf="!is_login">
           <!-- <span class="d-md-inline d-none" >
             <a class="text-decoration-none text-white fw-bold" routerLink="/Login">{{'navbar.Login'
@@ -34,7 +34,7 @@
         <span class="d-none d-md-inline"><i class=" px-2 fa-brands fa-facebook-f"></i><i class=" px-2 fa-brands fa-instagram"></i><i
             class="px-2 fa-brands fa-twitter"></i></span>
       </div>
-      <div class="ms-auto">
+      <div [ngClass]="rtlDir?'me-auto':'ms-auto'">
         <span>
           <!-- <select name="" id="" (change)="translate($event)">
             <option value="en">English</option>
@@ -111,15 +111,15 @@
                   </button>
                   <div class="dropdown-menu cart-items animate__animated animate__fadeIn" (mouseenter)="displayCartArrow(true)" (mouseleave)="displayCartArrow(false)" [ngClass]="{'cart-items-en': !rtlDir,'cart-items-ar': rtlDir,'empty': cartQty==0}">
                     <div *ngIf="cartQty>0">
-                      <p class="px-3 text-secondary">{{'CartPage.TableTitle4' | translate}}: <span class="cart-price">${{medicinesPurchased.total}}</span></p>
+                      <p class="px-3 text-secondary" [ngClass]="rtlDir?'text-end':'text-start'">{{'CartPage.TableTitle4' | translate}}: <span class="cart-price">${{medicinesPurchased.total}}</span></p>
                       <div class="d-flex justify-content-between align-items-center border-top border-bottom px-3 py-1" *ngFor="let medicine of medicinesPurchased.user_cart_items">
                         <div class="d-flex">
                           <div [routerLink]="['/pharmacy/medicineDetails' , medicine.id]" class="rounded mx-2 cart-medicine-img">
                             <img class="rounded" [src]="medicine.photo" alt="">
                           </div>
                           <div class="px-3">
-                            <p [routerLink]="['/pharmacy/medicineDetails' , medicine.id]" class="m-0 fw-bold cart-medicine-name" [ngClass]="rtlDir?'text-start':'text-end'">{{medicine.medicine_name}}</p>
-                            <P class="m-0 cart-medicine-qty" [ngClass]="rtlDir?'text-start':'text-end'"><span class="text-secondary"><span>{{medicine.qty}}</span> <i class="fa-solid fa-xmark mx-1"></i> </span> <span class="text-danger">{{medicine.price}}{{'SharedData.Currency' | translate}}</span></P>
+                            <p [routerLink]="['/pharmacy/medicineDetails' , medicine.id]" class="m-0 fw-bold cart-medicine-name" [ngClass]="rtlDir?'text-end':'text-start'">{{medicine.medicine_name}}</p>
+                            <p class="m-0 cart-medicine-qty" [ngClass]="rtlDir?'text-end':'text-start'"><span class="text-secondary" [ngClass]="rtlDir?'text-end':'text-start'"><span>{{medicine.qty}}</span> <i class="fa-solid fa-xmark mx-1"></i> </span> <span class="text-danger">{{medicine.price}}{{'SharedData.Currency' | translate}}</span></p>
                           </div>
                         </div>
 
@@ -177,7 +177,7 @@
               [routerLinkActive]="['active-link']">{{'navbar.navlink6' | translate}}</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link link-hover justify-content-center d-flex" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">{{'navbar.navlink7' | translate}}</a>
+            <a class="nav-link link-hover justify-content-center d-flex" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show" routerLink="/faq" [routerLinkActive]="['active-link']">{{'navbar.navlink7' | translate}}</a>
           </li>
           <li class="nav-item text-center d-md-none">
               <a class="nav-link" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show" routerLink="/Login">{{'navbar.Login'

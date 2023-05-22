@@ -13,8 +13,8 @@
           <h3>{{'DoctorsPage.MainSearchSectionTitle' | translate}} <a [href]="'tel:+2'+hospitalPhone" target="_blank" class="fw-bold text-black"><i
                 class="fa-solid fa-phone mx-2"></i>{{hospitalPhone}}</a></h3>
           <ul class="px-0">
-            <li><i class="fa-solid fa-circle me-2"></i>{{numOfDoctors}} {{'DoctorsPage.MainSearchSectionList1' | translate}}</li>
-            <li><i class="fa-solid fa-circle me-2"></i>
+            <li><i class="fa-solid fa-circle mx-2"></i>{{numOfDoctors}} {{'DoctorsPage.MainSearchSectionList1' | translate}}</li>
+            <li><i class="fa-solid fa-circle mx-2"></i>
               <span *ngIf="numOfSpecializations>0">{{'DoctorsPage.MainSearchSectionList3.1' | translate}}{{numOfSpecializations}}</span><span *ngIf="numOfSpecializations==0">{{numOfSpecializations+1}}</span>
               {{'DoctorsPage.MainSearchSectionList3.2' | translate}}</li>
           </ul>
@@ -32,21 +32,21 @@
         [ngClass]="rtlDir? 'main-search-filter-arabic' : 'main-search-filter-english'">
 
         <label for="searchDoctor1" class="h-100 d-flex justify-content-around align-items-center doctor-search">
-          <i class="fa-solid fa-user-doctor me-2" *ngIf="nameInput.value == ''"></i>
-          <i class="fa-solid fa-rotate me-2" *ngIf="nameInput.value != ''" (click)="resetSearch(nameInput)"></i>
+          <i class="fa-solid fa-user-doctor mx-2" *ngIf="nameInput.value == ''"></i>
+          <i class="fa-solid fa-rotate mx-2" *ngIf="nameInput.value != ''" (click)="resetSearch(nameInput)"></i>
           <input #nameInput id="searchDoctor1" type="text" class="form-control" name="doctor-search1"
             placeholder="{{'DoctorsPage.SearchName' | translate}}" formControlName="name">
         </label>
         <label for="searchDoctor2" class="h-100 d-flex justify-content-around align-items-center doctor-search">
-          <i class="fa-solid fa-user-doctor me-2" *ngIf="specializationInput.value == ''"></i>
-          <i class="fa-solid fa-rotate me-2" *ngIf="specializationInput.value != ''" (click)="resetSearch(specializationInput)"></i>
+          <i class="fa-solid fa-user-doctor mx-2" *ngIf="specializationInput.value == ''"></i>
+          <i class="fa-solid fa-rotate mx-2" *ngIf="specializationInput.value != ''" (click)="resetSearch(specializationInput)"></i>
           <input #specializationInput id="searchDoctor2" type="text" class="form-control" name="doctor-search2"
             placeholder="{{'DoctorsPage.SearchSpecialize' | translate}}" formControlName="specialization">
         </label>
 
         <div class="search-btn-container d-flex justify-content-center w-100">
           <button type="submit" class="search-btn btn px-4 py-2 border-0"><i
-              class="fa-solid fa-magnifying-glass me-2"></i>{{'SharedData.MainSearchFilterBtn' | translate}}</button>
+              class="fa-solid fa-magnifying-glass mx-2"></i>{{'SharedData.MainSearchFilterBtn' | translate}}</button>
         </div>
 
       </div>
@@ -66,11 +66,11 @@
     <div class="container">
       <div class="row py-3">
         <div id="offset-height" class="col-lg-3 mb-lg-5">
-          <div class="mb-3 doctors-roadmap ps-2">
+          <div class="mb-3 doctors-roadmap px-2">
             <a routerLink="/home" class="fw-bolder text-decoration-none fs-5">{{'RoadMap.MainTitle' | translate}} <i
-              class="fa-solid ms-2 fs-6" [ngClass]="rtlDir? 'fa-angles-left' : 'fa-angles-right'"></i>
+              class="fa-solid mx-2 fs-6" [ngClass]="rtlDir? 'fa-angles-left' : 'fa-angles-right'"></i>
             </a>
-            <span class=" ms-2 fw-bolder text-capitalize">{{rtlDir?'الأطباء':'Doctors'}}</span>
+            <span class=" mx-2 fw-bolder text-capitalize">{{rtlDir?'الأطباء':'Doctors'}}</span>
 
           </div>
           <aside id="aside-filter" class="aside-filter position-relative pb-3" *ngIf="noDataError == ''">
@@ -80,7 +80,7 @@
               <div class="accordion-item">
                 <h2 class="accordion-header">
                   <div class="accordion-title d-flex align-items-center">
-                    <i class="fa-solid fa-filter me-2"></i>
+                    <i class="fa-solid fa-filter mx-2"></i>
                     <h4 class="my-0">{{'SharedData.FiltersWord' | translate}}</h4>
                   </div>
                 </h2>
@@ -90,7 +90,7 @@
                 <h2 class="accordion-header" id="headingOne">
                   <button class="accordion-button" [class.collapsed]="titleArrayChecked.length==0" type="button" data-bs-toggle="collapse"
                     data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                    <i class="fa-solid fa-graduation-cap me-2"></i>
+                    <i class="fa-solid fa-graduation-cap mx-2"></i>
                     {{'DoctorsPage.Filters.Title' | translate}}
                   </button>
                 </h2>
@@ -111,7 +111,7 @@
                 <h2 class="accordion-header" id="headingTwo">
                   <button class="accordion-button" [class.collapsed]="genderArrayChecked.length==0" type="button" data-bs-toggle="collapse"
                     data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                    <i class="fa-solid fa-venus-mars me-2"></i>
+                    <i class="fa-solid fa-venus-mars mx-2"></i>
                     {{'DoctorsPage.Filters.Gender' | translate}}
                   </button>
                 </h2>
@@ -132,7 +132,7 @@
                 <h2 class="accordion-header" id="headingThree">
                   <button class="accordion-button " [class.collapsed]="sectionArrayChecked.length==0" type="button" data-bs-toggle="collapse"
                     data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                    <i class="fa-solid fa-suitcase-medical me-2"></i>
+                    <i class="fa-solid fa-suitcase-medical mx-2"></i>
                     {{'DoctorsPage.Filters.Specialization' | translate}}
                   </button>
                 </h2>
@@ -161,7 +161,7 @@
               <div class="accordion-item" (click)="showSmallFilter()">
                 <h2 class="accordion-header">
                   <div class="accordion-title rounded d-flex align-items-center">
-                    <i class="fa-solid fa-filter me-2"></i>
+                    <i class="fa-solid fa-filter mx-2"></i>
                     <h4 class="my-0">{{'SharedData.FiltersWord' | translate}}</h4>
                   </div>
                 </h2>
@@ -171,10 +171,10 @@
 
             <div   *ngIf="!noData;else error">
               <div class="filtered-content-title d-flex text-muted ">
-                <h2 class="filtered-title mb-0 fw-bold" [class.arabic-font]="rtlDir" *ngIf="filteredContent.length != 0">{{"DoctorsPage.ResultTitle1" | translate}} <span class="me-1" *ngFor="let specializationName of filteredContent">{{specializationName}}</span></h2>
+                <h2 class="filtered-title mb-0 fw-bold" [class.arabic-font]="rtlDir" *ngIf="filteredContent.length != 0">{{"DoctorsPage.ResultTitle1" | translate}} <span class="mx-1" *ngFor="let specializationName of filteredContent">{{specializationName}}</span></h2>
                 <h2 class="filtered-title mb-0 fw-bold" [class.arabic-font]="rtlDir" *ngIf="filteredContent.length == 0">{{"DoctorsPage.ResultTitle2" | translate}}</h2>
                 <!-- <h2 class="filtered-title mb-0" *ngIf="filteredContent.length != 0">Search By <span class="me-1" *ngFor="let name of filteredContent">{{name}}</span></h2> -->
-                <p class="ms-2 mb-0"><span class="doctors-num">{{totalRecords}}</span> {{'DoctorsPage.MainSearchSectionList1' | translate}}</p>
+                <p class="mx-2 mb-0"><span class="doctors-num">{{totalRecords}}</span> {{'DoctorsPage.MainSearchSectionList1' | translate}}</p>
               </div>
 
               <div class="doctors-list">
@@ -232,7 +232,7 @@
       <div class="small-filter-content p-3">
         <div class="small-filter-item bg-white py-3 my-3">
           <div class="small-filter-head d-flex align-items-baseline px-3">
-            <i class="fa-solid fa-graduation-cap me-2 fs-5"></i>
+            <i class="fa-solid fa-graduation-cap mx-2 fs-5"></i>
             <h4>{{'DoctorsPage.Filters.Title' | translate}}</h4>
           </div>
           <div class="small-filter-body">
@@ -248,7 +248,7 @@
 
         <div class="small-filter-item bg-white py-3 my-3">
           <div class="small-filter-head d-flex align-items-baseline px-3">
-            <i class="fa-solid fa-venus-mars me-2 fs-5"></i>
+            <i class="fa-solid fa-venus-mars mx-2 fs-5"></i>
             <h4>{{'DoctorsPage.Filters.Gender' | translate}}</h4>
           </div>
           <div class="small-filter-body">
@@ -264,7 +264,7 @@
 
         <div class="small-filter-item bg-white py-3 my-3">
           <div class="small-filter-head d-flex align-items-baseline px-3">
-            <i class="fa-solid fa-venus-mars me-2 fs-5"></i>
+            <i class="fa-solid fa-venus-mars mx-2 fs-5"></i>
             <h4>{{'DoctorsPage.Filters.Specialization' | translate}}</h4>
           </div>
           <div class="small-filter-body">

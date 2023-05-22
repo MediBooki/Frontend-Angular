@@ -3,6 +3,7 @@ import { TranslateService } from '@ngx-translate/core'
 import { DataService } from 'src/app/core/services/data.service';
 import { AuthService } from 'src/app/pages/Auth/services/auth.service';
 import { TermCondition } from 'src/app/core/interfaces/term-condition';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-footer',
@@ -11,7 +12,7 @@ import { TermCondition } from 'src/app/core/interfaces/term-condition';
 })
 export class FooterComponent implements OnInit {
 
-  constructor(private _DataService:DataService, private _TranslateService:TranslateService, private _AuthService:AuthService) { }
+  constructor(private _DataService:DataService, private _TranslateService:TranslateService, private _AuthService:AuthService, private router: Router) { }
 
   ngOnInit(): void {
     this.getTerms();
@@ -59,6 +60,11 @@ export class FooterComponent implements OnInit {
       }
     })
     
+  }
+
+  openInsurances() {
+    this._DataService.curruntService.next('insurance')
+    this.router.navigate(['/my-profile'])
   }
 
 }

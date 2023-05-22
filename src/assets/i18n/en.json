@@ -130,6 +130,7 @@
     "ShowResultBtn": "Show Results",
     "CloseBtn": "Close",
     "MainSearchFilterBtn": "Search",
+    "TermsConditions" : "Terms & Conditions",
     "item": "Item",
     "articales-mainTitle": "MediBooki Latest Medical Articles",
     "articalesp": "Here are the best medical articles written by our best doctors"
@@ -417,7 +418,7 @@
       "paragraph" : "Your personal data will be used to process your order, support your experience throughout this website, and for other purposes described in our privacy policy.",
       "paymentMethod" : "Payment Method",
       "delivery" : "Cash on Delivery",
-      "online" : "Online (electronic wallet)",
+      "online" : "Online (credit card)",
       "submitBtn" : "Place Order",
       "ConfirmationTitle" : "Payment Confirmation",
       "ConfirmationDescription" : "Your Order will be placed, Do you want to confirm the order with this payment method?",
@@ -450,5 +451,9 @@
     "contactus-input2": "Phone",
     "contactus-input3": "Name",
     "contactus-input4": "Place your inquiry here"
+  },
+  "FAQ":{
+    "title" : "Frequently Asked Questions",
+    "description" : "Here you will find solutions to the frequently asked questions that may come to your mind"
   }
 }

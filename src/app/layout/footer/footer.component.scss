@@ -24,3 +24,19 @@
   .terms-description {
     white-space: pre-line;
   }
+
+
+
+  .modal-header-english {
+    .btn-close {
+      margin-left: auto !important;
+      margin-right: 0 !important;
+    }
+  }
+  
+  .modal-header-arabic {
+    .btn-close {
+      margin-left: 0 !important;
+      margin-right: auto !important;
+    }
+  }

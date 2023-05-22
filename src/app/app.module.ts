@@ -17,8 +17,8 @@ import { PatientProfileModule } from './pages/patient-profile/module/patient-pro
 import { ReviewModule } from './pages/review/module/review/review.module';
 import { SpecializationsModule } from './pages/specializations/module/specializations/specializations.module';
 import { HomeModule } from './pages/home/module/home/home.module';
+import { FAQModule } from './pages/FAQ/modules/faq/faq.module';
 // import { RegisterHabdaComponent } from './pages/Auth/components/register-habda/register-habda.component';
-
 
 @NgModule({
   declarations: [
@@ -42,8 +42,8 @@ import { HomeModule } from './pages/home/module/home/home.module';
     PatientProfileModule,
     ReviewModule,
     SpecializationsModule,
-    HomeModule
-    
+    HomeModule,
+    FAQModule
   ],
   providers: [],
   bootstrap: [AppComponent]
