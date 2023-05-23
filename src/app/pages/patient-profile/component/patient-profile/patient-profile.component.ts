@@ -34,7 +34,7 @@ export class PatientProfileComponent implements OnInit, OnDestroy {
     this._ReviewService.isreview.subscribe(
       res=>{ this.isReview = res; console.log(this.isReview)}
     )
-    this.isVisibleSpinner = true;
+    // this.isVisibleSpinner = false;
     this.getLang();
     this.getDiagnosis();
     this.getInsurance();
@@ -69,7 +69,7 @@ export class PatientProfileComponent implements OnInit, OnDestroy {
   curruntColNum:number = 1;
   AppointmentCurruntColNum:number = 1;
   showPass: boolean = false;
-  isVisibleSpinner:boolean = false;
+  // isVisibleSpinner:boolean = false;
   updatePhoto:any;
   updateFormdata?: any;
   userPhoto?:string= "../../../assets/images/user_male.jpeg" ;
@@ -252,7 +252,7 @@ export class PatientProfileComponent implements OnInit, OnDestroy {
           this._DataService.userPhoto.next(this.patientInfo.photo)
           // this.userPhoto = this.patientInfo.photo;
         }
-        this.isVisibleSpinner = false;
+        // this.isVisibleSpinner = false;
 
         //update profile form
         // this.updateProfile = new FormGroup({
@@ -305,19 +305,19 @@ export class PatientProfileComponent implements OnInit, OnDestroy {
   //----- Method 9
   getMedicines() {
       // to get all Favorites
-      this.isVisibleSpinner = true
+      // this.isVisibleSpinner = true
       this.medicinesSubscription = this._cartservice.getAllFavorite().subscribe({
         next: (favMedicines) => {
           this.favMedicines = favMedicines.data;
           this.favMedicinesAPIres = favMedicines;
           this.allFav_notempty = this.favMedicines.length > 0;
           console.log( this.favMedicines);
-          this.isVisibleSpinner = false;
+          // this.isVisibleSpinner = false;
         },
         error: (error) => {
           this.favMedicinesAPIres = error;
           console.log(error);
-          this.isVisibleSpinner = false;
+          // this.isVisibleSpinner = false;
         }
       });
   }

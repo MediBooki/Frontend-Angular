@@ -64,7 +64,7 @@ export class HomeComponent implements OnInit {
   numOfSpecializations: number = 0;
 
   // other Variables
-  isVisibleSpinner:boolean = false;
+  // isVisibleSpinner:boolean = false;
 
 
   // main section variable to know its height to use as start point to show scroll up button
@@ -420,7 +420,7 @@ bookDoctor(eve:any) {
     this._DataService._lang.subscribe({
       next: (lang) => {
         this.lang = lang;
-        this.isVisibleSpinner = true
+        // this.isVisibleSpinner = true
         if (lang == 'en') {
           this.rtlDir = false;
           this.direction = 'ltr';
@@ -432,10 +432,10 @@ bookDoctor(eve:any) {
           next:(res)=>{
             console.log(res)
             this.sliderImages = res.data;
-            this.isVisibleSpinner = false;
+            // this.isVisibleSpinner = false;
           } , 
           error:()=>{
-            this.isVisibleSpinner = false;
+            // this.isVisibleSpinner = false;
           }
         })
       }

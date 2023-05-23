@@ -1,4 +1,3 @@
-<app-spinner *ngIf="isVisibleSpinner"></app-spinner>
 
 <div class="doctors-component animate" [dir]=" 'dir' | translate " [lang]="lang">
 
@@ -73,7 +72,7 @@
             <span class=" mx-2 fw-bolder text-capitalize">{{rtlDir?'الأطباء':'Doctors'}}</span>
 
           </div>
-          <aside id="aside-filter" class="aside-filter position-relative pb-3" *ngIf="noDataError == ''">
+          <aside id="aside-filter" class="aside-filter position-relative pb-3">
 
             <div class="accordion" [ngClass]="rtlDir? 'accordion-arabic' : 'accordion-english'" id="accordionExample">
               <form  [formGroup]="filterForm"> <!--[formGroup]="ggForm"-->
@@ -155,9 +154,8 @@
         </div>
         <div class="col-lg-9 ">
 
-          <div class="filtered-content" *ngIf="noDataError == ''">
-            <div id="small-filter-btn"
-              class="text-center justify-content-center d-none mb-3">
+          <div class="filtered-content">
+            <div id="small-filter-btn" class="text-center justify-content-center d-none mb-3">
               <div class="accordion-item" (click)="showSmallFilter()">
                 <h2 class="accordion-header">
                   <div class="accordion-title rounded d-flex align-items-center">
@@ -169,25 +167,27 @@
             </div>
 
 
-            <div   *ngIf="!noData;else error">
+            <div>
               <div class="filtered-content-title d-flex text-muted ">
                 <h2 class="filtered-title mb-0 fw-bold" [class.arabic-font]="rtlDir" *ngIf="filteredContent.length != 0">{{"DoctorsPage.ResultTitle1" | translate}} <span class="mx-1" *ngFor="let specializationName of filteredContent">{{specializationName}}</span></h2>
                 <h2 class="filtered-title mb-0 fw-bold" [class.arabic-font]="rtlDir" *ngIf="filteredContent.length == 0">{{"DoctorsPage.ResultTitle2" | translate}}</h2>
                 <!-- <h2 class="filtered-title mb-0" *ngIf="filteredContent.length != 0">Search By <span class="me-1" *ngFor="let name of filteredContent">{{name}}</span></h2> -->
-                <p class="mx-2 mb-0"><span class="doctors-num">{{totalRecords}}</span> {{'DoctorsPage.MainSearchSectionList1' | translate}}</p>
+                <p class="mx-2 mb-0 text-center"><span class="doctors-num">{{totalRecords}}</span> {{'DoctorsPage.MainSearchSectionList1' | translate}}</p>
               </div>
 
-              <div class="doctors-list">
-                <app-doctor *ngFor="let doctor of allDoctors| paginate :{id:'listing-pagination',
-                      itemsPerPage:numDoctorsPerPage,
-                      currentPage:page,
-                      totalItems:totalRecords }" [doctor]="doctor"></app-doctor>
-              </div>
-
-              <div class="d-flex justify-content-center align-items-center">
-                <pagination-controls id="listing-pagination" class="doctors-pagination" (pageChange)="changePage($event)" previousLabel="" nextLabel="" [ngClass]="rtlDir? 'pagination-arabic' : 'pagination-english'">
-
-                </pagination-controls>
+              <div *ngIf="!noData;else error">
+                <div class="doctors-list">
+                  <app-doctor *ngFor="let doctor of allDoctors| paginate :{id:'listing-pagination',
+                        itemsPerPage:numDoctorsPerPage,
+                        currentPage:page,
+                        totalItems:totalRecords }" [doctor]="doctor"></app-doctor>
+                </div>
+  
+                <div class="d-flex justify-content-center align-items-center">
+                  <pagination-controls id="listing-pagination" class="doctors-pagination" (pageChange)="changePage($event)" previousLabel="" nextLabel="" [ngClass]="rtlDir? 'pagination-arabic' : 'pagination-english'">
+  
+                  </pagination-controls>
+                </div>
               </div>
             </div>
 
@@ -197,7 +197,7 @@
       </div>
       <ng-template #error>
 
-          <div class=" search-empty text-center bg-white p-5 rounded mb-5">
+          <div class=" search-empty text-center bg-white p-5 rounded mb-5 mt-3">
               <div class="my-4">
                 <i class="fa-solid fa-user-doctor search-icon"></i>
               </div>

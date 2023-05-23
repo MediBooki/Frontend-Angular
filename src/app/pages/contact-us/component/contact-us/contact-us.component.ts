@@ -4,6 +4,7 @@ import { DataService } from 'src/app/core/services/data.service';
 import { ContactUsService } from '../../service/contact-us.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { Roadmap } from 'src/app/core/interfaces/roadmap';
 
 @Component({
   selector: 'app-contact-us',
@@ -11,6 +12,16 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./contact-us.component.scss']
 })
 export class ContactUsComponent implements OnInit {
+
+
+  // roadmap variable
+  roadMapLinks:Roadmap = {
+    roadMabFirstLink: {arabic:'الرئيسية',english:'Home',link:'/home'},
+    roadMabLastLink: {arabic:'تواصل معنا',english:'Contact Us'},
+    roadMabIntermediateLinks: [
+      
+    ]
+  }
 
   constructor(private _AuthService: AuthService,private _DataService: DataService,private _contactus:ContactUsService,private toastr: ToastrService) { }
 

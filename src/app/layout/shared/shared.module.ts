@@ -20,6 +20,9 @@ import { MedicineComponent } from 'src/app/pages/pharmacy/component/medicine/med
 // import { PharmacyModule } from 'src/app/pages/pharmacy/pharmacy.module';
 // import { MedicineModule } from 'src/app/pages/pharmacy/medicine/medicine.module';
 import { OwlModule } from 'ngx-owl-carousel';
+import { RatingComponent } from '../rating/rating.component';
+import { NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
+import { RoadmapComponent } from '../roadmap/roadmap.component'; 
 
 
 
@@ -34,6 +37,8 @@ import { OwlModule } from 'ngx-owl-carousel';
         FixedItemsComponent,
         CarouselComponent,
         MedicineComponent,
+        RatingComponent,
+        RoadmapComponent
     ],
     exports: [
         TranslateModule,
@@ -51,9 +56,10 @@ import { OwlModule } from 'ngx-owl-carousel';
         CarouselModule,
         MedicineComponent,
         RouterModule,
-        OwlModule 
-        
-
+        OwlModule,
+        RatingComponent,
+        NgbRatingModule,
+        RoadmapComponent
     ],
     imports: [
         // PharmacyModule,
@@ -79,7 +85,9 @@ import { OwlModule } from 'ngx-owl-carousel';
         NgSelect2Module,
         NgxPaginationModule,
         CarouselModule,
-        OwlModule
+        OwlModule,
+        NgbRatingModule
+
 
         // MedicineModule
     ]

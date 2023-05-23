@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from 'src/app/core/services/data.service';
 import { FaqService } from '../../service/faq.service';
 import { Faq } from 'src/app/core/interfaces/faq';
+import { Roadmap } from 'src/app/core/interfaces/roadmap';
 
 @Component({
   selector: 'app-faq',
@@ -12,6 +13,15 @@ export class FAQComponent implements OnInit {
 
   lang: string = "en";
   rtlDir:boolean = false;
+
+  roadMapLinks:Roadmap = {
+    roadMabFirstLink: {arabic:'الرئيسية',english:'Home',link:'/home'},
+    roadMabLastLink: {arabic:'الأسألة الشائعة',english:'FAQ'},
+    roadMabIntermediateLinks: [
+      // {arabic:'دوا',english:'phar',link:'/home'}
+    ]
+  }
+
 
   faqs:Faq[] = [
     {id:1 , question:"How can I book a doctor?" , answer:"You can book a doctor by opening 'Doctors' page and select the doctor you want to book then you will be redirected to appointment page where you can select day and time of booking then fill the form by your details and click button. you can track your booking status from your profile 'My Appointments' tab."},

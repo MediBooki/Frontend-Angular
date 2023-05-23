@@ -4,6 +4,7 @@ import { AuthService } from 'src/app/pages/Auth/services/auth.service';
 import { CartService } from 'src/app/pages/cart/service/cart.service';
 import { MedicinePurchased } from 'src/app/core/interfaces/medicine-purchased';
 import { ToastrService } from 'ngx-toastr';
+import { Roadmap } from 'src/app/core/interfaces/roadmap';
 
 @Component({
   selector: 'app-cart',
@@ -26,10 +27,18 @@ export class CartComponent implements OnInit {
   // Other Variables
   totalPrice:number = 0;
   noDataError:any; // in case of error
-  isVisibleSpinner:boolean = true;
+  isVisibleSpinner:boolean = false;
   noData:boolean = false;
   defaultMedicineImg:string = this._DataService.defaultNoImg;
 
+  // roadmap variable
+  roadMapLinks:Roadmap = {
+    roadMabFirstLink: {arabic:'الرئيسية',english:'Home',link:'/home'},
+    roadMabLastLink: {arabic:'عربة الشراء',english:'Cart'},
+    roadMabIntermediateLinks: [
+      // {arabic:'دوا',english:'phar',link:'/home'}
+    ]
+  }
   /*=============================================( Initialization Methods )=============================================*/
 
   constructor(private _DataService:DataService , private _AuthService:AuthService , private _CartService:CartService, private toastr: ToastrService) { }
@@ -178,7 +187,7 @@ export class CartComponent implements OnInit {
                 this.totalPrice += (element.qty * element.price)
               });
             }
-          this.isVisibleSpinner = false;
+          // this.isVisibleSpinner = false;
         },
       error:(error)=>{
         console.log(error);
@@ -188,7 +197,7 @@ export class CartComponent implements OnInit {
           this.noData = true;
         }
         // this.noDataError = error;
-        this.isVisibleSpinner = false;
+        // this.isVisibleSpinner = false;
       }});
       }
     })

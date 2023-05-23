@@ -1,9 +1,9 @@
-<app-spinner *ngIf="isVisibleSpinner"></app-spinner>
+<!-- <app-spinner *ngIf="isVisibleSpinner"></app-spinner> -->
 <div class="specialize-component animate" [dir]=" 'dir' | translate " [lang]="lang">
   <!--  =======================================================( landing )======================================================= -->
 
   <section class=" position-relative justify-content-center align-content-center" #firstSection>
-    <div class="roadmap d-flex  align-items-center justify-content-center">
+    <!-- <div class="roadmap d-flex  align-items-center justify-content-center">
       <div class=" ms-5 p-3 text-center ">
         <h1 class=" fw-bolder mb-3 text-center header title" [class.arabic-font]="rtlDir">
           {{rtlDir?'خدمات التخصصات':'Specialties Services'}}</h1>
@@ -15,7 +15,10 @@
           <span class=" ms-2 fw-bolder text-capitalize">{{rtlDir?'التخصصات':'Specialties'}}</span>
         </div>
       </div>
-    </div>
+    </div> -->
+    
+    <app-roadmap [roadMapLinks]="roadMapLinks"></app-roadmap>
+
   </section>
   <!--  =======================================================( specialization )=======================================================  -->
   <section class="pt-5 specialization-section">

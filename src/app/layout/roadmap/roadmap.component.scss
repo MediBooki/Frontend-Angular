@@ -1,0 +1,26 @@
+@import '../../../colors.scss';
+
+
+/* =======================================================( roadmap )======================================================= */
+
+.roadmap {
+    background-image: url(../../../assets/images/roadmap/AI-and-Medicine.jpg);
+    height: 50vh;
+    background-size: cover;
+    overflow: hidden;
+  
+    >div {
+      background: rgba(255, 255, 255, 0.8);
+      // opacity: 0.8;
+      width: 88%;
+      max-height: 100%;
+      
+      .header {
+        color: #003367;
+      }
+  
+      .lines-img {
+        transform: translateY(-50%);
+      }
+    }
+  }

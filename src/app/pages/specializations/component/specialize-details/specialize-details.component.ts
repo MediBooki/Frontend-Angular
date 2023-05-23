@@ -6,6 +6,7 @@ import { Specialize } from 'src/app/core/interfaces/specialize';
 import { DataService } from 'src/app/core/services/data.service';
 import { SpecializationService } from '../../service/specializations.service';
 import { AuthService } from 'src/app/pages/Auth/services/auth.service';
+import { Roadmap } from 'src/app/core/interfaces/roadmap';
 
 @Component({
   selector: 'app-specialize-details',
@@ -13,7 +14,7 @@ import { AuthService } from 'src/app/pages/Auth/services/auth.service';
   styleUrls: ['./specialize-details.component.scss']
 })
 export class SpecializeDetailsComponent implements OnInit {
-  isVisibleSpinner:boolean = false;
+  // isVisibleSpinner:boolean = false;
   // Direction Variables
   rtlDir:boolean = false;
   lang:string = "en";
@@ -30,6 +31,15 @@ export class SpecializeDetailsComponent implements OnInit {
   } 
   specializeId!: any;
   filterForm : FormGroup;
+
+  // roadmap variable
+  roadMapLinks:Roadmap = {
+    roadMabFirstLink: {arabic:'الرئيسية',english:'Home',link:'/home'},
+    roadMabLastLink: {arabic:'تفاصيل القسم',english:'specialize Details'},
+    roadMabIntermediateLinks: [
+      {arabic:'الاقسام',english:'Specialities',link:'/specializations'}
+    ]
+  }
 
   constructor(private _DataService:DataService,private _specializeService: SpecializationService,private route: ActivatedRoute, private _AuthService: AuthService, private _FormBuilder:FormBuilder, private router:Router) { 
     this.specializeId = this.route.snapshot.paramMap.get('id');
@@ -86,18 +96,18 @@ export class SpecializeDetailsComponent implements OnInit {
         } else {
           this.rtlDir = true;
         }
-        this.isVisibleSpinner = true;
+        // this.isVisibleSpinner = true;
         this.specializeDetailsSubscription = this._specializeService.getSpecializeDetails(lang,this.specializeId ).subscribe({
           next: (specialize) => {
             console.log(specialize)
-            this.isVisibleSpinner = false;
+            // this.isVisibleSpinner = false;
             this.specializeDetails = specialize.data;
             console.log(this.specializeDetails)
             
           },
           error: (error) => {
             console.log(error)
-            this.isVisibleSpinner = false;
+            // this.isVisibleSpinner = false;
           }
         });
       }

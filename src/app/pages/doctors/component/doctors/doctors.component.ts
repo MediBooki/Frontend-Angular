@@ -59,7 +59,7 @@ export class DoctorsComponent implements OnInit {
   // Other Variables
   noDataError: any = ""; // in case of error
   smallFilterVisible: boolean = false; // to show small filter
-  isVisibleSpinner:boolean = true;
+  // isVisibleSpinner:boolean = false;
   noData:boolean = false;
   numOfDoctors: number = 0;
   numOfSpecializations: number = 0;
@@ -92,7 +92,7 @@ export class DoctorsComponent implements OnInit {
     this.getFilteredDoctors(); // get filtered doctors from API
     this.getSpecializations(); // get specializations from API
     this.getCounterVals();
-    this.isVisibleSpinner = true;
+    // this.isVisibleSpinner = true;
   }
 
   // ngAfterViewInit() {
@@ -157,7 +157,7 @@ export class DoctorsComponent implements OnInit {
           // overlay-container-arabic
         }
 
-        this.isVisibleSpinner = true; //trigger spinner
+        // this.isVisibleSpinner = true; //trigger spinner
         this.doctorsSubscription = this._DoctorService.getFilteredDoctors(this.filterForm.value,this.lang, this.page).subscribe({
           next: (doctors) => {
             console.log(this.doctorsSubscription)
@@ -169,13 +169,13 @@ export class DoctorsComponent implements OnInit {
               this.numDoctorsPerPage = doctors.data.length // length of one page in API
             }
             // this.numDoctorsPerPage = doctors.data.length // length of one page in API
-            this.isVisibleSpinner = false;
+            // this.isVisibleSpinner = false;
             console.log(this.filterForm.value)
           },
           error: (error) => {
             localStorage.setItem("filterForm",JSON.stringify(this.filterForm.value)); // put new values in localstorage
             this.noDataError = error;
-            this.isVisibleSpinner = false;
+            // this.isVisibleSpinner = false;
             this.toastr.error(this.rtlDir?`An Error has occured`:`حدث خطأ ما` , `${error}`)
           }
 

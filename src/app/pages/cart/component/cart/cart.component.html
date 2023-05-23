@@ -4,7 +4,7 @@
         <!--  =======================================================( landing )======================================================= -->
 
         <section class="position-relative justify-content-center align-content-center" #firstSection>
-            <div class="roadmap d-flex  align-items-center justify-content-center">
+            <!-- <div class="roadmap d-flex  align-items-center justify-content-center">
                 <div class=" mx-5 p-3 text-center ">
                     <h1 class=" fw-bolder mb-3 text-center header title" [class.arabic-font]="rtlDir">{{rtlDir?'عربة الشراء':'Cart'}}</h1>
                     <img class="img-fluid lines-img" src="../../../assets/images/roadmap/lines.png" alt="">
@@ -16,7 +16,9 @@
                     <span class=" mx-2 fw-bolder text-capitalize">{{rtlDir?'عربة الشراء':'Cart'}}</span>
                     </div>
                 </div>
-            </div>
+            </div> -->
+            <app-roadmap [roadMapLinks]="roadMapLinks"></app-roadmap>
+
         </section>    
         
         <!-- =============================================================================================================== -->
@@ -38,7 +40,7 @@
                         <tr *ngFor="let medicine of allMedicinesPurchased">
                             <th>
                                 <i (click)="removeCart(medicine.id)" class="fa-solid fa-xmark fs-4 text-danger remove-icon" [ngClass]="rtlDir? 'remove-icon-arabic' : 'remove-icon-english'" *ngIf="selectedDeleteMedicine!=medicine.id"></i>
-                                <div class="spinner" *ngIf="isVisibleDeleteSpinner && selectedDeleteMedicine==medicine.id"></div>
+                                <div class="cart-spinner" *ngIf="isVisibleDeleteSpinner && selectedDeleteMedicine==medicine.id"></div>
                             </th>
                             <td class="text-center product-img">
                                 <img [routerLink]="['/pharmacy/medicineDetails' , medicine.id]" class="img-fluid default-img" [src]="medicine.photo || defaultMedicineImg" alt="Medicine Image">
@@ -58,7 +60,7 @@
                                         <!-- <input class="form-control rounded-0  bg-transparent py-2 m-0" type="text" maxlength="5" (keypress)="numberOnly($event)" accept="number" [value]="medicine.qty" name="quantity"> [(ngModel)]="medicine.qty" -->
                                         <div class="d-flex justify-content-center align-items-center">
                                             <span class="fw-light fs-6 mx-2" *ngIf="selectedAddRemoveMedicine!=medicine.id">{{medicine.qty}}</span>
-                                            <div class="spinner" *ngIf="isVisibleAddRemoveSpinner && selectedAddRemoveMedicine==medicine.id"></div>
+                                            <div class="cart-spinner" *ngIf="isVisibleAddRemoveSpinner && selectedAddRemoveMedicine==medicine.id"></div>
                                         </div>
                                         <!-- <span class="fw-light fs-6 mx-1">{{medicine.qty}}</span> -->
 
@@ -87,7 +89,7 @@
                                 <img [src]="medicine.photo || defaultMedicineImg" class="img-fluid h-100 rounded-start shadow default-img" alt="...">
                                 <div class="delete-product"  [ngClass]="rtlDir? 'delete-product-arabic' : 'delete-product-english'">
                                     <i (click)="removeCart(medicine.id)" class="fa-solid fa-xmark fs-4 text-danger" *ngIf="selectedDeleteMedicine!=medicine.id"></i>
-                                    <div class="spinner" *ngIf="isVisibleDeleteSpinner && selectedDeleteMedicine==medicine.id"></div>
+                                    <div class="cart-spinner" *ngIf="isVisibleDeleteSpinner && selectedDeleteMedicine==medicine.id"></div>
                                 </div>
                                 <a [routerLink]="['/pharmacy/medicineDetails' , medicine.id]"></a>
                             </div>
@@ -101,7 +103,7 @@
                                         <button class="btn btn-minus py-2" [disabled]="medicine.qty<=1" (click)="decrease(medicine.id , medicine.qty)">-</button> <!-- || isVisibleAddRemoveSpinner -->
                                         <div class="d-flex justify-content-center align-items-center">
                                             <span class="fw-light fs-6 mx-2" *ngIf="selectedAddRemoveMedicine!=medicine.id">{{medicine.qty}}</span>
-                                            <div class="spinner" *ngIf="isVisibleAddRemoveSpinner && selectedAddRemoveMedicine==medicine.id"></div>
+                                            <div class="cart-spinner" *ngIf="isVisibleAddRemoveSpinner && selectedAddRemoveMedicine==medicine.id"></div>
                                         </div>
                                         <!-- <span class="fw-light fs-6 mx-1">{{medicine.qty}}</span> -->
 

@@ -1,0 +1,17 @@
+<div class="roadmap d-flex  align-items-center justify-content-center">
+    <div class=" mx-5 p-3 text-center ">
+        <h1 class=" fw-bolder mb-3 text-center header title" [class.arabic-font]="rtlDir">{{rtlDir?roadMapLinks.roadMabLastLink.arabic:roadMapLinks.roadMabLastLink.english}}</h1>
+        <img class="img-fluid lines-img" src="../../../assets/images/roadmap/lines.png" alt="">
+        <div class="mt-2">
+            <a [routerLink]="roadMapLinks.roadMabFirstLink.link" class="fw-bolder text-success text-decoration-none fs-5">
+                {{rtlDir?roadMapLinks.roadMabFirstLink.arabic:roadMapLinks.roadMabFirstLink.english}} 
+                <i class="fa-solid mx-2 fs-6" [ngClass]="rtlDir? 'fa-angles-left' : 'fa-angles-right'"></i>
+            </a>
+            <a *ngFor="let link of roadMapLinks.roadMabIntermediateLinks" [routerLink]="link.link" class="fw-bolder text-success text-decoration-none fs-5">
+                {{rtlDir?link.arabic:link.english}} 
+                <i class="fa-solid mx-2 fs-6" [ngClass]="rtlDir? 'fa-angles-left' : 'fa-angles-right'"></i>
+            </a>
+        <span class=" mx-2 fw-bolder text-capitalize">{{rtlDir?roadMapLinks.roadMabLastLink.arabic:roadMapLinks.roadMabLastLink.english}}</span>
+        </div>
+    </div>
+</div>

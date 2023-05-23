@@ -1,5 +1,5 @@
 /* =======================================================( Common )======================================================= */
-@import '../../../../../styles.scss';
+@import '../../../../../colors.scss';
 
 
 body{
@@ -136,7 +136,7 @@ span a:hover{
   font-size: 16px;
 } 
 .terms-conditions-btn:hover {
-  color: var(--main);
+  color: $mainColor !important;
 }
 .terms-description {
   white-space: pre-line;

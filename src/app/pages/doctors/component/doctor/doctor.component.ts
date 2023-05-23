@@ -13,7 +13,7 @@ export class DoctorComponent implements OnInit {
   // Variables
   rtlDir:boolean = false;
   @Input() doctor: Doctor;
-  overallRating:number = 3.5
+  overallRating:number = 0
   defaultDoctorImg:string = this._DataService.defaultNoImg;
 
   constructor(private _AuthService: AuthService, private _DataService: DataService) {
@@ -73,22 +73,22 @@ export class DoctorComponent implements OnInit {
   }
   ngOnChanges(): void {
     let sum = 0;
-    let avg = 0;
+    // let avg = 0;
     this.doctor.reviews.forEach((doctorReview)=>{
       // console.log(doctorReview)
       sum = sum + doctorReview.rating
     })
-    avg = sum / this.doctor.reviews.length;
+    this.overallRating = sum / this.doctor.reviews.length;
 
     
-    console.log(Math.floor((avg%1.0)*100))
-    if(Math.floor((avg%1.0)*100) >= 25 && Math.floor((avg%1.0)*100) < 75) {
-      this.overallRating = Math.floor(avg) + 0.5
-    } else if (Math.floor((avg%1.0)*100) >= 75) {
-      console.log(Math.ceil(avg))
-      this.overallRating = Math.ceil(avg)
-    } else {
-      this.overallRating = Math.floor(avg)
-    }
+    // console.log(Math.floor((avg%1.0)*100))
+    // if(Math.floor((avg%1.0)*100) >= 25 && Math.floor((avg%1.0)*100) < 75) {
+    //   this.overallRating = Math.floor(avg) + 0.5
+    // } else if (Math.floor((avg%1.0)*100) >= 75) {
+    //   console.log(Math.ceil(avg))
+    //   this.overallRating = Math.ceil(avg)
+    // } else {
+    //   this.overallRating = Math.floor(avg)
+    // }
   }
 }

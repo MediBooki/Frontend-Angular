@@ -1,10 +1,7 @@
-@import '../../../../../styles.scss';
+@import '../../../../../pagination.scss';
+// @import '../../../../../styles.scss';
+@import '../../../../../filters.scss';
 
-
-.spinner {
-    z-index: 98;
-    background-color: rgba(255, 255, 255, 0.8);
-}
 
 
 /* =======================================================( Main-Search )======================================================= */
@@ -267,137 +264,137 @@
         }
     }
 
-    // Filter General
-    .accordion {
-        // width: 225px;
-        width: 90%;
+    // // Filter General
+    // .accordion {
+    //     // width: 225px;
+    //     width: 90%;
 
-        // Filter Button
-        .accordion-button {
-            color: $mainColor;
-            box-shadow: none !important;
+    //     // Filter Button
+    //     .accordion-button {
+    //         color: $mainColor;
+    //         box-shadow: none !important;
     
-            /* removing accordion arrow to put our arrow */
-            &::after {
-                background-image: none;
-                font-family: "Font Awesome 5 Free"; 
-                font-weight: 900;
-                content: "\f078";
-                display: flex;
-                justify-content: center;
-            }
+    //         /* removing accordion arrow to put our arrow */
+    //         &::after {
+    //             background-image: none;
+    //             font-family: "Font Awesome 5 Free"; 
+    //             font-weight: 900;
+    //             content: "\f078";
+    //             display: flex;
+    //             justify-content: center;
+    //         }
     
-            &:not(.collapsed) {
-                &::after {
-                    background-image: none;
-                }
-            }
-        }
+    //         &:not(.collapsed) {
+    //             &::after {
+    //                 background-image: none;
+    //             }
+    //         }
+    //     }
 
-        // Filter Item
-        .accordion-item {
+    //     // Filter Item
+    //     .accordion-item {
 
-            // Filter Title
-            .accordion-title {
-                cursor: default !important;
-                color: white;
-                box-shadow: inset 0 -1px 0 rgba(0,0,0,.125); 
-                width: 100%;
-                padding: 1rem 1.25rem;
-                font-size: 1rem;
-                text-align: left;
-                background: $mainColor2;
+    //         // Filter Title
+    //         .accordion-title {
+    //             cursor: default !important;
+    //             color: white;
+    //             box-shadow: inset 0 -1px 0 rgba(0,0,0,.125); 
+    //             width: 100%;
+    //             padding: 1rem 1.25rem;
+    //             font-size: 1rem;
+    //             text-align: left;
+    //             background: $mainColor2;
     
-                h4 {
-                    font-size: 18px;
-                }
+    //             h4 {
+    //                 font-size: 18px;
+    //             }
 
-                border-top-left-radius: 1rem;
-                border-top-right-radius: 1rem;
-            }
+    //             border-top-left-radius: 1rem;
+    //             border-top-right-radius: 1rem;
+    //         }
 
-            /* accordion top */
-            &:first-of-type {
-                border-top-left-radius: 1rem;
-                border-top-right-radius: 1rem;
-            }
+    //         /* accordion top */
+    //         &:first-of-type {
+    //             border-top-left-radius: 1rem;
+    //             border-top-right-radius: 1rem;
+    //         }
 
-            /* accordion bottom */
-            &:last-of-type {
-                border-bottom-right-radius: 1rem;
-                border-bottom-left-radius: 1rem;
+    //         /* accordion bottom */
+    //         &:last-of-type {
+    //             border-bottom-right-radius: 1rem;
+    //             border-bottom-left-radius: 1rem;
 
-                .accordion-button {
-                    &.collapsed {
-                        border-bottom-right-radius: 1rem;
-                        border-bottom-left-radius: 1rem;
-                    }
-                }
-            }
+    //             .accordion-button {
+    //                 &.collapsed {
+    //                     border-bottom-right-radius: 1rem;
+    //                     border-bottom-left-radius: 1rem;
+    //                 }
+    //             }
+    //         }
 
-            // Filter Body
-            .accordion-body {
-                label {
-                    cursor: pointer;
-                }
+    //         // Filter Body
+    //         .accordion-body {
+    //             label {
+    //                 cursor: pointer;
+    //             }
 
-                // .accordion-body-item {
-                //     margin-bottom: 5px;
-                //     .specialization-label {
-                //         font-size: 0.85rem;
-                //     }
-                // }
-            }
+    //             // .accordion-body-item {
+    //             //     margin-bottom: 5px;
+    //             //     .specialization-label {
+    //             //         font-size: 0.85rem;
+    //             //     }
+    //             // }
+    //         }
 
-        }
+    //     }
 
-    }
+    // }
 
-    // Filter English
-    .accordion-english {
+    // // Filter English
+    // .accordion-english {
 
-        .accordion-body {
-            input[type="checkbox"] {
-                margin-right: 10px;
-            }
-        }
+    //     .accordion-body {
+    //         input[type="checkbox"] {
+    //             margin-right: 10px;
+    //         }
+    //     }
 
-        .accordion-body {
-            input[type="radio"] {
-                margin-right: 10px;
-            }
-        }
+    //     .accordion-body {
+    //         input[type="radio"] {
+    //             margin-right: 10px;
+    //         }
+    //     }
 
-        .accordion-button {
-            &::after {
-                margin-right: inherit;
-                margin-left: auto;
-            }
-        }
+    //     .accordion-button {
+    //         &::after {
+    //             margin-right: inherit;
+    //             margin-left: auto;
+    //         }
+    //     }
 
-    }
+    // }
 
-    // Filter Arabic
-    .accordion-arabic {
-        .accordion-body {
-            input[type="checkbox"] {
-                margin-left: 10px;
-            }
-        }
+    // // Filter Arabic
+    // .accordion-arabic {
+    //     .accordion-body {
+    //         input[type="checkbox"] {
+    //             margin-left: 10px;
+    //         }
+    //     }
 
-        .accordion-body {
-            input[type="radio"] {
-                margin-left: 10px;
-            }
-        }
+    //     .accordion-body {
+    //         input[type="radio"] {
+    //             margin-left: 10px;
+    //         }
+    //     }
 
-        .accordion-button {
-            &::after {
-                margin-right: auto;
-                margin-left: inherit;
-            }
-        }
-    }
+    //     .accordion-button {
+    //         &::after {
+    //             margin-right: auto;
+    //             margin-left: inherit;
+    //         }
+    //     }
+    // }
 
     // Aside Filter in General
     .aside-filter {
@@ -437,68 +434,68 @@
 /* =======================================================( small-filter )======================================================= */
   
 
-#small-filter {
-    background-color: $lightGreyColor;
-    z-index: 999999;
-    top: 0;
+// #small-filter {
+//     background-color: $lightGreyColor;
+//     z-index: 999999;
+//     top: 0;
 
-    input {
-        margin: 4px;
-    }
+//     input {
+//         margin: 4px;
+//     }
 
-    h2 {
-        background-color: $mainColor;
-    }
+//     h2 {
+//         background-color: $mainColor;
+//     }
 
-    #filter-close-icon {
-        cursor: pointer;
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-    }
+//     #filter-close-icon {
+//         cursor: pointer;
+//         position: absolute;
+//         top: 50%;
+//         transform: translateY(-50%);
+//     }
 
-    .filter-close-english {
-        left: 20px;
-    }
+//     .filter-close-english {
+//         left: 20px;
+//     }
 
-    .filter-close-arabic {
-        right: 20px;
-    }
+//     .filter-close-arabic {
+//         right: 20px;
+//     }
 
-    .small-filter-item {
-        border-radius: 15px;
-        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+//     .small-filter-item {
+//         border-radius: 15px;
+//         box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 
-        .small-filter-head {
-            color: $mainColor;
-        }
+//         .small-filter-head {
+//             color: $mainColor;
+//         }
 
         
-        .small-filter-body {
-            label {
-                &:hover {
-                    cursor: pointer;
-                }
-            }
+//         .small-filter-body {
+//             label {
+//                 &:hover {
+//                     cursor: pointer;
+//                 }
+//             }
 
-            .accordion-body-item {
-                &:last-child {
-                    border-bottom: 0 !important;
-                }
-            }
-        }
-    }
+//             .accordion-body-item {
+//                 &:last-child {
+//                     border-bottom: 0 !important;
+//                 }
+//             }
+//         }
+//     }
 
-    .small-filter-buttons {
-        button {
-            font-size: 1.25rem;
-            border-radius: 10px;
-            width: 155px;
-            height: 45px;
-        }
-    }
+//     .small-filter-buttons {
+//         button {
+//             font-size: 1.25rem;
+//             border-radius: 10px;
+//             width: 155px;
+//             height: 45px;
+//         }
+//     }
     
-}
+// }
 
 
 /* =======================================================( filtered-content )======================================================= */

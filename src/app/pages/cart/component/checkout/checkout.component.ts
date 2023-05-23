@@ -6,6 +6,7 @@ import { AuthService } from 'src/app/pages/Auth/services/auth.service';
 import { MedicinePurchased } from 'src/app/core/interfaces/medicine-purchased';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Roadmap } from 'src/app/core/interfaces/roadmap';
 
 @Component({
   selector: 'app-checkout',
@@ -27,13 +28,22 @@ export class CheckoutComponent implements OnInit {
   // Other Variables
   totalPrice:number = 0;
   noDataError:any; // in case of error
-  isVisibleSpinner:boolean = true;
+  isVisibleSpinner:boolean = false;
   noData:boolean = false;
   invalidForm:boolean = false
 
   // Filter and Search Form Variables
   checkoutForm : FormGroup;
 
+  // roadmap variable
+  roadMapLinks:Roadmap = {
+    roadMabFirstLink: {arabic:'الرئيسية',english:'Home',link:'/home'},
+    roadMabLastLink: {arabic:'اتمام عملية الشراء',english:'Checkout'},
+    roadMabIntermediateLinks: [
+      {arabic:'عربة الشراء',english:'Cart',link:'/cart'}
+      // {arabic:'دوا',english:'phar',link:'/home'}
+    ]
+  }
   
   /*=============================================( Initialization Methods )=============================================*/
 
@@ -99,7 +109,6 @@ export class CheckoutComponent implements OnInit {
                 this.totalPrice += (element.qty * element.price)
               });
             }
-          this.isVisibleSpinner = false;
         },
       error:(error)=>{
         // console.log(error);

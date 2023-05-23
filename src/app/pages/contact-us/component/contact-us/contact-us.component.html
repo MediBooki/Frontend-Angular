@@ -1,6 +1,6 @@
 <div class="animate" [dir]=" 'dir' | translate " [lang]="lang">
   <section class=" position-relative justify-content-center align-content-center" #firstSection>
-    <div class="roadmap d-flex  align-items-center justify-content-center">
+    <!-- <div class="roadmap d-flex  align-items-center justify-content-center">
       <div class=" ms-5 p-3 text-center ">
         <h1 class=" fw-bolder mb-3 text-center header title" [class.arabic-font]="rtlDir">{{'navbar.ContactUs' | translate}}</h1>
         <img class="img-fluid lines-img" src="../../../assets/images/roadmap/lines.png" alt="">
@@ -11,7 +11,10 @@
           <span class=" ms-2 fw-bolder text-capitalize">{{'navbar.ContactUs' | translate}}</span>
         </div>
       </div>
-    </div>
+    </div> -->
+
+    <app-roadmap [roadMapLinks]="roadMapLinks"></app-roadmap>
+
   </section>
 
 <!-- about us section -->

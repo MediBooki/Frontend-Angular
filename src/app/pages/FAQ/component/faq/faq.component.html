@@ -4,7 +4,7 @@
     <!--  =======================================================( landing )======================================================= -->
 
     <section class="position-relative justify-content-center align-content-center" #firstSection>
-        <div class="roadmap d-flex  align-items-center justify-content-center">
+        <!-- <div class="roadmap d-flex  align-items-center justify-content-center">
             <div class=" mx-5 p-3 text-center ">
                 <h1 class=" fw-bolder mb-3 text-center header title" [class.arabic-font]="rtlDir">{{rtlDir?'الأسألة الشائعة':'FAQ'}}</h1>
                 <img class="img-fluid lines-img" src="../../../assets/images/roadmap/lines.png" alt="">
@@ -16,7 +16,8 @@
                 <span class=" mx-2 fw-bolder text-capitalize">{{rtlDir?'الأسألة الشائعة':'FAQ'}}</span>
                 </div>
             </div>
-        </div>
+        </div> -->
+        <app-roadmap [roadMapLinks]="roadMapLinks"></app-roadmap>
     </section>    
     
     <!-- =============================================================================================================== -->

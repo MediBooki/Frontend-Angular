@@ -3,17 +3,8 @@
 // Google Fonts
 @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Roboto+Condensed:wght@700&family=Source+Sans+Pro:wght@400;700&family=Tajawal&display=swap');
 
-// Colors Variables
-$mainColor:#34B0DE;
-$mainColor2:linear-gradient(180deg, rgba(36,105,120,1) 0%, rgba(71,179,203,1) 100%);
-$mainColor3:linear-gradient(120deg, rgba(12, 249, 229, 0.7), rgba(90, 132, 235, 0.7));
-$mainColor4:rgb(13, 260, 300);
-$mainColor5:rgba(90, 132, 235, 1);
-$mainColor6:#42A9C0;
-$lightGreyColor:#EEF0F2;
-$lightGrey2Color:#b9b9b9;
-$whiteColor:white;
-$text: rgba(36,105,120,1);
+@import './colors.scss';
+
 
 // global styles
 body {
@@ -50,32 +41,6 @@ a {
   background-color: #E0E2E2;
 }
 
-
-/* =======================================================( roadmap )======================================================= */
-
-.roadmap {
-  background-image: url(./assets/images/roadmap/AI-and-Medicine.jpg);
-  height: 50vh;
-  background-size: cover;
-  overflow: hidden;
-
-  >div {
-    background: rgba(255, 255, 255, 0.8);
-    // opacity: 0.8;
-    width: 88%;
-    max-height: 100%;
-    
-    .header {
-      color: #003367;
-    }
-
-    .lines-img {
-      transform: translateY(-50%);
-    }
-  }
-}
-
-
 .search-icon {
   font-size: 100px;
   color: $mainColor6;
@@ -89,174 +54,11 @@ a {
   }
 }
 
-
-
-/* =======================================================( Pagination )======================================================= */
-
-
-@mixin PaginationBtnsShared {
-  display: flex !important;
-  justify-content: center;
-  align-items: center;
-  width: 45px;
-  height: 45px;
-  padding: 0;
-  border-radius: 10px;
-}
-
-.doctors-pagination ::ng-deep ,
-.medicines-pagination ::ng-deep ,
-.specialization-pagination ::ng-deep {
-  .ngx-pagination {
-      padding-left: 0px !important;
-      margin-top: 1rem !important;
-      display: flex;
-      flex-wrap: wrap;
-
-      .current {
-          background: $mainColor6;
-          @include PaginationBtnsShared();
-          box-shadow: rgba(149, 157, 165, 0.5) 0px 8px 24px;
-      }
-
-      li {
-          margin: 4px 6px !important;
-
-          a {
-              text-decoration: none;
-              background-color: white;
-              color: $mainColor;
-              @include PaginationBtnsShared();
-
-              &:hover {
-                  background-color: #e4e3e3 !important;
-                  // box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-                  // box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
-                  // box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
-                  // box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
-                  box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
-              }
-          }
-      }
-
-      
-      .ellipsis {
-          display: flex !important;
-          align-items: center;
-
-          a {
-              color: #0a0a0a;
-              display: block !important;
-              padding: .1875rem .625rem;
-              border-radius: 0;
-              background-color: transparent;
-              border-radius: 0 !important;
-              width: auto !important;
-              height: auto !important;
-
-              &:hover {
-                  background-color: transparent !important;
-                  color: #3d3d3d !important;
-              }  
-          }
-      }
-
-      .pagination-next,
-      .pagination-previous {
-          display: flex !important;
-          align-items: center;
-
-          a {
-              background-color: white;
-              color: #34B0DE;
-              @include PaginationBtnsShared();
-          }
-      }
-
-      // .pagination-previous {
-      //     &::before {
-      //         font-family: "Font Awesome 5 Free"; 
-      //         font-weight: 900;
-      //         content: "\f104";
-      //     }
-
-      //     a {
-      //         &::before {
-      //             font-family: "Font Awesome 5 Free"; 
-      //             font-weight: 900;
-      //             content: "\f104";
-      //             margin-right: 0 !important;
-      //         }
-      //     }
-      // }
-
-      // .pagination-next {
-      //     >span {
-      //         &::after {
-      //             font-family: "Font Awesome 5 Free"; 
-      //             font-weight: 900;
-      //             content: "\f105";
-      //             margin-left: 0 !important;
-      //         }
-      //     }
-      // }
-
-
-
-        .pagination-next.disabled,
-        .pagination-previous.disabled {
-          background-color: #dbd9d9;
-          @include PaginationBtnsShared();
-        }
-  }
-
-  
-
-
-}
-
-.pagination-english ::ng-deep {
-  .pagination-next a::after, .pagination-next.disabled::after {
-      font-family: "Font Awesome 5 Free"; 
-              font-weight: 900;
-      content: "\f105";
-      display: inline-block;
-      margin-left: 0 !important;
-    }
-
-    .pagination-previous a::before, .pagination-previous.disabled::before {
-      font-family: "Font Awesome 5 Free"; 
-              font-weight: 900;
-      content: "\f104";
-      display: inline-block;
-      margin-right: 0 !important;
-    }
-}
-
-.pagination-arabic ::ng-deep {
-  .pagination-previous a::before, .pagination-previous.disabled::before {
-      font-family: "Font Awesome 5 Free"; 
-              font-weight: 900;
-      content: "\f105";
-      display: inline-block;
-      margin-right: 0 !important;
-    }
-
-    .pagination-next a::after, .pagination-next.disabled::after {
-      font-family: "Font Awesome 5 Free"; 
-              font-weight: 900;
-      content: "\f104";
-      display: inline-block;
-      margin-left: 0 !important;
-    }
-}
-
-
+/* =======================================================( Cart Spinner )======================================================= */
 
 
 // cart spinner
-
-.spinner {
+.cart-spinner {
   width: 30px;
   height: 30px;
   // margin: 10px auto;

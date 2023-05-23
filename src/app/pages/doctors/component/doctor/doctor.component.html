@@ -14,29 +14,90 @@
                 <a class="d-inline-block" routerLink="/appointments/{{doctor.id}}"><h2 class="doctor-name">{{doctor.name}}</h2></a>
                 
                 <h5 class="text-muted">{{doctor.specialization}}</h5>
-                <div *ngIf="doctor.reviews.length>0;else noReviews">
+                <!-- <div *ngIf="doctor.reviews.length>0;else noReviews">
                     <div class="doctor-stars">
                         <i *ngFor="let number of [1 , 2 , 3 , 4 , 5]" class="fa-solid fa-star text-warning mx-1 my-2" [ngClass]="overallRating >= number? 'd-inline-block' : 'd-none'"></i>
                         <i class="fa-solid fa-star-half-stroke text-warning mx-1 my-2" [ngClass]=" overallRating % 1 != 0 ? 'd-inline-block' : 'd-none'" [class.flip-star]="rtlDir"></i>
                         <i *ngFor="let number of [5 , 4 , 3 , 2 , 1]" class="fa-regular fa-star text-warning mx-1 my-2" [ngClass]=" number-overallRating-0.5 > 0 ? 'd-inline-block' : 'd-none'" ></i>
                     </div>
                     
-                    <h6 class="text-muted">{{'SingleDoctor.DoctorRating1' | translate}} <span class="num-visitors-rating">{{doctor.reviews.length}}</span> {{'SingleDoctor.DoctorRating2' | translate}}</h6>
     
                 </div>
                 <ng-template #noReviews>
                     <div class="doctor-stars">
                         <i *ngFor="let number of [5 , 4 , 3 , 2 , 1]" class="fa-regular fa-star text-muted mx-1 my-2" ></i>
                     </div>
-                    <h6 class="text-muted">{{'SingleDoctor.DoctorRating1' | translate}} <span class="num-visitors-rating">0</span> {{'SingleDoctor.DoctorRating2' | translate}}</h6>
 
-                    <!-- <i class="fa-regular fa-star text-muted mx-1 my-2"></i>
-                    <span>no reviews on this doctor yet</span> -->
-                </ng-template>
+
+                </ng-template> -->
+                <div>
+                    <app-rating [rating]="overallRating"></app-rating>
+                    <h6 class="text-muted">{{'SingleDoctor.DoctorRating1' | translate}} <span class="num-visitors-rating">{{doctor.reviews.length}}</span> {{'SingleDoctor.DoctorRating2' | translate}}</h6> <!-- *ngIf="doctor.reviews.length>0;"-->
+
+                    <!-- <h6 class="text-muted" *ngIf="doctor.reviews.length==0;">{{'SingleDoctor.DoctorRating1' | translate}} <span class="num-visitors-rating">0</span> {{'SingleDoctor.DoctorRating2' | translate}}</h6> -->
+
+                </div>
                 </div>
             </div>
             </div>
         </div>
+        <!-- <ngb-rating [(rate)]="currentRate" [starTemplate]="t" [readonly]="true" [max]="5" [ariaValueText]="ariaValueText"></ngb-rating> -->
+        <!-- <p>Custom readonly decimal rating with template provided via an input</p>
+
+        <p>We use <code>bootstrap-icons</code> to display hearts</p>
+        
+        <ng-template #t let-fill="fill">
+            <i class="bi-heart-fill">
+                <i *ngIf="fill > 0" class="bi-heart-fill filled" [style.width.%]="fill"></i>
+            </i>
+        </ng-template>
+        
+        <ngb-rating
+            [(rate)]="currentRate"
+            [starTemplate]="t"
+            [readonly]="true"
+            [max]="5"
+            [ariaValueText]="ariaValueText"
+        ></ngb-rating>
+        
+        <hr />
+        <pre>Rate: <b>{{currentRate}}</b></pre>
+        <button class="btn btn-sm btn-outline-primary me-2" (click)="currentRate = 1.35">1.35</button>
+        <button class="btn btn-sm btn-outline-primary me-2" (click)="currentRate = 4.72">4.72</button> -->
+
+
+        <!-- <p>Custom rating template provided as child element</p>
+
+<p>We use <code>bootstrap-icons</code> to display stars</p>
+
+<ngb-rating [(rate)]="currentRate">
+	<ng-template let-fill="fill" let-index="index">
+		<i class="bi-star{{fill === 100 ? '-fill' : ''}}" [class.filled]="fill === 100" [class.low]="index < 3"></i>
+	</ng-template>
+</ngb-rating>
+<hr />
+<pre>Rate: <b>{{currentRate}}</b></pre> -->
+
+<!-- <ngb-rating [(rate)]="currentRating" [max]="5" [readonly]="true" (rateChange)="onRatingChange($event)"></ngb-rating> -->
+
+<!-- <ng-template #t let-fill="fill">
+    <i class="bi-star-fill pb-1">
+      <i
+        *ngIf="fill > 0"
+        class="bi-star-fill filled pb-1"
+        [style.width.%]="fill"
+      ></i>
+    </i>
+  </ng-template>
+  
+  <ngb-rating
+    [starTemplate]="t"
+    [(rate)]="overallRating"
+    [readonly]="true"
+    [max]="5"
+  ></ngb-rating> -->
+
+
 
         <div class="col-md-6">
             <div class="doctor-job-info m-sm-4 m-md-0 text-muted">

@@ -1,10 +1,10 @@
-<app-spinner *ngIf="isVisibleSpinner"></app-spinner>
+<!-- <app-spinner *ngIf="isVisibleSpinner"></app-spinner> -->
 
 <div class="medicine-details-component animate" [dir]=" 'dir' | translate "  [lang]="lang">
     <!--  =======================================================( landing )======================================================= -->
 
     <section class=" position-relative justify-content-center align-content-center" #firstSection>
-        <div class="roadmap d-flex  align-items-center justify-content-center">
+        <!-- <div class="roadmap d-flex  align-items-center justify-content-center">
             <div class=" ms-5 p-3 text-center ">
                 <h1 class=" fw-bolder mb-3 text-center header title" [class.arabic-font]="rtlDir">{{rtlDir?'تفاصيل القسم':'specialize Details'}}</h1>
                 <img class="img-fluid lines-img" src="../../../assets/images/roadmap/lines.png" alt="">
@@ -13,14 +13,17 @@
                         {{'RoadMap.MainTitle' | translate}} 
                         <i class="fa-solid ms-2 fs-6" [ngClass]="rtlDir? 'fa-angles-left' : 'fa-angles-right'"></i>
                     </a>
-                    <a routerLink="/pharmacy" class="fw-bolder text-success text-decoration-none fs-5">
+                    <a routerLink="/specializations" class="fw-bolder text-success text-decoration-none fs-5">
                         {{rtlDir?'الاقسام':'Specialities'}} 
                         <i class="fa-solid ms-2 fs-6" [ngClass]="rtlDir? 'fa-angles-left' : 'fa-angles-right'"></i>
                     </a>
                 <span class=" ms-2 fw-bolder text-capitalize">{{rtlDir?'تفاصيل القسم':'specialize Details'}}</span>
                 </div>
             </div>
-        </div>
+        </div> -->
+
+        <app-roadmap [roadMapLinks]="roadMapLinks"></app-roadmap>
+
     </section>    
     
     <!-- =============================================================================================================== -->

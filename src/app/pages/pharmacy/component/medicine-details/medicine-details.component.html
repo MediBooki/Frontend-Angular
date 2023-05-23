@@ -1,10 +1,9 @@
-<app-spinner *ngIf="isVisibleSpinner"></app-spinner>
 
 <div class="medicine-details-component animate" [dir]=" 'dir' | translate "  [lang]="lang">
     <!--  =======================================================( landing )======================================================= -->
 
     <section class=" position-relative justify-content-center align-content-center" #firstSection>
-        <div class="roadmap d-flex  align-items-center justify-content-center">
+        <!-- <div class="roadmap d-flex  align-items-center justify-content-center">
             <div class=" mx-5 p-3 text-center ">
                 <h1 class=" fw-bolder mb-3 text-center header title" [class.arabic-font]="rtlDir">{{rtlDir?'تفاصيل الدواء':'Medicine Details'}}</h1>
                 <img class="img-fluid lines-img" src="../../../assets/images/roadmap/lines.png" alt="">
@@ -20,7 +19,10 @@
                 <span class=" mx-2 fw-bolder text-capitalize">{{rtlDir?'تفاصيل الدواء':'Medicine Details'}}</span>
                 </div>
             </div>
-        </div>
+        </div> -->
+
+        <app-roadmap [roadMapLinks]="roadMapLinks"></app-roadmap>
+
     </section>    
     
     <!-- =============================================================================================================== -->
@@ -48,7 +50,7 @@
                             <!-- <span>{{medicineQuantity}}</span> -->
                             <button (click)="addCart(medicineDetails.id)" class="btn cart-btn my-2 rounded d-flex align-items-center" type="button" [disabled]="isDisableBtn || isVisibleAddSpinner">
                                 <i class="fa-solid fa-cart-shopping mx-2" *ngIf="!isVisibleAddSpinner"></i>
-                                <div class="spinner mx-1" *ngIf="isVisibleAddSpinner"></div>
+                                <div class="cart-spinner mx-1" *ngIf="isVisibleAddSpinner"></div>
 
                                 {{"SharedData.AddToCartBtn" | translate}}
                             </button>

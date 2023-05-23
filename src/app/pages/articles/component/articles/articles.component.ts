@@ -3,6 +3,7 @@ import { AuthService } from '../../../Auth/services/auth.service';
 import { DataService } from 'src/app/core/services/data.service';
 import { ArticlesService } from '../../service/articles.service';
 import { Subscription } from 'rxjs';
+import { Roadmap } from 'src/app/core/interfaces/roadmap';
 
 @Component({
   selector: 'app-articles',
@@ -10,6 +11,16 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./articles.component.scss']
 })
 export class ArticlesComponent implements OnInit {
+
+
+  // roadmap variable
+  roadMapLinks:Roadmap = {
+    roadMabFirstLink: {arabic:'الرئيسية',english:'Home',link:'/home'},
+    roadMabLastLink: {arabic:'المقالات',english:'Articles'},
+    roadMabIntermediateLinks: [
+
+    ]
+  }
 
   constructor(private _AuthService: AuthService,private _DataService: DataService, private _ArticlesService :ArticlesService ) { }
 

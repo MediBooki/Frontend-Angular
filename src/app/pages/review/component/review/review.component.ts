@@ -26,7 +26,7 @@ export class ReviewComponent implements OnInit {
   lang: string = "en";
   rtlDir: boolean = false;
   //////////////////////////////////
-  isVisibleSpinner: boolean = true;
+  // isVisibleSpinner: boolean = true;
   reviewSubscription = new Subscription();
   reviewDoctorSubscription = new Subscription();
   reviewdoctor:reviewDoctor={
@@ -196,17 +196,17 @@ export class ReviewComponent implements OnInit {
         } else {
           this.rtlDir = true;
         }
-        this.isVisibleSpinner = true;
+        // this.isVisibleSpinner = true;
         this.reviewSubscription = this._AppointmentsService.getDoctorById(lang, this.id).subscribe({
           next: (Doctor) => {
             console.log(Doctor)
             this.doctor = Doctor.data;
             console.log(this.doctor)
-            this.isVisibleSpinner = false;
+            // this.isVisibleSpinner = false;
           },
           error: (error) => {
             // this.noDataError = error;
-            this.isVisibleSpinner = false;
+            // this.isVisibleSpinner = false;
           }
         });
       }
@@ -221,11 +221,11 @@ export class ReviewComponent implements OnInit {
         console.log(this.reviewdoctor)
         this.formReview.get("rating1")?.setValue(this.reviewdoctor.rating);
         this.formReview.get("comment")?.setValue(this.reviewdoctor.comment);
-        this.isVisibleSpinner = false;
+        // this.isVisibleSpinner = false;
       },
       error: (error) => {
         // this.noDataError = error;
-        this.isVisibleSpinner = false;
+        // this.isVisibleSpinner = false;
       }
     });
   }

@@ -11,6 +11,7 @@ import { ToastrService } from 'ngx-toastr';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Roadmap } from 'src/app/core/interfaces/roadmap';
 
 // import { OwlOptions } from 'ngx-owl-carousel-o';
 
@@ -45,7 +46,7 @@ export class MedicineDetailsComponent implements OnInit {
   // medicineQuantity:number = 0;
   // purchasedFound?:MedicinePurchased;
   favoriteAdded:boolean = false;
-  isVisibleSpinner:boolean = false;
+  // isVisibleSpinner:boolean = false;
   isLogedIn:boolean = localStorage.getItem("token") != null;
 
   // relatedCarousel: OwlOptions = {} // Enabling Owl Carousel for Specialization Section
@@ -58,6 +59,14 @@ export class MedicineDetailsComponent implements OnInit {
   
   categoriesLoaded:boolean = false;
 
+    // roadmap variable
+    roadMapLinks:Roadmap = {
+      roadMabFirstLink: {arabic:'الرئيسية',english:'Home',link:'/home'},
+      roadMabLastLink: {arabic:'تفاصيل الدواء',english:'Medicine Details'},
+      roadMabIntermediateLinks: [
+        {arabic:'الصيدلية',english:'Pharmacy',link:'/pharmacy'}
+      ]
+    }
   /*=============================================( Initialization Methods )=============================================*/
   
   constructor(private _DataService:DataService ,private _PharmacyService:PharmacyService, private _AuthService:AuthService , private _CartService:CartService, private _FormBuilder:FormBuilder, private _ActivatedRoute:ActivatedRoute, private toastr: ToastrService, private router: Router) {
@@ -191,7 +200,7 @@ export class MedicineDetailsComponent implements OnInit {
   habd = new BehaviorSubject(0)
   //----- Method 3
   getMedicineDetails() {
-    this.isVisibleSpinner = true;
+    // this.isVisibleSpinner = true;
     // this.medicineId = this._ActivatedRoute.snapshot.params["id"];
     // this.habd.next(this._ActivatedRoute.snapshot.params["id"])
     // to subscribe in language to know in case of changing
@@ -215,7 +224,7 @@ export class MedicineDetailsComponent implements OnInit {
             this.medicineDetails = medicine.data;
             // this.setMedicineAmount();
             console.log(this.medicineDetails)
-            this.isVisibleSpinner = false;
+            // this.isVisibleSpinner = false;
             // this.isVisibleSpinner = false;
             window.scroll({ 
               top: this.firstSection?.nativeElement.offsetHeight, 
@@ -408,7 +417,7 @@ export class MedicineDetailsComponent implements OnInit {
           } else {
             this.favoriteAdded = true
           }
-          this.isVisibleSpinner = false;
+          // this.isVisibleSpinner = false;
       //     // let medicineQuantityFound = medicines.data.user_cart_items.find((medicine:any)=>medicine.id == this.medicineDetails.id);
   
       //     // this.allFavorites = favorites.data;
@@ -423,8 +432,8 @@ export class MedicineDetailsComponent implements OnInit {
         }
       })
     } else {
-      console.log(this.isVisibleSpinner)
-      this.isVisibleSpinner = false;
+      // console.log(this.isVisibleSpinner)
+      // this.isVisibleSpinner = false;
     }
        
   }

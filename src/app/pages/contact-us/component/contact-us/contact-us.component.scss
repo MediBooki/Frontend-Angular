@@ -1,4 +1,5 @@
-@import '../../../../../styles.scss';
+@import '../../../../../colors.scss';
+
 .form-floating-en>.form-control:focus~label {
   transform: scale(.85) translateY(-0.5rem) translateX(-5.15rem) !important;
 }

@@ -1,56 +1,303 @@
-@import '../../../../../styles.scss';
-
-.spinner {
-    z-index: 98;
-    background-color: rgba(255, 255, 255, 0.8);
-  }
+@import '../../../../../pagination.scss';
+@import '../../../../../filters.scss';
 
   
-/* =======================================================( aside filter )======================================================= */
+/* =======================================================( First Section )======================================================= */
+
+// Roadmap Design
+.roadmap {
+    background-image: url(../../../../../assets/images/roadmap/AI-and-Medicine.jpg);
+    height: 50vh;
+    background-size: cover;
+    overflow: hidden;
+  
+    >div {
+      background: rgba(255, 255, 255, 0.8);
+      // opacity: 0.8;
+      width: 88%;
+      max-height: 100%;
+      
+      .header {
+        color: #003367;
+      }
+  
+      .lines-img {
+        transform: translateY(-50%);
+      }
+    }
+  }
+  
+  
+// Main Search
 .roadmap {
     .filter-count {
         color: #003367;
         font-weight: bold;
     }
-}
+    
+    /* first search filter method */
+    .main-search-section {
+        // background-color: $mainColor; //#98C8F4
+        // position: relative;
+        
+        .main-search-title {
+            font-family: 'Roboto Condensed', sans-serif;
+        }
+        
+        h1 {
+            font-size: 19px;
+        }
 
-.medicines-list-section {
-    background-color: #E2E6EA;
-
-
-    // Filter General
-    .accordion {
-        // width: 225px;
-        width: 90%;
-
-        // Filter Button
-        .accordion-button {
-            color: $mainColor;
-            box-shadow: none !important;
-
-            /* removing accordion arrow to put our arrow */
-            &::after {
-                background-image: none;
-                font-family: "Font Awesome 5 Free";
-                font-weight: 900;
-                content: "\f078";
-                display: flex;
-                justify-content: center;
+        h3 {
+            font-size: 16px;
+            i {
+                color: #c4c3c3;
             }
-
-            &:not(.collapsed) {
-                &::after {
-                    background-image: none;
+        }
+        
+        .doctors-img {
+            img {
+                height: 240px;
+            }
+        }
+        
+        ul {
+            list-style: none;
+            i {
+                color: #c4c3c3;
+                font-size: 8px;
+            }
+        }
+        
+        // Main-Search-Filter (select2)
+        .main-search-filter {
+            box-shadow: rgb(204, 204, 204) 0px 0px 10px;
+            height: 60px;
+            // border-radius: 15px;
+            border-radius: 50px;
+            border: 2px solid white;
+            z-index: 50;
+            
+            .medicine-search {
+                cursor: pointer;
+                padding-left: 10px;
+                padding-right: 10px;
+                
+                i {
+                    color: $mainColor;
+                }
+                
+                input {
+                    border: 0;
+                    box-shadow: none !important;
+                    color: $mainColor;
+                    width: 180px ;
+                    padding: 0;
+                    &::placeholder {
+                        color: $mainColor;
+                        opacity: 1; /* Firefox */
+                    }
+                    
+                    &::-ms-input-placeholder { /* Internet Explorer 10-11 */
+                        color: $mainColor;
+                    }
+                    
+                    &::-ms-input-placeholder { /* Microsoft Edge */
+                        color: $mainColor;
+                    }
+                }
+            }
+            
+            /* search filter button */
+            .search-btn-container {
+                height: 100%;
+                
+                .search-btn {
+                    width: 125px;
+                    height: 100%;
+                    background-color: rgb(13, 260, 300);
+                    color: white;
+                    box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px;
+                    border-radius: 50px;
+                    
+                    &:hover {
+                        box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+                    }
                 }
             }
         }
 
-        // Filter Item
-        .accordion-item {
+    }
+}
+/* =======================================================( Second Section )======================================================= */
 
-            // Filter Title
-            .accordion-title {
-                cursor: default !important;
+.medicines-list-section {
+    background-color: #E2E6EA;
+    
+    // 1. link to home
+    .medicines-roadmap {
+        a {
+            color: $mainColor6;
+        }
+    }
+
+
+
+    /* =======================================================( Aside Style )======================================================= */
+
+    // 2. Aside Filter in General
+    .aside-filter {
+        display: block;
+        position: relative;
+        height: 100%; /* to make it's allignment equals to doctor-list allignment put calc(100% - 50px - 1.5rem) */
+
+        #accordionExample {
+            position: sticky;
+            top: 50px;
+        }
+    }
+
+    
+
+
+
+    // Filter General
+    // .accordion {
+        //     // width: 225px;
+        //     width: 90%;
+        
+        //     // Filter Button
+    //     .accordion-button {
+    //         color: $mainColor;
+    //         box-shadow: none !important;
+
+    //         /* removing accordion arrow to put our arrow */
+    //         &::after {
+    //             background-image: none;
+    //             font-family: "Font Awesome 5 Free";
+    //             font-weight: 900;
+    //             content: "\f078";
+    //             display: flex;
+    //             justify-content: center;
+    //         }
+
+    //         &:not(.collapsed) {
+    //             &::after {
+    //                 background-image: none;
+    //             }
+    //         }
+    //     }
+
+    //     // Filter Item
+    //     .accordion-item {
+
+    //         // Filter Title
+    //         .accordion-title {
+    //             cursor: default !important;
+    //             color: white;
+    //             box-shadow: inset 0 -1px 0 rgba(0,0,0,.125);
+    //             width: 100%;
+    //             padding: 1rem 1.25rem;
+    //             font-size: 1rem;
+    //             text-align: left;
+    //             background: $mainColor2;
+
+    //             h4 {
+    //                 font-size: 18px;
+    //             }
+
+    //             border-top-left-radius: 1rem;
+    //             border-top-right-radius: 1rem;
+    //         }
+
+    //         /* accordion top */
+    //         &:first-of-type {
+    //             border-top-left-radius: 1rem;
+    //             border-top-right-radius: 1rem;
+    //         }
+
+    //         /* accordion bottom */
+    //         &:last-of-type {
+    //             border-bottom-right-radius: 1rem;
+    //             border-bottom-left-radius: 1rem;
+
+    //             .accordion-button {
+    //                 &.collapsed {
+    //                     border-bottom-right-radius: 1rem;
+    //                     border-bottom-left-radius: 1rem;
+    //                 }
+    //             }
+    //         }
+
+    //         // Filter Body
+    //         .accordion-body {
+    //             label {
+    //                 cursor: pointer;
+    //             }
+
+    //             .accordion-body-item {
+    //                 margin-bottom: 5px;
+    //             }
+    //         }
+
+    //     }
+
+    // }
+
+    // // Filter English
+    // .accordion-english {
+
+    //     .accordion-body {
+    //         input[type="checkbox"] {
+    //             margin-right: 10px;
+    //         }
+    //     }
+
+    //     .accordion-body {
+    //         input[type="radio"] {
+    //             margin-right: 10px;
+    //         }
+    //     }
+
+    //     .accordion-button {
+    //         &::after {
+    //             margin-right: inherit;
+    //             margin-left: auto;
+    //         }
+    //     }
+
+    // }
+
+    // // Filter Arabic
+    // .accordion-arabic {
+    //     .accordion-body {
+    //         input[type="checkbox"] {
+    //             margin-left: 10px;
+    //         }
+    //     }
+
+    //     .accordion-body {
+    //         input[type="radio"] {
+    //             margin-left: 10px;
+    //         }
+    //     }
+
+    //     .accordion-button {
+    //         &::after {
+    //             margin-right: auto;
+    //             margin-left: inherit;
+    //         }
+    //     }
+    // }
+
+    /* =======================================================( filtered-content )======================================================= */
+    
+    // 3. filtered medicines
+    .filtered-content {
+
+        #small-filter-btn {
+            .accordion-title{
+                cursor: pointer !important;
                 color: white;
                 box-shadow: inset 0 -1px 0 rgba(0,0,0,.125);
                 width: 100%;
@@ -58,198 +305,156 @@
                 font-size: 1rem;
                 text-align: left;
                 background: $mainColor2;
-
+    
                 h4 {
                     font-size: 18px;
                 }
-
+    
                 border-top-left-radius: 1rem;
                 border-top-right-radius: 1rem;
             }
+        }
 
-            /* accordion top */
-            &:first-of-type {
-                border-top-left-radius: 1rem;
-                border-top-right-radius: 1rem;
+        .filtered-content-title {
+            p {
+                font-size: 15px;
             }
-
-            /* accordion bottom */
-            &:last-of-type {
-                border-bottom-right-radius: 1rem;
-                border-bottom-left-radius: 1rem;
-
-                .accordion-button {
-                    &.collapsed {
-                        border-bottom-right-radius: 1rem;
-                        border-bottom-left-radius: 1rem;
+        
+            h2 {
+                font-size: 20px;
+            }
+        
+            .filtered-title {
+                font-family: "Roboto Condensed", sans-serif;
+        
+                span {
+                    &::after {
+                        content: " ,";
+                        // color: black;
+                    }
+            
+                    &:last-child {
+                        &::after {
+                            content: "";
+                        }
                     }
                 }
             }
-
-            // Filter Body
-            .accordion-body {
-                label {
-                    cursor: pointer;
-                }
-
-                .accordion-body-item {
-                    margin-bottom: 5px;
-                }
-            }
-
-        }
-
-    }
-
-    // Filter English
-    .accordion-english {
-
-        .accordion-body {
-            input[type="checkbox"] {
-                margin-right: 10px;
-            }
-        }
-
-        .accordion-body {
-            input[type="radio"] {
-                margin-right: 10px;
-            }
-        }
-
-        .accordion-button {
-            &::after {
-                margin-right: inherit;
-                margin-left: auto;
-            }
-        }
-
-    }
-
-    // Filter Arabic
-    .accordion-arabic {
-        .accordion-body {
-            input[type="checkbox"] {
-                margin-left: 10px;
-            }
-        }
-
-        .accordion-body {
-            input[type="radio"] {
-                margin-left: 10px;
-            }
-        }
-
-        .accordion-button {
-            &::after {
-                margin-right: auto;
-                margin-left: inherit;
-            }
         }
     }
-
-    // Aside Filter in General
-    .aside-filter {
-        display: block;
-        position: relative;
-        height: 100%; /* to make it's allignment equals to doctor-list allignment put calc(100% - 50px - 1.5rem) */
-    }
-
-    #accordionExample {
-        position: sticky;
-        top: 50px;
-    }
-
-    #small-filter-btn {
-        .accordion-title{
-            cursor: pointer !important;
-            color: white;
-            box-shadow: inset 0 -1px 0 rgba(0,0,0,.125);
-            width: 100%;
-            padding: 1rem 1.25rem;
-            font-size: 1rem;
-            text-align: left;
-            background: $mainColor2;
-
-            h4 {
-                font-size: 18px;
-            }
-
-            border-top-left-radius: 1rem;
-            border-top-right-radius: 1rem;
-        }
-    }
-
 }
 
 
-/* =======================================================( small-filter )======================================================= */
+/* =======================================================( small-filter Section )======================================================= */
+
+
+// #small-filter {
+//     background-color: $lightGreyColor;
+//     z-index: 999999;
+//     top: 0;
+
+//     input {
+//         margin: 4px;
+//     }
+
+//     h2 {
+//         background-color: $mainColor;
+//     }
+
+//     #filter-close-icon {
+//         cursor: pointer;
+//         position: absolute;
+//         top: 50%;
+//         transform: translateY(-50%);
+//     }
+
+//     .filter-close-english {
+//         left: 20px;
+//     }
+
+//     .filter-close-arabic {
+//         right: 20px;
+//     }
+
+//     .small-filter-item {
+//         border-radius: 15px;
+//         box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+
+//         .small-filter-head {
+//             color: $mainColor;
+//         }
+//     }
+
+//     .small-filter-buttons {
+//         button {
+//             font-size: 1.25rem;
+//             border-radius: 10px;
+//             width: 155px;
+//             height: 45px;
+//         }
+//     }
+
+// }
+
+
 
 
 #small-filter {
-    background-color: $lightGreyColor;
-    z-index: 999999;
-    top: 0;
-
-    input {
-        margin: 4px;
-    }
-
-    h2 {
-        background-color: $mainColor;
-    }
-
-    #filter-close-icon {
-        cursor: pointer;
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-    }
-
-    .filter-close-english {
-        left: 20px;
-    }
-
-    .filter-close-arabic {
-        right: 20px;
-    }
-
-    .small-filter-item {
-        border-radius: 15px;
-        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-
-        .small-filter-head {
-            color: $mainColor;
+    .small-filter-content {
+        .small-filter-item {
+            .small-filter-body {
+                .fa-arrows-left-right {
+                    font-size: 2rem;
+                }
+            
+                label {
+                    &:hover {
+                        cursor: pointer;
+                    }
+                }
+            
+                .accordion-body-item {
+                    &:last-child {
+                        border-bottom: 0 !important;
+                    }
+                }
+            }
         }
     }
-
-    .small-filter-buttons {
-        button {
-            font-size: 1.25rem;
-            border-radius: 10px;
-            width: 155px;
-            height: 45px;
-        }
-    }
-
 }
 
 
-/* =======================================================( filtered-content )======================================================= */
+// shared style
+.small-filter-body,
+.accordion-body {
+    .price-filter {
+        .price-value {
+            background-color: #f0f0f0;
+        }
 
-
-.filtered-content-title {
-    p {
-        font-size: 15px;
+        .price-search {
+            button {
+                background-color: $mainColor6;
+                color: white;
+            }
+        }
     }
+    
+}
 
-    h2 {
-        font-size: 20px;
-    }
+.ngx-slider::ng-deep {
+    .ngx-slider-pointer {
+        width: 20px;
+        height: 20px;
+        top: -10px;
 
-    .filtered-title {
-        font-family: "Roboto Condensed", sans-serif;
+        &::after {
+            top: 6px;
+            left: 6px;
+        }
     }
 }
+
 
 /* =======================================================( Media Query )======================================================= */
 
@@ -293,232 +498,5 @@
     .search-btn {
         width: 110px !important;
         font-size: 0.8rem;
-    }
-}
-
-
-
-.filtered-content-title {
-    h2 {
-        font-size: 20px;
-    }
-    p {
-        font-size: 15px;
-      }
-}
-
-
-
-
-.price-filter {
-    .price-value {
-        background-color: #f0f0f0;
-    }
-}
-
-.filtered-title {
-    span {
-        &::after {
-            content: " ,";
-            // color: black;
-        }
-
-        &:last-child {
-            &::after {
-                content: "";
-            }
-        }
-    }
-
-}
-.price-search {
-    button {
-        background-color: $mainColor6;
-        color: white;
-    }
-}
-
-
-.search-btn {
-    border-radius: 50px !important;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* =======================================================( Main-Search )======================================================= */
-
-/*======================================================( select2 )======================================================*/
-
-// .ghgh {
-//     top: 0;
-//     left: 0;
-//     height: 50%;
-// }
-// .test {
-//     background-image: url(../../../assets/images/medicines/top-view-pills-inside-shopping-cart-1.jpg);
-//     background-size: 20% 100%;
-//     background-repeat: no-repeat;
-// }
-/* first search filter method */
-
-.main-search-section {
-    // background-color: $mainColor; //#98C8F4
-    // position: relative;
-
-    .main-search-title {
-        font-family: 'Roboto Condensed', sans-serif;
-    }
-
-    h1 {
-        font-size: 19px;
-    }
-
-    h3 {
-        font-size: 16px;
-        i {
-            color: #c4c3c3;
-        }
-    }
-
-    .doctors-img {
-        img {
-            height: 240px;
-        }
-    }
-
-    ul {
-        list-style: none;
-        i {
-            color: #c4c3c3;
-            font-size: 8px;
-        }
-    }
-
-    // Main-Search-Filter (select2)
-    .main-search-filter {
-        box-shadow: rgb(204, 204, 204) 0px 0px 10px;
-        height: 60px;
-        // border-radius: 15px;
-        border-radius: 50px;
-        border: 2px solid white;
-        z-index: 50;
-
-        .medicine-search {
-            cursor: pointer;
-            padding-left: 10px;
-            padding-right: 10px;
-
-            i {
-                color: $mainColor;
-            }
-
-            input {
-                border: 0;
-                box-shadow: none !important;
-                color: $mainColor;
-                width: 180px ;
-                padding: 0;
-                &::placeholder {
-                    color: $mainColor;
-                    opacity: 1; /* Firefox */
-                }
-
-                &::-ms-input-placeholder { /* Internet Explorer 10-11 */
-                    color: $mainColor;
-                }
-
-                &::-ms-input-placeholder { /* Microsoft Edge */
-                    color: $mainColor;
-                }
-            }
-        }
-
-        /* search filter button */
-        .search-btn-container {
-            height: 100%;
-
-            .search-btn {
-                border-radius: 0;
-                width: 125px;
-                height: 100%;
-                background-color: rgb(13, 260, 300);
-                color: white;
-                box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px;
-
-                &:hover {
-                    box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
-                }
-            }
-        }
-    }
-
-}
-
-.medicines-roadmap {
-    a {
-        color: $mainColor6;
-    }
-}
-.small-filter-body {
-    .fa-arrows-left-right {
-        font-size: 2rem;
-    }
-
-    label {
-        &:hover {
-            cursor: pointer;
-        }
-    }
-
-    .accordion-body-item {
-        &:last-child {
-            border-bottom: 0 !important;
-        }
-    }
-}
-/*
-// Select2 Dropdown Style
-::ng-deep .select2-dropdown--below {
-    top: 4px !important;
-    border-top: 1px solid #aaa !important;
-}
-
-::ng-deep .select2-dropdown--above {
-    top: -4px !important;
-    border-bottom: 1px solid #aaa !important;
-}
-*/
-
-
-
-
-
-
-
-
-
-
-.ngx-slider::ng-deep {
-    .ngx-slider-pointer {
-        width: 20px;
-        height: 20px;
-        top: -10px;
-
-        &::after {
-            top: 6px;
-            left: 6px;
-        }
     }
 }

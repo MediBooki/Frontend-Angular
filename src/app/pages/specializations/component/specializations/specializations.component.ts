@@ -6,6 +6,7 @@ import { SpecializationService } from '../../service/specializations.service';
 import { AuthService } from 'src/app/pages/Auth/services/auth.service';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Roadmap } from 'src/app/core/interfaces/roadmap';
 
 @Component({
   selector: 'app-specializations',
@@ -25,7 +26,7 @@ export class SpecializationsComponent implements OnInit {
 
 
 
-  isVisibleSpinner: boolean = true;
+  // isVisibleSpinner: boolean = true;
 
 
   // Pagination Configuration Variables
@@ -35,6 +36,15 @@ export class SpecializationsComponent implements OnInit {
 
   defaultSpecializationImg:string = this._DataService.defaultNoImg;
 
+
+    // roadmap variable
+    roadMapLinks:Roadmap = {
+      roadMabFirstLink: {arabic:'الرئيسية',english:'Home',link:'/home'},
+      roadMabLastLink: {arabic:'خدمات التخصصات',english:'Specialties Services'},
+      roadMabIntermediateLinks: [
+
+      ]
+    }
 
   constructor(private _AuthService: AuthService, private _DataService: DataService, private _specializeService: SpecializationService, private router:Router) {
 
@@ -63,14 +73,14 @@ export class SpecializationsComponent implements OnInit {
         } else {
           this.rtlDir = true;
         }
-        this.isVisibleSpinner = true;
+        // this.isVisibleSpinner = true;
         this.specializeSubscription = this._specializeService.getSpecialization(lang, this.page).subscribe({
           next: (specialize) => {
             console.log(specialize)
             if(specialize.data.length == 0) {
               this.noData = true;
             } else {
-              this.isVisibleSpinner = false;
+              // this.isVisibleSpinner = false;
               this.noData = false;
               this.totalRecords = specialize.count
               this.specializations = specialize.data;
@@ -84,7 +94,7 @@ export class SpecializationsComponent implements OnInit {
           error: (error) => {
             console.log(error)
             this.noDataError = error;
-            this.isVisibleSpinner = false;
+            // this.isVisibleSpinner = false;
           }
         });
       }

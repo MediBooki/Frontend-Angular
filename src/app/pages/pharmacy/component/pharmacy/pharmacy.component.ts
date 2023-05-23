@@ -66,7 +66,7 @@ export class PharmacyComponent implements OnInit {
   noDataError:any= ""; // in case of error
   smallFilterVisible:boolean = false; // to show small filter
   cartMedicines:MedicinePurchased[] = [];
-  isVisibleSpinner:boolean = false;
+  // isVisibleSpinner:boolean = false;
   noData:boolean = false;
   numOfMedicines:number = 0;
   
@@ -93,7 +93,7 @@ export class PharmacyComponent implements OnInit {
     this.getCategories(); // get categories from API
     this.setFavorite();
     this.getCounterVals();
-    this.isVisibleSpinner = true;
+    // this.isVisibleSpinner = true;
   }
 
   //  // when view load completely
@@ -142,7 +142,7 @@ export class PharmacyComponent implements OnInit {
           this.direction = 'rtl';
         }
 
-        this.isVisibleSpinner = true;
+        // this.isVisibleSpinner = true;
 
         // to get all doctors
         this.medicinesSubscription = this._PharmacyService.getFilteredMedicines(this.medicineFilterForm.value, lang, this.page).subscribe({
@@ -157,11 +157,11 @@ export class PharmacyComponent implements OnInit {
             }
             // this.numMedicinesPerPage = medicines.data.length // length of one page in API
             this.changeRangeSlider(medicines.count.minPrice , medicines.count.maxPrice); // to trigger range slider and init it
-            this.isVisibleSpinner = false;            
+            // this.isVisibleSpinner = false;            
           },
           error:(error)=>{
             this.noDataError = error;
-            this.isVisibleSpinner = false;
+            // this.isVisibleSpinner = false;
           }
     
         });
