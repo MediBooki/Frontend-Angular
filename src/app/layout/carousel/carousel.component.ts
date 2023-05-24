@@ -1,7 +1,7 @@
 import { Component, HostListener, Input, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { OwlOptions } from 'ngx-owl-carousel-o';
+// import { OwlOptions } from 'ngx-owl-carousel-o';
 import { Specialize } from 'src/app/core/interfaces/specialize';
 import { DataService } from 'src/app/core/services/data.service';
 
@@ -21,7 +21,7 @@ export class CarouselComponent implements OnInit {
     filterForm : FormGroup;
 
   @Input() carouselClass?:string;
-  @Input() carouselType: OwlOptions = {} // Enabling Owl Carousel for Specialization Section
+  @Input() carouselType: any // Enabling Owl Carousel for Specialization Section
   @Input() carouselItems: any[] = [];
   defaultImg:string = this._DataService.defaultNoImg;
 

@@ -1,5 +1,5 @@
 import { Component, HostListener, OnInit, ElementRef, ViewChild } from '@angular/core';
-import { OwlOptions } from 'ngx-owl-carousel-o';
+// import { OwlOptions } from 'ngx-owl-carousel-o';
 import { DataService } from 'src/app/core/services/data.service';
 import { DoctorService } from 'src/app/pages/doctors/service/doctor.service';
 import { AuthService } from 'src/app/pages/Auth/services/auth.service';
@@ -47,9 +47,9 @@ export class HomeComponent implements OnInit {
 
 
   // Carousel Variables
-  mainCarousel: OwlOptions = {} // Enabling Owl Carousel for Main Section
-  specializationCarousel: OwlOptions = {} // Enabling Owl Carousel for Specialization Section
-  doctorsCarousel: OwlOptions = {} // Enabling Owl Carousel for Doctors Section
+  mainCarousel: any // Enabling Owl Carousel for Main Section
+  specializationCarousel: any // Enabling Owl Carousel for Specialization Section
+  doctorsCarousel: any // Enabling Owl Carousel for Doctors Section
 
   // Select2 Variables
   specializationSelect2Placeholder: any;

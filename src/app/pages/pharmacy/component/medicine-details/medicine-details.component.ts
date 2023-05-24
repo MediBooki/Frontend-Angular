@@ -8,7 +8,7 @@ import { Medicine } from 'src/app/core/interfaces/medicine';
 import { MedicinePurchased } from 'src/app/core/interfaces/medicine-purchased';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
-import { OwlOptions } from 'ngx-owl-carousel-o';
+// import { OwlOptions } from 'ngx-owl-carousel-o';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Roadmap } from 'src/app/core/interfaces/roadmap';
@@ -121,7 +121,7 @@ export class MedicineDetailsComponent implements OnInit {
   
 
   categoryMedicines:Medicine[] = [];
-  relatedCarousel: OwlOptions = {} // Enabling Owl Carousel for Specialization Section
+  relatedCarousel: any // Enabling Owl Carousel for Specialization Section
   filterMedicinesCategory() {
 
     this.relatedCarousel = {
@@ -140,7 +140,7 @@ export class MedicineDetailsComponent implements OnInit {
         768: {
           items: 2
         },
-        900: {
+        1000: {
           items: 3
         }
       }
