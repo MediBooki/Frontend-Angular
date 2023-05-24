@@ -44,7 +44,7 @@ export class AppointmentsComponent implements OnInit {
   Patient_idStr: any = localStorage.getItem('patient_id');
   Patient_idNum = parseInt(this.Patient_idStr)
   
-  isVisibleSpinner: boolean = true;
+  isVisibleSpinner: boolean = false;
 
 
   
@@ -185,7 +185,7 @@ activeIndex = null;
           } else {
             this.rtlDir = true;
           }
-          this.isVisibleSpinner = true;
+          // this.isVisibleSpinner = true;
           this.appointmentSubscription = this._AppointmentsService.getDoctorById(lang, this.singleDoctorId).subscribe({
             next: (Doctor) => {
 
@@ -196,11 +196,11 @@ activeIndex = null;
               console.log(this.doctor)
 
               this.calculateIntervals();
-              this.isVisibleSpinner = false;
+              // this.isVisibleSpinner = false;
             },
             error: (error) => {
               this.noDataError = error;
-              this.isVisibleSpinner = false;
+              // this.isVisibleSpinner = false;
             }
           });
         }

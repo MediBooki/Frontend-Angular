@@ -4,6 +4,7 @@ import { DataService } from 'src/app/core/services/data.service';
 import { ArticlesService } from '../../service/articles.service';
 import { Subscription } from 'rxjs';
 import { Roadmap } from 'src/app/core/interfaces/roadmap';
+import { Article } from 'src/app/core/interfaces/article';
 
 @Component({
   selector: 'app-articles',
@@ -46,7 +47,7 @@ export class ArticlesComponent implements OnInit {
 
   // apivariables
   articalesSubscription = new Subscription();
-  allarticales: any[] = [];
+  articles: Article[] = [];
   articalsRes:any;
   /*=============================================( Component Created Methods )=============================================*/
 
@@ -74,10 +75,10 @@ export class ArticlesComponent implements OnInit {
       // to get all sections
     this.articalesSubscription = this._ArticlesService.getArticales(language).subscribe({
       next: (articales) => {
-        this.allarticales = articales.data;
+        this.articles = articales.data;
         console.log(articales);
         this.articalsRes = articales
-        if(this.allarticales.length>0){
+        if(this.articles.length>0){
           this.noData = false;
           console.log(this.noData)
         }else{

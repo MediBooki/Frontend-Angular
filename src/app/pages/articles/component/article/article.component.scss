@@ -1,4 +1,32 @@
-.card-img-link {
-  height: 220px;
-  width: 100%;
+@import '../../../../../colors.scss';
+
+.card {
+  cursor: pointer;
+
+  .card-img-link {
+    height: 220px;
+    width: 100%;
+  }
+
+  img {
+    transition: all .4s ease-in-out;
+  }
+  
+  .card-title {
+      transition: all .2s ease-in-out;
+
+      &:hover {
+        cursor: pointer;
+        color: $mainColor;
+      }
+
+    }
+  
+  &:hover {
+    img {
+      transform: scale(1.1);
+    }
+
+  }
 }
+

@@ -66,17 +66,17 @@ export class CarouselComponent implements OnInit {
   }
 
   // triggered when click on specialization to show doctors in this specialization
-  filterDoctors(specializationId:any, specializationName:any) {
-    if(localStorage.getItem("filterForm") != null) {
-      localStorage.setItem("filterForm",JSON.stringify(this.filterForm.value)); // put new values in localstorage
-    }
+  // filterDoctors(specializationId:any, specializationName:any) {
+  //   if(localStorage.getItem("filterForm") != null) {
+  //     localStorage.setItem("filterForm",JSON.stringify(this.filterForm.value)); // put new values in localstorage
+  //   }
     
-      localStorage.setItem("filteredSpecializationContent",JSON.stringify([`${specializationName}`])); // put new values in localstorage
-      this.filterForm.value["sections"].push(''+specializationId+''); // add new filter measure in filter form
-      localStorage.setItem("filterForm",JSON.stringify(this.filterForm.value)); // put new values in localstorage
-      this.router.navigate(["/doctors"])
+  //     localStorage.setItem("filteredSpecializationContent",JSON.stringify([`${specializationName}`])); // put new values in localstorage
+  //     this.filterForm.value["sections"].push(''+specializationId+''); // add new filter measure in filter form
+  //     localStorage.setItem("filterForm",JSON.stringify(this.filterForm.value)); // put new values in localstorage
+  //     this.router.navigate(["/doctors"])
 
-  }
+  // }
 
 
     // @HostListener('window:resize', ['$event'])

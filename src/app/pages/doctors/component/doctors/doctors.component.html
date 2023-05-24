@@ -37,7 +37,7 @@
             placeholder="{{'DoctorsPage.SearchName' | translate}}" formControlName="name">
         </label>
         <label for="searchDoctor2" class="h-100 d-flex justify-content-around align-items-center doctor-search">
-          <i class="fa-solid fa-user-doctor mx-2" *ngIf="specializationInput.value == ''"></i>
+          <i class="fa-solid fa-suitcase-medical mx-2" *ngIf="specializationInput.value == ''"></i>
           <i class="fa-solid fa-rotate mx-2" *ngIf="specializationInput.value != ''" (click)="resetSearch(specializationInput)"></i>
           <input #specializationInput id="searchDoctor2" type="text" class="form-control" name="doctor-search2"
             placeholder="{{'DoctorsPage.SearchSpecialize' | translate}}" formControlName="specialization">
@@ -131,7 +131,7 @@
                 <h2 class="accordion-header" id="headingThree">
                   <button class="accordion-button " [class.collapsed]="sectionArrayChecked.length==0" type="button" data-bs-toggle="collapse"
                     data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                    <i class="fa-solid fa-suitcase-medical mx-2"></i>
+                    <i class="fa-solid fa-tags mx-2"></i>
                     {{'DoctorsPage.Filters.Specialization' | translate}}
                   </button>
                 </h2>
@@ -264,7 +264,7 @@
 
         <div class="small-filter-item bg-white py-3 my-3">
           <div class="small-filter-head d-flex align-items-baseline px-3">
-            <i class="fa-solid fa-venus-mars mx-2 fs-5"></i>
+            <i class="fa-solid fa-tags mx-2 fs-5"></i>
             <h4>{{'DoctorsPage.Filters.Specialization' | translate}}</h4>
           </div>
           <div class="small-filter-body">

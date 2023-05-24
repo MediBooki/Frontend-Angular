@@ -120,7 +120,7 @@ export class MedicineDetailsComponent implements OnInit {
   // }
   
 
-  categoryMedicines:any;
+  categoryMedicines:Medicine[] = [];
   relatedCarousel: OwlOptions = {} // Enabling Owl Carousel for Specialization Section
   filterMedicinesCategory() {
 
@@ -131,7 +131,7 @@ export class MedicineDetailsComponent implements OnInit {
       nav: true,
       autoplay: true,
       autoplayTimeout: 3500,
-      // autoplayHoverPause:true,
+      autoplayHoverPause:true,
       navText: this.navText,
       responsive: {
         0: {

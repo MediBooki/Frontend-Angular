@@ -123,3 +123,28 @@
   //   left : var(--WatsonAssistantChat-BASE-right-position) !important;
   //   right: var(--WatsonAssistantChat-BASE-left-position) !important;
   // }
+
+
+//   ::ng-deep #WACContainer--ns-244848025.WACContainer .WACLauncher__ButtonContainer {
+//     display: none !important;
+//   }
+
+
+::ng-deep .WACLauncher__CloseButton,
+::ng-deep .WACLauncherComplex__ContentButton {
+    display: none !important;
+}
+
+
+
+::ng-deep .WACLauncherComplex__SmallLauncherContainer, 
+::ng-deep .WACLauncherComplex__SmallLauncherContainer .WACLauncher__Button {
+    right: var(--WatsonAssistantChat-LAUNCHER-position-bottom) !important;
+    height: var(--WatsonAssistantChat-LAUNCHER-default-size) !important;
+    width: var(--WatsonAssistantChat-LAUNCHER-default-size) !important;
+    // border-radius: 48px;
+    padding: 0 !important;
+    -webkit-animation: none !important;
+    animation: none !important;
+}
+    

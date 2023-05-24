@@ -16,6 +16,7 @@ import { MainCarousel } from 'src/app/core/interfaces/main-carousel';
 import { FormGroup, FormBuilder, FormArray, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
+import { ArticlesService } from 'src/app/pages/articles/service/articles.service';
 
 
 @Component({
@@ -42,6 +43,8 @@ export class HomeComponent implements OnInit {
   doctorsCountSubscribtion = new Subscription();
   distinguishedDoctors: Doctor[] = [];
   sliderImages:MainCarousel[] = []
+  articles: any[] = [];
+
 
   // Carousel Variables
   mainCarousel: OwlOptions = {} // Enabling Owl Carousel for Main Section
@@ -75,7 +78,7 @@ export class HomeComponent implements OnInit {
 
   /*=============================================( Initialization Methods )=============================================*/
 
-  constructor(private _DataService: DataService,private _SpecializationService:SpecializationService, private _DoctorService:DoctorService,private _HomeService:HomeService, private _AuthService: AuthService , private _TranslateService:TranslateService, private _FormBuilder:FormBuilder, private toastr: ToastrService, private router: Router) {
+  constructor(private _DataService: DataService,private _SpecializationService:SpecializationService, private _DoctorService:DoctorService,private _HomeService:HomeService, private _ArticlesService:ArticlesService, private _AuthService: AuthService , private _TranslateService:TranslateService, private _FormBuilder:FormBuilder, private toastr: ToastrService, private router: Router) {
     // Declare FilterForm
     this.filterForm = this._FormBuilder.group({
       sections: new FormArray([])
@@ -97,6 +100,7 @@ export class HomeComponent implements OnInit {
     this.getDistinguishedDoctors();
     this.getCounterVals();
     this.getSliderImages();
+    this.getArticles();
   }
 
   // when view load completely
@@ -442,6 +446,22 @@ bookDoctor(eve:any) {
     }) 
   }
 
+  getArticles() {
+    this._DataService._lang.subscribe({
+      next:(language)=>{
+        // to get all sections
+        this._ArticlesService.getArticales(language).subscribe({
+          next: (articales) => {
+            this.articles = articales.data.slice(0,3);
+            console.log(articales);
+          },
+          error: (error) => {
+            console.log(error)
+            // this.articalsRes = error;
+          }
+      });
+    }});
+  }
 
 
   ngOnDestroy() {

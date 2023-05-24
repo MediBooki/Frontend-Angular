@@ -4,6 +4,8 @@ import { AuthService } from 'src/app/pages/Auth/services/auth.service';
 import { DataService } from 'src/app/core/services/data.service';
 import { ActivatedRoute } from '@angular/router';
 import { ArticlesService } from '../../service/articles.service';
+import { Roadmap } from 'src/app/core/interfaces/roadmap';
+import { Article } from 'src/app/core/interfaces/article';
 
 @Component({
   selector: 'app-one-article',
@@ -14,7 +16,31 @@ export class OneArticleComponent implements OnInit {
 
   defaultImg:string = this._DataService.defaultNoImg;
 
-  constructor(private _AuthService: AuthService,private _DataService: DataService,private _activatedRouting: ActivatedRoute,private _ArticlesService:ArticlesService ) { }
+      // roadmap variable
+      roadMapLinks:Roadmap = {
+        roadMabFirstLink: {arabic:'الرئيسية',english:'Home',link:'/home'},
+        roadMabLastLink: {arabic:'تفاصيل المقالة',english:'Article Details'},
+        roadMabIntermediateLinks: [
+          {arabic:'المقالات',english:'Articles',link:'/articles'}
+        ]
+      }
+
+      
+  constructor(private _AuthService: AuthService,private _DataService: DataService,private _activatedRouting: ActivatedRoute,private _ArticlesService:ArticlesService ) {
+    this.article = {
+      created_at:'',
+      description:'',
+      id:0,
+      title:'',
+      photo:'',
+      section:{
+        id:0,
+        name:'',
+        description:'',
+        photo:''
+      }
+    };
+  }
 
   ngOnInit(): void {
     // Promise.resolve().then(() => this._AuthService.isLogedIn.next(true));
@@ -39,7 +65,8 @@ export class OneArticleComponent implements OnInit {
 
   //api variable
   articleSubscription = new Subscription();
-  articale:any;
+  article:Article;
+  
   articleRes:any;
 
   /*=============================================( Component Created Methods )=============================================*/
@@ -67,7 +94,7 @@ export class OneArticleComponent implements OnInit {
       // to get all sections
       this.articleSubscription = this._ArticlesService.getOneArticale(language,this.articleId).subscribe({
         next: (article) => {
-          this.articale = article.data;
+          this.article = article.data;
           console.log(article);
           this.articleRes = article;
         },

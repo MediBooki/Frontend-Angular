@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { DataService } from 'src/app/core/services/data.service';
+import { Article } from 'src/app/core/interfaces/article';
 
 @Component({
   selector: 'app-article',
@@ -8,7 +9,21 @@ import { DataService } from 'src/app/core/services/data.service';
 })
 export class ArticleComponent implements OnInit {
 
-  constructor(private _DataService :DataService) { }
+  constructor(private _DataService :DataService) {
+    this.article = {
+      created_at:'',
+      description:'',
+      id:0,
+      title:'',
+      photo:'',
+      section:{
+        id:0,
+        name:'',
+        description:'',
+        photo:''
+      }
+    };
+  }
 
   ngOnInit(): void {
     this.getLang();
@@ -22,7 +37,7 @@ export class ArticleComponent implements OnInit {
 
   defaultImg:string = this._DataService.defaultNoImg;
 
-  @Input() article:any;
+  @Input() article:Article;
 
   /*=============================================( Component Created Methods )=============================================*/
 

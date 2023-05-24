@@ -11,7 +11,8 @@
       <div class="big-rounded main-search position-absolute p-2 d-flex justify-content-between align-items-center text-white">
 
         <div class="mx-3 my-2 m d-flex align-items-center w-100 d-flex justify-content-center">
-          <i class="fa-solid fa-suitcase-medical mx-2"></i>
+          <!-- <i class="fa-solid fa-suitcase-medical mx-2"></i> -->
+          <i class="fa-solid fa-tags mx-2"></i>
 
           <select class="p-2 text-white specialization-main-select2" name="specializations">
             <option [selected]="this.filterForm.value['sections'].length == 0" disabled ></option>
@@ -199,7 +200,7 @@
 
   <!-- Fourth Section Doctors -->
 
-  <section class="py-5 doctors-section">
+  <section class="py-5 doctors-section"> <!-- *ngIf="distinguishedDoctors.length > 0"-->
     <div class="container">
       <div class="d-flex justify-content-between align-items-center title">
         <h2 class="fw-bold" [class.arabic-font] = "rtlDir">{{'HomePage.DoctorsSection' | translate}}</h2>
@@ -757,7 +758,7 @@
 
   <!-- Seventh Section Articles -->
 
-  <section class="py-5 articles-section">
+  <section class="py-5 articles-section"> <!-- *ngIf="articles.length > 0"-->
     <div class="container">
       <div class="d-flex justify-content-between align-items-center title">
         <h2  [class.arabic-font] = "rtlDir" class="fw-bold">{{'HomePage.ArticlesSection' | translate}}</h2>
@@ -766,8 +767,29 @@
         </a> -->
       </div>
 
-      <div class="cards row d-flex">
-        <div class="col-lg-3 col-md-6 my-3">
+      <div class="cards row d-flex justify-content-center">
+
+        <div class="col-lg-4 col-md-6 my-3" *ngFor="let article of articles">
+          <!-- <div class="card p-2">
+            <span class="card-img-link overflow-hidden">
+              <img src="../../../assets/images/home/Cardiology.jpg" class="w-100 rounded" alt="...">
+            </span>
+
+            <div class="card-body">
+              <div class="d-flex justify-content-between">
+                <span class="card-title"><i class="fa-solid fa-tags mx-1"></i>Category</span>
+                <p class="card-title"><i class="far fa-clock mx-1"></i>Time</p>
+              </div>
+
+              <span class="card-text">Some quick example text to build on the card title and make up the bulk of
+                the card's content.</span>
+            </div>
+          </div> -->
+
+          <app-article [article]="article"></app-article>
+        </div>
+
+        <!-- <div class="col-lg-3 col-md-6 my-3">
           <div class="card p-2">
             <span class="card-img-link overflow-hidden">
               <img src="../../../assets/images/home/Cardiology.jpg" class="w-100 rounded" alt="...">
@@ -819,28 +841,10 @@
                 the card's content.</span>
             </div>
           </div>
-        </div>
-
-        <div class="col-lg-3 col-md-6 my-3">
-          <div class="card p-2">
-            <span class="card-img-link overflow-hidden">
-              <img src="../../../assets/images/home/Cardiology.jpg" class="w-100 rounded" alt="...">
-            </span>
-
-            <div class="card-body">
-              <div class="d-flex justify-content-between">
-                <span class="card-title"><i class="fa-solid fa-tags mx-1"></i>Category</span>
-                <p class="card-title"><i class="far fa-clock mx-1"></i>Time</p>
-              </div>
-
-              <span class="card-text">Some quick example text to build on the card title and make up the bulk of
-                the card's content.</span>
-            </div>
-          </div>
-        </div>
+        </div> -->
       </div>
       <div class="text-center">
-        <button class="articles-btn btn px-4 fs-4 my-3 text-white big-rounded">{{'HomePage.ArticlesBtnTitle' | translate}}</button>
+        <button routerLink="/articles" class="articles-btn btn px-4 fs-4 my-3 text-white big-rounded">{{'HomePage.ArticlesBtnTitle' | translate}}</button>
       </div>
     </div>
   </section>

@@ -1,6 +1,6 @@
 <div class="animate" [dir]=" 'dir' | translate " [lang]="lang">
   <section class=" position-relative justify-content-center align-content-center" #firstSection>
-    <div class="roadmap d-flex  align-items-center justify-content-center">
+    <!-- <div class="roadmap d-flex  align-items-center justify-content-center">
       <div class=" ms-5 p-3 text-center ">
         <h1 class=" fw-bolder mb-3 text-center header title" [class.arabic-font]="rtlDir">{{'navbar.navlink2' | translate}}</h1>
         <img class="img-fluid lines-img" src="../../../assets/images/roadmap/lines.png" alt="">
@@ -13,21 +13,24 @@
           <span class=" ms-2 fw-bolder text-capitalize">{{articale.title}}</span>
         </div>
       </div>
-    </div>
+    </div> -->
+
+    <app-roadmap [roadMapLinks]="roadMapLinks"></app-roadmap>
+
   </section>
 
   <section class="container ">
     <div>
-      <h1 class="fw-bold text-center py-5">{{articale.title}}</h1>
+      <h1 class="fw-bold text-center py-5">{{article.title}}</h1>
       <div class="m-auto created-fixed-width">
-        <img [src]="articale.photo || defaultImg" class="w-100 h-100 default-img" alt="">
+        <img [src]="article.photo || defaultImg" class="w-100 h-100 default-img" alt="">
       </div>
       <div class="created-fixed-width m-auto d-flex justify-content-between fs-5 fw-bold h-auto">
-        <span><i class="fa-solid fa-tags me-1"></i>{{articale.section.name}}</span>
-        <span><i class="far fa-clock me-1"></i>{{articale.created_at}}</span>
+        <span><i class="fa-solid fa-tags me-1"></i>{{article.section.name}}</span>
+        <span><i class="far fa-clock me-1"></i>{{article.created_at}}</span>
       </div>
       <div class="containerm py-3">
-        <p>{{articale.description}}</p>
+        <p>{{article.description}}</p>
       </div>
 
     </div>

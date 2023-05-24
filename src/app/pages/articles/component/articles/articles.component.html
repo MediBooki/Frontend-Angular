@@ -26,7 +26,7 @@
       <p class="text-muted text-center ps-lg-5">{{"SharedData.articalesp" | translate}}.</p>
     </div>
     <div class="row mt-3 p-3 justify-content-center row"  *ngIf="!noData;else error">
-      <app-article class="col-md-4" [article]="articale" *ngFor="let articale of allarticales"></app-article>
+      <app-article class="col-md-4" [article]="articale" *ngFor="let articale of articles"></app-article>
     </div>
     <ng-template #error>
 

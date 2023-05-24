@@ -50,7 +50,7 @@
 
   <owl-carousel *ngIf="carouselClass=='specialization-section'" class="specialization-carousel" [options]="carouselType" [items]="carouselItems" [carouselClasses]="['owl-theme', 'sliding']" [ngClass]="rtlDir? 'specialization-carousel-arabic' : 'specialization-carousel-english'" >
     <div *ngFor="let specialization of carouselItems;let i = index">
-      <div class="specialization" (click)="filterDoctors(specialization.id, specialization.name) ">
+      <div class="specialization" routerLink="/specialize/{{specialization.id}}"> <!-- (click)="filterDoctors(specialization.id, specialization.name) "-->
         <div class=" h-100 rounded">
         <div class="overflow-hidden">
             <img class="img-fluid rounded default-img" [src]="specialization.photo || defaultImg" alt="">
@@ -185,21 +185,21 @@
 
   <!-- ===================================================(Related *owl-carousel-o*)=================================================== -->
 
-  <!-- <owl-carousel *ngIf="carouselClass=='related-section'" class="related-carousel" [options]="carouselType" [items]="carouselItems" [carouselClasses]="['owl-theme', 'sliding']" [ngClass]="rtlDir? 'related-carousel-arabic' : 'related-carousel-english'" >
+  <owl-carousel *ngIf="carouselClass=='related-section'" class="related-carousel" [options]="carouselType" [items]="carouselItems" [carouselClasses]="['owl-theme', 'sliding']" [ngClass]="rtlDir? 'related-carousel-arabic' : 'related-carousel-english'" >
     <div *ngFor="let medicine of carouselItems">
       <div class="related">
         <app-medicine class="col-xl-4 col-sm-6 py-3" [medicine]="medicine"></app-medicine>
       </div>
     </div>
-  </owl-carousel> -->
+  </owl-carousel>
 
-  <owl-carousel-o *ngIf="carouselClass=='related-section'" [options]="carouselType" class="related-carousel" [ngClass]="rtlDir? 'related-carousel-arabic' : 'related-carousel-english'">
+  <!-- <owl-carousel-o *ngIf="carouselClass=='related-section'" [options]="carouselType" class="related-carousel" [ngClass]="rtlDir? 'related-carousel-arabic' : 'related-carousel-english'">
       <ng-template carouselSlide *ngFor="let medicine of carouselItems">
           <div class="related">
               <app-medicine class="col-xl-4 col-sm-6 py-3" [medicine]="medicine"></app-medicine>
           </div> 
       </ng-template> 
-  </owl-carousel-o>
+  </owl-carousel-o> -->
 
 
 </div>
