@@ -77,13 +77,20 @@ export class HomeComponent implements OnInit {
   @ViewChild('countersSection') countersSection: ElementRef | undefined;
 
   /*=============================================( Initialization Methods )=============================================*/
-
+  screenWidth:number[];
   constructor(private _DataService: DataService,private _SpecializationService:SpecializationService, private _DoctorService:DoctorService,private _HomeService:HomeService, private _ArticlesService:ArticlesService, private _AuthService: AuthService , private _TranslateService:TranslateService, private _FormBuilder:FormBuilder, private toastr: ToastrService, private router: Router) {
     // Declare FilterForm
     this.filterForm = this._FormBuilder.group({
       sections: new FormArray([])
     })
 
+    if(window.innerWidth>=1000) {
+      this.screenWidth = [0,0,0]
+    } else if (window.innerWidth<768) {
+      this.screenWidth = [0]
+    } else {
+      this.screenWidth = [0,0]
+    }
     // this.searchForm = this._FormBuilder.group({
     //   section: ['' , Validators.required],
     //   doctor: ['' , Validators.required]
@@ -171,7 +178,7 @@ export class HomeComponent implements OnInit {
           nav:false,
           dots:true
         },
-        600: {
+        768: {
           items: 2,
           nav:true,
           dots:false
@@ -197,7 +204,7 @@ export class HomeComponent implements OnInit {
         0: {
           items: 1
         },
-        600: {
+        768: {
           items: 2
         },
         1000: {

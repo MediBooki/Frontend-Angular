@@ -23,6 +23,7 @@ import { OwlModule } from 'ngx-owl-carousel';
 import { RatingComponent } from '../rating/rating.component';
 import { NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
 import { RoadmapComponent } from '../roadmap/roadmap.component'; 
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 
 
 
@@ -59,7 +60,8 @@ import { RoadmapComponent } from '../roadmap/roadmap.component';
         OwlModule,
         RatingComponent,
         NgbRatingModule,
-        RoadmapComponent
+        RoadmapComponent,
+        NgxSkeletonLoaderModule 
     ],
     imports: [
         // PharmacyModule,
@@ -86,7 +88,8 @@ import { RoadmapComponent } from '../roadmap/roadmap.component';
         NgxPaginationModule,
         // CarouselModule,
         OwlModule,
-        NgbRatingModule
+        NgbRatingModule,
+        NgxSkeletonLoaderModule.forRoot({ animation: 'progress'})
 
 
         // MedicineModule

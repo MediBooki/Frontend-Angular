@@ -24,11 +24,11 @@
         <!-- =============================================================================================================== -->
         
         <section class="cart-section py-5">
-            <div class="container"  *ngIf="!noData;else error">
-                <table class="table" *ngIf="allMedicinesPurchased.length > 0">
+            <div class="container" *ngIf="!noData;else error">
+                <table class="table">
                     <thead class="text-muted text-uppercase">
                         <tr>
-                            <th scope="col"><i (click)="deleteAllCart()" [title]="('CartPage.TableRemoveAll' | translate)" class="fa-solid fa-trash-can text-danger delete-all"></i></th>
+                            <th scope="col"><i *ngIf="allMedicinesPurchased.length>0" (click)="deleteAllCart()" [title]="('CartPage.TableRemoveAll' | translate)" class="fa-solid fa-trash-can text-danger delete-all"></i></th>
                             <th scope="col"></th>
                             <th scope="col">{{"CartPage.TableTitle1" | translate}}</th>
                             <th scope="col">{{"CartPage.TableTitle2" | translate}}</th>
@@ -37,52 +37,85 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let medicine of allMedicinesPurchased">
-                            <th>
-                                <i (click)="removeCart(medicine.id)" class="fa-solid fa-xmark fs-4 text-danger remove-icon" [ngClass]="rtlDir? 'remove-icon-arabic' : 'remove-icon-english'" *ngIf="selectedDeleteMedicine!=medicine.id"></i>
-                                <div class="cart-spinner" *ngIf="isVisibleDeleteSpinner && selectedDeleteMedicine==medicine.id"></div>
-                            </th>
-                            <td class="text-center product-img">
-                                <img [routerLink]="['/pharmacy/medicineDetails' , medicine.id]" class="img-fluid default-img" [src]="medicine.photo || defaultMedicineImg" alt="Medicine Image">
-                            </td>
-                            <td class="product-name"><span [routerLink]="['/pharmacy/medicineDetails' , medicine.id]">{{medicine.medicine_name}}</span></td>
-                            <td>
-                                <div class="d-flex">
-                                    <span>{{medicine.price}}
-                                    {{"SharedData.Currency" | translate}}</span>
-                                </div>
-                            </td>
-                            
-                            <td>
-                                <div class="d-flex flex-wrap align-items-center add-to-cart-block">
-                                    <div class="quantity-counter">
-                                        <button class="btn btn-minus py-2" [disabled]="medicine.qty<=1 || isVisibleAddRemoveSpinner || isVisibleDeleteSpinner" (click)="decrease(medicine.id , medicine.qty)">-</button> <!-- || isVisibleAddRemoveSpinner -->
-                                        <!-- <input class="form-control rounded-0  bg-transparent py-2 m-0" type="text" maxlength="5" (keypress)="numberOnly($event)" accept="number" [value]="medicine.qty" name="quantity"> [(ngModel)]="medicine.qty" -->
-                                        <div class="d-flex justify-content-center align-items-center">
-                                            <span class="fw-light fs-6 mx-2" *ngIf="selectedAddRemoveMedicine!=medicine.id">{{medicine.qty}}</span>
-                                            <div class="cart-spinner" *ngIf="isVisibleAddRemoveSpinner && selectedAddRemoveMedicine==medicine.id"></div>
-                                        </div>
-                                        <!-- <span class="fw-light fs-6 mx-1">{{medicine.qty}}</span> -->
-
-                                        <button class="btn btn-plus py-2" [disabled]="medicine.qty>=5 || isVisibleAddRemoveSpinner || isVisibleDeleteSpinner" (click)="increase(medicine.id , medicine.qty)">+</button> <!-- || isVisibleAddRemoveSpinner -->
+                        <ng-container *ngIf="allMedicinesPurchased.length>0">
+                            <tr *ngFor="let medicine of allMedicinesPurchased">
+                                <th>
+                                    <i (click)="removeCart(medicine.id)" class="fa-solid fa-xmark fs-4 text-danger remove-icon" [ngClass]="rtlDir? 'remove-icon-arabic' : 'remove-icon-english'" *ngIf="selectedDeleteMedicine!=medicine.id"></i>
+                                    <div class="cart-spinner" *ngIf="isVisibleDeleteSpinner && selectedDeleteMedicine==medicine.id"></div>
+                                </th>
+                                <td class="text-center product-img">
+                                    <img [routerLink]="['/pharmacy/medicineDetails' , medicine.id]" class="img-fluid default-img" [src]="medicine.photo || defaultMedicineImg" alt="Medicine Image">
+                                </td>
+                                <td class="product-name"><span [routerLink]="['/pharmacy/medicineDetails' , medicine.id]">{{medicine.medicine_name}}</span></td>
+                                <td>
+                                    <div class="d-flex">
+                                        <span>{{medicine.price}}
+                                        {{"SharedData.Currency" | translate}}</span>
                                     </div>
-                                </div>
-                            </td>
-                            <td>{{medicine.price*medicine.qty}} {{"SharedData.Currency" | translate}}</td>
-                        </tr>
+                                </td>
+                                
+                                <td>
+                                    <div class="d-flex flex-wrap align-items-center add-to-cart-block">
+                                        <div class="quantity-counter">
+                                            <button class="btn btn-minus py-2" [disabled]="medicine.qty<=1 || isVisibleAddRemoveSpinner || isVisibleDeleteSpinner" (click)="decrease(medicine.id , medicine.qty)">-</button> <!-- || isVisibleAddRemoveSpinner -->
+                                            <!-- <input class="form-control rounded-0  bg-transparent py-2 m-0" type="text" maxlength="5" (keypress)="numberOnly($event)" accept="number" [value]="medicine.qty" name="quantity"> [(ngModel)]="medicine.qty" -->
+                                            <div class="d-flex justify-content-center align-items-center">
+                                                <span class="fw-light fs-6 mx-2" *ngIf="selectedAddRemoveMedicine!=medicine.id">{{medicine.qty}}</span>
+                                                <div class="cart-spinner" *ngIf="isVisibleAddRemoveSpinner && selectedAddRemoveMedicine==medicine.id"></div>
+                                            </div>
+                                            <!-- <span class="fw-light fs-6 mx-1">{{medicine.qty}}</span> -->
+    
+                                            <button class="btn btn-plus py-2" [disabled]="medicine.qty>=5 || isVisibleAddRemoveSpinner || isVisibleDeleteSpinner" (click)="increase(medicine.id , medicine.qty)">+</button> <!-- || isVisibleAddRemoveSpinner -->
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>{{medicine.price*medicine.qty}} {{"SharedData.Currency" | translate}}</td>
+                            </tr>
+                        </ng-container>
+
+                        <ng-container *ngIf="allMedicinesPurchased.length==0" class="skeleton-cart">
+                            <tr *ngFor="let medicine of [0,0]">
+                                <th>
+                                    <ngx-skeleton-loader appearance="line" [theme]="{height: '20px', width: '20px', background: '#dbd9d9'}"></ngx-skeleton-loader>
+                                </th>
+                                <td class="px-0 mx-0">
+                                    <ngx-skeleton-loader appearance="line" [theme]="{height: '80px', width: '100%', background: '#dbd9d9', padding: '5px 15px'}"></ngx-skeleton-loader>
+                                </td>
+                                <td>
+                                    <ngx-skeleton-loader appearance="line" [theme]="{width: '50%', background: '#dbd9d9'}"></ngx-skeleton-loader>
+                                </td>
+                                <td>
+                                    <ngx-skeleton-loader appearance="line" [theme]="{width: '50%', background: '#dbd9d9'}"></ngx-skeleton-loader>
+                                </td>
+                                <td>
+                                    <ngx-skeleton-loader appearance="line" [theme]="{width: '50%', background: '#dbd9d9'}"></ngx-skeleton-loader>
+                                </td>
+                                <td>
+                                    <ngx-skeleton-loader appearance="line" [theme]="{width: '50%', background: '#dbd9d9'}"></ngx-skeleton-loader>
+                                </td>
+                            </tr>
+                        </ng-container>
+
+
                         <tr>
                             <td colspan="6">
                                 <div class="other-options d-flex justify-content-between align-items-center p-4">
                                     <button routerLink="/pharmacy" class="btn">{{"CartPage.ShoppingBtn" | translate}}</button>
-                                    <span class="total-price text-danger"><span class="mx-1">{{"CartPage.TotalPrice" | translate}}</span>{{totalPrice}} {{"SharedData.Currency" | translate}}</span>
+                                    <span class="total-price text-danger"  *ngIf="totalPrice!=0"><span class="mx-1">{{"CartPage.TotalPrice" | translate}}</span>{{totalPrice}} {{"SharedData.Currency" | translate}}</span>
+                                    <div class="col-2" *ngIf="totalPrice==0">
+                                        <ngx-skeleton-loader appearance="line" [theme]="{background: '#dbd9d9', marginBottom: '0'}"></ngx-skeleton-loader>
+                                    </div>
                                     <button routerLink="/cart/checkout" class="btn">{{"CartPage.CheckOutBtn" | translate}}</button>
                                 </div>
                             </td>
                         </tr>
                     </tbody>
                 </table>
+
+                <!-- small cart -->
                 <div class="product-card-list d-none">
-                    <span (click)="deleteAllCart()" class="text-danger delete-all"><i class="fa-solid fa-trash-can mx-1"></i><span>{{'CartPage.TableRemoveAll' | translate}}</span></span>
+                    <span *ngIf="allMedicinesPurchased.length>0" (click)="deleteAllCart()" class="text-danger delete-all"><i class="fa-solid fa-trash-can mx-1"></i><span>{{'CartPage.TableRemoveAll' | translate}}</span></span>
+                    <ng-container *ngIf="allMedicinesPurchased.length>0">
                     <div *ngFor="let medicine of allMedicinesPurchased" class="card product-card my-3" style="max-width: 540px;">
                         <div class="row g-0">
                             <div class="col-4 product-img-details position-relative">
@@ -115,10 +148,41 @@
                             </div>
                         </div>
                     </div>
-                    
+                </ng-container>
+                <!-- skeleton small cart-->
+                    <ng-container *ngIf="allMedicinesPurchased.length==0" class="skeleton-small-cart">
+                    <div *ngFor="let item of [0,0]" class="card product-card my-3" style="max-width: 540px;">
+                        <div class="row g-0">
+                            <div class="col-4 product-img-details">
+                                <ngx-skeleton-loader appearance="line" [theme]="{height: '100%', background: '#dbd9d9'}"></ngx-skeleton-loader>
+
+                                <!-- <img src="../../../../../assets/images/medicines/Main-prod11.jpg" class="img-fluid h-100 rounded-start shadow default-img" alt="..."> -->
+                            </div>
+                            <div class="col-8">
+                                <div class="card-body py-4">
+                                    <div>
+                                        <ngx-skeleton-loader appearance="line" [theme]="{width: '50%', background: '#dbd9d9', marginBottom: '15px'}"></ngx-skeleton-loader>
+                                    </div>
+                                    <div>
+                                        <ngx-skeleton-loader appearance="line" [theme]="{width: '50%', background: '#dbd9d9', marginBottom: '15px'}"></ngx-skeleton-loader>
+                                    </div>
+                                    <div>
+                                        <ngx-skeleton-loader appearance="line" [theme]="{height: '30px', width: '70%', background: '#dbd9d9', margin: '15px 0'}"></ngx-skeleton-loader>
+                                    </div>
+                                    <div>
+                                        <ngx-skeleton-loader appearance="line" [theme]="{width: '50%', background: '#dbd9d9', marginTop: '15px'}"></ngx-skeleton-loader>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
                     <div class="other-options d-flex justify-content-between align-items-center">
                         <button routerLink="/pharmacy" class="btn">{{"CartPage.ShoppingBtn" | translate}}</button>
-                        <span class="total-price text-danger fw-bold"><span class="mx-1">{{"CartPage.TotalPrice" | translate}}</span>{{totalPrice}}{{"SharedData.Currency" | translate}}</span>
+                        <span  *ngIf="totalPrice!=0" class="total-price text-danger fw-bold"><span class="mx-1">{{"CartPage.TotalPrice" | translate}}</span>{{totalPrice}}{{"SharedData.Currency" | translate}}</span>
+                        <div class="col-2" *ngIf="totalPrice==0">
+                            <ngx-skeleton-loader appearance="line" [theme]="{background: '#dbd9d9', marginBottom: '0'}"></ngx-skeleton-loader>
+                        </div>
                         <button routerLink="/cart/checkout" class="btn">{{"CartPage.CheckOutBtn" | translate}}</button>
                     </div>
                 </div>

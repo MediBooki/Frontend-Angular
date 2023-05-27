@@ -594,8 +594,37 @@
   }
 }
 
+// .ggg::ng-deep {
+//   .skeleton-loader{
+//     height: 160px !important;
+//   }
+// }
 
+.skeleton-specialization {
+  width: 97%;
+  margin: auto;
+}
 
+.skeleton-doctor-img::ng-deep {
+  .skeleton-loader.circle {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%) !important;
+  }
+}
+
+.skeleton-doctor {
+  border-radius: 15px;
+}
+
+.skeleton-doctor-name {
+  width: 35%;
+}
+
+.skeleton-article-card {
+  background-color: $lightGreyColor;
+}
 /* =======================================================( Media Query )======================================================= */
 
 

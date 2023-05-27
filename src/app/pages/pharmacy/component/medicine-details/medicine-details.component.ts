@@ -95,6 +95,20 @@ export class MedicineDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this._ActivatedRoute.params.subscribe((params) => {
+      this.medicineDetails = {
+        id:0,
+        name:'',
+        description:'',
+        price:0,
+        manufactured_by:'',
+        photo:'',
+        category: {
+          id: 0,
+          name: '',
+          description: '',
+          photo: ''
+        }
+      }
       this.medicineId = params["id"];
       this.getMedicineDetails();
       // console.log(params["id"]);

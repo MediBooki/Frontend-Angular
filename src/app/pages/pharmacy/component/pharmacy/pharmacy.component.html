@@ -299,11 +299,22 @@
 
                         <div *ngIf="!noData;else error">
                           <div class="medicines-list pb-5 pt-3">
-                            <div class="row">
+                            <div class="row" *ngIf="allMedicines.length > 0">
                                 <app-medicine class="col-xl-4 col-sm-6 py-3" *ngFor="let medicine of allMedicines| paginate :{id:'listing-pagination',
                                 itemsPerPage:numMedicinesPerPage,
                                 currentPage:page,
                                 totalItems:totalRecords }" [medicine]="medicine"></app-medicine>
+                            </div>
+                            
+                            <div class="row" *ngIf="allMedicines.length == 0">
+                                <div class="col-lg-4 col-md-6 py-3" *ngFor="let item of [0,0,0,0,0,0]">
+                                  <ngx-skeleton-loader class="rounded-0 rounded-top" appearance="line" [theme]="{height: '220px', background: '#dbd9d9', marginBottom: '-5px'}"></ngx-skeleton-loader>
+                                  <div class="p-3 bg-white rounded-bottom">
+                                    <ngx-skeleton-loader appearance="line" [theme]="{background: '#dbd9d9', width: '60%'}"></ngx-skeleton-loader>
+                                    <ngx-skeleton-loader appearance="line" [theme]="{background: '#dbd9d9', width: '50%'}"></ngx-skeleton-loader>
+                                    <ngx-skeleton-loader appearance="line" [theme]="{background: '#dbd9d9', width: '80%'}"></ngx-skeleton-loader>
+                                </div>
+                                </div>
                             </div>
     
                           </div>

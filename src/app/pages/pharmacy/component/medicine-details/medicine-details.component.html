@@ -30,41 +30,77 @@
     <section class="medicine-details-section py-5">
         <div class="container">
             <section class="py-5 bg-white rounded row">
-                <div class="col-md-6 d-flex align-items-center justify-content-center">
-                    <div class="medicine-details-img">
-                        <img class="img-fluid rounded default-img" [src]="medicineDetails.photo || defaultMedicineImg" alt="Medicine image"/>
-                    </div>
-                </div>
-                <div class="p-4 col-md-6 medicine-details-content d-flex align-items-center">
-                    <div>
-                        <h2 class="title fw-bold">{{medicineDetails.name}}</h2>
-                        <p class="lead price">{{medicineDetails.price}} {{"SharedData.Currency" | translate}}</p>
-                        <p class="text-muted">{{medicineDetails.description}}</p>
-                        <div class=" add-to-cart-block">
-                            <!-- <span class="fw-bold me-2">{{"MedicineDetails.Quantity" | translate}} </span> -->
-                            <!-- <div class="quantity-counter">
-                                <button class="btn btn-minus py-2" (click)="decrease()">-</button>
-                                <span class="fw-light fs-6 mx-1">{{medicineQuantity}}</span>
-                                <button class="btn btn-plus py-2" (click)="increase()">+</button>
-                            </div> -->
-                            <!-- <span>{{medicineQuantity}}</span> -->
-                            <button (click)="addCart(medicineDetails.id)" class="btn cart-btn my-2 rounded d-flex align-items-center" type="button" [disabled]="isDisableBtn || isVisibleAddSpinner">
-                                <i class="fa-solid fa-cart-shopping mx-2" *ngIf="!isVisibleAddSpinner"></i>
-                                <div class="cart-spinner mx-1" *ngIf="isVisibleAddSpinner"></div>
-
-                                {{"SharedData.AddToCartBtn" | translate}}
-                            </button>
-                            <div class=" favorite-btn border-0 my-2" *ngIf="isLogedIn">
-                                <button (click)="addFavorite($event)" class="btn p-0 border-0 text-uppercase fw-bold" [ngClass]="favoriteAdded? 'btn-active' : 'btn-not-active'"><i class="fa-solid favorite-icon fs-5" [ngClass]="favoriteAdded? ['fa-heart-circle-check','favorite-container-active'] : ['fa-heart-circle-plus','favorite-container-not-active']" ></i>{{favoriteAdded? ('SharedData.RemoveFromFavoriteBtn' | translate) :('SharedData.AddToFavoriteBtn' | translate)}}</button>
-                                
-                            </div>
+                <div class="col-md-6">
+                    <div class=" d-flex align-items-center justify-content-center h-100" *ngIf="medicineDetails.id!=0">
+                        <div class="medicine-details-img">
+                            <img class="img-fluid rounded default-img" [src]="medicineDetails.photo || defaultMedicineImg" alt="Medicine image"/>
                         </div>
-                        
-                        <ul class="additional-details list-group p-1">
-                            <li><span class="fw-bold">{{"MedicineDetails.Factory" | translate}} </span>{{medicineDetails.manufactured_by}}</li>
-                            <li><span class="fw-bold">{{"MedicineDetails.Category" | translate}} </span>{{medicineDetails.category.name}}</li>
-                            <!-- <li><span class="fw-bold">{{"MedicineDetails.Specialization" | translate}} </span>{{medicineDetails.section.name}}</li> -->
-                        </ul>
+                    </div>
+                    <div *ngIf="medicineDetails.id==0">
+                        <ngx-skeleton-loader class="rounded-0 rounded-top" appearance="line" [theme]="{height: '450px', background: '#dbd9d9', marginBottom: '-5px'}"></ngx-skeleton-loader>
+                    </div>
+
+
+                </div>
+                <div class="p-4 col-md-6 medicine-details-content ">
+                    <div class="d-flex align-items-center h-100" *ngIf="medicineDetails.id!=0">
+                        <div>
+                            <h2 class="title fw-bold">{{medicineDetails.name}}</h2>
+                            <p class="lead price">{{medicineDetails.price}} {{"SharedData.Currency" | translate}}</p>
+                            <p class="text-muted">{{medicineDetails.description}}</p>
+                            <div class=" add-to-cart-block">
+                                <!-- <span class="fw-bold me-2">{{"MedicineDetails.Quantity" | translate}} </span> -->
+                                <!-- <div class="quantity-counter">
+                                    <button class="btn btn-minus py-2" (click)="decrease()">-</button>
+                                    <span class="fw-light fs-6 mx-1">{{medicineQuantity}}</span>
+                                    <button class="btn btn-plus py-2" (click)="increase()">+</button>
+                                </div> -->
+                                <!-- <span>{{medicineQuantity}}</span> -->
+                                <button (click)="addCart(medicineDetails.id)" class="btn cart-btn my-2 rounded d-flex align-items-center" type="button" [disabled]="isDisableBtn || isVisibleAddSpinner">
+                                    <i class="fa-solid fa-cart-shopping mx-2" *ngIf="!isVisibleAddSpinner"></i>
+                                    <div class="cart-spinner mx-1" *ngIf="isVisibleAddSpinner"></div>
+    
+                                    {{"SharedData.AddToCartBtn" | translate}}
+                                </button>
+                                <div class=" favorite-btn border-0 my-2" *ngIf="isLogedIn">
+                                    <button (click)="addFavorite($event)" class="btn p-0 border-0 text-uppercase fw-bold" [ngClass]="favoriteAdded? 'btn-active' : 'btn-not-active'"><i class="fa-solid favorite-icon fs-5" [ngClass]="favoriteAdded? ['fa-heart-circle-check','favorite-container-active'] : ['fa-heart-circle-plus','favorite-container-not-active']" ></i>{{favoriteAdded? ('SharedData.RemoveFromFavoriteBtn' | translate) :('SharedData.AddToFavoriteBtn' | translate)}}</button>
+                                    
+                                </div>
+                            </div>
+                            
+                            <ul class="additional-details list-group p-1">
+                                <li><span class="fw-bold">{{"MedicineDetails.Factory" | translate}} </span>{{medicineDetails.manufactured_by}}</li>
+                                <li><span class="fw-bold">{{"MedicineDetails.Category" | translate}} </span>{{medicineDetails.category.name}}</li>
+                                <!-- <li><span class="fw-bold">{{"MedicineDetails.Specialization" | translate}} </span>{{medicineDetails.section.name}}</li> -->
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="skeleton-medicine-details" *ngIf="medicineDetails.id==0">
+                        <div>
+                            <ngx-skeleton-loader appearance="line" [theme]="{background: '#dbd9d9', width: '50%', margin: '15px 0'}"></ngx-skeleton-loader>
+
+                        </div>
+                        <div>
+                            <ngx-skeleton-loader appearance="line" [theme]="{background: '#dbd9d9', width: '20%', margin: '15px 0'}"></ngx-skeleton-loader>
+
+                        </div>
+                        <div>
+                            <ngx-skeleton-loader appearance="line" [theme]="{background: '#dbd9d9', width: '30%', margin: '15px 0'}"></ngx-skeleton-loader>
+
+                        </div>
+                        <div>
+                            <ngx-skeleton-loader appearance="line" [theme]="{height: '50px',background: '#dbd9d9', width: '40%', margin: '15px 0'}"></ngx-skeleton-loader>
+
+                        </div>
+                        <div>
+                            <ngx-skeleton-loader appearance="line" [theme]="{background: '#dbd9d9', width: '30%', margin: '8px 0'}"></ngx-skeleton-loader>
+
+                        </div>
+                        <div>
+                            <ngx-skeleton-loader appearance="line" [theme]="{background: '#dbd9d9', width: '30%', margin: '8px 0'}"></ngx-skeleton-loader>
+
+                        </div>
                     </div>
                 </div>
             </section>

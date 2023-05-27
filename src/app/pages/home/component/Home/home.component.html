@@ -5,6 +5,7 @@
   <!-- =============================================================================================================== -->
 
   <!-- First Section Main -->
+  <ngx-skeleton-loader *ngIf="sliderImages.length == 0" appearance="line" [theme]="{height: '70vh', background: '#dbd9d9'}"></ngx-skeleton-loader>
 
   <section class=" main-section position-relative " #mainSection>
     <form (ngSubmit)="bookDoctor(doctors)" [class.d-none]="sliderImages.length == 0"> <!--  -->
@@ -100,8 +101,19 @@
         </a>
       </div>
 
-      <app-carousel [carouselClass]="'specialization-section'" [carouselType]="specializationCarousel" [carouselItems]="latestSpecializations"></app-carousel>
+      <app-carousel [class.d-none]="latestSpecializations.length == 0" [carouselClass]="'specialization-section'" [carouselType]="specializationCarousel" [carouselItems]="latestSpecializations"></app-carousel>
 
+      <div class="row container skeleton-specialization" *ngIf="latestSpecializations.length == 0">
+        <div class="col-lg-4 col-md-6" *ngFor="let item of screenWidth">
+          <ngx-skeleton-loader class="rounded-0 rounded-top" appearance="line" [theme]="{height: '220px', background: '#dbd9d9', marginBottom: '-5px'}"></ngx-skeleton-loader>
+          <div class="p-3 bg-white rounded-bottom">
+            <ngx-skeleton-loader appearance="line" [theme]="{background: '#dbd9d9', width: '50%'}"></ngx-skeleton-loader>
+            <ngx-skeleton-loader appearance="line" [theme]="{background: '#dbd9d9', marginBottom: '4px'}"></ngx-skeleton-loader>
+            <ngx-skeleton-loader appearance="line" [theme]="{background: '#dbd9d9'}"></ngx-skeleton-loader>
+        </div>
+        </div>
+
+      </div>
 
 
 
@@ -209,8 +221,94 @@
         </a>
       </div>
 
-      <app-carousel [carouselClass]="'doctors-section'" [carouselType]="doctorsCarousel" [carouselItems]="distinguishedDoctors"></app-carousel>
+      <app-carousel [class.d-none]="distinguishedDoctors.length == 0" [carouselClass]="'doctors-section'" [carouselType]="doctorsCarousel" [carouselItems]="distinguishedDoctors"></app-carousel>
 
+      
+      <!-- <div class="row container">
+        <div class="col-md-4" *ngFor="let item of [0,0,0]">
+          <div class="p-3 bg-white rounded">
+            <div class="d-flex justify-content-center bg-danger">
+              <ngx-skeleton-loader class="border-2" appearance="circle" [theme]="{width: '160px', height: '160px', background: '#dbd9d9', border: '3px solid white', transform: 'translateY(-50%)'}"></ngx-skeleton-loader>
+            </div>
+            <ngx-skeleton-loader appearance="line" [theme]="{background: '#dbd9d9', width: '50%'}"></ngx-skeleton-loader>
+            <ngx-skeleton-loader appearance="line" [theme]="{background: '#dbd9d9', marginBottom: '4px'}"></ngx-skeleton-loader>
+            <ngx-skeleton-loader appearance="line" [theme]="{background: '#dbd9d9'}"></ngx-skeleton-loader>
+        </div>
+        </div>
+
+      </div> -->
+      <div class="row pt-5" *ngIf="distinguishedDoctors.length == 0">
+        <div class="col-lg-4 col-md-6" *ngFor="let item of screenWidth">
+      <div class="skeleton-doctor pt-0 mb-3 mt-0 bg-white">
+        <div class="d-flex justify-content-center">
+          <div class="skeleton-doctor-img position-relative">
+              <ngx-skeleton-loader appearance="circle" [theme]="{width: '160px', height: '160px', background: '#dbd9d9', border: '3px solid white'}"></ngx-skeleton-loader>
+          </div>
+        </div>
+         
+          <div class=" pb-3 pt-4 px-1">
+            <span class="d-flex justify-content-center mb-4 mt-5">
+              <div class="skeleton-doctor-name">
+                <ngx-skeleton-loader appearance="line" [theme]="{background: '#dbd9d9', marginTop: '1.5rem'}"></ngx-skeleton-loader>
+              </div>
+            <!-- <h3 class="mt-3 text-center">ewgwgw</h3> -->
+            </span>
+
+            <div>
+
+              <ngx-skeleton-loader class="mx-3" appearance="line" [theme]="{background: '#dbd9d9', width: '35%', marginBottom: '4px'}"></ngx-skeleton-loader>
+            </div>
+            <div>
+              <ngx-skeleton-loader class="mx-3" appearance="line" [theme]="{background: '#dbd9d9', width: '40%'}"></ngx-skeleton-loader>
+
+            </div>
+          
+
+            <div class="row my-4 px-5">
+              <div class="col-4 offset-1"> <!--doctor-ratings text-muted my-3 d-flex justify-content-around align-items-center py-2-->
+                <ngx-skeleton-loader appearance="line" [theme]="{background: '#dbd9d9', width: '100%'}"></ngx-skeleton-loader>
+
+              </div>
+              <div class="col-4 offset-2">
+                <ngx-skeleton-loader appearance="line" [theme]="{background: '#dbd9d9', width: '100%'}"></ngx-skeleton-loader>
+
+              </div>
+            </div>
+
+            <div class="row px-5">
+              <div class="col-6"> <!--doctor-ratings text-muted my-3 d-flex justify-content-around align-items-center py-2-->
+                <ngx-skeleton-loader appearance="line" [theme]="{background: '#dbd9d9', width: '100%', height: '135px'}"></ngx-skeleton-loader>
+
+              </div>
+              <div class="col-6">
+                <ngx-skeleton-loader appearance="line" [theme]="{background: '#dbd9d9', width: '100%', height: '135px'}"></ngx-skeleton-loader>
+
+              </div>
+            </div>
+            <!-- <div class="doctor-job-info px-3">
+              <span>
+                <h5 class="fw-bold"><i class="fa-solid fa-square-h me-1 fs-6"></i>Misr Eldawly Hospital</h5>
+              </span>
+              <p class="text-muted"><i class="fa-solid fa-location-dot me-1 fs-6"></i>hospital location</p>
+            </div> -->
+
+            <!-- <div class="doctor-booking-info my-3 d-flex justify-content-around align-items-center py-2 text-center">
+              <div>
+                <i class="fa-solid fa-phone fs-4 mb-2"></i>
+                <p class="text-muted mb-1">{{"HomePage.BookedBy" | translate}}</p>
+                <p>gggg {{"HomePage.Person" | translate}}</p>
+              </div>
+              <div>
+                <i class="fa-solid fa-dollar-sign fs-3 mb-2 fw-bold"></i>
+                <p class="text-muted mb-1">{{"HomePage.BookingPrice" | translate}}</p>
+                <p>5555 {{"SharedData.Currency" | translate}}</p>
+              </div>
+            </div> -->
+
+          </div>
+      </div>
+        </div>
+      </div>
       <!-- <owl-carousel-o [options]="doctorsCarousel" class="doctors-carousel">
         <ng-template carouselSlide>
           <div class="doctor pt-0 mb-3 mt-0">
@@ -767,82 +865,44 @@
         </a> -->
       </div>
 
-      <div class="cards row d-flex justify-content-center">
+      <div class="cards row" *ngIf="articles.length > 0">
 
         <div class="col-lg-4 col-md-6 my-3" *ngFor="let article of articles">
-          <!-- <div class="card p-2">
-            <span class="card-img-link overflow-hidden">
-              <img src="../../../assets/images/home/Cardiology.jpg" class="w-100 rounded" alt="...">
-            </span>
-
-            <div class="card-body">
-              <div class="d-flex justify-content-between">
-                <span class="card-title"><i class="fa-solid fa-tags mx-1"></i>Category</span>
-                <p class="card-title"><i class="far fa-clock mx-1"></i>Time</p>
-              </div>
-
-              <span class="card-text">Some quick example text to build on the card title and make up the bulk of
-                the card's content.</span>
-            </div>
-          </div> -->
-
           <app-article [article]="article"></app-article>
         </div>
 
-        <!-- <div class="col-lg-3 col-md-6 my-3">
-          <div class="card p-2">
-            <span class="card-img-link overflow-hidden">
-              <img src="../../../assets/images/home/Cardiology.jpg" class="w-100 rounded" alt="...">
-            </span>
-
-            <div class="card-body">
-              <div class="d-flex justify-content-between">
-                <span class="card-title"><i class="fa-solid fa-tags mx-1"></i>Category</span>
-                <p class="card-title"><i class="far fa-clock mx-1"></i>Time</p>
-              </div>
-
-              <span class="card-text">Some quick example text to build on the card title and make up the bulk of
-                the card's content.</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-3 col-md-6 my-3">
-          <div class="card p-2">
-            <span class="card-img-link overflow-hidden">
-              <img src="../../../assets/images/home/Cardiology.jpg" class="w-100 rounded" alt="...">
-            </span>
-
-            <div class="card-body">
-              <div class="d-flex justify-content-between">
-                <span class="card-title"><i class="fa-solid fa-tags mx-1"></i>Category</span>
-                <p class="card-title"><i class="far fa-clock mx-1"></i>Time</p>
-              </div>
-
-              <span class="card-text">Some quick example text to build on the card title and make up the bulk of
-                the card's content.</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-3 col-md-6 my-3">
-          <div class="card p-2">
-            <span class="card-img-link overflow-hidden">
-              <img src="../../../assets/images/home/Cardiology.jpg" class="w-100 rounded" alt="...">
-            </span>
-
-            <div class="card-body">
-              <div class="d-flex justify-content-between">
-                <span class="card-title"><i class="fa-solid fa-tags mx-1"></i>Category</span>
-                <p class="card-title"><i class="far fa-clock mx-1"></i>Time</p>
-              </div>
-
-              <span class="card-text">Some quick example text to build on the card title and make up the bulk of
-                the card's content.</span>
-            </div>
-          </div>
-        </div> -->
       </div>
+
+      <!-- Skeleton Articles -->
+
+      <div class="row" *ngIf="articles.length == 0">
+        
+          <div class="col-lg-4 col-md-6" *ngFor="let item of [0,0,0]">
+            <div class="skeleton-article-card rounded card">
+              <div class="p-2">
+                <ngx-skeleton-loader appearance="line" [theme]="{height: '220px', background: '#dbd9d9', marginBottom: '0px'}"></ngx-skeleton-loader>
+
+              </div>
+              <div class="p-3  rounded-bottom">
+                <div class="row">
+                  <div class="col-6">
+                    <ngx-skeleton-loader appearance="line" [theme]="{background: '#dbd9d9'}"></ngx-skeleton-loader>
+                  </div>
+                  <div class="col-6">
+                    <ngx-skeleton-loader appearance="line" [theme]="{background: '#dbd9d9'}"></ngx-skeleton-loader>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-9">
+                    <ngx-skeleton-loader appearance="line" [theme]="{background: '#dbd9d9', marginTop: '5px'}"></ngx-skeleton-loader>
+                  </div>
+                </div>
+            </div>
+            </div>
+          </div>
+      </div>
+               
+      
       <div class="text-center">
         <button routerLink="/articles" class="articles-btn btn px-4 fs-4 my-3 text-white big-rounded">{{'HomePage.ArticlesBtnTitle' | translate}}</button>
       </div>
