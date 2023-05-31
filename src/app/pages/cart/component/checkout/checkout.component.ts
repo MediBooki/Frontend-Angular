@@ -85,7 +85,7 @@ export class CheckoutComponent implements OnInit {
 
   /*=============================================( Component Created Methods )=============================================*/
 
-  getPurchasedMedicines() {
+getPurchasedMedicines() {
     this._DataService._lang.subscribe({
       next:(lang)=>{
         this.lang = lang;
@@ -96,7 +96,6 @@ export class CheckoutComponent implements OnInit {
           this.rtlDir = true;
           this.direction = 'rtl';
         }
-
         this._CartService.getAllPurchasedMedicines(lang).subscribe({
           next:(purchasedMedicines)=>{
             if(typeof(purchasedMedicines.data)=='string' || (typeof(purchasedMedicines.data)=='object' && purchasedMedicines.data.length==0) || purchasedMedicines.data.user_cart_items.length == 0) {
@@ -109,14 +108,10 @@ export class CheckoutComponent implements OnInit {
                 this.totalPrice += (element.qty * element.price)
               });
             }
-        },
-      error:(error)=>{
-        // console.log(error);
-        // this.noDataError = error;
-      }});
+          }
+        });
       }
     })
-    // this._CartService.calculateTotalQty();
   }
   
 

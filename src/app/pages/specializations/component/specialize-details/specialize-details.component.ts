@@ -22,15 +22,9 @@ export class SpecializeDetailsComponent implements OnInit {
 
   defaultMedicineImg:string = this._DataService.defaultNoImg;
 
-  specializeDetailsSubscription = new Subscription();
-  specializeDetails :Specialize={
-    id: 0,
-    name: '',
-    description: '',
-    photo: ''
-  } 
+
   specializeId!: any;
-  filterForm : FormGroup;
+
 
   // roadmap variable
   roadMapLinks:Roadmap = {
@@ -42,22 +36,22 @@ export class SpecializeDetailsComponent implements OnInit {
   }
 
   constructor(private _DataService:DataService,private _specializeService: SpecializationService,private route: ActivatedRoute, private _AuthService: AuthService, private _FormBuilder:FormBuilder, private router:Router) { 
-    this.specializeId = this.route.snapshot.paramMap.get('id');
-      // Declare FilterForm
-      this.filterForm = this._FormBuilder.group({
-        titles: new FormArray([]),
-        genders: new FormArray([]),
-        sections: new FormArray([]),
-        name:"",
-        specialization:""
-      })
+    this._specializeService.idspecialize.subscribe((res :any) => {
+
+      // console.log(res)
+      this.specializeId = res
+      // console.log(this.specializeId)
+    }
+    );
+    console.log(this.specializeId)
+
   }
 
   ngOnInit(): void {
     // Promise.resolve().then(() => this._AuthService.isLogedIn.next(true));
     // Promise.resolve().then(() => this._DataService.isPageLoaded.next(false));
     this.getLang()
-    this.getSpecializationDetails()
+
   }
 
   // // when view load completely
@@ -86,46 +80,7 @@ export class SpecializeDetailsComponent implements OnInit {
     }})
   }
 
-  //---------Method 2
-  getSpecializationDetails() {
-    this._DataService._lang.subscribe({
-      next: (lang) => {
-        this.lang = lang;
-        if (lang == 'en') {
-          this.rtlDir = false;
-        } else {
-          this.rtlDir = true;
-        }
-        // this.isVisibleSpinner = true;
-        this.specializeDetailsSubscription = this._specializeService.getSpecializeDetails(lang,this.specializeId ).subscribe({
-          next: (specialize) => {
-            console.log(specialize)
-            // this.isVisibleSpinner = false;
-            this.specializeDetails = specialize.data;
-            console.log(this.specializeDetails)
-            
-          },
-          error: (error) => {
-            console.log(error)
-            // this.isVisibleSpinner = false;
-          }
-        });
-      }
-    })
-  }
 
-  // triggered when click on specialization to show doctors in this specialization
-  filterDoctors(specializationId:any, specializationName:any) {
-    if(localStorage.getItem("filterForm") != null) {
-      localStorage.setItem("filterForm",JSON.stringify(this.filterForm.value)); // put new values in localstorage
-    }
-    
-      localStorage.setItem("filteredSpecializationContent",JSON.stringify([`${specializationName}`])); // put new values in localstorage
-      this.filterForm.value["sections"].push(''+specializationId+''); // add new filter measure in filter form
-      localStorage.setItem("filterForm",JSON.stringify(this.filterForm.value)); // put new values in localstorage
-      this.router.navigate(["/doctors"])
-
-  }
 
   // (click)="filterDoctors(specialize.id, specialize.name)"
 }

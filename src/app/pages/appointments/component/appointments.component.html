@@ -6,12 +6,12 @@
 
   <section class=" position-relative justify-content-center align-content-center">
     <div class="landing d-flex  align-items-center">
-      <div class=" ms-5 docbooking ">
+      <div class=" mx-5 docbooking ">
         <h1 class=" fw-bolder mb-3" [class.arabic-font]="rtlDir">{{'appointmentPage.Doctor'| translate}}{{doctor.name}}
           -<br>{{'appointmentPage.Booking'| translate}} </h1>
         <a href="/home" class="fw-bolder text-success text-decoration-none fs-5">{{'appointmentPage.Home'| translate}}
-          <i class="fa-solid  ms-2 fs-6" [ngClass]="rtlDir? 'fa-angles-left' : 'fa-angles-right'"></i></a>
-        <span class=" ms-2 fw-bolder">{{'appointmentPage.Doctor'| translate}}{{doctor.name}} -
+          <i class="fa-solid  mx-2 fs-6" [ngClass]="rtlDir? 'fa-angles-left' : 'fa-angles-right'"></i></a>
+        <span class=" mx-2 fw-bolder">{{'appointmentPage.Doctor'| translate}}{{doctor.name}} -
           {{'appointmentPage.Booking'| translate}}</span>
       </div>
     </div>
@@ -22,7 +22,7 @@
     <div class="container">
       <div class="card docinfo mb-3">
         <div class="row g-0">
-          <div class="col-lg-3 col-md-5 col-11 text-center pt-3  position-relative image mb-3 ms-3 ms-sm-0 ">
+          <div class="col-lg-3 col-md-5 col-11 text-center pt-3  position-relative image mb-3 mx-3 mx-sm-0 ">
             <img [src]="doctor.photo || defaultDoctorImg" class="img-fluid rounded-4 px-sm-2 w-100 h-100 default-img" alt="...">
           </div>
           <div class="row justify-content-between col-lg-9 col-md-7">
@@ -36,8 +36,8 @@
                   <i class="fa-solid fa-star"></i>
                   <i class="fa-solid fa-star"></i>
                 </div>
-                <span><i class="fa-solid fa-signs-post me-1"></i> Dhanmondi</span>
-                <p><i class="fa-solid fa-phone me-1"></i> 654488787</p>
+                <span><i class="fa-solid fa-signs-post mx-1"></i> Dhanmondi</span>
+                <p><i class="fa-solid fa-phone mx-1"></i> 654488787</p>
                 <p class="card-text"><small class=" border p-1 rounded ">{{doctor.specialization}}</small>
                 </p>
               </div>
@@ -45,14 +45,14 @@
             <div class="col-lg-4 mt-lg-3 offset-lg-1">
               <div class="card-body">
                 <h6 class="card-title text-success mb-4"><i
-                    class="fa-solid fa-wallet ms-1"></i>{{'appointmentPage.Fees'|
+                    class="fa-solid fa-wallet mx-1"></i>{{'appointmentPage.Fees'|
                   translate}}: {{doctor.price}} $
                 </h6>
                 <div class="mb-4 w-100 fs-4 d-flex">
                   <div class=" d-flex align-items-center rounded justify-content-center border icon ">
                     <i class=" fa-brands fa-facebook "></i>
                   </div>
-                  <div class=" d-flex align-items-center rounded justify-content-center border icon ms-2">
+                  <div class=" d-flex align-items-center rounded justify-content-center border icon mx-2">
                     <i class=" fa-brands fa-instagram "></i>
                   </div>
                 </div>
@@ -89,12 +89,12 @@
         <div class="tab-pane fade  " id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
           <div class="Specializations">
             <h4 class="">{{'appointmentPage.Specialist'| translate}}</h4>
-            <p><i class="fa-solid {{direction === 'ltr' ? 'fa-right-long' : 'fa-left-long'}} fs6 me-3"></i>{{doctor.specialization}}</p>
+            <p><i class="fa-solid {{direction === 'ltr' ? 'fa-right-long' : 'fa-left-long'}} fs6 mx-3"></i>{{doctor.specialization}}</p>
           </div>
           <div class="Education mb-5 ">
             <h4 class="">{{'appointmentPage.Education'| translate}}</h4>
             <div class="d-flex">
-              <div class="shape me-4 " [dir]="direction">
+              <div class="shape mx-4 " [dir]="direction">
                 <i class="fa-solid fa-circle" [ngClass]="direction === 'rtl' ? 'my-class' : ''" ></i>
                 <div class="line align-items-center"></div>
               </div>
@@ -106,7 +106,7 @@
           <div class="Work_Experience mb-5">
             <h4 class="">{{'appointmentPage.Work&Experience'| translate}}</h4>
             <div class="d-flex">
-              <div class="shape me-4">
+              <div class="shape mx-4">
                 <i class="fa-solid fa-circle" [ngClass]="direction === 'rtl' ? 'my-class' : ''" ></i>
                 <div class="line"></div>
               </div>
@@ -123,15 +123,15 @@
           <div class="status d-flex">
             <div class="available">
               <i class="fa-solid fa-stop opacity-25"></i>
-              <span class="ms-1">{{'appointmentPage.Available'| translate}}</span>
+              <span class="mx-1">{{'appointmentPage.Available'| translate}}</span>
             </div>
-            <div class="booked ms-4">
+            <div class="booked mx-4">
               <i class="fa-solid fa-stop bookedicon"></i>
-              <span class="ms-1">{{'appointmentPage.booked'| translate}}</span>
+              <span class="mx-1">{{'appointmentPage.booked'| translate}}</span>
             </div>
             <div class="selected ">
               <i class="fa-solid fa-stop "></i>
-              <span class="ms-1">{{'appointmentPage.selected'| translate}}</span>
+              <span class="mx-1">{{'appointmentPage.selected'| translate}}</span>
             </div>
           </div>
           <div class="border rounded-3 my-3 Date">
@@ -158,7 +158,7 @@
             </div>
             <div class="line h-25 w-25"></div>
             <div class="container">
-              <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 mt-5 me-2" id="Time">
+              <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 mt-5 mx-2" id="Time">
 
                 <a href="javascript:void(0)" (click)="toggleActiveClass(i)"
                   *ngFor="let interval of intervals ; let i= index"

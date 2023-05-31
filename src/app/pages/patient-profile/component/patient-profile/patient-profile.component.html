@@ -82,30 +82,30 @@
       <div class="col-md-8">
             <div class="row w-100">
 
-                      <div class="pb-2 col-md-6 pe-2"><label>{{'patientProfile.tap1input2' | translate}}</label><div class="form-control ">{{patientInfo.email}}</div></div>
+                      <div class="pb-2 col-md-6 px-2"><label>{{'patientProfile.tap1input2' | translate}}</label><div class="form-control ">{{patientInfo.email}}</div></div>
 
-                      <div class="pb-2 col-md-6 pe-2"><label>{{'patientProfile.tap1input4' | translate}}</label><div class="form-control ">{{patientInfo.date_of_birth}}</div></div>
-                      <div class="pb-2 col-md-6 pe-2">
+                      <div class="pb-2 col-md-6 px-2"><label>{{'patientProfile.tap1input4' | translate}}</label><div class="form-control ">{{patientInfo.date_of_birth}}</div></div>
+                      <div class="pb-2 col-md-6 px-2">
                         <label>{{'patientProfile.tap1input5' | translate}}</label>
                         <div class="form-control ">{{patientInfo.blood_group}}</div>
                       </div>
-                      <div class="pb-2 col-md-6 pe-2">
+                      <div class="pb-2 col-md-6 px-2">
                         <label>{{'patientProfile.tap1input6' | translate}}</label>
                         <div class="form-control ">{{patientInfo.gender}}</div>
                       </div>
-                      <div class="pb-2 col-md-6 pe-2">
+                      <div class="pb-2 col-md-6 px-2">
                         <label>{{'patientProfile.tap1input1' | translate}}</label>
                         <!-- username -->
                         <div class="form-control ">{{patientInfo.name}}</div>
                         <!-- <input formControlName="name" type="text" class="form-control" [value]="patientInfo.name"> -->
                       </div>
-                      <div class="pb-2 col-md-6 pe-2">
+                      <div class="pb-2 col-md-6 px-2">
                         <label>{{'patientProfile.tap1input3' | translate}}</label>
                         <!-- phone -->
                         <div class="form-control ">{{patientInfo.phone}}</div>
                         <!-- <input formControlName="phone" type="tel" class="form-control" [(ngModel)]="patientInfo.phone"> -->
                       </div>
-                      <div class="pb-2 col-md-6 pe-2">
+                      <div class="pb-2 col-md-6 px-2">
                         <label>{{'patientProfile.tap1input7' | translate}}</label>
                         <!-- address -->
                         <div class="form-control ">{{patientInfo.address}}</div>
@@ -130,7 +130,7 @@
               <h2 class="fw-bold text-center">{{'patientProfile.sidenav2' | translate}}</h2>
               <form [formGroup]="changePassword" (ngSubmit)="changePasswordFun()">
                   <div class="w-100">
-                    <div class="pb-2 pe-2">
+                    <div class="pb-2 px-2">
                       <label>{{'patientProfile.tap2input1' | translate}}</label>
                       <input formControlName="old_password" type="password" class="form-control" id="test-input" />
                       <div class="mt-1" *ngIf="changePassword.controls.old_password.touched && changePassword.controls.old_password.dirty">
@@ -140,7 +140,7 @@
                       </div>
                     </div>
                     <div class="row">
-                      <div class="col-md-6 pb-2 pe-2">
+                      <div class="col-md-6 pb-2 px-2">
                         <label>{{'patientProfile.tap2input2' | translate}}</label>
                         <input formControlName="password" type="password" [type]="showPass? 'text' : 'password'" class="form-control" id="test-input" />
                         <div class="mt-1" *ngIf="changePassword.controls.password.touched && changePassword.controls.password.dirty">
@@ -152,7 +152,7 @@
                           </p>
                         </div>
                       </div>
-                      <div class="col-md-6 pb-2 pe-2">
+                      <div class="col-md-6 pb-2 px-2">
                         <label>{{'patientProfile.tap2input3' | translate}}</label>
                         <input formControlName="password_confirmation" type="password"  class="form-control" id="test-input" [type]="showPass? 'text' : 'password'" />
                         <div class="mt-1" *ngIf="changePassword.controls.password_confirmation.touched && changePassword.controls.password_confirmation.dirty">
@@ -165,8 +165,8 @@
                         </div>
                       </div>
                     </div>
-                        <div class="ms-2 pb-2">
-                              <input formControlName ="showpasscont" class="form-check-input me-1" type="checkbox" value="" id="check" (change)="showPassword()">
+                        <div class="mx-2 pb-2">
+                              <input formControlName ="showpasscont" class="form-check-input mx-1" type="checkbox" value="" id="check" (change)="showPassword()">
                               <label class="form-check-label" for="flexCheckDefault">
                                 {{'patientProfile.tap2input4' | translate}}
                               </label>
@@ -185,17 +185,17 @@
               <p>{{'patientProfile.tap3h' | translate}}</p>
               <form [formGroup]="addInsuranceForm" (ngSubmit)="addInsuranceFun()">
                   <div class="row">
-                    <div class="pb-2 col-md-6 pe-2">
+                    <div class="pb-2 col-md-6 px-2">
                       <label>{{'patientProfile.tap3input1' | translate}}</label>
                       <select formControlName="company_id" class="form-select bg-light-gray" aria-label="Default select example">
                         <option *ngFor="let item of allInsurance" [value]="item.id">{{item.name}}</option>
                       </select>
                     </div>
-                    <div class="pb-2 col-md-6 pe-2">
+                    <div class="pb-2 col-md-6 px-2">
                       <label>{{'patientProfile.tap3input2' | translate}}</label>
                       <input formControlName="insurance_number" type="text" class="form-control" />
                     </div>
-                    <div class="pb-2 col-md-6 pe-2">
+                    <div class="pb-2 col-md-6 px-2">
                       <label>{{'patientProfile.tap3input3' | translate}}</label>
                       <input formControlName="expiry_date" type="date" class="form-control" />
                     </div>
@@ -537,7 +537,7 @@
                      <img [src]="review.doctor.photo ||  defaultImg" alt="" class="w-100 h-100 default-img">
                    </div>
                   </div>
-                  <div class="pe-2">
+                  <div class="px-2">
                     <p class="m-0 fs-5">{{review.doctor.name}}</p>
                     <p class="m-0">
                       <span><i class="fa-solid fa-star" [ngClass]="{'text-warning': review.rating>=1}"></i></span>
@@ -603,11 +603,11 @@
                         <div class="modal-content">
                         <div class="modal-header">
                           <h1 class="modal-title fs-5" id="exampleModalLabel">{{'patientProfile.tap1modaltitle' | translate}}</h1>
-                          <!-- <button type="button" class="ms-auto btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+                          <!-- <button type="button" class="mx-auto btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
                         </div>
                         <div class="modal-body row">
-                          <p class="pe-2">{{'patientProfile.tap1modalp' | translate}}</p>
-                          <div class="pb-2 col-md-6 pe-2">
+                          <p class="px-2">{{'patientProfile.tap1modalp' | translate}}</p>
+                          <div class="pb-2 col-md-6 px-2">
                             <label>{{'patientProfile.tap1input1' | translate}}</label>
                             <!-- username -->
                             <input formControlName="name" type="text" class="form-control">
@@ -620,7 +620,7 @@
                               </p>
                             </div>
                           </div>
-                          <div class="pb-2 col-md-6 pe-2">
+                          <div class="pb-2 col-md-6 px-2">
                             <label>{{'patientProfile.tap1input3' | translate}}</label>
                             <!-- phone -->
                             <input formControlName="phone" type="tel" class="form-control" >
@@ -630,7 +630,7 @@
                               </p>
                             </div>
                           </div>
-                          <div class="pb-2 col-md-6 pe-2">
+                          <div class="pb-2 col-md-6 px-2">
                             <label>{{'patientProfile.tap1input7' | translate}}</label>
                             <!-- address -->
                             <input formControlName="address"  type="text" class="form-control">
@@ -640,7 +640,7 @@
                               </p>
                             </div>
                           </div>
-                          <div class="pb-2 col-md-6 pe-2">
+                          <div class="pb-2 col-md-6 px-2">
                             <label>{{'patientProfile.tap1input8' | translate}}</label>
                             <!-- photo -->
                             <input formControlName="photo" #photo (change)="onFileChange($event)" name="photo" type="file" class="form-control" >

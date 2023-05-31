@@ -335,11 +335,8 @@ activeIndex = null;
         this.toastr.success("Book Doctor Success")
         this.isVisibleSpinner = false;
         this._DataService.curruntService.next("appointments")
-        // this.router.navigate(['/my-profile'])
-
       }else{
         this.toastr.error("You can't book doctor" , "please choose another day");
-        // this.router.navigate(['/doctors'])
         this.isVisibleSpinner = false;
       }
     })
@@ -371,18 +368,17 @@ activeIndex = null;
         this.filterintervals = this.intervals
         for(let x = 0  ; x < this.listOfDayBook.length; x++){
           const new_day =  this.listOfDayBook[x].date
-            const edit_timeBook = this.listOfDayBook[x].time?.substring(0,5);
-            console.log(edit_timeBook)
-              if(new_day === convertDate && parseInt( this.singleDoctorId) === this.listOfDayBook[x].doctor.id){ 
-                this.filterintervals = this.filterintervals.filter(time => time !== edit_timeBook)
-                if(!this.timeBookList.includes(edit_timeBook)){
-                  console.log(!this.timeBookList.includes(edit_timeBook))
-                  this.timeBookList.push(edit_timeBook)
-                }       
-              }            
+          const edit_timeBook = this.listOfDayBook[x].time?.substring(0,5);
+          console.log(edit_timeBook)
+          if(new_day === convertDate && parseInt( this.singleDoctorId) === this.listOfDayBook[x].doctor.id){ 
+            this.filterintervals = this.filterintervals.filter(time => time !== edit_timeBook)
+            if(!this.timeBookList.includes(edit_timeBook)){
+              console.log(!this.timeBookList.includes(edit_timeBook))
+              this.timeBookList.push(edit_timeBook)
+            }       
+          }            
         }
       }
-
     })
   }
 

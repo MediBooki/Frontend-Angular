@@ -59,7 +59,6 @@ export class LoginComponent implements OnInit {
     }
     this.isVisibleSpinner = true;
     this._AuthService.login(model).subscribe((res: any) => {
-      // console.log(res.data.token);
       localStorage.setItem("token", "Bearer " + res.data.token)
       localStorage.setItem("patient_id", res.data.id)
       this._DataService.is_login.next(true);
@@ -68,10 +67,8 @@ export class LoginComponent implements OnInit {
       this.isVisibleSpinner = false;
     }, (error) => {
       this.toastr.error(!this.rtlDir?`Email Or Password is incorrect`:`البريد الالكتروني او كلمة المرور خاطئة`,error.error.data.error )
-      console.log(error)
       this.isVisibleSpinner = false;
     })
-    console.log(this.loginForm.value)
   }
 
   getLang() {

@@ -1,6 +1,6 @@
 <div [dir]=" 'dir' | translate " [lang]="lang">
 
-  <div class="border big-rounded container my-4 p-0">
+  <div class="border big-rounded container my-4 p-0 animate">
     <div class="border-bottom ">
       <h1 class="text-center text-main fst-italic">Order #{{orderDetails[0].id}} Details</h1>
     </div>
@@ -63,10 +63,10 @@
                   <span class="bg-icon text-white fw-bold px-2 py-1 rounded mx-2"><i class="fa-solid fa-prescription-bottle m-1"></i> {{medicine.qty}} {{"SharedData.item" | translate}}</span>
                 </div>
                 <div>
-                  <span class="mt-2 mb-0 medicine-name"><i class="fa-solid fa-pills me-2"></i>{{medicine.medicine_name}}</span>
+                  <span class="mt-2 mb-0 medicine-name"><i class="fa-solid fa-pills mx-2"></i>{{medicine.medicine_name}}</span>
                 </div>
 
-                <h5 class="medicine-price mt-1 mb-3 text-danger ms-1 fw-bold">{{medicine.price}} {{"SharedData.Currency" | translate}}</h5>
+                <h5 class="medicine-price mt-1 mb-3 text-danger mx-1 fw-bold">{{medicine.price}} {{"SharedData.Currency" | translate}}</h5>
               </div>
             </div>
           </div>

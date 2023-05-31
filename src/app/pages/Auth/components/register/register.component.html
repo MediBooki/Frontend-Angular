@@ -9,7 +9,7 @@
           <div class="text position-absolute top-50 " >
             <h2 class=" fw-bolder text-light">{{ 'registerPage.oneOfUs' | translate }}</h2>
             <span class="fst-italic text-info fs-6  fw-bolder">{{ 'registerPage.title_login' | translate }} </span>
-            <i class=" fw-bolder fs-6 ms-1"><a routerLink="/Login" class="w-50 text-decoration-none forgotPassword  ms-1 fs-6 fw-bolder">{{ 'registerPage.signin' | translate }}</a></i>
+            <i class=" fw-bolder fs-6 mx-1"><a routerLink="/Login" class="w-50 text-decoration-none forgotPassword  mx-1 fs-6 fw-bolder">{{ 'registerPage.signin' | translate }}</a></i>
           </div>
           <div class="layer"></div>
         </div>
@@ -23,7 +23,7 @@
                 <div class="input-field d-flex flex-column position-relative px-3 col-md-6 col-sm-12">
                     <input type="text" class="input w-100 bg-transparent mb-4" id="UserNameRegister" required autocomplete="off" formControlName="username" >
                     
-                    <label for="UserNameRegister"  class=" position-absolute"><i class="fa-solid fa-user pe-2 fs-6"></i>{{ 'registerPage.username' | translate }}</label>
+                    <label for="UserNameRegister"  class=" position-absolute"><i class="fa-solid fa-user px-2 fs-6"></i>{{ 'registerPage.username' | translate }}</label>
                     <div class="d-flex">
                       <div *ngIf="username?.touched && username?.dirty" class="firstnameError">
                         <p *ngIf="username?.errors?.['pattern']" id="UserNameRegisterError" class="text-danger">
@@ -41,7 +41,7 @@
                 <div class="input-field d-flex flex-column position-relative px-3 col-md-6 col-sm-12">
                     <input type="text" class="input w-100 bg-transparent mb-4" id="email" required autocomplete="off" formControlName="email">
                     
-                    <label for="email" class=" position-absolute"><i class="fa-solid fa-envelope pe-2 fs-6"></i>{{ 'registerPage.email' | translate }}</label>
+                    <label for="email" class=" position-absolute"><i class="fa-solid fa-envelope px-2 fs-6"></i>{{ 'registerPage.email' | translate }}</label>
                     <div *ngIf="email?.invalid && email?.touched && email?.dirty">
                       <p id="EmailRegisterError" class="text-danger " *ngIf="email?.errors?.['pattern']">
                         {{'registerPage.error4'| translate}}
@@ -80,7 +80,7 @@
                 <!-- ////////////////////////////////////gender/////////////////////////////// -->
                 <div class="input-field d-flex flex-column position-relative  col-md-6 col-sm-12">
                     <select name="UserGender" required id="UserGender_form" formControlName="gender"
-                        class="form-select input ps-3 input border-none fw-bolder text-secondary w-100 lh-1"
+                        class="form-select input px-3 input border-none fw-bolder text-secondary w-100 lh-1"
                         aria-label="Floating label select example">
                         <option value="" disabled selected></option>
                         <option value="{{ 'registerPage.male' | translate }}" required>Male</option>
@@ -97,7 +97,7 @@
                 <!-- //////////////////////////////blood///////////////////////////////////// -->
                 <div class="input-field d-flex flex-column position-relative mt-sm-3 mt-md-0  col-md-6 col-sm-12">
                     <select name="User_blood_group" required id="User_blood_group_form" formControlName="blood_group"
-                        class="form-select input ps-3 fw-bolder input text-secondary w-100 lh-1"
+                        class="form-select input px-3 fw-bolder input text-secondary w-100 lh-1"
                         aria-label="Floating label select example" formControlName="blood_group">
                         <option value="" disabled selected></option>
                         <option value="o-" required>o-</option>
@@ -157,7 +157,7 @@
               </div>
               <!-- ////////////terms///////////// -->
               <div class="terms-conditions text-center mb-3">
-                  <input type="checkbox" class="me-1" required name="termsConditions" value="checked" id="termsConditions" formControlName="terms_conditions">
+                  <input type="checkbox" class="mx-1" required name="termsConditions" value="checked" id="termsConditions" formControlName="terms_conditions">
                   <label for="termsConditions">{{ 'registerPage.titleterms' | translate }} <a class="terms-conditions-btn" data-bs-toggle="modal"
                       data-bs-target="#exampleModalScrollable">{{ 'registerPage.terms&Conditions' | translate }}</a></label>
               </div>

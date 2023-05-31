@@ -68,6 +68,7 @@ export class HomeComponent implements OnInit {
 
   // other Variables
   // isVisibleSpinner:boolean = false;
+  search:string=''
 
 
   // main section variable to know its height to use as start point to show scroll up button
@@ -329,7 +330,7 @@ export class HomeComponent implements OnInit {
           this.direction = 'rtl';
         }
 
-        this._SpecializationService.getSpecialization(this.lang , this.page).subscribe({
+        this._SpecializationService.getSpecialization(this.lang , this.page , this.search).subscribe({
           next:(specializations)=>{
             this.allSpecializations = specializations.data;
             this.latestSpecializations = specializations.data.slice(0,5); // get latest specializations added

@@ -113,9 +113,6 @@ export class ReviewComponent implements OnInit {
           comment: this.formReview.value.comment
         }
         this._ReviewService.createReviewPatient(model).subscribe((res: any) => {
-          // console.log(res.data.token);
-          console.log(model)
-          console.log(res)
           this.toastr.success(!this.rtlDir?`success`:`تم تسجيل تقييم الدكتور` , `${res.message}`)
           this._DataService.is_login.next(true);
           this.router.navigate(['/my-profile'])
@@ -123,11 +120,7 @@ export class ReviewComponent implements OnInit {
           this._ReviewService.isreview.next(true)
         }, error => {
           this.toastr.error(!this.rtlDir?`An Error has occured`:`حدث خطأ ما` , `${error.error.message}`);
-    
         })
-
-        console.log(this.formReview.value)
-        console.log(model)
       }else{
         const model: updatepatientReview = {
           id:parseInt( this.reviewId),
@@ -135,10 +128,7 @@ export class ReviewComponent implements OnInit {
           rating: this.formReview.value.rating1,
           comment: this.formReview.value.comment
         }
-        console.log(model)
         this._ReviewService.updateReviewPatient(model).subscribe((res: any) => {
-          // console.log(res.data.token);
-          console.log(res)
           this.toastr.success(!this.rtlDir?`success`:`تم تسجيل تقييم الدكتور` , `${res.message}`)
           this._DataService.is_login.next(true);
           this.router.navigate(['/my-profile'])
@@ -146,9 +136,7 @@ export class ReviewComponent implements OnInit {
           this._ReviewService.isreview.next(true)
         }, error => {
           this.toastr.error(!this.rtlDir?`An Error has occured`:`حدث خطأ ما` , `${error.error.message}`);
-    
         })
-
       }
     })
   }

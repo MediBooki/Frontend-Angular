@@ -44,7 +44,7 @@ export class AuthGuard implements CanActivateChild {
         this.router.navigate(['/Login'])
         return false
       }
-  }
+    }
 
   
   
@@ -91,7 +91,7 @@ export class unAuthGuard implements CanActivateChild {
       }else{
         return true
       }
-  }
+    }
 
   
   

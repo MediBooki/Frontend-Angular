@@ -39,8 +39,6 @@ export class ReviewGuard implements CanActivate {
                 }else{
                   flag = true     
                 } 
-                
- 
               });
               if(flag){
                 flag=false
@@ -48,7 +46,6 @@ export class ReviewGuard implements CanActivate {
                 this.router.navigate(['/appointments/'+this.doctorId])
                 observer.next(false);
                 observer.complete();
-
               }  
             }
             });

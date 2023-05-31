@@ -329,44 +329,29 @@ export class MedicineDetailsComponent implements OnInit {
     if (localStorage.getItem("token") == null) {
       this.toastr.info(!this.rtlDir?`You Should Login First!`:`يجب أن تسجل الدخول أولا!`)
     } else {
-            // console.log(this.medicineQuantity)
-      // if(this.medicineQuantity<5) {
-        // this.isVisibleSpinner = true;
-        this.isVisibleAddSpinner = true;
-        this._CartService.addCart(medicineId).subscribe({
-          next:(message)=>{
-            if(message.success == true) {
-              console.log(message)
-              // this.getMedicineQuantity();
-              this._CartService.calculateTotalQty();
-  
-              setTimeout(() => {
-                // this.isVisibleSpinner = false;
-                this.isVisibleAddSpinner = false;
+      this.isVisibleAddSpinner = true;
+      this._CartService.addCart(medicineId).subscribe({
+        next:(message)=>{
+          if(message.success == true) {
+            this._CartService.calculateTotalQty();
 
-                this.toastr.success(!this.rtlDir?`This Medicine Added to Cart`:`تم اضافة الدواء الى عربة الشراء`, !this.rtlDir?`Cart Result`:`ناتج عربة الشراء`)
-              }, 700);
-            } else {
-              this.isDisableBtn = true;
-              setTimeout(() => {
-                // this.isVisibleSpinner = false;
-                this.isVisibleAddSpinner = false;
-                this.toastr.info(!this.rtlDir?`You have reached the Max amount of this medicine`:`لقد وصلت إلى الحد الأقصى المسموح لهذا الدواء`)
-              }, 700);
-            }
-            
-          },
-          error:(error)=>{
-            this.toastr.error(this.rtlDir?`An Error has occured`:`حدث خطأ ما` , `${error}`)
+            setTimeout(() => {
+              this.isVisibleAddSpinner = false;
+              this.toastr.success(!this.rtlDir?`This Medicine Added to Cart`:`تم اضافة الدواء الى عربة الشراء`, !this.rtlDir?`Cart Result`:`ناتج عربة الشراء`)
+            }, 700);
+          } else {
+            this.isDisableBtn = true;
+            setTimeout(() => {
+              this.isVisibleAddSpinner = false;
+              this.toastr.info(!this.rtlDir?`You have reached the Max amount of this medicine`:`لقد وصلت إلى الحد الأقصى المسموح لهذا الدواء`)
+            }, 700);
           }
-        })
-        // this._CartService.calculateTotalQty();
-        // this._CartService.medicinesPurchasedSetter = {medicine:this.medicineDetails , quantity:this.amount};
-        // console.log(this.medicineQuantity)
-      // }
+        },
+        error:(error)=>{
+          this.toastr.error(this.rtlDir?`An Error has occured`:`حدث خطأ ما` , `${error}`)
+        }
+      })
     }
-    
-
   }
 
   // getMedicineQuantity() {

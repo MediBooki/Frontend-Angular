@@ -171,7 +171,7 @@
               <div class="filtered-content-title d-flex text-muted ">
                 <h2 class="filtered-title mb-0 fw-bold" [class.arabic-font]="rtlDir" *ngIf="filteredContent.length != 0">{{"DoctorsPage.ResultTitle1" | translate}} <span class="mx-1" *ngFor="let specializationName of filteredContent">{{specializationName}}</span></h2>
                 <h2 class="filtered-title mb-0 fw-bold" [class.arabic-font]="rtlDir" *ngIf="filteredContent.length == 0">{{"DoctorsPage.ResultTitle2" | translate}}</h2>
-                <!-- <h2 class="filtered-title mb-0" *ngIf="filteredContent.length != 0">Search By <span class="me-1" *ngFor="let name of filteredContent">{{name}}</span></h2> -->
+                <!-- <h2 class="filtered-title mb-0" *ngIf="filteredContent.length != 0">Search By <span class="mx-1" *ngFor="let name of filteredContent">{{name}}</span></h2> -->
                 <p class="mx-2 mb-0 text-center"><span class="doctors-num">{{totalRecords}}</span> {{'DoctorsPage.MainSearchSectionList1' | translate}}</p>
               </div>
 

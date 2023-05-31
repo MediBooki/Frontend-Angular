@@ -1,6 +1,6 @@
 <div class="medicine-component" [dir]=" 'dir' | translate "  [lang]="lang">
     <div class="Specialties_service animated " >
-      <a routerLink="/specialize/{{specialize.id}}"
+      <a  data-bs-toggle="modal" data-bs-target="#specializeModal" (click)="onSpecializeClicked(specialize.id)"
         class="text-decoration-none"> <!--[routerLink]="rtlDir ? '/doctors/'+specialize.name.split(' ').slice(1): '/doctors/'+specialize.name.split(' ')[0]"-->
     
         <div class="card">
@@ -14,6 +14,76 @@
           </div>
         </div>
       </a>
-    </div>
 
-</div>
+      <!-- <button type="button" class="btn btn-primary" >
+        Launch demo modal
+      </button> -->
+      
+      <!-- Modal -->
+      <!-- <div class="modal fade" id="specializeModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <section class="specialize-details-section py-5">
+                  <div class="container">
+                      <a (click)="filterDoctors(specializeDetails.id, specializeDetails.name)">
+                          <section class="py-5 bg-white rounded row">
+                              <div class="col-md-6 d-flex align-items-center justify-content-center">
+                                  <div class="specialize-details-img">
+                                      <img class="img-fluid rounded default-img" [src]="specializeDetails.photo || defaultSpecializationImg" alt="Medicine image"/>
+                                  </div>
+                              </div>
+                              <div class="p-4 col-md-6 specialize-details-content d-flex align-items-center">
+                                  <div>
+                                      <h2 class="title fw-bold">{{specializeDetails.name}}</h2>
+                                      {{specializeDetails.name}}
+                                      <p class="text-muted">{{specializeDetails.description}}</p>
+                                  </div>
+                              </div>
+                          </section>
+                      </a>
+                  </div>
+              </section>
+  
+            </div>
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+          </div>
+        </div> -->
+      </div>
+      <!-- Modal -->
+      <!-- <div class="modal fade" id="specializeModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">{{specializeDetails.name}}</h1>
+            </div>
+            <div class="modal-body row">
+              <div class="col-6">
+                <label class="text-secondary">{{'patientProfile.tap4col2' | translate}}</label>
+                <p class="fw-bold"></p>
+              </div>
+              <div class="col-6">
+                <label class="text-secondary">{{'patientProfile.tap4col3' | translate}}</label>
+                <p class="fw-bold"></p>
+              </div>
+              <div class="col-6">
+                <label class="text-secondary">{{'patientProfile.tap4col4' | translate}}</label>
+                <p class="fw-bold"></p>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div> -->
+    </div>

@@ -24,6 +24,8 @@ export class SpecializationsComponent implements OnInit {
   specializations: Specialize[] = [];
   specializeSubscription = new Subscription();
 
+  searchForm: FormGroup
+
 
 
   // isVisibleSpinner: boolean = true;
@@ -46,8 +48,12 @@ export class SpecializationsComponent implements OnInit {
       ]
     }
 
-  constructor(private _AuthService: AuthService, private _DataService: DataService, private _specializeService: SpecializationService, private router:Router) {
+  constructor(private _AuthService: AuthService, private _DataService: DataService, private _specializeService: SpecializationService, private router:Router , private _FormBuilder:FormBuilder) {
 
+    // Declare FilterForm
+    this.searchForm = this._FormBuilder.group({
+      name:"",
+    })
   }
 
   ngOnInit(): void {
@@ -74,7 +80,7 @@ export class SpecializationsComponent implements OnInit {
           this.rtlDir = true;
         }
         // this.isVisibleSpinner = true;
-        this.specializeSubscription = this._specializeService.getSpecialization(lang, this.page).subscribe({
+        this.specializeSubscription = this._specializeService.getSpecialization(lang, this.page , this.searchForm.get('name')?.value ).subscribe({
           next: (specialize) => {
             console.log(specialize)
             if(specialize.data.length == 0) {
@@ -88,7 +94,7 @@ export class SpecializationsComponent implements OnInit {
               if(this.page===1){
                 this.numSepicaistPerPage = specialize.data.length
               }
-              console.log(this.specializations[0].name)
+              console.log(this.specializations[0].id)
             }
           },
           error: (error) => {
@@ -115,9 +121,16 @@ export class SpecializationsComponent implements OnInit {
   }
 
 
-    // changing page in pagination
-    changePage(pageNum: any) {
-      this.page = pageNum;
-      this.getSpecializations();
-    }
+  // changing page in pagination
+  changePage(pageNum: any) {
+    this.page = pageNum;
+    this.getSpecializations();
+  }
+  submitSearch(){
+    this.getSpecializations();
+  }
+  resetSearch(){
+    this.searchForm.get("name")?.setValue("");
+    this.getSpecializations()
+  }
 }
