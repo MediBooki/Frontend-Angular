@@ -45,6 +45,7 @@ export class AppointmentsComponent implements OnInit {
   Patient_idNum = parseInt(this.Patient_idStr)
   
   isVisibleSpinner: boolean = false;
+  overallRating:number = 0
 
 
   
@@ -188,12 +189,32 @@ activeIndex = null;
           // this.isVisibleSpinner = true;
           this.appointmentSubscription = this._AppointmentsService.getDoctorById(lang, this.singleDoctorId).subscribe({
             next: (Doctor) => {
+              console.log(Doctor)
 
               this.doctor = Doctor.data;
               this.startDate = this.doctor.start;
               this.endDate = this.doctor.end;
-              this.duration = this.doctor.patient_time_minute
-              console.log(this.doctor)
+              this.duration = this.doctor.patient_time_minute;
+
+                let sum = 0;
+                // let avg = 0;
+                this.doctor.reviews.forEach((doctorReview)=>{
+                  // console.log(doctorReview)
+                  sum = sum + doctorReview.rating
+                })
+                this.overallRating = sum / this.doctor.reviews.length;
+            
+                
+                // console.log(Math.floor((avg%1.0)*100))
+                // if(Math.floor((avg%1.0)*100) >= 25 && Math.floor((avg%1.0)*100) < 75) {
+                //   this.overallRating = Math.floor(avg) + 0.5
+                // } else if (Math.floor((avg%1.0)*100) >= 75) {
+                //   console.log(Math.ceil(avg))
+                //   this.overallRating = Math.ceil(avg)
+                // } else {
+                //   this.overallRating = Math.floor(avg)
+                // }
+              
 
               this.calculateIntervals();
               // this.isVisibleSpinner = false;
@@ -332,7 +353,7 @@ activeIndex = null;
       console.log(model);
       console.log(res.count);
       if(res.count === 1 ){
-        this.toastr.success("Book Doctor Success")
+        this.toastr.success(!this.rtlDir?`Book Doctor Success!`:`تم حجز الطبيب بنجاح`)
         this.isVisibleSpinner = false;
         this._DataService.curruntService.next("appointments")
         this.router.navigate(['/my-profile'])

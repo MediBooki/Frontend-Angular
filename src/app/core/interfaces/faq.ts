@@ -1,5 +1,7 @@
 export interface Faq {
     id:number,
     question:string,
-    answer:string
+    question_ar:string,
+    answer:string,
+    answer_ar:string
 }

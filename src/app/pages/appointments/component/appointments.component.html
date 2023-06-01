@@ -21,7 +21,7 @@
   <section class=" pt-5">
     <div class="container">
       <div class="card docinfo mb-3">
-        <div class="row g-0">
+        <div class="row g-0 mx-3">
           <div class="col-lg-3 col-md-5 col-11 text-center pt-3  position-relative image mb-3 mx-3 mx-sm-0 ">
             <img [src]="doctor.photo || defaultDoctorImg" class="img-fluid rounded-4 px-sm-2 w-100 h-100 default-img" alt="...">
           </div>
@@ -30,11 +30,12 @@
               <div class="card-body">
                 <h6 class="card-title text-success">{{doctor.section.name}}</h6>
                 <h4 class=" fs-5">{{'appointmentPage.Doctor'| translate}} {{doctor.name}} <i
-                    class="fa-solid fa-circle-check fs-6"></i></h4>
+                    class="fa-solid fa-circle-check fs-6 text-success"></i></h4>
                 <div class="rate text-warning fs-6 text-opacity-50 mb-2">
+                  <!-- <i class="fa-solid fa-star"></i>
                   <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i> -->
+                  <app-rating [rating]="overallRating"></app-rating>
                 </div>
                 <span><i class="fa-solid fa-signs-post mx-1"></i> Dhanmondi</span>
                 <p><i class="fa-solid fa-phone mx-1"></i> 654488787</p>

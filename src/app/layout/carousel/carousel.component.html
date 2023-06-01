@@ -36,7 +36,7 @@
     <div *ngFor="let image of carouselItems;let i = index">
       <div class="item">
         <div class="position-relative h-100">
-          <img class="img-fluid h-100 w-100 default-img" [src]="image.photo || defaultImg" alt=""> <!-- || defaultImg" alt=""-->
+          <img class="img-fluid w-100 default-img" [src]="image.photo || defaultImg" alt=""> <!-- || defaultImg" alt=""-->
           <div class="main-carousle-layer"></div>
           <div class="main-carousle-title">
             <h2>{{image.title}}</h2>
