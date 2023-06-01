@@ -335,6 +335,7 @@ activeIndex = null;
         this.toastr.success("Book Doctor Success")
         this.isVisibleSpinner = false;
         this._DataService.curruntService.next("appointments")
+        this.router.navigate(['/my-profile'])
       }else{
         this.toastr.error("You can't book doctor" , "please choose another day");
         this.isVisibleSpinner = false;
