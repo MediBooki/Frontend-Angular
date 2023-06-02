@@ -33,7 +33,12 @@ export class NavbarComponent implements OnInit {
   tenantsSubscription = new Subscription();
   diagnosisAPIres: any;
   patientInfoSubscription = new Subscription();
-
+  testCountry:any =localStorage.getItem('tenant')
+  currentContry:any
+  defultCountry: any = {
+    'name': 'UAE',
+    'logo': '../../../assets/images/navbar-footer/uae.png'
+  };
 
   constructor(private _PatientProfileService:PatientProfileService,private _DataService: DataService, private _CartService: CartService, private _TranslateService: TranslateService, private _AuthService: AuthService, private toastr: ToastrService) { }
 
@@ -51,6 +56,7 @@ export class NavbarComponent implements OnInit {
         this.getPatientInfo();
       }
     });
+    this.getCurrentCountry();
 
   }
 
@@ -141,6 +147,8 @@ export class NavbarComponent implements OnInit {
     this._CartService.medicinesQty.next(0);
     this._AuthService.logout();
     this._DataService.is_login.next(false);
+    localStorage.removeItem("insuranceDiscount");
+    localStorage.removeItem("insuranceID")
     this.toastr.warning(!this.rtlDir?`You Logged Out From the System!`:`لقد سجلت خروجك من الموقع!`)
 
   }
@@ -212,6 +220,17 @@ export class NavbarComponent implements OnInit {
       next:(tenants)=>{
         this.allTenants = tenants.data
         environment.tenants = tenants.data;
+        const testCountry =localStorage.getItem('tenant');
+        const currentDomain = testCountry?.split('/',3)[2];
+
+        const findTenant= this.allTenants.find(function(item) {
+          return item.domain == currentDomain
+        });
+        if(findTenant!=undefined){
+          this.currentContry = findTenant;
+        }else{
+          this.currentContry = this.defultCountry;
+        }
       }
     })
   }
@@ -231,8 +250,27 @@ export class NavbarComponent implements OnInit {
           this._DataService.userPhoto.next(patientInfo.data.photo)
           // this.userPhoto = this.patientInfo.photo;
         }
+        if(patientInfo.data.insurance){
+          const discount = Number(patientInfo.data.insurance.discount_percentage) + Number(patientInfo.data.insurance.company_rate)
+          localStorage.setItem("insuranceDiscount", discount.toString())
+          localStorage.setItem("insuranceID",patientInfo.data.insurance.id)
+        }else{
+          localStorage.removeItem("insuranceDiscount");
+          localStorage.removeItem("insuranceID")
+
+        }
       }
     });
+  }
+
+  getCurrentCountry(){
+    // const testCountry =localStorage.getItem('tenant');
+    // const currentDomain = testCountry?.split('/',3)[2];
+
+    // const findTenant= this.allTenants.find(function(item) {
+    //   return item.domain == currentDomain
+    // });
+    // console.log(findTenant);
   }
 
 

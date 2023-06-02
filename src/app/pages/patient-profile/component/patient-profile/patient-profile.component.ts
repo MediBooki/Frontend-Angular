@@ -253,7 +253,13 @@ export class PatientProfileComponent implements OnInit, OnDestroy {
           // this.userPhoto = this.patientInfo.photo;
         }
         // this.isVisibleSpinner = false;
+        this.updateProfile = new FormGroup({
+          name: new FormControl(this.patientInfo.name, [Validators.required, Validators.minLength(3), Validators.pattern(/^[a-zA-Z]{1,}[a-zA-Z0-9]*$/)]),
+          phone : new FormControl(this.patientInfo.phone, [Validators.required]),
+          address : new FormControl(this.patientInfo.address, [Validators.required]),
+          photo : new FormControl("", [Validators.required])
 
+        })
         //update profile form
         // this.updateProfile = new FormGroup({
         //   name: new FormControl(this.patientName, [Validators.required, Validators.minLength(3), Validators.pattern(/^[a-zA-Z]{1,}[a-zA-Z0-9]*$/)]),
@@ -544,9 +550,9 @@ export class PatientProfileComponent implements OnInit, OnDestroy {
       }
     }
   }
-  
 
-  
+
+
   savePaymentOnline() {
     console.log("fiiiiiiiiiiiiiiiiirst")
     this.route.queryParams.subscribe(params => {
@@ -588,7 +594,7 @@ export class PatientProfileComponent implements OnInit, OnDestroy {
           // call API to save patient information
         }
       }
-      
+
     });
   }
 

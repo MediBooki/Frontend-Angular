@@ -650,8 +650,8 @@
                     </div>
                   </div>
                   <div class="modal-footer" [ngClass]="{'d-flex justify-content-between': Appointments[appointmentColDataIndex]?.status==1}">
-                    <button class="btn btn-main border-0" *ngIf="reviewBtn  " [routerLink]="['/review', Appointments[appointmentColDataIndex].doctor.id]" routerLinkActive="router-link-active" data-bs-dismiss="modal" (click)="getifUpdate(0)">{{'patientProfile.tap4col6' | translate}}</button>
-                    <button class="btn btn-main border-0" *ngIf="updateReviewBtn " [routerLink]="['/review', Appointments[appointmentColDataIndex].doctor.id ]" [queryParams]="{ id: reviewId }" routerLinkActive="router-link-active" data-bs-dismiss="modal" (click)="getifUpdate(1)">update review</button>
+                    <button class="btn btn-main border-0" *ngIf=" Appointments[appointmentColDataIndex]?.status==1 && reviewBtn  " [routerLink]="['/review', Appointments[appointmentColDataIndex].doctor.id]" routerLinkActive="router-link-active" data-bs-dismiss="modal" (click)="getifUpdate(0)">{{'patientProfile.tap4col6' | translate}}</button>
+                    <button class="btn btn-main border-0" *ngIf="Appointments[appointmentColDataIndex]?.status==1 && updateReviewBtn " [routerLink]="['/review', Appointments[appointmentColDataIndex].doctor.id ]" [queryParams]="{ id: reviewId }" routerLinkActive="router-link-active" data-bs-dismiss="modal" (click)="getifUpdate(1)">update review</button>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                   </div>
                 </div>

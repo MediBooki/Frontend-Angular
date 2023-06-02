@@ -19,10 +19,10 @@
           <span>
             <a class="text-decoration-none text-white fw-bold rounded-circle dropdown-toggle" role="button"><img class="rounded-circle" [src]="userPhoto" width="30px" height="30px" alt=""></a>
             <ul class="dropdown-menu " [ngClass]="{'user-dropdown': !rtlDir, 'user-dropdown-ar': rtlDir}">
-              <li><a class="dropdown-item text-center fw-bold" routerLink="/my-profile"><i class="fa-solid fa-user pe-2"></i>{{'navbar.my-profile'
+              <li><a class="dropdown-item text-center fw-bold" routerLink="/my-profile"><i class="fa-solid fa-user px-2"></i>{{'navbar.my-profile'
                 | translate}}</a></li>
               <li><hr class="dropdown-divider"></li>
-              <li><a class="text-decoration-none text-dark fw-bold dropdown-item text-center" style="cursor: pointer;" (click)="logout()" ><i class="fa-solid fa-right-from-bracket pe-2"></i>{{'navbar.logout'
+              <li><a class="text-decoration-none text-dark fw-bold dropdown-item text-center" style="cursor: pointer;" (click)="logout()" ><i class="fa-solid fa-right-from-bracket px-2"></i>{{'navbar.logout'
                 | translate}}</a></li>
             </ul>
               <!-- <span class="mx-1">|</span>
@@ -48,12 +48,12 @@
               <div class="d-inline" [ngClass]="!rtlDir?'d-none' : 'd-inline'">
                 <button  value="ar"
                   class="bg-transparent border-0 text-white fw-bold px-2">العربية<i
-                    class="ps-2 fa-solid fa-globe"></i></button>
+                    class="px-2 fa-solid fa-globe"></i></button>
               </div>
               <!-- [ngClass]="rtlDir?'d-none' : 'd-block'" -->
               <div class="d-inline" [ngClass]="!rtlDir?'d-inline' : 'd-none'">
                 <button  value="en"
-                  class="bg-transparent border-0 text-white fw-bold px-2">English<i class="ps-2 fa-solid fa-globe"></i></button>
+                  class="bg-transparent border-0 text-white fw-bold px-2">English<i class="px-2 fa-solid fa-globe"></i></button>
               </div>
             </div>
             <ul class="dropdown-menu text-center animate__animated animate__fadeIn" [ngClass]="{'lang-dropdown': !rtlDir, 'lang-dropdown-ar': rtlDir}">
@@ -84,13 +84,27 @@
               class="bg-transparent border-0 text-dark fw-bold px-2">EN<i class="ps-2 fa-solid fa-globe"></i></button>
           </div> -->
           <span >|</span>
-          <div class="dropdown d-inline ">
-            <a class="text-decoration-none text-white fw-bold px-2 dropdown-toggle">
+          <div class="dropdown d-inline">
+            <a class="text-decoration-none text-white fw-bold px-2 dropdown-toggle" *ngIf="testCountry == 'http://medibookidashbord.test/api'">
               <i class="fa-solid fa-caret-down"></i>
-              <span class="mx-1">{{'navbar.Egypt' | translate}}</span>
-              <img class="rounded-circle mb-1" src="../../../assets/images/navbar-footer/egypt.png" width="20px"
+              <span class="mx-1">UAE</span>
+              <img class="rounded-circle mb-1" src="../../../assets/images/navbar-footer/uae.png" width="20px"
                 height="20px">
             </a>
+            <ng-container *ngFor="let tenant of allTenants">
+              <a class="text-decoration-none text-white fw-bold px-2 dropdown-toggle" *ngIf=" testCountry == 'http://'+tenant.domain+'/api'">
+                <i class="fa-solid fa-caret-down"></i>
+                <span class="mx-1">{{tenant.name | uppercase}}</span>
+                <img class="rounded-circle mb-1" [src]="tenant.logo" width="20px"
+                  height="20px">
+              </a>
+            </ng-container>
+            <!-- <a class="text-decoration-none text-white fw-bold px-2 dropdown-toggle">
+              <i class="fa-solid fa-caret-down"></i>
+              <span class="mx-1">{{'navbar.oman' | translate}}</span>
+              <img class="rounded-circle mb-1" src="../../../assets/images/navbar-footer/egypt.png" width="20px"
+                height="20px">
+            </a> -->
                 <ul class="dropdown-menu text-center animate__animated animate__fadeIn" [ngClass]="{'tanant-dropdown': !rtlDir, 'tanant-dropdown-ar': rtlDir}">
                   <li (click)="getCountry('medibookidashbord.test')"><a class="dropdown-item" href="">UAE</a></li>
                   <li *ngFor="let tenant of allTenants" (click)="getCountry(tenant.domain)"><a class="dropdown-item" href="">{{tenant.name | titlecase }}</a></li>
