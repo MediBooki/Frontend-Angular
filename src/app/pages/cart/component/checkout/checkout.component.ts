@@ -27,6 +27,8 @@ export class CheckoutComponent implements OnInit {
   
   // Other Variables
   totalPrice:number = 0;
+  totalPriceDiscount:number = 0;
+  insurance_id:any = '';
   noDataError:any; // in case of error
   isVisibleSpinner:boolean = false;
   noData:boolean = false;
@@ -61,6 +63,8 @@ export class CheckoutComponent implements OnInit {
       zip_code: ['' , [Validators.required, Validators.pattern(/^\d{3,}$/)]],
       state: ['' , [Validators.required, Validators.pattern(/^[a-zA-Z\s]{2,}$/)]],
       total: [''],
+      total_after_discount: [''],
+      insurance_id: ['']
     })
 
   }
@@ -107,6 +111,14 @@ getPurchasedMedicines() {
               purchasedMedicines.data.user_cart_items.forEach((element:any) => {
                 this.totalPrice += (element.qty * element.price)
               });
+
+              if(localStorage.getItem("insuranceDiscount") != null) {
+                this.totalPriceDiscount = this.totalPrice - (this.totalPrice * (JSON.parse(localStorage.getItem('insuranceDiscount')!)/100));
+              }
+
+              if(localStorage.getItem("insuranceID") != null) {
+                this.insurance_id = JSON.parse(localStorage.getItem('insuranceID')!);
+              }
             }
           }
         });
@@ -123,6 +135,12 @@ getPurchasedMedicines() {
       // if(this.paymentMethod == 'cash') {
         this.invalidForm = false
         this.checkoutForm.controls["total"].setValue(this.totalPrice)
+        if(localStorage.getItem("insuranceDiscount") != null) {
+          this.checkoutForm.controls["total_after_discount"].setValue(this.totalPriceDiscount)
+        }
+        if(localStorage.getItem("insuranceID") != null) {
+          this.checkoutForm.controls["insurance_id"].setValue(JSON.parse(localStorage.getItem('insuranceID')!))
+        }
         console.log(this.checkoutForm)
         this._CartService.checkoutDetails(this.checkoutForm.value).subscribe({
           next:(res)=>{

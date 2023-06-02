@@ -415,6 +415,7 @@
     "Voucher" : {
       "title" : "Your order",
       "total" : "Total",
+      "totalDiscount" : "Total After Discount",
       "paragraph" : "Your personal data will be used to process your order, support your experience throughout this website, and for other purposes described in our privacy policy.",
       "paymentMethod" : "Payment Method",
       "delivery" : "Cash on Delivery",

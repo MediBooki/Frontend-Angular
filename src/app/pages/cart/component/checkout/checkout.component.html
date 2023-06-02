@@ -163,11 +163,15 @@
                         <div class="voucher-content py-2" *ngIf="allMedicinesPurchased.length>0">
                           <div class="d-flex justify-content-between my-2" *ngFor="let medicine of allMedicinesPurchased">
                             <p>{{medicine.medicine_name}}  × {{medicine.qty}}</p>
-                            <p class="text-muted">${{medicine.price*medicine.qty}}</p>
+                            <p class="text-muted" [class.text-decoration-line-through]="">${{medicine.price*medicine.qty}}</p>
                           </div>
                           <div class="d-flex justify-content-between align-items-center mt-2">
                             <p class=" text-muted mb-0">{{'CheckOutPage.Voucher.total' | translate}}</p>
-                            <h2 class="fw-bold">${{totalPrice}}</h2>
+                            <h2 [ngClass]="totalPriceDiscount!=0 && insurance_id!=''?['text-decoration-line-through','text-muted']:'fw-bold'">${{totalPrice}}</h2>
+                          </div>
+                          <div class="d-flex justify-content-between align-items-center mt-2" *ngIf="totalPriceDiscount!=0 && insurance_id!=''">
+                            <p class=" text-muted mb-0">{{'CheckOutPage.Voucher.totalDiscount' | translate}}</p>
+                            <h2 class="fw-bold text-success">${{totalPriceDiscount}}</h2>
                           </div>
                         </div>
                         <div class="skeleton-checkout row pt-4" *ngIf="allMedicinesPurchased.length==0">

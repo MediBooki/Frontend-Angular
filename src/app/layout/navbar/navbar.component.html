@@ -120,7 +120,7 @@
                   <button routerLink="/cart" class="bg-transparent border-0 text-white fw-bold px-2 dropdown-toggle cart-btn-icon">
                     <i class="fa-solid fa-cart-shopping position-relative cart-icon">
                       <span class="cart-num text-white rounded-circle position-absolute text-center d-flex justify-content-center align-items-center ">{{cartQty}}</span>
-                      <div class="cart-arrow" [ngClass]="isVisibleCartArrow?'d-block':'d-none'"></div>
+                      <div class="cart-arrow animate" [ngClass]="isVisibleCartArrow?'d-block':'d-none'"></div>
                     </i>
                   </button>
                   <div class="dropdown-menu cart-items animate__animated animate__fadeIn" (mouseenter)="displayCartArrow(true)" (mouseleave)="displayCartArrow(false)" [ngClass]="{'cart-items-en': !rtlDir,'cart-items-ar': rtlDir,'empty': cartQty==0}">
