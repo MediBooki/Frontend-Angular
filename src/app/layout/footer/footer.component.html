@@ -22,7 +22,7 @@
           <div class="col-md-6 col-lg-3">
             <div class="links text-light">
               <h5 class="text-light pt-sm-4 pt-md-0">{{'footer.SearchBy' | translate}}</h5>
-              <ul class="list-unstyled lh-lg">
+              <ul class="list-unstyled">
                 <li><a class="text-decoration-none text-white footer-link-hover" routerLink="/specializations">{{'footer.SearchBy1' | translate}}</a></li>
                 <li><a class="text-decoration-none text-white footer-link-hover" (click)="openInsurances()">{{'footer.SearchBy2' | translate}}</a></li>
                 <li><a class="text-decoration-none text-white footer-link-hover" routerLink="/doctors">{{'footer.SearchBy3' | translate}}</a></li>
@@ -33,10 +33,10 @@
             <div class="links text-light">
               <h5 class="text-light pt-md-4 pt-lg-0">{{'footer.needHelp' | translate}}</h5>
               <ul class="list-unstyled">
-                <li><a class="text-decoration-none text-white footer-link-hover" routerLink="/contactus">{{'footer.needHelp1' | translate}}</a></li>
+                <li><a class="text-decoration-none text-white footer-link-hover" routerLink="/contactus" fragment="contact">{{'footer.needHelp1' | translate}}</a></li>
                 <li><a class="text-decoration-none text-white footer-link-hover" data-bs-toggle="modal" data-bs-target="#exampleModalScrollable">{{'footer.needHelp2' | translate}}</a></li>
                 <!-- <li><a class="text-decoration-none text-white footer-link-hover" href="#">{{'footer.needHe`lp3' | translate}}</a></li> -->
-                <li><a class="text-decoration-none text-white footer-link-hover" href="#">{{'footer.needHelp4' | translate}}</a></li>
+                <!-- <li><a class="text-decoration-none text-white footer-link-hover" href="#">{{'footer.needHelp4' | translate}}</a></li> -->
               </ul>
             </div>
           </div>
@@ -44,8 +44,8 @@
             <div class="payments text-light">
               <h5 class="text-light pt-md-4 pt-lg-0">{{'footer.findUs' | translate}}</h5>
               <ul class="list-unstyled">
-                <li><a class="text-decoration-none text-white footer-link-hover" routerLink="/contactus">{{'footer.findUs1' | translate}}</a></li>
-                <li><a class="text-decoration-none text-white footer-link-hover" href="#">{{'footer.findUs2' | translate}}</a></li>
+                <li><a class="text-decoration-none text-white footer-link-hover" routerLink="/contactus" fragment="about">{{'footer.findUs1' | translate}}</a></li>
+                <!-- <li><a class="text-decoration-none text-white footer-link-hover" href="#">{{'footer.findUs2' | translate}}</a></li> -->
                 <li><a class="text-decoration-none text-white footer-link-hover" routerLink="/articles">{{'footer.findUs3' | translate}}</a></li>
                 <li class="d-flex justify-content-start">
                   <ul class="list-unstyled fs-3 text-white d-flex justify-content-start">

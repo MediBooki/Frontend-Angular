@@ -26,6 +26,15 @@ import { unAuthGuard } from './core/guards/auth.guard';
 import { ReviewGuard } from './core/guards/review.guard';
 import { CheckoutGuard } from './core/guards/checkout/checkout.guard';
 import { ResetPasswordGuard } from './core/guards/resetPass/reset-password.guard';
+import { ProfileDetailsComponent } from './pages/patient-profile/component/profile-details/profile-details.component';
+import { ChangePasswordComponent } from './pages/patient-profile/component/change-password/change-password.component';
+import { MyInsuranceComponent } from './pages/patient-profile/component/my-insurance/my-insurance.component';
+import { MyAppointmentsComponent } from './pages/patient-profile/component/my-appointments/my-appointments.component';
+import { HistoryComponent } from './pages/patient-profile/component/history/history.component';
+import { InvoicesComponent } from './pages/patient-profile/component/invoices/invoices.component';
+import { FavoritesComponent } from './pages/patient-profile/component/favorites/favorites.component';
+import { OrdersComponent } from './pages/patient-profile/component/orders/orders.component';
+import { ReviewsComponent } from './pages/patient-profile/component/reviews/reviews.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -44,7 +53,19 @@ const routes: Routes = [
     { path: '', component: CartComponent},
     { path: 'checkout', component: CheckoutComponent, canActivate:[CheckoutGuard]}
   ]},
-  { path: 'my-profile', component: PatientProfileComponent,canActivate:[AuthGuard]  },
+  {
+    path: 'my-profile', component: PatientProfileComponent,children: [
+      { path: '', redirectTo: 'details', pathMatch: 'full' },
+      { path: 'details', component: ProfileDetailsComponent, canActivate:[AuthGuard]},
+      { path: 'change-password', component: ChangePasswordComponent, canActivate:[AuthGuard]},
+      { path: 'insurance', component: MyInsuranceComponent, canActivate:[AuthGuard]},
+      { path: 'appointments', component: MyAppointmentsComponent, canActivate:[AuthGuard]},
+      { path: 'history', component: HistoryComponent, canActivate:[AuthGuard]},
+      { path: 'invoices', component: InvoicesComponent, canActivate:[AuthGuard]},
+      { path: 'favorites', component: FavoritesComponent, canActivate:[AuthGuard]},
+      { path: 'orders', component: OrdersComponent, canActivate:[AuthGuard]},
+      { path: 'reviews', component: ReviewsComponent, canActivate:[AuthGuard]}
+  ] ,canActivate:[AuthGuard]  },
   { path: 'order/:id', component:OrderDetailsComponent, canActivate:[AuthGuard]},
   {
     path: 'pharmacy', children: [

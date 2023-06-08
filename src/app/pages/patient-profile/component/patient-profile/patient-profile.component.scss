@@ -11,6 +11,13 @@
 .side-active {
   background-color: $mainColor6;
   color: white;
+  a {
+    color: #fff !important;
+    i {
+      background-color: transparent !important;
+      color: #fff !important;
+    }
+  }
 }
 
 .bg-icon {
@@ -57,56 +64,7 @@ label span input {
   background-color: $lightGreyColor;
 }
 
-/* My Appointments */
-.table-header {
-  width: 20%;
-  text-align: center;
-}
 
-/* medical history */
-.timeline:before {
-  content: '';
-  position: absolute;
-  // left: 2%; //en
-  width: 6px;
-  top: 0;
-  bottom: 0;
-  background-color: #c5c5c5;
-}
-
-.timeline ul li::before {
-  content: '';
-  position: absolute;
-  top: -6px;
-  // left: 1.25%; //en
-  width: 20px;
-  height: 20px;
-  background: $mainColor2;
-  border-radius: 50%;
-  box-shadow: 0 0 0 3px rgpa(233,33,99,0.2);
-}
-
-.timeline-en ul li::before {
-  left: 1.25%;
-}
-
-.timeline-ar ul li::before {
-  right: 1.25%;
-}
-
-.timeline-en::before {
-  left: 2%; //en
-}
-
-.timeline-ar::before {
-  right: 2%; //en
-}
-
-.time {
-  top: -10px;
-  /* left: -9px; */
-  background-color: $mainColor;
-}
 
 .side-nav-ul li {
   cursor: pointer;
@@ -130,22 +88,6 @@ label span input {
   &:hover {
       color: $mainColor;
   }
-}
-
-.medicine-price {
-  span {
-      font-size: 0.8rem;
-  }
-}
-
-.medicine-img {
-  height: 220px;
-  width: 100%;
-}
-
-.doc-review-img {
-  width: 75px;
-  height: 75px;
 }
 
 .border-review-end-right {

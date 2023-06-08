@@ -250,6 +250,17 @@ export class NavbarComponent implements OnInit {
           this._DataService.userPhoto.next(patientInfo.data.photo)
           // this.userPhoto = this.patientInfo.photo;
         }
+        // this._DataService.is_login.subscribe(res => {
+        //   if(patientInfo.data.insurance){
+        //     const discount = Number(patientInfo.data.insurance.discount_percentage) + Number(patientInfo.data.insurance.company_rate)
+        //     localStorage.setItem("insuranceDiscount", discount.toString())
+        //     localStorage.setItem("insuranceID",patientInfo.data.insurance.id)
+        //   }else{
+        //     localStorage.removeItem("insuranceDiscount");
+        //     localStorage.removeItem("insuranceID")
+
+        //   }
+        // })
         if(patientInfo.data.insurance){
           const discount = Number(patientInfo.data.insurance.discount_percentage) + Number(patientInfo.data.insurance.company_rate)
           localStorage.setItem("insuranceDiscount", discount.toString())

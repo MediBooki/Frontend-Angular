@@ -1,0 +1,41 @@
+@import '../../../../../colors.scss';
+/* common */
+.row {
+  --bs-gutter-x:0;
+}
+
+.bg-light-gray {
+  background-color: $lightGreyColor;
+}
+
+.side-active {
+  background-color: $mainColor6;
+  color: white;
+}
+
+.bg-icon {
+  background:$mainColor2;
+}
+
+.btn-main{
+  color: #fff;
+  background: $mainColor2;
+}
+
+.medicine-price {
+  span {
+      font-size: 0.8rem;
+  }
+}
+
+.medicine-img {
+  height: 220px;
+  width: 100%;
+}
+
+.shadow {
+  border-radius: 50px;
+  // background: #e0e0e0;
+  box-shadow:  20px 20px 60px #bebebe,
+               -20px -20px 60px #ffffff;
+  }

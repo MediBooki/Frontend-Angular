@@ -11,7 +11,7 @@
       </div>
       <div class="col-lg-3">
         <p class="text-secondary fw-bold"><i class="fa-solid fa-money-bill-wave px-1"></i>TOTAL PRICE</p>
-        <p>{{orderDetails[0]?.total}}</p>
+        <p>{{orderDetails[0].total_after_discount!=null?orderDetails[0].total_after_discount:orderDetails[0].total}} {{"SharedData.Currency" | translate}}</p>
       </div>
       <div class="col-lg-3">
         <p class="text-secondary fw-bold"><i class="fa-solid fa-truck-fast px-1"></i>SHIPPING STATUS</p>

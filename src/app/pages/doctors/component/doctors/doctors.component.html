@@ -182,7 +182,7 @@
                         currentPage:page,
                         totalItems:totalRecords }" [doctor]="doctor"></app-doctor>
                 </div>
-  
+
                 <div class="skeleton-doctor" *ngIf="allDoctors.length==0">
                   <div class="bg-white px-5 py-4 my-4 specific-doctor" *ngFor="let item of [0,0,0]">
                     <div class="row">
@@ -190,7 +190,7 @@
                             <div class="row">
                             <div class="col-4 g-0">
                               <ngx-skeleton-loader appearance="circle" [theme]="{width: '120px', height: '120px', background: '#dbd9d9'}"></ngx-skeleton-loader>
-    
+
                             </div>
                             <div class="col-8 px-4">
                                 <div class="doctor-info">
@@ -198,27 +198,27 @@
                                 <div>
                                   <ngx-skeleton-loader appearance="line" [theme]="{background: '#dbd9d9', width: '50%', marginTop: '15px'}"></ngx-skeleton-loader>
                                 </div>
-                                
+
                                 <!-- <h5 class="text-muted">tdrtv</h5> -->
                                 <div>
                                   <ngx-skeleton-loader appearance="line" [theme]="{background: '#dbd9d9', width: '70%'}"></ngx-skeleton-loader>
                                 </div>
-    
+
                                 <div>
                                   <ngx-skeleton-loader appearance="line" [theme]="{background: '#dbd9d9', width: '70%'}"></ngx-skeleton-loader>
                                 </div>
-    
+
                                 <div>
                                   <ngx-skeleton-loader appearance="line" [theme]="{background: '#dbd9d9', width: '70%'}"></ngx-skeleton-loader>
                                 </div>
-    
+
                                 </div>
                             </div>
                             </div>
                         </div>
-                
+
                         <div class="col-md-6">
-    
+
                           <div>
                             <ngx-skeleton-loader appearance="line" [theme]="{background: '#dbd9d9', width: '60%', marginTop: '15px'}"></ngx-skeleton-loader>
                           </div>
@@ -234,17 +234,17 @@
                           <div>
                             <ngx-skeleton-loader appearance="line" [theme]="{height: '50px',background: '#dbd9d9', width: '90%'}"></ngx-skeleton-loader>
                           </div>
-                            
+
                         </div>
                     </div>
-                
-                    
+
+
                 </div>
                 </div>
 
-                <div class="d-flex justify-content-center align-items-center" *ngIf="filteredContent.length != 0">
+                <div class="d-flex justify-content-center align-items-center" *ngIf="totalRecords != allDoctors.length">
                   <pagination-controls id="listing-pagination" class="doctors-pagination" (pageChange)="changePage($event)" previousLabel="" nextLabel="" [ngClass]="rtlDir? 'pagination-arabic' : 'pagination-english'">
-  
+
                   </pagination-controls>
                 </div>
               </div>

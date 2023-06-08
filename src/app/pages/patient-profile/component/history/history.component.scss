@@ -1,0 +1,74 @@
+@import '../../../../../colors.scss';
+/* common */
+.row {
+  --bs-gutter-x:0;
+}
+
+.bg-light-gray {
+  background-color: $lightGreyColor;
+}
+
+.side-active {
+  background-color: $mainColor6;
+  color: white;
+}
+
+.bg-icon {
+  background:$mainColor2;
+}
+
+.btn-main{
+  color: #fff;
+  background: $mainColor2;
+}
+
+/* My Appointments */
+.table-header {
+  width: 20%;
+  text-align: center;
+}
+
+/* medical history */
+.timeline:before {
+  content: '';
+  position: absolute;
+  // left: 2%; //en
+  width: 6px;
+  top: 0;
+  bottom: 0;
+  background-color: #c5c5c5;
+}
+
+.timeline ul li::before {
+  content: '';
+  position: absolute;
+  top: -6px;
+  // left: 1.25%; //en
+  width: 20px;
+  height: 20px;
+  background: $mainColor2;
+  border-radius: 50%;
+  box-shadow: 0 0 0 3px rgpa(233,33,99,0.2);
+}
+
+.timeline-en ul li::before {
+  left: 1.25%;
+}
+
+.timeline-ar ul li::before {
+  right: -2.6%;
+}
+
+.timeline-en::before {
+  left: 2%; //en
+}
+
+.timeline-ar::before {
+  right: 2%; //en
+}
+
+.time {
+  top: -10px;
+  /* left: -9px; */
+  background-color: $mainColor;
+}

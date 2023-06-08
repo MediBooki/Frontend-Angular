@@ -45,6 +45,12 @@ export class ArticlesComponent implements OnInit {
   direction:string = 'ltr';
   noData:boolean = false;
 
+  // Pagination Configuration Variables
+  numArticlesPerPage: number = 10; // number of doctors displayed per one page
+  page: any = 1; // set current page
+  totalRecords: number = 0; // number of all doctors in whole API
+
+
   // apivariables
   articalesSubscription = new Subscription();
   articles: Article[] = [];
@@ -73,11 +79,18 @@ export class ArticlesComponent implements OnInit {
   getArticales(){
     this._DataService._lang.subscribe({next:(language)=>{
       // to get all sections
-    this.articalesSubscription = this._ArticlesService.getArticales(language).subscribe({
-      next: (articales) => {
-        this.articles = articales.data;
-        console.log(articales);
-        this.articalsRes = articales
+    this.articalesSubscription = this._ArticlesService.getArticales(language,undefined,this.page).subscribe({
+      next: (articles) => {
+
+            this.totalRecords = articles.count
+            if (this.page == 1) {
+              this.numArticlesPerPage = articles.data.length // length of one page in API
+            }
+
+
+        this.articles = articles.data;
+        console.log(articles);
+        this.articalsRes = articles
         if(this.articles.length>0){
           this.noData = false;
           console.log(this.noData)
@@ -93,6 +106,14 @@ export class ArticlesComponent implements OnInit {
       }
     });
     }});
+  }
+
+  //----- Method 6
+  // changing page in pagination
+  changePage(pageNum: any) {
+    this.page = pageNum;
+    console.log(this.page)
+    this.getArticales();
   }
 
 }

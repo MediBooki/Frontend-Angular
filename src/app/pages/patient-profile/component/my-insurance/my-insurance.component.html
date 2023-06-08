@@ -1,0 +1,26 @@
+<div class="m-4 p-3 bg-white rounded animate">
+  <h2 class="fw-bold text-center">{{'patientProfile.sidenav3' | translate}}</h2>
+  <div class="py-3"><img src="../../../assets/images/Patient_Profile/Insurance.png"/></div>
+  <p>{{'patientProfile.tap3h' | translate}}</p>
+  <form [formGroup]="addInsuranceForm" (ngSubmit)="addInsuranceFun()">
+      <div class="row">
+        <div class="pb-2 col-md-6 px-2">
+          <label>{{'patientProfile.tap3input1' | translate}}</label>
+          <select formControlName="company_id" class="form-select bg-light-gray" aria-label="Default select example">
+            <option *ngFor="let item of allInsurance" [value]="item.id">{{item.name}}</option>
+          </select>
+        </div>
+        <div class="pb-2 col-md-6 px-2">
+          <label>{{'patientProfile.tap3input2' | translate}}</label>
+          <input formControlName="insurance_number" type="text" class="form-control bg-light-gray" />
+        </div>
+        <div class="pb-2 col-md-6 px-2">
+          <label>{{'patientProfile.tap3input3' | translate}}</label>
+          <input formControlName="expiry_date" type="date" class="form-control bg-light-gray" />
+        </div>
+      </div>
+      <div class="d-flex justify-content-center">
+        <input type="submit" class="btn btn-main border-0" [disabled]="addInsuranceForm.invalid">
+      </div >
+  </form>
+</div>

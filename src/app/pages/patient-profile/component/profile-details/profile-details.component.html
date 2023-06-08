@@ -1,0 +1,126 @@
+<div class="m-4 p-3 rounded bg-white animate">
+  <h2 class="fw-bold text-center mb-3">{{'patientProfile.sidenav1' | translate }}</h2>
+  <div class="row">
+
+    <!-- user image div -->
+      <div class="col-md-4">
+
+          <div class="position-relative px-5 pt-4 pb-3 d-flex justify-content-center">
+            <img class="w-75 rounded-circle" [src]="userPhoto" width="200" height="180"/>
+<!--
+            <label class="filebutton position-absolute cam-icon-position text-black rounded-circle text-center">
+                <i class="fa-solid fa-camera fs-5 bg-light-gray p-2 w-100 h-100"></i>
+                <span><input type="file" id="myfile" name="myfile"></span>
+            </label> -->
+          </div>
+          <div class=" d-flex justify-content-center">
+            <!-- <input type="submit" value="Update" class="btn btn-main border-0 m-auto" [disabled]="updateProfile.invalid"/> -->
+            <!-- <input value="Update" class="btn btn-main border-0 m-auto" data-bs-toggle="modal" data-bs-target="#exampleModal"/> -->
+            <button class="btn btn-main border-0" data-bs-toggle="modal" data-bs-target="#exampleModal">Update</button>
+          </div>
+      </div>
+      <!-- edit form div -->
+      <div class="col-md-8">
+            <div class="row w-100">
+
+                      <div class="pb-2 col-md-6 px-2"><label>{{'patientProfile.tap1input2' | translate}}</label><div class="form-control bg-light-gray ">{{patientInfo.email}}</div></div>
+
+                      <div class="pb-2 col-md-6 px-2"><label>{{'patientProfile.tap1input4' | translate}}</label><div class="form-control bg-light-gray ">{{patientInfo.date_of_birth}}</div></div>
+                      <div class="pb-2 col-md-6 px-2">
+                        <label>{{'patientProfile.tap1input5' | translate}}</label>
+                        <div class="form-control bg-light-gray ">{{patientInfo.blood_group}}</div>
+                      </div>
+                      <div class="pb-2 col-md-6 px-2">
+                        <label>{{'patientProfile.tap1input6' | translate}}</label>
+                        <div class="form-control bg-light-gray ">{{patientInfo.gender}}</div>
+                      </div>
+                      <div class="pb-2 col-md-6 px-2">
+                        <label>{{'patientProfile.tap1input1' | translate}}</label>
+                        <!-- username -->
+                        <div class="form-control bg-light-gray ">{{patientInfo.name}}</div>
+                        <!-- <input formControlName="name" type="text" class="form-control bg-light-gray" [value]="patientInfo.name"> -->
+                      </div>
+                      <div class="pb-2 col-md-6 px-2">
+                        <label>{{'patientProfile.tap1input3' | translate}}</label>
+                        <!-- phone -->
+                        <div class="form-control bg-light-gray ">{{patientInfo.phone}}</div>
+                        <!-- <input formControlName="phone" type="tel" class="form-control bg-light-gray" [(ngModel)]="patientInfo.phone"> -->
+                      </div>
+                      <div class="pb-2 col-md-6 px-2">
+                        <label>{{'patientProfile.tap1input7' | translate}}</label>
+                        <!-- address -->
+                        <div class="form-control bg-light-gray ">{{patientInfo.address}}</div>
+                        <!-- <input formControlName="address"  type="text" class="form-control" [(ngModel)]="patientInfo.address"> -->
+                      </div>
+                    </div>
+                    <!-- <div class=" d-flex justify-content-end"> -->
+                      <!-- <input type="submit" value="Update" class="btn btn-main border-0 m-auto" [disabled]="updateProfile.invalid"/> -->
+                      <!-- <input value="Update" class="btn btn-main border-0 m-auto" data-bs-toggle="modal" data-bs-target="#exampleModal"/> -->
+                      <!-- <button class="btn btn-main border-0" data-bs-toggle="modal" data-bs-target="#exampleModal">Update</button>
+                    </div> -->
+
+                  </div>
+
+  </div>
+
+</div>
+
+<!-- update Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <form [formGroup]="updateProfile" (ngSubmit)="updateProfileSupmit()" >
+      <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">{{'patientProfile.tap1modaltitle' | translate}}</h1>
+        <!-- <button type="button" class="mx-auto btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+      </div>
+      <div class="modal-body row">
+        <p class="px-2">{{'patientProfile.tap1modalp' | translate}}</p>
+        <div class="pb-2 col-md-6 px-2">
+          <label>{{'patientProfile.tap1input1' | translate}}</label>
+          <!-- username -->
+          <input formControlName="name" type="text" class="form-control">
+          <div class="mt-1" *ngIf="updateProfile.controls.name.touched && updateProfile.controls.name.dirty">
+            <p class="text-danger" *ngIf="updateProfile.controls.name?.errors?.['required']">
+              {{'errors.required' | translate}}
+            </p>
+            <p class="text-danger" *ngIf="updateProfile.controls.name?.errors?.['pattern']">
+              {{'errors.usernamePattern' | translate}}
+            </p>
+          </div>
+        </div>
+        <div class="pb-2 col-md-6 px-2">
+          <label>{{'patientProfile.tap1input3' | translate}}</label>
+          <!-- phone -->
+          <input formControlName="phone" type="tel" class="form-control" >
+          <div class="mt-1" *ngIf="updateProfile.controls.phone.touched && updateProfile.controls.phone.dirty">
+            <p class="text-danger" *ngIf="updateProfile.controls.phone.errors?.['required']">
+              {{'errors.required' | translate}}
+            </p>
+          </div>
+        </div>
+        <div class="pb-2 col-md-6 px-2">
+          <label>{{'patientProfile.tap1input7' | translate}}</label>
+          <!-- address -->
+          <input formControlName="address"  type="text" class="form-control">
+          <div class="mt-1" *ngIf="updateProfile.controls.address.touched && updateProfile.controls.address.dirty">
+            <p class="text-danger" *ngIf="updateProfile.controls.address?.errors?.['required']">
+              {{'errors.required' | translate}}
+            </p>
+          </div>
+        </div>
+        <div class="pb-2 col-md-6 px-2">
+          <label>{{'patientProfile.tap1input8' | translate}}</label>
+          <!-- photo -->
+          <input formControlName="photo" #photo (change)="onFileChange($event)" name="photo" type="file" class="form-control" >
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <input type="submit" value="Update" class="button btn btn-main" />
+        <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+      </div>
+    </div>
+  </form>
+  </div>
+</div>

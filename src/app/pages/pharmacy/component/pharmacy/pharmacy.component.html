@@ -12,7 +12,7 @@
       <div class=" mx-5 p-3 text-center ">
         <h1 class=" fw-bolder mb-3 text-center header title" [class.arabic-font]="rtlDir">{{rtlDir?'الصيدلية':'Pharmacy'}}</h1>
         <img class="img-fluid lines-img" src="../../../assets/images/roadmap/lines.png" alt="">
-        
+
         <!-- <div class="mt-2">
             <a routerLink="/home" class="fw-bolder text-success text-decoration-none fs-5">{{'RoadMap.MainTitle' | translate}} <i
                     class="fa-solid mx-2 fs-6" [ngClass]="rtlDir? 'fa-angles-left' : 'fa-angles-right'"></i>
@@ -45,7 +45,7 @@
           </div>
         </form>
 
-        
+
       </div>
         </div>
     </section>
@@ -123,10 +123,10 @@
                               </button>
                             </h2>
                             <div id="collapseTwo" class="accordion-collapse collapse show" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-                              
+
 
                               <div class="accordion-body">
-                                <ngx-slider [(value)]="lowPrice" [(highValue)]="highPrice" [options]="rangeOptions"></ngx-slider> 
+                                <ngx-slider [(value)]="lowPrice" [(highValue)]="highPrice" [options]="rangeOptions"></ngx-slider>
                                 <!-- <div>Lower Range Value: {{lowValue}}</div>
                                 <div>High Range Value: {{highValue}}</div> -->
 
@@ -152,7 +152,7 @@
                                   </div>
 
                               </div>
-                              
+
                               <!-- <div class="accordion-body price-filter row">
                                 <div class="col-md-6">
                                   <div class="accordion-body-item">
@@ -291,7 +291,7 @@
 
                         <div class="filtered-content-title d-flex text-muted ">
                           <!-- --><h2 class="filtered-title mb-0 fw-bold" [class.arabic-font]="rtlDir" *ngIf="filteredContent.length != 0">{{"PharmacyPage.ResultTitle1" | translate}} <span class="mx-1" *ngFor="let categoryName of filteredContent">{{categoryName}}</span></h2> <!-- -->
-                          <!-- --><h2 class="filtered-title mb-0 fw-bold" [class.arabic-font]="rtlDir" *ngIf="filteredContent.length == 0">{{"PharmacyPage.ResultTitle2" | translate}}</h2> 
+                          <!-- --><h2 class="filtered-title mb-0 fw-bold" [class.arabic-font]="rtlDir" *ngIf="filteredContent.length == 0">{{"PharmacyPage.ResultTitle2" | translate}}</h2>
                           <!-- <h2 class="filtered-title mb-0" *ngIf="filteredContent.length != 0">Search By <span class="mx-1" *ngFor="let name of filteredContent">{{name}}</span></h2> -->
                           <p class="mx-2 mb-0 text-center"><span class="medicines-num">{{totalRecords}}</span> {{"PharmacyPage.MedicinesWord" | translate}}</p>
 
@@ -305,7 +305,7 @@
                                 currentPage:page,
                                 totalItems:totalRecords }" [medicine]="medicine"></app-medicine>
                             </div>
-                            
+
                             <div class="row" *ngIf="allMedicines.length == 0">
                                 <div class="col-lg-4 col-md-6 py-3" *ngFor="let item of [0,0,0,0,0,0]">
                                   <ngx-skeleton-loader class="rounded-0 rounded-top" appearance="line" [theme]="{height: '220px', background: '#dbd9d9', marginBottom: '-5px'}"></ngx-skeleton-loader>
@@ -316,15 +316,15 @@
                                   </div>
                                 </div>
                             </div>
-    
+
                           </div>
-                          <div class="d-flex justify-content-center align-items-center" *ngIf="filteredContent.length != 0">
+                          <div class="d-flex justify-content-center align-items-center" *ngIf="totalRecords != allMedicines.length">
                             <pagination-controls id="listing-pagination"  class="medicines-pagination" (pageChange)="changePage($event)" previousLabel="" nextLabel="" [ngClass]="rtlDir? 'pagination-arabic' : 'pagination-english'">
-    
+
                             </pagination-controls>
                           </div>
                         </div>
-                      
+
                     </div>
                     </div>
                 </div>
@@ -402,10 +402,10 @@
 
                       <div class="col-12">
                         <!--smallRangeOptions-->
-                        <ngx-slider [(value)]="smallLowPrice" [(highValue)]="smallHighPrice" [options]="smallRangeOptions"></ngx-slider> 
+                        <ngx-slider [(value)]="smallLowPrice" [(highValue)]="smallHighPrice" [options]="smallRangeOptions"></ngx-slider>
                       </div>
 
-                      
+
                       <div class="col-5">
                         <div class="">
                           <label class="text-muted">{{'PharmacyPage.Filters.MinWord' | translate}}</label>
@@ -447,7 +447,7 @@
                   <div class="small-filter-body">
 
 
-                    
+
                     <div class="accordion-body-item p-3 border-bottom"  *ngFor="let category of allCategories;let i = index">
                       <input type="checkbox" id="small-category{{category.id}}" name="category{{category.id}}" [value]="category.id" (change)="GetCategoryStats($event)" [checked]="categoryArrayChecked[category.id]"><!--  -->
                       <label for="small-category{{category.id}}"> {{category.name}}</label>

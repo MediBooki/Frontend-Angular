@@ -14,34 +14,44 @@
         </div>
       </div>
     </div> -->
-    
+
     <app-roadmap [roadMapLinks]="roadMapLinks"></app-roadmap>
 
   </section>
   <!--  =======================================================( articles )=======================================================  -->
-  <section class=" mt-5 container">
-    <div class="title text-center">
-      <p class=" fw-bold">_ {{'navbar.navlink2' | translate}} _</p>
-      <h1 [class.arabic-font]="rtlDir">{{"SharedData.articales-mainTitle" | translate}}</h1>
-      <p class="text-muted text-center px-lg-5">{{"SharedData.articalesp" | translate}}.</p>
-    </div>
-    <div class="row mt-3 p-3 justify-content-center row"  *ngIf="!noData;else error">
-      <app-article class="col-md-4" [article]="articale" *ngFor="let articale of articles"></app-article>
-    </div>
-    <ng-template #error>
-
-      <div class=" search-empty text-center p-5 rounded mb-5">
-          <div class="my-4">
-            <i class="fa-solid fa-newspaper search-icon"></i>
-          </div>
-          <div class="search-empty-content">
-              <div class="my-3">
-                  <h2 class="fw-bold">{{"errors.no-articales" | translate}}</h2>
-              </div>
-              <p class="text-muted">{{"errors.no-articalesp" | translate}}</p>
-          </div>
+  <section class="  articles">
+    <div class="container pt-5">
+      <div class="title text-center">
+        <p class=" fw-bold">_ {{'navbar.navlink2' | translate}} _</p>
+        <h1 [class.arabic-font]="rtlDir">{{"SharedData.articales-mainTitle" | translate}}</h1>
+        <p class="text-muted text-center px-lg-5">{{"SharedData.articalesp" | translate}}.</p>
       </div>
+      <div class="row mt-3 p-3 justify-content-center row"  *ngIf="!noData;else error">
+        <app-article class="col-md-4" [article]="articale" *ngFor="let articale of articles | paginate :{id:'listing-pagination',
+        itemsPerPage:numArticlesPerPage,
+        currentPage:page,
+        totalItems:totalRecords }"></app-article>
+      </div>
+      <div class="d-flex justify-content-center align-items-center" *ngIf="totalRecords != articles.length">
+        <pagination-controls id="listing-pagination" class="doctors-pagination" (pageChange)="changePage($event)" previousLabel="" nextLabel="" [ngClass]="rtlDir? 'pagination-arabic' : 'pagination-english'">
 
-  </ng-template>
+        </pagination-controls>
+      </div>
+      <ng-template #error>
+
+        <div class=" search-empty text-center p-5 rounded mb-5">
+            <div class="my-4">
+              <i class="fa-solid fa-newspaper search-icon"></i>
+            </div>
+            <div class="search-empty-content">
+                <div class="my-3">
+                    <h2 class="fw-bold">{{"errors.no-articales" | translate}}</h2>
+                </div>
+                <p class="text-muted">{{"errors.no-articalesp" | translate}}</p>
+            </div>
+        </div>
+
+      </ng-template>
+    </div>
   </section>
 </div>

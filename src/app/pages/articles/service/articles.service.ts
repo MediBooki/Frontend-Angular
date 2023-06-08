@@ -13,15 +13,15 @@ export class ArticlesService {
 
   constructor(private _HttpClient: HttpClient) { }
 
-  getArticales(lang: string, limt?:number): Observable<any> {
-    console.log(`${this.sharedApi}/blogs?lang=${lang}&limit=${limt}`);
+  getArticales(lang: string, limt?:number,page?:number): Observable<any> {
+    console.log(`${this.sharedApi}/blogs?lang=${lang}&page=${page}&limit=${limt}`);
     if(limt == undefined){
-      return this._HttpClient.get(`${this.sharedApi}/blogs?lang=${lang}`).pipe(catchError((e: any) => {
+      return this._HttpClient.get(`${this.sharedApi}/blogs?lang=${lang}&page=${page}`).pipe(catchError((e: any) => {
       console.log(e)
       return throwError(e)
       }));
     }else{
-      return this._HttpClient.get(`${this.sharedApi}/blogs?lang=${lang}&limit=${limt}`).pipe(catchError((e: any) => {
+      return this._HttpClient.get(`${this.sharedApi}/blogs?lang=${lang}&page=${page}&limit=${limt}`).pipe(catchError((e: any) => {
         console.log(e)
         return throwError(e)
         }));

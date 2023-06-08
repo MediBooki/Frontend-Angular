@@ -1,0 +1,23 @@
+@import '../../../../../colors.scss';
+/* common */
+.row {
+  --bs-gutter-x:0;
+}
+
+.bg-light-gray {
+  background-color: $lightGreyColor;
+}
+
+.side-active {
+  background-color: $mainColor6;
+  color: white;
+}
+
+.bg-icon {
+  background:$mainColor2;
+}
+
+.btn-main{
+  color: #fff;
+  background: $mainColor2;
+}

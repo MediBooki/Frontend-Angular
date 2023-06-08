@@ -1,0 +1,41 @@
+<div class="m-4 p-3 bg-white rounded animate">
+  <h2 class="fw-bold text-center">{{'patientProfile.sidenav5' | translate}}</h2>
+
+
+  <div class="timeline timeline-ar my-5 position-relative" [ngClass]="{'timeline-ar': rtlDir,'timeline-en': !rtlDir }" *ngIf="diagnosisAPIres?.success && allDiagnosis_notempty else nodiagnosis">
+    <ul class="list-unstyled" >
+      <li class="position-relative w-100 py-4 px-5" *ngFor="let item of allDiagnosis">
+        <div class="content p-3 border rounded bg-light-gray">
+          <h3 class="mb-3">{{'patientProfile.tap5dr' | translate}}{{item.doctor.name}}</h3>
+          <h4>{{'patientProfile.tap5h1' | translate}}</h4>
+          <p>
+            {{item.diagnosis}}
+          </p>
+          <h4>{{'patientProfile.tap5h2' | translate}}</h4>
+          <p>
+            {{item.medicine}}
+          </p>
+        </div>
+        <div class="time position-absolute py-1 px-3 rounded-pill text-center">
+          {{item.date}}
+        </div>
+      </li>
+    </ul>
+  </div>
+    <ng-template #nodiagnosis>
+      <!-- <div class="alert alert-danger text-center my-3" role="alert">
+        <h3 class="my-2">{{'errors.no-Diagnosis' | translate}}</h3>
+      </div> -->
+      <div class=" search-empty text-center bg-white p-5 rounded mb-5">
+        <div class="my-4">
+          <i class="fa-solid fa-clock-rotate-left search-icon"></i>
+        </div>
+        <div class="search-empty-content">
+            <div class="my-3">
+                <h2 class="fw-bold">{{'errors.no-Diagnosis' | translate}}</h2>
+            </div>
+        </div>
+    </div>
+    </ng-template>
+
+</div>

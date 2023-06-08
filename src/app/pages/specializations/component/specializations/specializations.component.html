@@ -38,7 +38,7 @@
         </form>
       </div>
     </div>
-    
+
     <!-- <app-roadmap [roadMapLinks]="roadMapLinks"></app-roadmap> -->
 
   </section>
@@ -46,7 +46,7 @@
   <section class="pt-5 specialization-section">
     <div class=" container">
 
-    
+
     <div class="title text-center" #firstSection>
       <p class=" fw-bold">_ {{"specializationPage.title" | translate}} _</p>
       <h1 [class.arabic-font]="rtlDir">{{"specializationPage.mainTitle" | translate}}</h1>
@@ -69,7 +69,7 @@
           </div>
         </div>
       </div>
-      <div class="d-flex justify-content-center align-items-center">
+      <div class="d-flex justify-content-center align-items-center" *ngIf="totalRecords != specializations.length">
         <pagination-controls id="listing-pagination" class="specialization-pagination" (pageChange)="changePage($event)" previousLabel="" nextLabel="" [ngClass]="rtlDir? 'pagination-arabic' : 'pagination-english'">
 
         </pagination-controls>
