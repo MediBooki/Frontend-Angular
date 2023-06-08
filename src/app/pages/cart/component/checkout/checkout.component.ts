@@ -54,7 +54,7 @@ export class CheckoutComponent implements OnInit {
     this.checkoutForm = this._FormBuilder.group({
       first_name: ['' , [Validators.required, Validators.minLength(2), Validators.maxLength(20)]],
       last_name: ['' , [Validators.required, Validators.minLength(2), Validators.maxLength(20)]],
-      email: ['' , [Validators.required, Validators.email, Validators.pattern(/^[a-zA-Z0-9]{2,}@[a-z]{2,}\.[a-zA-Z]{2,}$/)]],
+      email: ['' , [Validators.required, Validators.email, Validators.pattern(/^[a-zA-Z0-9]{1,}.*[a-zA-Z0-9]{1,}@[a-z]{2,}\.[a-zA-Z]{2,}$/)]],
       phone1: ['' , [Validators.required, Validators.pattern(/^\+?(002)?[\d\s()-]{4,}$/)]], // may contains + or 002 or maynot
       phone2: ['' , Validators.pattern(/^\+?(002)?[\d\s()-]{4,}$/)],
       address1: ['' , Validators.required],

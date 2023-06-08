@@ -324,17 +324,16 @@ export class MedicineDetailsComponent implements OnInit {
   isDisableBtn:boolean = false;
   isVisibleAddSpinner:boolean = false;
 
+  // add medicine to cart when clicking button
   addCart(medicineId:number) {
-
-    if (localStorage.getItem("token") == null) {
+    if (localStorage.getItem("token") == null) { // in case that user isn't login
       this.toastr.info(!this.rtlDir?`You Should Login First!`:`يجب أن تسجل الدخول أولا!`)
     } else {
       this.isVisibleAddSpinner = true;
-      this._CartService.addCart(medicineId).subscribe({
+      this._CartService.addCart(medicineId).subscribe({ // calling API in Service
         next:(message)=>{
           if(message.success == true) {
-            this._CartService.calculateTotalQty();
-
+            this._CartService.calculateTotalQty(); // calculate cart medicines total quantity
             setTimeout(() => {
               this.isVisibleAddSpinner = false;
               this.toastr.success(!this.rtlDir?`This Medicine Added to Cart`:`تم اضافة الدواء الى عربة الشراء`, !this.rtlDir?`Cart Result`:`ناتج عربة الشراء`)

@@ -8,6 +8,7 @@ import { environment } from 'src/environments/environment';
 })
 export class SpecializationService {
   _sharedApi: string = environment.apimain;
+  // https://benaahadees.com/mediBookiDashbord/public/api
   // _sharedApi: string = "http://127.0.0.1:8000/api";
   idspecialize = new BehaviorSubject<number>(0);
 

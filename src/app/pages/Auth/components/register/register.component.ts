@@ -147,14 +147,14 @@ termsConditions:TermCondition[]=[]
 
 
   initFormControl() {
-    this.username = new FormControl('', [Validators.required, Validators.minLength(3), Validators.pattern(/^[a-zA-Z]{1,}$/)]),
+    this.username = new FormControl('', [Validators.required, Validators.minLength(3), Validators.pattern(/^[a-zA-Z\s]{1,}$/)]),
       this.email = new FormControl('', [Validators.required, Validators.pattern(/^[a-zA-Z0-9]{2,}@[a-z]{2,}\.[a-zA-Z]{2,}$/)]),
       this.phoneNumber = new FormControl('', [Validators.required, Validators.pattern(/^\+?(002)?[\d\s()-]{4,}$/)]),
       this.password = new FormControl('', [Validators.required, Validators.pattern(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/)]),
       this.confirmPassword = new FormControl('', Validators.required),
       this.date_of_birth = new FormControl('', Validators.required),
       this.gender = new FormControl('', Validators.required),
-      this.address = new FormControl('', [Validators.required, Validators.minLength(30)]),
+      this.address = new FormControl('', [Validators.required, Validators.minLength(5)]),
       this.blood_group = new FormControl('', Validators.required),
       this.terms_conditions =new FormControl('', Validators.required)
   }
