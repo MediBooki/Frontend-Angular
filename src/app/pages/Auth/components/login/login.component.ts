@@ -19,6 +19,7 @@ export class LoginComponent implements OnInit {
   loginForm!: FormGroup
   lang: string = "en";
   rtlDir: boolean = false;
+  direction: any = 'ltr';
 
   passwordType: string = 'password';
   isVisibleSpinner: boolean = false;
@@ -62,6 +63,8 @@ export class LoginComponent implements OnInit {
       localStorage.setItem("token", "Bearer " + res.data.token)
       localStorage.setItem("patient_id", res.data.id)
       this._DataService.is_login.next(true);
+      localStorage.removeItem("reset_token")
+      localStorage.removeItem("email_patient")
       this.router.navigate(['/home'])
       this.toastr.success(!this.rtlDir?`Signed in successfully`:`تم تسجيل الدخول بنجاح`)
       this.isVisibleSpinner = false;

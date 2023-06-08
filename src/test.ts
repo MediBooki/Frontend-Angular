@@ -2,6 +2,7 @@
 
 import 'zone.js/testing';
 import { getTestBed } from '@angular/core/testing';
+import * as jQuery from 'jquery';
 import {
   BrowserDynamicTestingModule,
   platformBrowserDynamicTesting
@@ -12,13 +13,25 @@ declare const require: {
     <T>(id: string): T;
     keys(): string[];
   };
+  
 };
+// Assign jQuery to the global scope
+declare global {
+  interface Window {
+    $: any;
+    jQuery: any;
+  }
+}
+
+window.$ = window.jQuery = jQuery;
+
 
 // First, initialize the Angular testing environment.
 getTestBed().initTestEnvironment(
   BrowserDynamicTestingModule,
   platformBrowserDynamicTesting(),
-);
+  // (window as any).$ = (window as any).jQuery = require('jquery'),
+  );
 
 // Then we find all the tests.
 const context = require.context('./', true, /\.spec\.ts$/);

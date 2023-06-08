@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { SharedModule } from 'src/app/layout/shared/shared.module';
 import { CheckoutComponent } from './checkout.component';
+import { AppModule } from 'src/app/app.module';
 
 describe('CheckoutComponent', () => {
   let component: CheckoutComponent;
@@ -8,7 +9,8 @@ describe('CheckoutComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CheckoutComponent ]
+      declarations: [ CheckoutComponent ],
+      imports:[SharedModule,AppModule]
     })
     .compileComponents();
 

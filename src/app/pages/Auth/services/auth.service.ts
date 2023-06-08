@@ -20,7 +20,7 @@ export class AuthService {
   createPatient(model: createAccount) {
     return this.http.post(this._sharedApi + '/patient/register', model);
   }
-  login(model: Login) {
+  login(model: Login):Observable<any> {
     return this.http.post(this._sharedApi + '/patient/login', model)
   }
   isLoggedIn(): boolean {

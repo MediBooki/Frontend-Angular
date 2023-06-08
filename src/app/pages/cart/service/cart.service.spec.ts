@@ -1,12 +1,14 @@
 import { TestBed } from '@angular/core/testing';
-
+import { SharedModule } from 'src/app/layout/shared/shared.module';
 import { CartService } from './cart.service';
 
 describe('CartService', () => {
   let service: CartService;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      imports:[SharedModule]
+    });
     service = TestBed.inject(CartService);
   });
 

@@ -28,7 +28,7 @@
                     <input type="{{passwordType}}" class="input w-100 bg-transparent mb-4" id="PasswordRegister" required autocomplete="off" formControlName="Password">
                     
                     <label for="PasswordRegister" class=" position-absolute"><i class="fas fa-lock  px-2 fs-6"></i>{{ 'loginPage.password' | translate }}</label>
-                    <i class="fa-solid {{passwordType ? 'fa-eye' : 'fa-eye-slash' }} text-center p-3 fs-6 position-absolute end-0" (click)="togglePassword()"></i>
+                    <i class="fa-solid {{passwordType ? 'fa-eye' : 'fa-eye-slash' }} text-center p-3 fs-6 position-absolute" [ngClass]="direction === 'ltr' ? 'end-0' : 'start-0'"  (click)="togglePassword()"></i>
                     <div *ngIf="loginForm.controls['Password']?.invalid && loginForm.controls['Password']?.touched && loginForm.controls['Password']?.dirty">
                         <p id="PasswordRegisterError" class="text-danger" *ngIf="loginForm.controls['Password']?.errors?.['pattern']">
                           {{'loginPage.error7'| translate}}

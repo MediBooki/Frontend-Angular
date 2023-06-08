@@ -18,6 +18,7 @@ export class ResetPasswordComponent implements OnInit {
 
   lang: string = "en";
   rtlDir: boolean = false;
+  direction: any = 'ltr';
   passwordType: string = 'password';
   showPassword:boolean=false
   showConfirmPassword:boolean=false
@@ -46,8 +47,10 @@ export class ResetPasswordComponent implements OnInit {
         this.lang = language;
         if (language == 'en') {
           this.rtlDir = false;
+          this.direction='ltr';
         } else {
           this.rtlDir = true;
+          this.direction='rtl';
         }
       }
     })
@@ -74,13 +77,13 @@ export class ResetPasswordComponent implements OnInit {
       // this._DataService.is_login.next(true);
       this.toastr.success(!this.rtlDir?`The password has been changed successfully`:`تم تغيير الباسورد بنجاح`)
       this.isVisibleSpinner = false;
+      localStorage.removeItem("reset_token")
+      localStorage.removeItem("email_patient")
       this.router.navigate(['/Login'])
     }, (error) => {
       this.toastr.error(!this.rtlDir?`password is incorrect`:`كلمة المرور خاطئة` )
-      // console.log(error)
       this.isVisibleSpinner = false;
     })
-    console.log(this.resetPasswordForm.controls['resetPassword'].value)
   }
 
 

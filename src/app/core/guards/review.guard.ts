@@ -11,9 +11,13 @@ import { PatientProfileService } from 'src/app/pages/patient-profile/service/pat
 })
 export class ReviewGuard implements CanActivate {
   doctorId :any
-  AppointmentsSubscription = new Subscription();
+  AppointmentsSubscription:Subscription = new Subscription();
   private appointmentData: any;
   istrue!:Boolean
+
+    // API Variables
+    appointmentSubscription :Subscription = new Subscription();
+    doctor: any = {}
 
   constructor(private _AppointmentsService:AppointmentsService ,private router:Router ,private toastr: ToastrService,private _DataService:DataService,private _PatientProfileService:PatientProfileService){
 
@@ -29,7 +33,7 @@ export class ReviewGuard implements CanActivate {
               this.appointmentData = Appointments.data;
               this.doctorId = route.paramMap.get('id')
               const currentDate = new Date();
-              let flag = false
+              let flag = true
               this.appointmentData?.forEach((appointment:any) => {
                 const appointmentDate = new Date(appointment.date); 
                 if(appointment.doctor.id === parseInt(this.doctorId)  && (appointmentDate) <= (currentDate)  ){
@@ -42,8 +46,22 @@ export class ReviewGuard implements CanActivate {
               });
               if(flag){
                 flag=false
-                this.toastr.error(`please book this doctor to review this doctor`)
-                this.router.navigate(['/appointments/'+this.doctorId])
+                this.appointmentSubscription = this._AppointmentsService.getDoctorById(language, this.doctorId).subscribe({
+                  next: (Doctor) => {
+      
+                    this.doctor = Doctor.data;
+                    console.log(this.doctor)
+                    this.toastr.error(`please book this doctor to review this doctor`)
+                    this.router.navigate(['/appointments/'+this.doctorId])
+
+                    // this.isVisibleSpinner = false;
+                  },
+                  error: (error) => {
+                    this.toastr.error("There is no such doctor on the site");
+                    this.router.navigate(['/doctors'])
+                    // this.isVisibleSpinner = false;
+                  }
+                });
                 observer.next(false);
                 observer.complete();
               }  

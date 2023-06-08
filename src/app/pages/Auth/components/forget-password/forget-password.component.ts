@@ -16,7 +16,8 @@ export class ForgetPasswordComponent implements OnInit {
 
   lang: string = "en";
   rtlDir: boolean = false;
-
+  direction: any = 'ltr';
+ 
   forgetPasswordForm!: FormGroup
 
   constructor(private fb: FormBuilder, private router: Router, private _AuthService: AuthService, private _DataService: DataService, private toastr:ToastrService) {
@@ -40,8 +41,10 @@ export class ForgetPasswordComponent implements OnInit {
         this.lang = language;
         if (language == 'en') {
           this.rtlDir = false;
+          this.direction='ltr';
         } else {
           this.rtlDir = true;
+          this.direction='rtl';
         }
       }
     })

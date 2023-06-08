@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -29,22 +29,20 @@ export class SpecializeComponent implements OnInit {
     description: '',
     photo: ''
   } 
-  filterForm : FormGroup;
 
 
 
-  @Input() specialize!:Specialize;
+  @Input() specialize:Specialize={
+    id: 0,
+    name: '',
+    description: '',
+    photo: ''
+  } ;
   @Input() index!:number
+  @Output() specializeDetail:EventEmitter<any> = new EventEmitter();
 
   constructor(private _DataService: DataService, private _FormBuilder:FormBuilder, private router:Router,private _specializeService: SpecializationService) { 
-    // Declare FilterForm
-    this.filterForm = this._FormBuilder.group({
-      titles: new FormArray([]),
-      genders: new FormArray([]),
-      sections: new FormArray([]),
-      name:"",
-      specialization:""
-    })
+
   }
 
   ngOnInit(): void {
@@ -82,6 +80,7 @@ export class SpecializeComponent implements OnInit {
               console.log(specialize)
               // this.isVisibleSpinner = false;
               this.specializeDetails = specialize.data;
+              this.specializeDetail.emit(this.specializeDetails);
               console.log(this.specializeDetails)
               
             },
@@ -94,21 +93,13 @@ export class SpecializeComponent implements OnInit {
       })
     }
   
-    // triggered when click on specialization to show doctors in this specialization
-    filterDoctors(specializationId:any, specializationName:any) {
-      if(localStorage.getItem("filterForm") != null) {
-        localStorage.setItem("filterForm",JSON.stringify(this.filterForm.value)); // put new values in localstorage
-      }
-      
-        localStorage.setItem("filteredSpecializationContent",JSON.stringify([`${specializationName}`])); // put new values in localstorage
-        this.filterForm.value["sections"].push(''+specializationId+''); // add new filter measure in filter form
-        localStorage.setItem("filterForm",JSON.stringify(this.filterForm.value)); // put new values in localstorage
-        this.router.navigate(["/doctors"])
-  
-    }
+
 
   onSpecializeClicked(id:number){
     this.getSpecializationDetails(id)
+
+  }
+  onSpecialize(specializeDetails:Specialize) {
 
   }
 

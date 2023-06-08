@@ -37,7 +37,7 @@ export class OrderDetailsComponent implements OnInit {
   defaultImg:string = this._DataService.defaultNoImg;
 
   // api vars
-  orderDetails:any;
+  orderDetails!:any;
   oneOrderSubscription = new Subscription();
   oneOrderAPIres:any;
 

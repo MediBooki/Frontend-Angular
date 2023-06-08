@@ -40,6 +40,7 @@ export class RegisterComponent implements OnInit {
   terms_conditions!:FormControl
   lang: string = "en";
   rtlDir: boolean = false;
+  direction: any = 'ltr';
 
   passwordType: string = 'password';
   showPassword:boolean=false
@@ -177,7 +178,7 @@ termsConditions:TermCondition[]=[]
 
 
   submit() {
-    const model: createAccount = {
+    const model: any = {
       email: this.patientForm.value.email,
       password: this.patientForm.value.password,
       name: this.patientForm.value.username,
@@ -215,8 +216,10 @@ termsConditions:TermCondition[]=[]
         this.lang = language;
         if (language == 'en') {
           this.rtlDir = false;
+          this.direction='ltr';
         } else {
           this.rtlDir = true;
+          this.direction='rtl';
 
         }
       }

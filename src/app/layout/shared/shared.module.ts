@@ -17,14 +17,13 @@ import { NgxPaginationModule } from 'ngx-pagination';
 // import { CarouselModule } from 'ngx-owl-carousel-o';
 import { ToastrModule } from 'ngx-toastr';
 import { MedicineComponent } from 'src/app/pages/pharmacy/component/medicine/medicine.component';
-// import { PharmacyModule } from 'src/app/pages/pharmacy/pharmacy.module';
-// import { MedicineModule } from 'src/app/pages/pharmacy/medicine/medicine.module';
 import { OwlModule } from 'ngx-owl-carousel';
 import { RatingComponent } from '../rating/rating.component';
 import { NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
 import { RoadmapComponent } from '../roadmap/roadmap.component'; 
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
-
+import { ActivatedRoute } from '@angular/router';
+import 'select2';
 
 
 
@@ -61,7 +60,8 @@ import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
         RatingComponent,
         NgbRatingModule,
         RoadmapComponent,
-        NgxSkeletonLoaderModule 
+        NgxSkeletonLoaderModule,
+        
     ],
     imports: [
         // PharmacyModule,
@@ -93,6 +93,9 @@ import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 
 
         // MedicineModule
+    ],
+    providers:[
+        // ActivatedRoute
     ]
 })
 export class SharedModule { }

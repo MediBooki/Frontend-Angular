@@ -3,12 +3,14 @@ import { AppointmentsComponent } from 'src/app/pages/appointments/component/appo
 export interface createAccount {
   email: String;
   password: String;
+  confirmPassword: string;
   name: String;
   date_of_birth: Date;
   phone: String;
   gender: String;
   blood_group: String;
   address: String;
+  terms_conditions: boolean,
 }
 
 export interface Login {
@@ -25,7 +27,7 @@ export interface AppointmentsPatient {
   patient_id: number,
   doctor_id: number,
   price: number,
-  date: Date,
+  date: string,
   time: string
 
 }

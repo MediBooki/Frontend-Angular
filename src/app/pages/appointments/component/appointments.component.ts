@@ -11,7 +11,8 @@ import { AppointmentsPatient, patientAppointment } from 'src/app/core/interfaces
 import { DatePipe } from '@angular/common';
 import { ToastrService } from 'ngx-toastr';
 import 'select2';
-import { type } from 'jquery';
+import * as $ from 'jquery';
+import { SafeHtml ,DomSanitizer } from '@angular/platform-browser';
 
 
 
@@ -46,6 +47,7 @@ export class AppointmentsComponent implements OnInit {
   
   isVisibleSpinner: boolean = false;
   overallRating:number = 0
+  htmlCode!: SafeHtml;
 
 
   
@@ -84,6 +86,11 @@ export class AppointmentsComponent implements OnInit {
     education: '',
     experience: ''
   }
+  reviews:any[]=[]
+  displayedReviews:any[]=[]
+  fixedDisplayCount=2
+  displayCount = 2; // Number of reviews to display initially
+  incrementCount = 1; // Number of reviews to increment on "Show More" button click
 
   
   
@@ -119,12 +126,10 @@ activeIndex = null;
 
   /*=============================================( Initialization Methods )=============================================*/
 
-  constructor(private _AuthService: AuthService, private _DataService: DataService, private _AppointmentsService: AppointmentsService, private route: ActivatedRoute, private fb: FormBuilder, private router: Router, private datePipe: DatePipe, private toastr: ToastrService) {
+  constructor(private _AuthService: AuthService, private _DataService: DataService, private _AppointmentsService: AppointmentsService, private route: ActivatedRoute, private fb: FormBuilder, private router: Router, private datePipe: DatePipe, private toastr: ToastrService , private sanitizer: DomSanitizer) {
     this.singleDoctorId = this.route.snapshot.paramMap.get('id');
-    console.log(this.singleDoctorId);
-    this.getDoctorById();
-    console.log(this.convertDate);
-
+    // console.log(this.intervals)
+    // console.log(this.timeBookList)
   }
 
   ngOnInit(): void {
@@ -135,8 +140,12 @@ activeIndex = null;
     this.getDoctorById();
     this.initFormControl();
     this.createForm();
-    this.runSelect()
+    this.runSelect();
+    this.htmlCode = this.sanitizer.bypassSecurityTrustHtml('<p>This is the HTML code to render. Click <a class="btn btn-primary me-2" (click)="navigateToDestination()">here</a> to navigate.</p>');
 
+  }
+  navigateToDestination() {
+    this.router.navigate(['/doctors']);
   }
 
 
@@ -195,33 +204,22 @@ activeIndex = null;
               this.startDate = this.doctor.start;
               this.endDate = this.doctor.end;
               this.duration = this.doctor.patient_time_minute;
+              this.reviews = this.doctor.reviews
+              console.log(this.reviews)
+              this.displayedReviews = this.reviews.slice(0, this.displayCount);
+              console.log(this.displayedReviews)
+              let sum = 0;
 
-                let sum = 0;
-                // let avg = 0;
-                this.doctor.reviews.forEach((doctorReview)=>{
-                  // console.log(doctorReview)
-                  sum = sum + doctorReview.rating
-                })
-                this.overallRating = sum / this.doctor.reviews.length;
-            
-                
-                // console.log(Math.floor((avg%1.0)*100))
-                // if(Math.floor((avg%1.0)*100) >= 25 && Math.floor((avg%1.0)*100) < 75) {
-                //   this.overallRating = Math.floor(avg) + 0.5
-                // } else if (Math.floor((avg%1.0)*100) >= 75) {
-                //   console.log(Math.ceil(avg))
-                //   this.overallRating = Math.ceil(avg)
-                // } else {
-                //   this.overallRating = Math.floor(avg)
-                // }
-              
-
+              this.doctor.reviews.forEach((doctorReview)=>{
+                sum = sum + doctorReview.rating
+              })
+              this.overallRating = sum / this.doctor.reviews.length;
               this.calculateIntervals();
-              // this.isVisibleSpinner = false;
             },
             error: (error) => {
               this.noDataError = error;
-              // this.isVisibleSpinner = false;
+              this.toastr.error("There is no such doctor on the site");
+              this.router.navigate(['/doctors'])
             }
           });
         }
@@ -269,7 +267,7 @@ activeIndex = null;
       this.convertDate = ''
     }
 
-    console.log(this.convertDate);
+    console.log(typeof(this.convertDate));
     this.getBookDoctorList(this.convertDate)
   }
 
@@ -398,8 +396,10 @@ activeIndex = null;
               console.log(!this.timeBookList.includes(edit_timeBook))
               this.timeBookList.push(edit_timeBook)
             }       
-          }            
+          }   
         }
+        console.log(this.timeBookList)  
+        console.log(this.intervals)       
       }
     })
   }
@@ -414,6 +414,22 @@ activeIndex = null;
       console.log(event.target.value)
       this.onDaySelect(event.target.value);
     })
+  }
+
+  showMoreReviews(){
+    // Increment the display count
+    this.displayCount += this.incrementCount;
+    console.log(this.displayCount)
+
+    // Update the displayed reviews array
+    this.displayedReviews = this.reviews.slice(0, this.displayCount);
+  }
+  showLessReviews(){
+    // Increment the display count
+    this.displayCount -= this.fixedDisplayCount;
+    // Update the displayed reviews array
+    this.displayedReviews = this.reviews.slice(0, this.displayCount);
+    console.log(this.displayCount)
   }
 
 }

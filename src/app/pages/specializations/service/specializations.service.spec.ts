@@ -1,13 +1,16 @@
 import { TestBed } from '@angular/core/testing';
-
-import { SpecializationsService } from './specializations.service';
+import { SharedModule } from 'src/app/layout/shared/shared.module';
+// import { SpecializationsService } from './specializations.service';
+import { SpecializationService } from './specializations.service';
 
 describe('SpecializationsService', () => {
-  let service: SpecializationsService;
+  let service: SpecializationService;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
-    service = TestBed.inject(SpecializationsService);
+    TestBed.configureTestingModule({
+      imports:[SharedModule]
+    });
+    service = TestBed.inject(SpecializationService);
   });
 
   it('should be created', () => {

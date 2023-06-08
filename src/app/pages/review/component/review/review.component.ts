@@ -18,7 +18,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class ReviewComponent implements OnInit {
   id: any;
-  reviewId!: string;
+  reviewId!: any;
 
   reviewStatus!:string
 
@@ -147,11 +147,12 @@ export class ReviewComponent implements OnInit {
     this.getDoctorById();
     this.getLang();
     this.createReview();
-    this.route.queryParams.subscribe(params => {
-      this.reviewId = params['id'];
-    });
-    console.log(this.reviewId)
+    // this.route.queryParams.subscribe(params => {
+    //   this.reviewId = params['id'];
+    // });
+    this.reviewId = this.route.snapshot.paramMap.get('id');
     this.getreviewPatient()
+    console.log(this.reviewId)
   }
 
   // // when view load completely
@@ -202,7 +203,7 @@ export class ReviewComponent implements OnInit {
   }
 
   getreviewPatient(){
-    this.reviewDoctorSubscription = this._ReviewService.getReviewPatient(this.reviewId).subscribe({
+    this.reviewDoctorSubscription = this._ReviewService.getReviewPatient(this.id).subscribe({
       next: (reviewDoctor) => {
         console.log(reviewDoctor.data)
         this.reviewdoctor = reviewDoctor.data;

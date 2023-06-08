@@ -58,7 +58,9 @@
                   </div>
                 </div>
                 <p class="card-text">
-                  <small class=" active border p-1 rounded text-light">{{'appointmentPage.appointmentAvailable'|
+                  <small class=" active border p-1 rounded text-light" *ngIf="intervals.length != timeBookList.length">{{'appointmentPage.appointmentAvailable'|
+                    translate}}</small>
+                  <small class=" not-active border p-1 rounded text-light" *ngIf="intervals.length == timeBookList.length">{{'appointmentPage.appointmentNotAvailable'|
                     translate}}</small>
                 </p>
               </div>
@@ -80,14 +82,38 @@
             translate}}</button>
         </li>
         <li class="nav-item" role="presentation">
+          <button class="nav-link  mb-1" id="pills-review-tab" data-bs-toggle="pill"
+            data-bs-target="#pills-review" type="button" role="tab" aria-controls="pills-review"
+            aria-selected="false">{{'appointmentPage.Reviews'| translate}}</button>
+        </li>
+        <li class="nav-item" role="presentation">
           <button class="nav-link active mb-1" id="pills-profile-tab" data-bs-toggle="pill"
             data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile"
             aria-selected="false">{{'appointmentPage.Booking'| translate}}</button>
         </li>
       </ul>
-      <!-- ============================== ( Overview about Doctor ) =================================== -->
       <div class="tab-content container" id="pills-tabContent">
+        <!-- ============================== ( Reviews of the Doctor ) =================================== -->
+        <div class="tab-pane fade container row " [ngClass]="{'scrollable': displayedReviews.length >= 3}" id="pills-review" role="tabpanel" aria-labelledby="pills-review-tab">
+          <div class="card w-75 mb-3" *ngFor="let review of displayedReviews">
+            <div class="card-body">
+              <app-rating [rating]="review.rating" class="me-0"></app-rating>
+              <h5 class="card-title">{{review.created_at}}</h5>
+              <p class="card-text">{{review.comment}}</p>
+            </div>
+          </div>
+          <div class="d-flex justify-content-center">
+            <button (click)="showMoreReviews()" class="btn btn-primary text-center mb-3 rounded-3" *ngIf="displayedReviews.length < reviews.length">
+              {{'appointmentPage.showMore'| translate}}
+            </button>
+            <button (click)="showLessReviews()" class="btn btn-primary text-center mb-3 rounded-3" *ngIf="displayedReviews.length == reviews.length">
+              {{'appointmentPage.showLess'| translate}}
+            </button>
+          </div>
+        </div>
+        <!-- ============================== ( Overview about Doctor ) =================================== -->
         <div class="tab-pane fade  " id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+          <div [innerHTML]="htmlCode"></div>
           <div class="Specializations">
             <h4 class="">{{'appointmentPage.Specialist'| translate}}</h4>
             <p><i class="fa-solid {{direction === 'ltr' ? 'fa-right-long' : 'fa-left-long'}} fs6 mx-3"></i>{{doctor.specialization}}</p>

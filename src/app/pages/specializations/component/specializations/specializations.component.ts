@@ -24,7 +24,17 @@ export class SpecializationsComponent implements OnInit {
   specializations: Specialize[] = [];
   specializeSubscription = new Subscription();
 
+  specializeDetailsSubscription = new Subscription();
+  specializeDetails :Specialize={
+    id: 0,
+    name: '',
+    description: '',
+    photo: ''
+  } 
+
   searchForm: FormGroup
+  filterForm : FormGroup;
+
 
 
 
@@ -54,6 +64,15 @@ export class SpecializationsComponent implements OnInit {
     this.searchForm = this._FormBuilder.group({
       name:"",
     })
+
+    // Declare FilterForm
+    this.filterForm = this._FormBuilder.group({
+      titles: new FormArray([]),
+      genders: new FormArray([]),
+      sections: new FormArray([]),
+      name:"",
+      specialization:""
+    })
   }
 
   ngOnInit(): void {
@@ -63,12 +82,6 @@ export class SpecializationsComponent implements OnInit {
     this.getLang()
   }
 
-  // when view load completely
-  // ngAfterViewInit() {
-  //   setTimeout(() => {
-  //     Promise.resolve().then(() => this._DataService.isPageLoaded.next(true))
-  //   }, 0);
-  // }
 
   getSpecializations() {
     this._DataService._lang.subscribe({
@@ -118,6 +131,57 @@ export class SpecializationsComponent implements OnInit {
         }
       }
     })
+  }
+
+  //---------Method 2
+  getSpecializationDetails(id:number) {
+    this._DataService._lang.subscribe({
+      next: (lang) => {
+        this.lang = lang;
+        if (lang == 'en') {
+          this.rtlDir = false;
+        } else {
+          this.rtlDir = true;
+        }
+        // this.isVisibleSpinner = true;
+        console.log(id)
+        this.specializeDetailsSubscription = this._specializeService.getSpecializeDetails(lang,id ).subscribe({
+          next: (specialize) => {
+            console.log(specialize)
+            // this.isVisibleSpinner = false;
+            this.specializeDetails = specialize.data;
+            console.log(this.specializeDetails)
+            
+          },
+          error: (error) => {
+            console.log(error)
+            // this.isVisibleSpinner = false;
+          }
+        });
+      }
+    })
+  }
+
+  onSpecializeClicked(id:number){
+    this.getSpecializationDetails(id)
+  }
+
+  // triggered when click on specialization to show doctors in this specialization
+  filterDoctors(specializationId:any, specializationName:any) {
+    if(localStorage.getItem("filterForm") != null) {
+      localStorage.setItem("filterForm",JSON.stringify(this.filterForm.value)); // put new values in localstorage
+    }
+    localStorage.setItem("filteredSpecializationContent",JSON.stringify([`${specializationName}`])); // put new values in localstorage
+    this.filterForm.value["sections"].push(''+specializationId+''); // add new filter measure in filter form
+    localStorage.setItem("filterForm",JSON.stringify(this.filterForm.value)); // put new values in localstorage
+    this.router.navigate(["/doctors"])
+  }
+
+  handleSpecialize(specializeDetail: any) {
+    // Handle the "specialize" event here
+    // This method will be triggered when the "specialize" event is emitted
+    this.specializeDetails=specializeDetail
+    console.log("Specialize event emitted:",this.specializeDetails);
   }
 
 

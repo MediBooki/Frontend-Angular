@@ -35,15 +35,10 @@
                       </div>
                     </div>
                     <div class="card-body">
-                      <h4 class="mb-2"> {{'reviewPage.title'| translate}}</h4>
-                      <div class="input-field w-100 h-100 rounded p-2 col-lg-12 col-md-12 col-sm-12 form-group mb-3">
-                        <input type="text" class="px-3 fw-bolder text-secondary w-100 border-0 lh-1 p-2" id="TitleReview"
-                          placeholder="{{ 'reviewPage.TitleReview' | translate }}" required />
-                      </div>
                       <h4 class="mb-2">{{'reviewPage.yourReview'| translate}}</h4>
                       <div class="input-field w-100 h-100 rounded-3 p-2 col-lg-12 col-md-12 col-sm-12 form-group mb-3">
                         <textarea type="text" name="message" class="px-3 fw-bolder text-secondary w-100 border-0 lh-1 p-2"
-                          id="EmailLogin" placeholder="{{ 'reviewPage.reviewPlaceholder' | translate }}"[value]="reviewdoctor.comment" required formControlName="comment"></textarea>
+                          id="review-comment" placeholder="{{ 'reviewPage.reviewPlaceholder' | translate }}"[value]="reviewdoctor.comment" required formControlName="comment"></textarea>
                       </div>
                       <div class="text-center rounded-pill p-2 col-lg-12 col-md-12 col-sm-12 form-group mb-3">
                         <button type="submit" (click)="submitReview()" [disabled]="formReview.invalid" class="btn btn-primary rounded-pill text-uppercase my-2 " id="submitBtnLogin">

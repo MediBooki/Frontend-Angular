@@ -53,8 +53,8 @@
                 <div class="input-field d-flex flex-column position-relative px-3 col-md-6 col-sm-12">
                     <input type="{{ showPassword ? 'text' : 'password' }}" class="input w-100 bg-transparent mb-4" id="PasswordRegister" required autocomplete="off" formControlName="password">
                     
-                    <label for="PasswordRegister" class=" position-absolute"><i class="fas fa-lock  pe-2 fs-6"></i>{{ 'registerPage.password' | translate }}</label>
-                    <i class="fa-solid {{showPassword ? 'fa-eye' : 'fa-eye-slash' }} text-center p-3 fs-6 position-absolute end-0" (click)="togglePassword()"></i>
+                    <label for="PasswordRegister" class=" position-absolute"><i class="fas fa-lock  px-2 fs-6"></i>{{ 'registerPage.password' | translate }}</label>
+                    <i class="fa-solid {{showPassword ? 'fa-eye' : 'fa-eye-slash' }} text-center p-3 fs-6 position-absolute " [ngClass]="direction === 'ltr' ? 'end-0' : 'start-0'" (click)="togglePassword()"></i>
                     <div *ngIf="password?.invalid && password?.touched && password?.dirty">
                         <p id="PasswordRegisterError" class="text-danger" *ngIf="password?.errors?.['pattern']">
                           {{'registerPage.error7'| translate}}
@@ -66,8 +66,8 @@
                 <div class="input-field d-flex flex-column position-relative px-3 col-md-6 col-sm-12">
                     <input type="{{ showConfirmPassword ? 'text' : 'password' }}"  class="input w-100 bg-transparent mb-4" id="confirmPasswordRegister" required autocomplete="off" formControlName="confirmPassword">
                     
-                    <label for="confirmPasswordRegister" class=" position-absolute size"><i class="fas fa-lock pe-2 fs-6"></i>{{ 'registerPage.confirmPassword' | translate }}</label>
-                    <i class="fa-solid {{ showConfirmPassword? 'fa-eye' : 'fa-eye-slash' }} text-center p-3 fs-6 position-absolute end-0" (click)="toggleConfirmPassword()"></i>
+                    <label for="confirmPasswordRegister" class=" position-absolute size"><i class="fas fa-lock px-2 fs-6"></i>{{ 'registerPage.confirmPassword' | translate }}</label>
+                    <i class="fa-solid {{ showConfirmPassword? 'fa-eye' : 'fa-eye-slash' }} text-center p-3 fs-6 position-absolute" [ngClass]="direction === 'ltr' ? 'end-0' : 'start-0'" (click)="toggleConfirmPassword()"></i>
                     <div *ngIf="confirmPassword?.touched && confirmPassword?.dirty">
                         <p id="PasswordRegisterError" class="text-danger"
                           *ngIf="(patientForm.value.password)!== (patientForm.value.confirmPassword)">
@@ -87,7 +87,7 @@
                         <option value="{{ 'registerPage.female' | translate }}" required>Female</option>
                     </select>
                     
-                    <label for="UserGender_form" class=" position-absolute"><i class="fa-solid fa-venus-mars pe-2 fs-6"></i>{{ 'registerPage.gender' | translate }}</label>
+                    <label for="UserGender_form" class=" position-absolute"><i class="fa-solid fa-venus-mars px-2 fs-6"></i>{{ 'registerPage.gender' | translate }}</label>
                     <div *ngIf="gender?.touched && gender?.dirty">
                         <p id="PasswordRegisterError" class="text-danger" *ngIf="gender?.errors?.['required']">
                           {{'registerPage.error'| translate}}
@@ -109,7 +109,7 @@
                         <option value="AB-" required>AB-</option>
                         <option value="AB+" required>AB+</option>
                     </select>
-                    <label for="User_blood_group_form" class=" position-absolute"><i class="fa-solid fa-vial pe-2 fs-6"></i>{{ 'registerPage.blood' | translate }}</label>
+                    <label for="User_blood_group_form" class=" position-absolute"><i class="fa-solid fa-vial px-2 fs-6"></i>{{ 'registerPage.blood' | translate }}</label>
                     <div *ngIf="blood_group?.touched && blood_group?.dirty">
                         <p id="PasswordRegisterError" class="text-danger" *ngIf="blood_group?.errors?.['required']">
                           {{'registerPage.error'| translate}}
@@ -121,7 +121,7 @@
                 <div class="input-field d-flex flex-column position-relative px-3 mt-3">
                   <input type="text" class="input w-100 bg-transparent mb-4" id="PhonenumberRegister" required autocomplete="off" formControlName="phoneNumber">
                   
-                  <label for="PhonenumberRegister" class=" position-absolute"><i class="fa-solid fa-mobile-button pe-2 fs-6"></i>{{ 'registerPage.phoneNumber' | translate }}</label>
+                  <label for="PhonenumberRegister" class=" position-absolute"><i class="fa-solid fa-mobile-button px-2 fs-6"></i>{{ 'registerPage.phoneNumber' | translate }}</label>
                   <div *ngIf="phoneNumber?.invalid && phoneNumber?.touched && phoneNumber?.dirty">
                       <p id="PhonenumberRegisterError" class="text-danger " *ngIf="phoneNumber?.errors?.['pattern']">
                         {{'errors.phonePattern2'| translate}}
@@ -135,26 +135,26 @@
               <div class="input-field d-flex flex-column position-relative px-3">
                   <input type="text" class="input w-100 bg-transparent mb-4" id="addressRegister" required autocomplete="off" formControlName="address">
                   
-                  <label for="addressRegister" class=" position-absolute"><i class="fa-solid fa-location-dot pe-2 fs-6"></i>{{ 'registerPage.address' | translate }}</label>
+                  <label for="addressRegister" class=" position-absolute"><i class="fa-solid fa-location-dot px-2 fs-6"></i>{{ 'registerPage.address' | translate }}</label>
                   <div *ngIf="address?.touched && address?.dirty">
                       <p *ngIf="address?.errors?.['required']" class="text-danger">{{'registerPage.error'| translate}}</p>
                       <p *ngIf="address?.errors?.['minlength']" class="text-danger">{{'registerPage.error8'| translate}}</p>
+                  </div>
+              </div>
+              <!-- //////////////////////////birthDATE///////////////////////////////////////// -->
+              <div class="input-field d-flex flex-column position-relative px-3">
+                  <input type="text" name="BdateUser" id="BdateUser__form" onblur="(this.type='text')" onfocus="(this.type='date')" class="input w-100 bg-transparent mb-4" id="password" required formControlName="date_of_birth">
+                  <label for="BdateUser__form" class=" position-absolute"><i class="fa-solid fa-calendar-days text-center px-2 fs-6"></i>{{ 'registerPage.BirthOfDate' | translate }}</label>
+                  <div *ngIf="date_of_birth?.touched && date_of_birth?.dirty">
+                      <p id="PasswordRegisterError" class="text-danger" *ngIf="date_of_birth?.errors?.['required']">
+                        {{'registerPage.error'| translate}}
+                      </p>
                   </div>
               </div>
 
               </div>
 
 
-              <!-- //////////////////////////birthDATE///////////////////////////////////////// -->
-              <div class="input-field d-flex flex-column position-relative px-3">
-                  <input type="text" name="BdateUser" id="BdateUser__form" onblur="(this.type='text')" onfocus="(this.type='date')" class="input w-100 bg-transparent mb-4" id="password" required formControlName="date_of_birth">
-                  <label for="BdateUser__form" class=" position-absolute"><i class="fa-solid fa-calendar-days text-center pe-2 fs-6"></i>{{ 'registerPage.BirthOfDate' | translate }}</label>
-              </div>
-              <div *ngIf="date_of_birth?.touched && date_of_birth?.dirty">
-                  <p id="PasswordRegisterError" class="text-danger" *ngIf="date_of_birth?.errors?.['required']">
-                    {{'registerPage.error'| translate}}
-                  </p>
-              </div>
               <!-- ////////////terms///////////// -->
               <div class="terms-conditions text-center mb-3">
                   <input type="checkbox" class="mx-1" required name="termsConditions" value="checked" id="termsConditions" formControlName="terms_conditions">

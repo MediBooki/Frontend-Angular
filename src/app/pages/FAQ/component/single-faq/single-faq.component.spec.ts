@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { SharedModule } from 'src/app/layout/shared/shared.module';
 import { SingleFaqComponent } from './single-faq.component';
 
 describe('SingleFaqComponent', () => {
@@ -8,7 +8,8 @@ describe('SingleFaqComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SingleFaqComponent ]
+      declarations: [ SingleFaqComponent ],
+      imports:[SharedModule]
     })
     .compileComponents();
 
