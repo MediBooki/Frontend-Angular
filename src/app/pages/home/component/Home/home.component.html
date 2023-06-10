@@ -15,7 +15,7 @@
           <!-- <i class="fa-solid fa-suitcase-medical mx-2"></i> -->
           <i class="fa-solid fa-tags mx-2"></i>
 
-          <select class="p-2 text-white specialization-main-select2" name="specializations">
+          <select class="p-2 text-white specialization-main-select2 w-50" name="specializations">
             <option [selected]="this.filterForm.value['sections'].length == 0" disabled ></option>
             <!-- <option value="all" [selected]="this.filterForm.value['sections'].length == 0">{{rtlDir?"كل التخصصات":"All Specializations"}}</option> -->
             <option *ngFor="let specialization of allSpecializations" [value]="specialization.id" [selected]="this.filterForm.value['sections'].includes(''+specialization.id+'')">{{specialization.name}}</option>

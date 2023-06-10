@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { DataService } from 'src/app/core/services/data.service';
@@ -10,7 +10,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './reviews.component.html',
   styleUrls: ['./reviews.component.scss']
 })
-export class ReviewsComponent implements OnInit {
+export class ReviewsComponent implements OnInit, OnDestroy {
   // constructor & dependency injection
   constructor(private _DataService:DataService, private _PatientProfileService:PatientProfileService, private toastr: ToastrService ,  private router: Router) { }
 
@@ -27,9 +27,11 @@ export class ReviewsComponent implements OnInit {
   defaultImg:string = this._DataService.defaultNoImg;
 
   allPatientReviews:any[]=[];
-  PatientReviewsSubscription = new Subscription();
   PatientReviewsAPIres:any;
   allReviews_notempty?:boolean=true;
+
+  // API Subscriptions Variables
+  PatientReviewsSubscription = new Subscription();
 
 /*--------------------------------------------------------------(methods)--------------------------------- */
 
@@ -67,6 +69,13 @@ export class ReviewsComponent implements OnInit {
       }
       });
     }});
+  }
+
+    
+  /*=============================================( Destroying Method )=============================================*/
+
+  ngOnDestroy() {
+    this.PatientReviewsSubscription.unsubscribe();
   }
 
 }

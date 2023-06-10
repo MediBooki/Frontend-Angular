@@ -1,23 +1,29 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { DataService } from 'src/app/core/services/data.service';
 import { PatientProfileService } from '../../service/patient-profile.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-change-password',
   templateUrl: './change-password.component.html',
   styleUrls: ['./change-password.component.scss']
 })
-export class ChangePasswordComponent implements OnInit {
+export class ChangePasswordComponent implements OnInit, OnDestroy {
+
+  // API Subscriptions Variables
+  changePasswordSubscription = new Subscription();
+
   // constructor & dependency injection
   constructor(private _DataService:DataService, private _PatientProfileService:PatientProfileService, private toastr: ToastrService ,  private router: Router) { }
 
   ngOnInit(): void {
     this.getLang();
   }
-/*--------------------------------------------------------------(variables)------------------------------- */
+
+  /*--------------------------------------------------------------(variables)------------------------------- */
   //change password form
   changePassword = new FormGroup({
     old_password: new FormControl("", [Validators.required]),
@@ -58,7 +64,7 @@ export class ChangePasswordComponent implements OnInit {
           "password": this.changePassword.value.password,
           "password_confirmation": this.changePassword.value.password_confirmation
         }
-        this._PatientProfileService.changePassword(model).subscribe({
+        this.changePasswordSubscription = this._PatientProfileService.changePassword(model).subscribe({
           next: (response) => {
             console.log(response);
             this.toastr.success(!this.rtlDir?`Password changed successfully!`:`تم تغيير كلمة المرور بنجاح`);
@@ -80,5 +86,12 @@ export class ChangePasswordComponent implements OnInit {
   //----- Method 3
   showPassword(){
     this.showPass = this.changePassword.value.showpasscont
+  }
+
+  
+  /*=============================================( Destroying Method )=============================================*/
+
+  ngOnDestroy() {
+    this.changePasswordSubscription.unsubscribe();
   }
 }

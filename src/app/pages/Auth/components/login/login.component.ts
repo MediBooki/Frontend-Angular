@@ -1,19 +1,24 @@
 import { error } from 'jquery';
 import { ToastrService } from 'ngx-toastr';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { NavigationStart, Router } from '@angular/router';
 import { DataService } from 'src/app/core/services/data.service';
 import { Login, LoginResponse } from 'src/app/core/interfaces/patients';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
-  private navigationSubscription: any;
+export class LoginComponent implements OnInit, OnDestroy  {
+  
+  
+  // API Subscriptions Variables
+  loginSubscription = new Subscription();
+
   constructor(private fb: FormBuilder, private router: Router, private _AuthService: AuthService, private _DataService: DataService, private toastr:ToastrService) {
    }
   loginForm!: FormGroup
@@ -49,7 +54,7 @@ export class LoginComponent implements OnInit {
 
   createForm() {
     this.loginForm = this.fb.group({
-      email: ['', [Validators.required, Validators.pattern(/^[a-zA-Z][a-zA-Z0-9]{2,}@[a-z]{3,10}\.(com|net|org)$/)]],
+      email: ['', [Validators.required, Validators.pattern(/^[a-zA-Z0-9]{1,}.*[a-zA-Z0-9]{1,}@[a-z]{2,}\.[a-zA-Z]{2,}$/)]],
       Password: ['', [Validators.required, Validators.pattern(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/)]]
     })
   }
@@ -59,7 +64,7 @@ export class LoginComponent implements OnInit {
       password: this.loginForm.value.Password
     }
     this.isVisibleSpinner = true;
-    this._AuthService.login(model).subscribe((res: any) => {
+    this.loginSubscription = this._AuthService.login(model).subscribe((res: any) => {
       localStorage.setItem("token", "Bearer " + res.data.token)
       localStorage.setItem("patient_id", res.data.id)
       this._DataService.is_login.next(true);
@@ -91,11 +96,11 @@ export class LoginComponent implements OnInit {
     this.passwordType = this.passwordType === 'password' ? 'text' : 'password';
   }
 
-  ngOnDestroy() {
-    if (this.navigationSubscription) {
-      this.navigationSubscription.unsubscribe();
-    }
-  }
 
+  /*=============================================( Destroying Method )=============================================*/
+
+  ngOnDestroy() {
+    this.loginSubscription.unsubscribe();
+  }
 
 }

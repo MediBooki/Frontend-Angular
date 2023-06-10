@@ -1,17 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { DataService } from 'src/app/core/services/data.service';
 import { AuthService } from 'src/app/pages/Auth/services/auth.service';
 import { CartService } from 'src/app/pages/cart/service/cart.service';
 import { MedicinePurchased } from 'src/app/core/interfaces/medicine-purchased';
 import { ToastrService } from 'ngx-toastr';
 import { Roadmap } from 'src/app/core/interfaces/roadmap';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.scss']
 })
-export class CartComponent implements OnInit {
+export class CartComponent implements OnInit, OnDestroy {
 
 
   /*=============================================( Variables )=============================================*/
@@ -23,6 +24,13 @@ export class CartComponent implements OnInit {
 
   // API Variables
   allMedicinesPurchased:MedicinePurchased[] = []
+
+  // API Subscriptions Variables
+  addCartSubscription = new Subscription();
+  decreaseCartSubscription = new Subscription();
+  removeCartSubscription = new Subscription();
+  cartMedicinesSubscription = new Subscription();
+  removeAllCartSubscription = new Subscription();
 
   // Other Variables
   totalPrice:number = 0;
@@ -67,7 +75,7 @@ export class CartComponent implements OnInit {
       this.selectedAddRemoveMedicine = medicineId;
       this.isVisibleAddRemoveSpinner = true;
       // this.isVisibleSpinner = true;
-      this._CartService.addCart(medicineId).subscribe({
+      this.addCartSubscription = this._CartService.addCart(medicineId).subscribe({
         next:(message)=>{
           console.log(message)
           this.getPurchasedMedicines(); // to update UI
@@ -100,7 +108,7 @@ export class CartComponent implements OnInit {
       console.log(medicineQty)
       this.isVisibleAddRemoveSpinner = true;
       // this.isVisibleSpinner = true;
-      this._CartService.decreaseCart(medicineId).subscribe({
+      this.decreaseCartSubscription = this._CartService.decreaseCart(medicineId).subscribe({
         next:(message)=>{
           console.log(message)
           this.getPurchasedMedicines(); // to update UI
@@ -136,7 +144,7 @@ export class CartComponent implements OnInit {
       // this.isVisibleSpinner = true;
       this.selectedDeleteMedicine = medicineId;
       this.isVisibleDeleteSpinner = true;
-      this._CartService.removeCart(medicineId).subscribe({
+      this.removeCartSubscription = this._CartService.removeCart(medicineId).subscribe({
         next:(message)=>{
           console.log(message)
           this.getPurchasedMedicines(); // to update UI
@@ -172,7 +180,7 @@ export class CartComponent implements OnInit {
           this.direction = 'rtl';
         }
 
-        this._CartService.getAllPurchasedMedicines(lang).subscribe({
+        this.cartMedicinesSubscription = this._CartService.getAllPurchasedMedicines(lang).subscribe({
           next:(purchasedMedicines)=>{
             console.log(purchasedMedicines)
             // console.log(typeof(purchasedMedicines.data))
@@ -208,7 +216,7 @@ export class CartComponent implements OnInit {
     if (localStorage.getItem("token") != null) {
       this._CartService.medicinesQty.subscribe((qty) => { // to calculate quantity each time it changes
         // this.isVisibleSpinner = true
-        this._CartService.getAllPurchasedMedicines(this.lang).subscribe({
+        this.cartMedicinesSubscription = this._CartService.getAllPurchasedMedicines(this.lang).subscribe({
           next: (medicinesPurchased) => { // to calculate quantity for first time (when refreshing)
             if(typeof(medicinesPurchased.data)=='string' || (typeof(medicinesPurchased.data)=='object' && medicinesPurchased.data.length==0) || medicinesPurchased.data.user_cart_items.length == 0) {
               this.noData = true;
@@ -230,7 +238,7 @@ export class CartComponent implements OnInit {
   deleteAllCart() {
     if(!this.isVisibleAddRemoveSpinner) {
       this.isVisibleSpinner = true;
-      this._CartService.deleteAllCart().subscribe({
+      this.removeAllCartSubscription = this._CartService.deleteAllCart().subscribe({
         next:(message)=>{
           console.log(message)
           this.getPurchasedMedicines(); // to update UI
@@ -245,5 +253,16 @@ export class CartComponent implements OnInit {
         }
       })
     }
+  }
+
+  
+  /*=============================================( Destroying Method )=============================================*/
+
+  ngOnDestroy() {
+    this.addCartSubscription.unsubscribe();
+    this.decreaseCartSubscription.unsubscribe();
+    this.removeCartSubscription.unsubscribe();
+    this.cartMedicinesSubscription.unsubscribe();
+    this.removeAllCartSubscription.unsubscribe();
   }
 }

@@ -115,7 +115,8 @@
     "Quantity": "Quantity:",
     "Factory": "Factory:",
     "Category": "Category:",
-    "Specialization": "Specialization:"
+    "Specialization": "Specialization:",
+    "RelatedMedicines": "Related Medicines"
   },
   "SharedData": {
     "searchBtn": "Book Now",

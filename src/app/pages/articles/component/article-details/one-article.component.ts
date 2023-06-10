@@ -1,5 +1,5 @@
 import { Subscription } from 'rxjs';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/pages/Auth/services/auth.service';
 import { DataService } from 'src/app/core/services/data.service';
 import { ActivatedRoute } from '@angular/router';
@@ -12,7 +12,7 @@ import { Article } from 'src/app/core/interfaces/article';
   templateUrl: './one-article.component.html',
   styleUrls: ['./one-article.component.scss']
 })
-export class OneArticleComponent implements OnInit {
+export class OneArticleComponent implements OnInit, OnDestroy  {
 
   defaultImg:string = this._DataService.defaultNoImg;
 
@@ -64,10 +64,12 @@ export class OneArticleComponent implements OnInit {
   articleId: any;
 
   //api variable
-  articleSubscription = new Subscription();
   article:Article;
   
   articleRes:any;
+
+  // API Subscriptions Variables
+  articleSubscription = new Subscription();
 
   /*=============================================( Component Created Methods )=============================================*/
 
@@ -105,5 +107,13 @@ export class OneArticleComponent implements OnInit {
       });
     }});
   }
+
+  
+    /*=============================================( Destroying Method )=============================================*/
+
+    ngOnDestroy() {
+      this.articleSubscription.unsubscribe();
+    }
+    
 
 }

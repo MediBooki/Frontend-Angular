@@ -2,7 +2,6 @@ import { Component, HostListener, Input, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 // import { OwlOptions } from 'ngx-owl-carousel-o';
-import { Specialize } from 'src/app/core/interfaces/specialize';
 import { DataService } from 'src/app/core/services/data.service';
 
 @Component({
@@ -39,9 +38,6 @@ export class CarouselComponent implements OnInit {
 
   ngOnInit(): void {
     this.getLang();
-  }
-  ngOnChanges(){
-    console.log(this.carouselItems)
   }
 
 

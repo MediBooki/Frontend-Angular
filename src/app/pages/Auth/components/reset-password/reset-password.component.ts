@@ -1,17 +1,18 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { DataService } from 'src/app/core/services/data.service';
 import { ToastrService } from 'ngx-toastr';
 import { group } from '@angular/animations';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-reset-password',
   templateUrl: './reset-password.component.html',
   styleUrls: ['./reset-password.component.scss']
 })
-export class ResetPasswordComponent implements OnInit {
+export class ResetPasswordComponent implements OnInit, OnDestroy  {
 
   
   isVisibleSpinner: boolean = false;
@@ -26,6 +27,10 @@ export class ResetPasswordComponent implements OnInit {
   confirmPassword!:any
 
   resetPasswordForm!: FormGroup
+
+  // API Subscriptions Variables
+  resetPasswordSubscription = new Subscription();
+
 
   constructor(private fb: FormBuilder, private router: Router, private _AuthService: AuthService, private _DataService: DataService, private toastr:ToastrService) {
   }
@@ -73,7 +78,7 @@ export class ResetPasswordComponent implements OnInit {
     }
     this.isVisibleSpinner = true;
  
-    this._AuthService.resetPassword(model).subscribe((res: any) => {
+    this.resetPasswordSubscription = this._AuthService.resetPassword(model).subscribe((res: any) => {
       // this._DataService.is_login.next(true);
       this.toastr.success(!this.rtlDir?`The password has been changed successfully`:`تم تغيير الباسورد بنجاح`)
       this.isVisibleSpinner = false;
@@ -100,5 +105,12 @@ export class ResetPasswordComponent implements OnInit {
 
   toggleConfirmPassword() {
     this.showConfirmPassword = !this.showConfirmPassword;
+  }
+
+  
+  /*=============================================( Destroying Method )=============================================*/
+
+  ngOnDestroy() {
+    this.resetPasswordSubscription.unsubscribe();
   }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { DataService } from 'src/app/core/services/data.service';
@@ -10,7 +10,7 @@ import { PatientProfileService } from '../../service/patient-profile.service';
   templateUrl: './order-details.component.html',
   styleUrls: ['./order-details.component.scss']
 })
-export class OrderDetailsComponent implements OnInit {
+export class OrderDetailsComponent implements OnInit, OnDestroy {
 
   constructor(private _AuthService: AuthService, private _DataService: DataService,private _activatedRouting: ActivatedRoute,private _PatientProfileService : PatientProfileService) { }
 
@@ -38,8 +38,10 @@ export class OrderDetailsComponent implements OnInit {
 
   // api vars
   orderDetails!:any;
-  oneOrderSubscription = new Subscription();
   oneOrderAPIres:any;
+
+  // API Subscriptions Variables
+  oneOrderSubscription = new Subscription();
 
 /*=============================================( Component Created Methods )=============================================*/
 
@@ -75,6 +77,13 @@ export class OrderDetailsComponent implements OnInit {
         }
         });
       }});
+  }
+
+    
+  /*=============================================( Destroying Method )=============================================*/
+
+  ngOnDestroy() {
+    this.oneOrderSubscription.unsubscribe();
   }
 
 }

@@ -11,7 +11,6 @@ import { environment } from 'src/environments/environment';
 export class CartService {
   sharedApi: string = environment.apimain;
   medicinesQty = new BehaviorSubject(0);
-  favoritesId = new BehaviorSubject<number[]>([]); // medicines IDs added to favorite
   private cartData: any;
 
   constructor(private http:HttpClient) { }
@@ -82,30 +81,6 @@ export class CartService {
     })
   }
 
-
-  // add medicine to favorite
-  addFavorite(medicineId:number):Observable<any> {
-    const model = {
-      "medicine_id": medicineId
-    }
-    let headers = new HttpHeaders();
-    headers = this.createAuthorizationHeader(headers);
-    return this.http.post(this.sharedApi + `/patient/wishlist/medicine` , model , {headers: headers})
-  }
-
-  // remove medicine from favorite
-  removeFavorite(medicineId:number):Observable<any> {
-    let headers = new HttpHeaders();
-    headers = this.createAuthorizationHeader(headers);
-    return this.http.delete(this.sharedApi + `/patient/wishlist/medicine/${medicineId}` , {headers: headers})
-  }
-
-  // return all favorited medicines
-  getAllFavorite():Observable<any> {
-    let headers = new HttpHeaders();
-    headers = this.createAuthorizationHeader(headers);
-    return this.http.get(this.sharedApi + `/patient/wishlist/medicine` , {headers: headers})
-  }
 
 
   checkoutDetails(model:any):Observable<any> {

@@ -21,3 +21,33 @@
   color: #fff;
   background: $mainColor2;
 }
+
+.insurance-name {
+  font-size: 1.7rem;
+}
+
+.insurance-img {
+  width: 30px;
+  height: 30px;
+}
+
+.total-discount {
+  font-size: 2.5rem;
+}
+
+.progress {
+  height: 30px;
+  width: 95% !important;
+
+  .progress-bar {
+    font-size: 1.2rem;
+    background: $mainColor2;
+  }
+}
+
+.inurance-discount, 
+.hospital-discount {
+  span {
+    font-size: 1.2rem;
+  }
+}

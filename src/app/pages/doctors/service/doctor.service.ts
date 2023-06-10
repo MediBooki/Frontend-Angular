@@ -23,8 +23,8 @@ export class DoctorService {
       console.log(typeof (model[obj]))
       if (typeof (model[obj]) == 'object') {
         console.log(typeof (model[obj]) == 'object');
-        model[obj].forEach((gg: string) => {
-          params = params.append(`${obj}[]`, gg);
+        model[obj].forEach((arr: string) => {
+          params = params.append(`${obj}[]`, arr);
         })
       } else {
         params = params.append(`${obj}`, model[obj]);

@@ -115,7 +115,8 @@
     "Quantity": "الكمية:",
     "Factory": "المصنع:",
     "Category": "الفئة:",
-    "Specialization": "تابع لقسم:"
+    "Specialization": "تابع لقسم:",
+    "RelatedMedicines": "الأدوية المشابهة"
   },
   "SharedData": {
     "searchBtn": "احجز الأن",

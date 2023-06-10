@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AuthService } from '../../../Auth/services/auth.service';
 import { DataService } from 'src/app/core/services/data.service';
 import { ArticlesService } from '../../service/articles.service';
@@ -11,7 +11,7 @@ import { Article } from 'src/app/core/interfaces/article';
   templateUrl: './articles.component.html',
   styleUrls: ['./articles.component.scss']
 })
-export class ArticlesComponent implements OnInit {
+export class ArticlesComponent implements OnInit, OnDestroy  {
 
 
   // roadmap variable
@@ -52,9 +52,13 @@ export class ArticlesComponent implements OnInit {
 
 
   // apivariables
-  articalesSubscription = new Subscription();
   articles: Article[] = [];
   articalsRes:any;
+
+  // API Subscriptions Variables
+  articalesSubscription = new Subscription();
+
+  
   /*=============================================( Component Created Methods )=============================================*/
 
   //----- Method 1
@@ -116,4 +120,11 @@ export class ArticlesComponent implements OnInit {
     this.getArticales();
   }
 
+  
+    /*=============================================( Destroying Method )=============================================*/
+
+    ngOnDestroy() {
+      this.articalesSubscription.unsubscribe();
+    }
+    
 }

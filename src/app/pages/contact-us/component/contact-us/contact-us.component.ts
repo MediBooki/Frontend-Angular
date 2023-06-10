@@ -1,17 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/pages/Auth/services/auth.service';
 import { DataService } from 'src/app/core/services/data.service';
 import { ContactUsService } from '../../service/contact-us.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { Roadmap } from 'src/app/core/interfaces/roadmap';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-contact-us',
   templateUrl: './contact-us.component.html',
   styleUrls: ['./contact-us.component.scss']
 })
-export class ContactUsComponent implements OnInit {
+export class ContactUsComponent implements OnInit, OnDestroy {
 
 
   // roadmap variable
@@ -45,11 +46,15 @@ export class ContactUsComponent implements OnInit {
 
   //contact us form
   contactUsForm = new FormGroup({
-    email: new FormControl("", [Validators.required, Validators.email]),
+    email: new FormControl("", [Validators.required, Validators.email, Validators.pattern(/^[a-zA-Z0-9]{1,}.*[a-zA-Z0-9]{1,}@[a-z]{2,}\.[a-zA-Z]{2,}$/)]),
     name : new FormControl("", [Validators.required]),
     phone : new FormControl("", [Validators.required, Validators.pattern(/^\+?(002)?[\d\s()-]{4,}$/)]),
     description : new FormControl("", [Validators.required])
   })
+
+  // API Subscriptions Variables
+  contactUsSubscription = new Subscription();
+
   /*=============================================( Component Created Methods )=============================================*/
 
   //----- Method 1
@@ -74,7 +79,7 @@ export class ContactUsComponent implements OnInit {
   contactUs(){
     console.log(this.contactUsForm)
     if(this.contactUsForm.valid){
-      this._contactus.contactUs(this.contactUsForm.value).subscribe({
+      this.contactUsSubscription = this._contactus.contactUs(this.contactUsForm.value).subscribe({
         next: (response) => {
           console.log(response);
           this.toastr.success(!this.rtlDir?`Your inquiry has been sent successfully!`:`تم ارسال استفسارك بنجاح`);
@@ -89,5 +94,12 @@ export class ContactUsComponent implements OnInit {
       this.toastr.error(!this.rtlDir?`Please enter all data`:`من فضلك ادخل جميع البيانات` );
     }
 
+  }
+
+
+  /*=============================================( Destroying Method )=============================================*/
+
+  ngOnDestroy() {
+    this.contactUsSubscription.unsubscribe();
   }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { DataService } from 'src/app/core/services/data.service';
@@ -10,7 +10,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './invoices.component.html',
   styleUrls: ['./invoices.component.scss']
 })
-export class InvoicesComponent implements OnInit {
+export class InvoicesComponent implements OnInit, OnDestroy {
   //constructor & dependency injection
   constructor(private _DataService:DataService, private _PatientProfileService:PatientProfileService, private toastr: ToastrService ,  private router: Router) { }
 
@@ -28,9 +28,12 @@ export class InvoicesComponent implements OnInit {
   colDataIndex:number =0
 
   allInvoices:any[]=[];
-  invoicesSubscription = new Subscription();
   invoicesAPIres:any;
   allInvoices_notempty?:boolean=true;
+
+  // API Subscriptions Variables
+  invoicesSubscription = new Subscription();
+
 /*--------------------------------------------------------------(methods)--------------------------------- */
   //----- Method 1
   // Setting Direction
@@ -92,5 +95,13 @@ export class InvoicesComponent implements OnInit {
       });
     }});
   }
+
+  
+  /*=============================================( Destroying Method )=============================================*/
+
+  ngOnDestroy() {
+    this.invoicesSubscription.unsubscribe();
+  }
+
 
 }

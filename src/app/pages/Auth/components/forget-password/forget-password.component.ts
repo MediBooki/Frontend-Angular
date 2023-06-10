@@ -1,16 +1,21 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { DataService } from 'src/app/core/services/data.service';
 import { ToastrService } from 'ngx-toastr';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-forget-password',
   templateUrl: './forget-password.component.html',
   styleUrls: ['./forget-password.component.scss']
 })
-export class ForgetPasswordComponent implements OnInit {
+export class ForgetPasswordComponent implements OnInit, OnDestroy  {
+
+  
+  // API Subscriptions Variables
+  forgetPasswordSubscription = new Subscription();
 
   isVisibleSpinner: boolean = false;
 
@@ -61,7 +66,7 @@ export class ForgetPasswordComponent implements OnInit {
       email: this.forgetPasswordForm.value.email,
     }
     this.isVisibleSpinner = true;
-    this._AuthService.forgetPassword(model).subscribe((res: any) => {
+    this.forgetPasswordSubscription = this._AuthService.forgetPassword(model).subscribe((res: any) => {
       // console.log(res);
       localStorage.setItem("reset_token", res.reset_token)
       localStorage.setItem("email_patient", this.forgetPasswordForm.value.email)
@@ -75,5 +80,11 @@ export class ForgetPasswordComponent implements OnInit {
     })
     console.log(this.forgetPasswordForm.value)
   }
+
+      /*=============================================( Destroying Method )=============================================*/
+
+      ngOnDestroy() {
+        this.forgetPasswordSubscription.unsubscribe();
+      }
 
 }

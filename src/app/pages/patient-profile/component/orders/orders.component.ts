@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { DataService } from 'src/app/core/services/data.service';
@@ -11,7 +11,7 @@ import { CartService } from 'src/app/pages/cart/service/cart.service';
   templateUrl: './orders.component.html',
   styleUrls: ['./orders.component.scss']
 })
-export class OrdersComponent implements OnInit {
+export class OrdersComponent implements OnInit, OnDestroy {
   // constructor & dependency injection
   constructor(private _DataService:DataService, private _PatientProfileService:PatientProfileService, private toastr: ToastrService ,  private router: Router,private _cartservice : CartService,private route: ActivatedRoute) { }
 
@@ -27,9 +27,12 @@ export class OrdersComponent implements OnInit {
   direction:string = 'ltr';
 
   orders:any[]=[];
-  ordersSubscription = new Subscription();
   ordersAPIres:any;
   allOrders_notempty?:boolean=true;
+
+  // API Subscriptions Variables
+  ordersSubscription = new Subscription();
+  savePaymentSubscription = new Subscription();
 
 /*--------------------------------------------------------------(methods)--------------------------------- */
 
@@ -91,7 +94,7 @@ export class OrdersComponent implements OnInit {
             "source_data" : params['source_data.type'],
             "source_subdata" : params['source_data.sub_type']
           }
-          this._cartservice.savePaymentOnline(model).subscribe({
+          this.savePaymentSubscription = this._cartservice.savePaymentOnline(model).subscribe({
             next:(res)=>{
               console.log(res)
               localStorage.removeItem('currentPaymentId');
@@ -112,4 +115,13 @@ export class OrdersComponent implements OnInit {
 
     });
   }
+
+    
+  /*=============================================( Destroying Method )=============================================*/
+
+  ngOnDestroy() {
+    this.ordersSubscription.unsubscribe();
+    this.savePaymentSubscription.unsubscribe();
+  }
+
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { DataService } from 'src/app/core/services/data.service';
 import { PatientProfileService } from '../../service/patient-profile.service';
 import { ToastrService } from 'ngx-toastr';
@@ -10,7 +10,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './my-appointments.component.html',
   styleUrls: ['./my-appointments.component.scss']
 })
-export class MyAppointmentsComponent implements OnInit {
+export class MyAppointmentsComponent implements OnInit, OnDestroy {
   // constructor & dependency injection
   constructor(private _DataService:DataService, private _PatientProfileService:PatientProfileService, private toastr: ToastrService ,  private router: Router) { }
 
@@ -32,12 +32,14 @@ export class MyAppointmentsComponent implements OnInit {
   reviewBtn!:boolean
   reviewId?:number
   Appointments:any[]=[];
-  AppointmentsSubscription = new Subscription();
   AppointmentsAPIres:any;
   allAppointment_notempty?:boolean=true;
   allPatientReviews:any[]=[];
-  PatientReviewsSubscription = new Subscription();
   PatientReviewsAPIres:any;
+
+  // API Subscriptions Variables
+  AppointmentsSubscription = new Subscription();
+  PatientReviewsSubscription = new Subscription();
 
 /*--------------------------------------------------------------(methods)--------------------------------- */
 
@@ -151,6 +153,14 @@ export class MyAppointmentsComponent implements OnInit {
       }
       });
     }});
+  }
+
+    
+  /*=============================================( Destroying Method )=============================================*/
+
+  ngOnDestroy() {
+    this.AppointmentsSubscription.unsubscribe();
+    this.PatientReviewsSubscription.unsubscribe();
   }
 
 }

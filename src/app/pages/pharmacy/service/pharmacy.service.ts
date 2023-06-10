@@ -1,6 +1,6 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, catchError, throwError } from 'rxjs';
+import { BehaviorSubject, Observable, catchError, throwError } from 'rxjs';
 import { Medicine } from 'src/app/core/interfaces/medicine';
 import { MedicineCategory } from 'src/app/core/interfaces/medicine-category';
 import { environment } from 'src/environments/environment';
@@ -11,7 +11,11 @@ import { environment } from 'src/environments/environment';
 export class PharmacyService {
 
   sharedApi: string = environment.apimain;
-
+  favoritesId = new BehaviorSubject<number[]>([]); // medicines IDs added to favorite
+  // General Method to Create Authorization Header
+  createAuthorizationHeader(headers: HttpHeaders) {
+    return headers.append('Authorization', localStorage.getItem("token")!);
+  }
   constructor(private _HttpClient: HttpClient) { }
 
   getFilteredMedicines(model: any, lang: string, page: number): Observable<any> {
@@ -22,8 +26,8 @@ export class PharmacyService {
       console.log(typeof (model[obj]))
       if (typeof (model[obj]) == 'object') {
         console.log(typeof (model[obj]) == 'object');
-        model[obj].forEach((gg: string) => {
-          params = params.append(`${obj}[]`, gg);
+        model[obj].forEach((arr: string) => {
+          params = params.append(`${obj}[]`, arr);
         })
       } else {
         params = params.append(`${obj}`, model[obj]);
@@ -55,4 +59,31 @@ export class PharmacyService {
       return throwError(e)
     }));
   }
+
+
+  
+  // add medicine to favorite
+  addFavorite(medicineId:number):Observable<any> {
+    const model = {
+      "medicine_id": medicineId
+    }
+    let headers = new HttpHeaders();
+    headers = this.createAuthorizationHeader(headers);
+    return this._HttpClient.post(this.sharedApi + `/patient/wishlist/medicine` , model , {headers: headers})
+  }
+
+  // remove medicine from favorite
+  removeFavorite(medicineId:number):Observable<any> {
+    let headers = new HttpHeaders();
+    headers = this.createAuthorizationHeader(headers);
+    return this._HttpClient.delete(this.sharedApi + `/patient/wishlist/medicine/${medicineId}` , {headers: headers})
+  }
+
+  // return all favorited medicines
+  getAllFavorite(lang: string):Observable<any> {
+    let headers = new HttpHeaders();
+    headers = this.createAuthorizationHeader(headers);
+    return this._HttpClient.get(this.sharedApi + `/patient/wishlist/medicine?lang=${lang}` , {headers: headers})
+  }
+
 }

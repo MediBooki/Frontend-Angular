@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { Doctor } from 'src/app/core/interfaces/doctor';
 import { AuthService } from 'src/app/pages/Auth/services/auth.service';
 import { DataService } from 'src/app/core/services/data.service';
@@ -8,7 +8,7 @@ import { DataService } from 'src/app/core/services/data.service';
   templateUrl: './doctor.component.html',
   styleUrls: ['./doctor.component.scss']
 })
-export class DoctorComponent implements OnInit {
+export class DoctorComponent implements OnInit, OnChanges {
 
   // Variables
   rtlDir:boolean = false;

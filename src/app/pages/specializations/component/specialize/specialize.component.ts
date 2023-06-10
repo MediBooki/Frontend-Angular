@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -12,7 +12,7 @@ import { SpecializationService } from '../../service/specializations.service';
   templateUrl: './specialize.component.html',
   styleUrls: ['./specialize.component.scss']
 })
-export class SpecializeComponent implements OnInit {
+export class SpecializeComponent implements OnInit, OnDestroy {
 
   // Direction Variables
   lang: string = "en";
@@ -21,8 +21,9 @@ export class SpecializeComponent implements OnInit {
   defaultSpecializationImg:string = this._DataService.defaultNoImg;
   defaultMedicineImg:string = this._DataService.defaultNoImg;
 
-
+  // API Subscriptions Variables
   specializeDetailsSubscription = new Subscription();
+
   specializeDetails :Specialize={
     id: 0,
     name: '',
@@ -104,7 +105,9 @@ export class SpecializeComponent implements OnInit {
   }
 
   
+  /*=============================================( Destroying Method )=============================================*/
 
-
-
+  ngOnDestroy() {
+    this.specializeDetailsSubscription.unsubscribe();
+  }
 }

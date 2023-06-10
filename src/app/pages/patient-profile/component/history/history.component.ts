@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { DataService } from 'src/app/core/services/data.service';
@@ -10,7 +10,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './history.component.html',
   styleUrls: ['./history.component.scss']
 })
-export class HistoryComponent implements OnInit {
+export class HistoryComponent implements OnInit, OnDestroy {
   // constructor & dependency injection
   constructor(private _DataService:DataService, private _PatientProfileService:PatientProfileService, private toastr: ToastrService ,  private router: Router) { }
 
@@ -19,14 +19,17 @@ export class HistoryComponent implements OnInit {
     this.getDiagnosis();
   }
 /*--------------------------------------------------------------(variables)------------------------------- */
+
   lang:string = "en";
   rtlDir:boolean = false;
   direction:string = 'ltr';
 
   allDiagnosis: any[] = [];
   allDiagnosis_notempty?:boolean=true;
-  diagnosisSubscription = new Subscription();
   diagnosisAPIres: any;
+
+  // API Subscriptions Variables
+  diagnosisSubscription = new Subscription();
 
 /*--------------------------------------------------------------(methods)--------------------------------- */
 
@@ -65,6 +68,13 @@ export class HistoryComponent implements OnInit {
       }
     });
   }});
+  }
+
+  
+  /*=============================================( Destroying Method )=============================================*/
+
+  ngOnDestroy() {
+    this.diagnosisSubscription.unsubscribe();
   }
 
 }

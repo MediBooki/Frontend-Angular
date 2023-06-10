@@ -1,10 +1,9 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { DataService } from 'src/app/core/services/data.service';
-import { CartService } from 'src/app/pages/cart/service/cart.service';
 import { PharmacyService } from '../../service/pharmacy.service';
 import { Medicine } from 'src/app/core/interfaces/medicine';
-import { MedicinePurchased } from 'src/app/core/interfaces/medicine-purchased';
 import { ToastrService } from 'ngx-toastr';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-medicine',
@@ -21,6 +20,10 @@ export class MedicineComponent implements OnInit {
   favoriteAdded:boolean = false;
   favoriteLoaded:boolean = false;
 
+  // API Subscriptions Variables
+  addFavoriteSubscription = new Subscription();
+  removeFavoriteSubscription = new Subscription();
+
   @Input() medicine:Medicine;
   // @Input() favoritesFound:boolean = false;
 
@@ -29,7 +32,7 @@ export class MedicineComponent implements OnInit {
 
   /*=============================================( Initialization Methods )=============================================*/
   
-  constructor(private _DataService:DataService ,private _PharmacyService : PharmacyService, private _CartService:CartService, private toastr: ToastrService) {
+  constructor(private _DataService:DataService ,private _PharmacyService : PharmacyService, private toastr: ToastrService) {
     this.medicine =  {
       id:0,
       name:'',
@@ -78,15 +81,15 @@ export class MedicineComponent implements OnInit {
       if(className == "fa-heart-circle-plus") // check if favorite btn is not triggered yet
       {
         this.favoriteAdded = true;
-        this._CartService.addFavorite(this.medicine.id).subscribe({
+        this.addFavoriteSubscription = this._PharmacyService.addFavorite(this.medicine.id).subscribe({
           next:(res)=>{
             this.toastr.success(!this.rtlDir?`This Medicine Added to Favorites`:`تم اضافة الدواء الى المفضلة`, !this.rtlDir?`Favorites Result`:`ناتج التفضيلات`)
             console.log(res)
-            console.log(this._CartService.favoritesId.value)
-            let newFavorites = this._CartService.favoritesId.value;
+            console.log(this._PharmacyService.favoritesId.value)
+            let newFavorites = this._PharmacyService.favoritesId.value;
             newFavorites.push(this.medicine.id);
-            this._CartService.favoritesId.next(newFavorites);
-            console.log(this._CartService.favoritesId.value)
+            this._PharmacyService.favoritesId.next(newFavorites);
+            console.log(this._PharmacyService.favoritesId.value)
           },
           error:(error)=>{
             this.toastr.error(!this.rtlDir?`An Error has occured`:`حدث خطأ ما` , `${error}`)
@@ -95,15 +98,15 @@ export class MedicineComponent implements OnInit {
         return;
       } else if(className == "fa-heart-circle-check") {
         this.favoriteAdded = false;
-        this._CartService.removeFavorite(this.medicine.id).subscribe({
+        this.removeFavoriteSubscription = this._PharmacyService.removeFavorite(this.medicine.id).subscribe({
           next:(res)=>{
             this.toastr.info(!this.rtlDir?`This Medicine Removed from Favorites`:`تم ازالة الدواء من المفضلة`, !this.rtlDir?`Favorites Result`:`ناتج التفضيلات`)
             console.log(res)
-            let newFavorites = this._CartService.favoritesId.value;
-            let removeIndex = this._CartService.favoritesId.value.indexOf(this.medicine.id); // to know index of removed medicine from favorites
+            let newFavorites = this._PharmacyService.favoritesId.value;
+            let removeIndex = this._PharmacyService.favoritesId.value.indexOf(this.medicine.id); // to know index of removed medicine from favorites
             newFavorites.splice(removeIndex, 1);
-            this._CartService.favoritesId.next(newFavorites);
-            console.log(this._CartService.favoritesId.value);
+            this._PharmacyService.favoritesId.next(newFavorites);
+            console.log(this._PharmacyService.favoritesId.value);
             this.removeFavEmit();
           },
           error:(error)=>{
@@ -146,7 +149,7 @@ export class MedicineComponent implements OnInit {
 
   setFavorite() {
     if(localStorage.getItem("token") != null) {
-      this._CartService.favoritesId.subscribe({
+      this._PharmacyService.favoritesId.subscribe({
         next:(res)=>{
           // if(res.length != 0) {
             console.log(res)
@@ -178,5 +181,13 @@ export class MedicineComponent implements OnInit {
   //   }
 
   // }
+
+  
+  /*=============================================( Destroying Method )=============================================*/
+
+  ngOnDestroy() {
+    this.addFavoriteSubscription.unsubscribe();
+    this.removeFavoriteSubscription.unsubscribe();
+  }
 
 }

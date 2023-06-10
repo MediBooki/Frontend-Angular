@@ -1,6 +1,5 @@
 import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
 import { DataService } from 'src/app/core/services/data.service';
-import { CartService } from 'src/app/pages/cart/service/cart.service';
 import { AuthService } from 'src/app/pages/Auth/services/auth.service';
 import { MedicineCategory } from 'src/app/core/interfaces/medicine-category';
 import { Medicine } from 'src/app/core/interfaces/medicine';
@@ -30,10 +29,14 @@ export class PharmacyComponent implements OnInit {
   
   // API Variables
   allMedicines:Medicine[] = [];
+  allCategories:MedicineCategory[] = [];
+
+  // API Subscriptions Variables
   medicinesSubscription = new Subscription();
   langSubscription = new Subscription();
-  FavoritesSubscribtion = new Subscription();
-  allCategories:MedicineCategory[] = [];
+  favoritesSubscribtion = new Subscription();
+  countersSubscribtion = new Subscription();
+  categoriesSubscription = new Subscription();
 
   // Pagination Configuration Variables
   numMedicinesPerPage:number = 15; // number of doctors displayed per one page
@@ -76,7 +79,7 @@ export class PharmacyComponent implements OnInit {
 
   /*=============================================( Initialization Methods )=============================================*/
   
-  constructor(private _DataService:DataService ,private _PharmacyService:PharmacyService, private _AuthService:AuthService , private _CartService:CartService, private _FormBuilder:FormBuilder, private toastr: ToastrService, private router: Router) {
+  constructor(private _DataService:DataService ,private _PharmacyService:PharmacyService, private _AuthService:AuthService , private _FormBuilder:FormBuilder, private toastr: ToastrService, private router: Router) {
     this.medicineFilterForm = this._FormBuilder.group({
       name:"",
       minPrice: "",
@@ -183,7 +186,7 @@ export class PharmacyComponent implements OnInit {
           this.direction = 'rtl';
         }
 
-        this._PharmacyService.getCategories(this.lang).subscribe({
+        this.categoriesSubscription = this._PharmacyService.getCategories(this.lang).subscribe({
           next:(categories)=>{
             this.allCategories = categories.data;
             console.log(this.allCategories)
@@ -413,6 +416,7 @@ export class PharmacyComponent implements OnInit {
   // when clicking on search button 
   submitForm() {
     this.page = 1;
+    console.log(this.medicineFilterForm.controls['name'].value)
     this.setFilterForm(); // set filter form with local storage value
     localStorage.setItem("medicineFilterForm",JSON.stringify(this.medicineFilterForm.value)); // put new values in localstorage
     this.getFilteredMedicines();
@@ -437,19 +441,19 @@ export class PharmacyComponent implements OnInit {
   setFavorite() {
     let favoritesId:number[] = []
     if (localStorage.getItem("token") != null) {
-      if(this._CartService.favoritesId.value.length == 0) {
-        this.FavoritesSubscribtion = this._CartService.getAllFavorite().subscribe({
-      next:(favorites)=>{
-        console.log(favorites.data)
-        favorites.data.forEach((favMedicine:any)=>{
-          favoritesId.push(favMedicine.id)
+      if(this._PharmacyService.favoritesId.value.length == 0) {
+        this.favoritesSubscribtion = this._PharmacyService.getAllFavorite(this.lang).subscribe({
+          next:(favorites)=>{
+            console.log(favorites.data)
+            favorites.data.forEach((favMedicine:any)=>{
+              favoritesId.push(favMedicine.id)
+            })
+            this._PharmacyService.favoritesId.next(favoritesId);
+            console.log(favoritesId)
+          }
         })
-        this._CartService.favoritesId.next(favoritesId);
-        console.log(favoritesId)
       }
-    })
-  }
-  }
+    }
   }
 
   // favoritesFound(medicineId:number):boolean {
@@ -483,19 +487,23 @@ export class PharmacyComponent implements OnInit {
   // }
 
   getCounterVals() {
-    this._DataService.getCounterVals().subscribe({
+    this.countersSubscribtion = this._DataService.getCounterVals().subscribe({
       next:(res)=>{
         this.numOfMedicines = res.medicine;
       }
     })
   }
 
+
   /*=============================================( Destroying Method )=============================================*/
 
   ngOnDestroy() {
     this.medicinesSubscription.unsubscribe();
     this.langSubscription.unsubscribe();
-    this.FavoritesSubscribtion.unsubscribe();
+    this.favoritesSubscribtion.unsubscribe();
+    this.categoriesSubscription.unsubscribe();
+    this.countersSubscribtion.unsubscribe();
+
     const currentUrl = this.router.url;
     if(!currentUrl.includes("pharmacy")) {
       this.filteredContent = [];

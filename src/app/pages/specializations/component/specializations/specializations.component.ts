@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Specialize } from 'src/app/core/interfaces/specialize';
 import { DataService } from 'src/app/core/services/data.service';
@@ -13,7 +13,7 @@ import { Roadmap } from 'src/app/core/interfaces/roadmap';
   templateUrl: './specializations.component.html',
   styleUrls: ['./specializations.component.scss']
 })
-export class SpecializationsComponent implements OnInit {
+export class SpecializationsComponent implements OnInit, OnDestroy  {
 
   // Direction Variables
   lang: string = "en";
@@ -22,9 +22,11 @@ export class SpecializationsComponent implements OnInit {
   noDataError: any; // in case of error
 
   specializations: Specialize[] = [];
-  specializeSubscription = new Subscription();
 
+  // API Subscriptions Variables
+  specializeSubscription = new Subscription();
   specializeDetailsSubscription = new Subscription();
+
   specializeDetails :Specialize={
     id: 0,
     name: '',
@@ -196,5 +198,13 @@ export class SpecializationsComponent implements OnInit {
   resetSearch(){
     this.searchForm.get("name")?.setValue("");
     this.getSpecializations()
+  }
+
+  
+  /*=============================================( Destroying Method )=============================================*/
+
+  ngOnDestroy() {
+    this.specializeDetailsSubscription.unsubscribe();
+    this.specializeSubscription.unsubscribe();
   }
 }

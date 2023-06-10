@@ -1,4 +1,4 @@
-import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, HostListener, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { DataService } from 'src/app/core/services/data.service';
 import { CartService } from 'src/app/pages/cart/service/cart.service';
 import { AuthService } from 'src/app/pages/Auth/services/auth.service';
@@ -20,7 +20,7 @@ import { Roadmap } from 'src/app/core/interfaces/roadmap';
   templateUrl: './medicine-details.component.html',
   styleUrls: ['./medicine-details.component.scss']
 })
-export class MedicineDetailsComponent implements OnInit {
+export class MedicineDetailsComponent implements OnInit, OnDestroy {
 
   /*=============================================( Variables )=============================================*/
 
@@ -31,10 +31,18 @@ export class MedicineDetailsComponent implements OnInit {
   
   // API Variables
   medicineDetails:Medicine;
-  medicineSubscription = new Subscription();
   medicineId:any;
+
   langSubscription = new Subscription();
+
+  // API Subscriptions Variables
+  addFavoriteSubscription = new Subscription();
+  removeFavoriteSubscription = new Subscription();
   FavoritesSubscribtion = new Subscription();
+  addCartSubscription = new Subscription();
+  medicineSubscription = new Subscription();
+  medicinesSubscription = new Subscription();
+
 
   
     // Filter and Search Form Variables
@@ -69,7 +77,7 @@ export class MedicineDetailsComponent implements OnInit {
     }
   /*=============================================( Initialization Methods )=============================================*/
   
-  constructor(private _DataService:DataService ,private _PharmacyService:PharmacyService, private _AuthService:AuthService , private _CartService:CartService, private _FormBuilder:FormBuilder, private _ActivatedRoute:ActivatedRoute, private toastr: ToastrService, private router: Router) {
+  constructor(private _DataService:DataService ,private _PharmacyService:PharmacyService, private _AuthService:AuthService , private _CartService:CartService, private _pharmacyService:PharmacyService, private _FormBuilder:FormBuilder, private _ActivatedRoute:ActivatedRoute, private toastr: ToastrService, private router: Router) {
     this.medicineDetails =  {
       id:0,
       name:'',
@@ -169,7 +177,7 @@ export class MedicineDetailsComponent implements OnInit {
       console.log(this.medicineDetails.category.id)
       this.medicineFilterForm.value["categories"].push(this.medicineDetails.category.id)
       console.log(this.medicineFilterForm.value["categories"])
-      this._PharmacyService.getFilteredMedicines(this.medicineFilterForm.value, this.lang, 1).subscribe({
+      this.medicinesSubscription = this._PharmacyService.getFilteredMedicines(this.medicineFilterForm.value, this.lang, 1).subscribe({
         next:(res)=>{
           console.log(res.data)
           const filteredMedicines = res.data.filter((medicine:any) => medicine.id !== this.medicineDetails.id);
@@ -211,12 +219,10 @@ export class MedicineDetailsComponent implements OnInit {
     })
       
   }
-  habd = new BehaviorSubject(0)
   //----- Method 3
   getMedicineDetails() {
     // this.isVisibleSpinner = true;
     // this.medicineId = this._ActivatedRoute.snapshot.params["id"];
-    // this.habd.next(this._ActivatedRoute.snapshot.params["id"])
     // to subscribe in language to know in case of changing
     this.langSubscription = this._DataService._lang.subscribe({
       next:(lang)=>{
@@ -229,9 +235,7 @@ export class MedicineDetailsComponent implements OnInit {
           this.rtlDir = true;
           this.direction = 'rtl';
         }
-        this.habd.subscribe((rere)=>{
-          console.log(rere)
-        })
+
         // to get all medicines
         this.medicineSubscription = this._PharmacyService.getSpecificMedicine(this.medicineId,this.lang).subscribe({
           next: (medicine)=>{
@@ -275,14 +279,14 @@ export class MedicineDetailsComponent implements OnInit {
       if(className == "btn-not-active")
       {
         this.favoriteAdded = true;
-        this._CartService.addFavorite(this.medicineDetails.id).subscribe({
+        this.addFavoriteSubscription = this._pharmacyService.addFavorite(this.medicineDetails.id).subscribe({
           next:(res)=>{
             this.toastr.success(!this.rtlDir?`This Medicine Added to Favorites`:`تم اضافة الدواء الى المفضلة`, !this.rtlDir?`Favorites Result`:`ناتج التفضيلات`)
             console.log(res)
-            let newFavorites = this._CartService.favoritesId.value;
+            let newFavorites = this._pharmacyService.favoritesId.value;
             newFavorites.push(this.medicineDetails.id);
-            this._CartService.favoritesId.next(newFavorites);
-            console.log(this._CartService.favoritesId.value)
+            this._pharmacyService.favoritesId.next(newFavorites);
+            console.log(this._pharmacyService.favoritesId.value)
           },
           error:(error)=>{
             this.toastr.error(!this.rtlDir?`An Error has occured`:`حدث خطأ ما` , `${error}`)
@@ -291,15 +295,15 @@ export class MedicineDetailsComponent implements OnInit {
         return;
       } else if(className == "btn-active") {
         this.favoriteAdded = false;
-        this._CartService.removeFavorite(this.medicineDetails.id).subscribe({
+        this.removeFavoriteSubscription = this._pharmacyService.removeFavorite(this.medicineDetails.id).subscribe({
           next:(res)=>{
             this.toastr.info(!this.rtlDir?`This Medicine Removed from Favorites`:`تم ازالة الدواء من المفضلة`, !this.rtlDir?`Favorites Result`:`ناتج التفضيلات`)
             console.log(res)
-            let newFavorites = this._CartService.favoritesId.value;
-            let removeIndex = this._CartService.favoritesId.value.indexOf(this.medicineDetails.id); // to know index of removed medicine from favorites
+            let newFavorites = this._pharmacyService.favoritesId.value;
+            let removeIndex = this._pharmacyService.favoritesId.value.indexOf(this.medicineDetails.id); // to know index of removed medicine from favorites
             newFavorites.splice(removeIndex, 1);
-            this._CartService.favoritesId.next(newFavorites);
-            console.log(this._CartService.favoritesId.value)
+            this._pharmacyService.favoritesId.next(newFavorites);
+            console.log(this._pharmacyService.favoritesId.value)
           },
           error:(error)=>{
             this.toastr.error(!this.rtlDir?`An Error has occured`:`حدث خطأ ما` , `${error}`)
@@ -330,7 +334,7 @@ export class MedicineDetailsComponent implements OnInit {
       this.toastr.info(!this.rtlDir?`You Should Login First!`:`يجب أن تسجل الدخول أولا!`)
     } else {
       this.isVisibleAddSpinner = true;
-      this._CartService.addCart(medicineId).subscribe({ // calling API in Service
+      this.addCartSubscription = this._CartService.addCart(medicineId).subscribe({ // calling API in Service
         next:(message)=>{
           if(message.success == true) {
             this._CartService.calculateTotalQty(); // calculate cart medicines total quantity
@@ -384,14 +388,14 @@ export class MedicineDetailsComponent implements OnInit {
     let favoritesId:number[] = []
     if (localStorage.getItem("token") != null) {
       // if(this._CartService.favoritesId.value.length == 0) {
-    this.FavoritesSubscribtion = this._CartService.getAllFavorite().subscribe({
+    this.FavoritesSubscribtion = this._pharmacyService.getAllFavorite(this.lang).subscribe({
       next:(favorites)=>{
         // this.isVisibleSpinner = false;
         console.log(favorites.data)
         favorites.data.forEach((favMedicine:any)=>{
           favoritesId.push(favMedicine.id)
         })
-        this._CartService.favoritesId.next(favoritesId);
+        this._pharmacyService.favoritesId.next(favoritesId);
         console.log(favoritesId)
       } , error:(error)=>{
         console.log(error)
@@ -404,7 +408,7 @@ export class MedicineDetailsComponent implements OnInit {
   setMedicineFavorite() {
     // this.favoriteAdded = this._CartService.favoriteFound(this.medicine.id);
     if (localStorage.getItem("token") != null) {
-      this._CartService.getAllFavorite().subscribe({
+      this.FavoritesSubscribtion = this._pharmacyService.getAllFavorite(this.lang).subscribe({
         next:(favorites)=>{
   
           console.log(favorites.data)
@@ -495,13 +499,19 @@ export class MedicineDetailsComponent implements OnInit {
   //   }
     
   // }
-    /*=============================================( Destroying Method )=============================================*/
 
-    ngOnDestroy() {
-      this.medicineSubscription.unsubscribe();
-      this.langSubscription.unsubscribe();
-      this.FavoritesSubscribtion.unsubscribe();
-      const currentUrl = this.router.url;
+
+  /*=============================================( Destroying Method )=============================================*/
+
+  ngOnDestroy() {
+    this.addFavoriteSubscription.unsubscribe();
+    this.removeFavoriteSubscription.unsubscribe();
+    this.FavoritesSubscribtion.unsubscribe();
+    this.addCartSubscription.unsubscribe();
+    this.medicineSubscription.unsubscribe();
+    this.medicinesSubscription.unsubscribe();
+
+    const currentUrl = this.router.url;
     if(!currentUrl.includes("pharmacy")) {
       // this.filteredContent = [];
       localStorage.setItem("filteredCategoryContent",JSON.stringify([]));
@@ -513,6 +523,6 @@ export class MedicineDetailsComponent implements OnInit {
       })
       localStorage.setItem("medicineFilterForm",JSON.stringify(this.medicineFilterForm.value)); // initialize empty filter form in localstorage
     }
-    }
+  }
   
 }

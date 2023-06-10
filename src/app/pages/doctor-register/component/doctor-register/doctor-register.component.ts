@@ -1,6 +1,6 @@
 import { Appointments } from 'src/app/core/interfaces/appointments';
 import { Section } from 'src/app/core/interfaces/section';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { DataService } from 'src/app/core/services/data.service';
 import { AuthService } from 'src/app/pages/Auth/services/auth.service';
@@ -20,7 +20,7 @@ import { SpecializationService } from 'src/app/pages/specializations/service/spe
   templateUrl: './doctor-register.component.html',
   styleUrls: ['./doctor-register.component.scss']
 })
-export class DoctorRegisterComponent implements OnInit {
+export class DoctorRegisterComponent implements OnInit, OnDestroy {
 /*=============================================( Initialization Methods )=============================================*/
   constructor(private _DataService:DataService, private _AuthService: AuthService , private _TranslateService:TranslateService,  private router: Router, private toastr: ToastrService,private _DoctorRegisterService:DoctorRegisterService, private _SpecializationService:SpecializationService) { }
 
@@ -61,9 +61,12 @@ export class DoctorRegisterComponent implements OnInit {
 
   // API Variables
   allSections: Section[] = [];
-  sectionsSubscription = new Subscription();
   allAppointments: Appointments[] = [];
+
+  // API Subscriptions Variables
+  specializationsSubscription = new Subscription();
   appointmentsSubscription = new Subscription();
+  joinUsSubscription = new Subscription();
 
   // Other Variables
   noDataError: any; // in case of error
@@ -77,7 +80,7 @@ export class DoctorRegisterComponent implements OnInit {
   joinusForm = new FormGroup({
     name_en: new FormControl("", [Validators.required, Validators.minLength(5), Validators.maxLength(20)]),
     name : new FormControl("", [Validators.required, Validators.minLength(5), Validators.maxLength(20)]),
-    email : new FormControl("", [Validators.required, Validators.email]),
+    email : new FormControl("", [Validators.required, Validators.email, Validators.pattern(/^[a-zA-Z0-9]{1,}.*[a-zA-Z0-9]{1,}@[a-z]{2,}\.[a-zA-Z]{2,}$/)]),
     phone : new FormControl("", [Validators.required, Validators.pattern(/^\+?(002)?[\d\s()-]{4,}$/)]),
     password : new FormControl("", [Validators.required, Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$@!%&*?])[A-Za-z\d#$@!%&*?]{8,30}$/)]),
     re_password : new FormControl("", [Validators.required]),
@@ -146,7 +149,7 @@ export class DoctorRegisterComponent implements OnInit {
   getSections(){
     this._DataService._lang.subscribe({next:(language)=>{
       // to get all sections
-    this.sectionsSubscription = this._SpecializationService.getAllSpecializations(language ).subscribe({
+      this.specializationsSubscription = this._SpecializationService.getAllSpecializations(language ).subscribe({
       next: (sections) => {
         this.allSections = sections.data;
       },
@@ -204,7 +207,7 @@ export class DoctorRegisterComponent implements OnInit {
 
           }
         })
-        this._DoctorRegisterService.doctorJoinus(this.formdata).subscribe({
+        this.joinUsSubscription = this._DoctorRegisterService.doctorJoinus(this.formdata).subscribe({
           next: (response) => {
             console.log(response);
             this.formSuccess = true;
@@ -238,7 +241,7 @@ export class DoctorRegisterComponent implements OnInit {
   getAppointments(){
     this._DataService._lang.subscribe({next:(language)=>{
       // to get all sections
-    this.appointmentsSubscription = this._DoctorRegisterService.getAppointments(language).subscribe({
+      this.appointmentsSubscription = this._DoctorRegisterService.getAppointments(language).subscribe({
       next: (appointments) => {
         this.allAppointments = appointments.data;
         this.dropdownList = this.allAppointments;
@@ -267,10 +270,17 @@ export class DoctorRegisterComponent implements OnInit {
 
   }
 
+  
+  /*=============================================( Destroying Method )=============================================*/
+
   ngOnDestroy() {
     this.runSelect2('gender-select2',"Choose Gender","اختر الجنس");
     this.runSelect2('section-select2',"Choose Section", "اختر القسم");
     this.runSelect2('title-select2',"Choose Title", "اختر المسمى الوظيفي");
+
+    this.specializationsSubscription.unsubscribe();
+    this.appointmentsSubscription.unsubscribe();
+    this.joinUsSubscription.unsubscribe();
   }
 
 }

@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit, ElementRef, ViewChild } from '@angular/core';
+import { Component, HostListener, OnInit, ElementRef, ViewChild, OnDestroy } from '@angular/core';
 // import { OwlOptions } from 'ngx-owl-carousel-o';
 import { DataService } from 'src/app/core/services/data.service';
 import { DoctorService } from 'src/app/pages/doctors/service/doctor.service';
@@ -25,7 +25,7 @@ import { ArticlesService } from 'src/app/pages/articles/service/articles.service
   styleUrls: ['./home.component.scss']
 })
 
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy  {
  
   /*=============================================( Variables )=============================================*/
 
@@ -37,14 +37,19 @@ export class HomeComponent implements OnInit {
 
   // API Variables
   allDoctors: Doctor[] = [];
-  doctorsSubscription = new Subscription();
   allSpecializations: Specialize[] = [];
   latestSpecializations: Specialize[] = [];
-  doctorsCountSubscribtion = new Subscription();
   distinguishedDoctors: Doctor[] = [];
   sliderImages:MainCarousel[] = []
   articles: any[] = [];
-
+  
+  // API Subscriptions Variables
+  doctorsSubscription = new Subscription();
+  articlesSubscription = new Subscription();
+  sliderImgsSubscription = new Subscription();
+  countersSubscription = new Subscription();
+  distinguishedDoctorsSubscription = new Subscription();
+  specializationsSubscription = new Subscription();
 
   // Carousel Variables
   mainCarousel: any // Enabling Owl Carousel for Main Section
@@ -330,7 +335,7 @@ export class HomeComponent implements OnInit {
           this.direction = 'rtl';
         }
 
-        this._SpecializationService.getSpecialization(this.lang , this.page , this.search).subscribe({
+        this.specializationsSubscription = this._SpecializationService.getSpecialization(this.lang , this.page , this.search).subscribe({
           next:(specializations)=>{
             this.allSpecializations = specializations.data;
             this.latestSpecializations = specializations.data.slice(0,5); // get latest specializations added
@@ -369,13 +374,14 @@ getFilteredDoctors() {
           this.direction = 'rtl'; }
 
 
-  this._DoctorService.getFilteredDoctors(this.filterForm.value,this.lang, 1).subscribe({
-    next: (doctors) => {
-      
-        console.log(doctors.data)
-        this.allDoctors = doctors.data;
-    }})
-  }})
+          this.doctorsSubscription = this._DoctorService.getFilteredDoctors(this.filterForm.value,this.lang, 1).subscribe({
+            next: (doctors) => {
+              console.log(doctors.data)
+              this.allDoctors = doctors.data;
+            }
+          })
+    }
+  })
   // console.log(this.allDoctors)
 }
 
@@ -403,12 +409,14 @@ bookDoctor(eve:any) {
       next: (lang) => {this.lang = lang;
         if (lang == 'en') {
           this.rtlDir = false;
-          this.direction = 'ltr';} else {
+          this.direction = 'ltr';
+        } else {
             this.rtlDir = true;
-            this.direction = 'rtl'; }
+            this.direction = 'rtl'; 
+        }
 
 
-        this._HomeService.getDistinguishedDoctors(lang).subscribe({
+        this.distinguishedDoctorsSubscription = this._HomeService.getDistinguishedDoctors(lang).subscribe({
           next:(doctors)=>{
             this.distinguishedDoctors = doctors.data;
             console.log(doctors)
@@ -419,7 +427,7 @@ bookDoctor(eve:any) {
   }
 
   getCounterVals() {
-    this._DataService.getCounterVals().subscribe({
+    this.countersSubscription = this._DataService.getCounterVals().subscribe({
       next:(res)=>{
         this.numOfDoctors = res.doctors;
         this.numOfUsers = res.patients;
@@ -440,7 +448,7 @@ bookDoctor(eve:any) {
           this.rtlDir = true;
           this.direction = 'rtl'; 
         }
-        this._HomeService.getSliderImages(this.lang).subscribe({
+        this.sliderImgsSubscription = this._HomeService.getSliderImages(this.lang).subscribe({
           next:(res)=>{
             console.log(res)
             this.sliderImages = res.data;
@@ -458,7 +466,7 @@ bookDoctor(eve:any) {
     this._DataService._lang.subscribe({
       next:(language)=>{
         // to get all sections
-        this._ArticlesService.getArticales(language).subscribe({
+        this.articlesSubscription = this._ArticlesService.getArticales(language).subscribe({
           next: (articales) => {
             this.articles = articales.data.slice(0,3);
             console.log(articales);
@@ -471,8 +479,17 @@ bookDoctor(eve:any) {
     }});
   }
 
+  
+  /*=============================================( Destroying Method )=============================================*/
 
   ngOnDestroy() {
+    this.articlesSubscription.unsubscribe();
+    this.sliderImgsSubscription.unsubscribe();
+    this.countersSubscription.unsubscribe();
+    this.distinguishedDoctorsSubscription.unsubscribe();
+    this.specializationsSubscription.unsubscribe();
+    this.doctorsSubscription.unsubscribe();
+
     $('.specialization-main-select2').select2();
     $('.doctors-main-select2').select2();
   }

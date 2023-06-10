@@ -1,18 +1,21 @@
-import { Component, OnInit } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core'
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { DataService } from 'src/app/core/services/data.service';
 import { AuthService } from 'src/app/pages/Auth/services/auth.service';
 import { TermCondition } from 'src/app/core/interfaces/term-condition';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-footer',
   templateUrl: './footer.component.html',
   styleUrls: ['./footer.component.scss']
 })
-export class FooterComponent implements OnInit {
+export class FooterComponent implements OnInit, OnDestroy {
 
-  constructor(private _DataService:DataService, private _TranslateService:TranslateService, private _AuthService:AuthService, private router: Router) { }
+  // API Subscriptions Variables
+  termsSubscription = new Subscription();
+
+  constructor(private _DataService:DataService, private _AuthService:AuthService, private router: Router) { }
 
   ngOnInit(): void {
     this.getTerms();
@@ -50,7 +53,8 @@ export class FooterComponent implements OnInit {
           this.rtlDir = true;
 
         }
-        this._AuthService.getTerms(this.lang).subscribe({
+        
+        this.termsSubscription = this._AuthService.getTerms(this.lang).subscribe({
           next:(terms)=>{
             console.log(terms)
             this.termsConditions = terms.data;
@@ -67,4 +71,11 @@ export class FooterComponent implements OnInit {
     this.router.navigate(['/my-profile'])
   }
 
+
+  /*=============================================( Destroying Method )=============================================*/
+
+  ngOnDestroy() {
+    this.termsSubscription.unsubscribe();
+  }
+  
 }

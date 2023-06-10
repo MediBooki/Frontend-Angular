@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { DataService } from 'src/app/core/services/data.service';
 import { PatientProfileService } from '../../service/patient-profile.service';
@@ -11,7 +11,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './my-insurance.component.html',
   styleUrls: ['./my-insurance.component.scss']
 })
-export class MyInsuranceComponent implements OnInit {
+export class MyInsuranceComponent implements OnInit, OnDestroy {
 
   // constructor & dependency injection
   constructor(private _DataService:DataService, private _PatientProfileService:PatientProfileService, private toastr: ToastrService ,  private router: Router) { }
@@ -19,23 +19,45 @@ export class MyInsuranceComponent implements OnInit {
   ngOnInit(): void {
     this.getLang();
     this.getInsurance();
+    this.getPatientInfo();
   }
 
-/*--------------------------------------------------------------(variables)------------------------------- */
+  /*--------------------------------------------------------------(variables)------------------------------- */
 
   lang:string = "en";
   rtlDir:boolean = false;
   direction:string = 'ltr';
-  patientInfoSubscription = new Subscription();
   allInsurance: any[] = [];
-  insuranceSubscription = new Subscription();
   insuranceAPIres: any;
+  insuranceExist:boolean = false;
+  totalDiscount:number = 0;
+  patientInsurance:{
+    company_rate: number,
+    discount_percentage: number,
+    id: any,
+    insurance_code: string,
+    insurance_status: any,
+    name: string
+  } = {
+    company_rate: 0,
+    discount_percentage: 0,
+    id: 0,
+    insurance_code: '',
+    insurance_status: null,
+    name: ''
+  };
+  insurance_date:any;
+  insurance_number:any;
   //add insurance form
   addInsuranceForm = new FormGroup({
     company_id: new FormControl("", [Validators.required]),
     insurance_number : new FormControl("", [Validators.required]),
     expiry_date : new FormControl("", [Validators.required])
   })
+
+  // API Subscriptions Variables
+  patientInfoSubscription = new Subscription();
+  insuranceSubscription = new Subscription();
 
 /*--------------------------------------------------------------(methods)--------------------------------- */
 
@@ -51,16 +73,7 @@ addInsuranceFun(){
       this._PatientProfileService.addInsurance(model).subscribe({
         next: (response) => {
           console.log(response);
-          this.patientInfoSubscription = this._PatientProfileService.getPatientInfo().subscribe({
-            next: (patientInfo) => {
-              if(patientInfo.data.insurance){
-                const discount = Number(patientInfo.data.insurance.discount_percentage) + Number(patientInfo.data.insurance.company_rate)
-                localStorage.setItem("insuranceDiscount", discount.toString())
-                localStorage.setItem("insuranceID",patientInfo.data.insurance.id)
-              }
-            }
-          });
-          this.toastr.success(!this.rtlDir?`Insurance added successfully!`:`تم اضافة تأمينك بنجاح`);
+          this.toastr.success(!this.rtlDir?`Insurance request sent successfully! Please wait confirmation`:`تم ارسال طلبك بنجاح وهو تحت المراجعة`);
           // this.router.navigate(['/home']);
         },
         error : (error)=> {
@@ -91,7 +104,27 @@ addInsuranceFun(){
       });
     }});
   }
+
   //----- Method 3
+  getPatientInfo() {
+    this.patientInfoSubscription = this._PatientProfileService.getPatientInfo(this.lang).subscribe({
+      next: (patientInfo) => {
+        console.log(patientInfo);
+        this.patientInsurance = patientInfo.data.insurance
+        if(patientInfo.data.insurance && patientInfo.data.insurance_status==1){
+          this.insuranceExist = true;
+          this.insurance_date = patientInfo.data.insurance_date;
+          this.insurance_number = patientInfo.data.insurance_number;
+          this.totalDiscount = Number(this.patientInsurance.company_rate) + Number(this.patientInsurance.discount_percentage);
+          // const discount = Number(patientInfo.data.insurance.discount_percentage) + Number(patientInfo.data.insurance.company_rate)
+          // localStorage.setItem("insuranceDiscount", discount.toString())
+          // localStorage.setItem("insuranceID",patientInfo.data.insurance.id)
+        }
+      }
+    });
+  }
+
+  //----- Method 4
   // Setting Direction
   getLang() {
     this._DataService._lang.subscribe({next:(language)=>{
@@ -107,4 +140,13 @@ addInsuranceFun(){
       }
     }})
   }
+
+    
+  /*=============================================( Destroying Method )=============================================*/
+
+  ngOnDestroy() {
+    this.insuranceSubscription.unsubscribe();
+    this.patientInfoSubscription.unsubscribe();
+  }
+
 }

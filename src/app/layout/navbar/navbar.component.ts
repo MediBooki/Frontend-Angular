@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, HostListener, ViewChild, ElementRef, OnDestroy } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core'
 import { Subscription } from 'rxjs';
 import { DataService } from 'src/app/core/services/data.service';
@@ -13,7 +13,7 @@ import { ToastrService } from 'ngx-toastr';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss']
 })
-export class NavbarComponent implements OnInit {
+export class NavbarComponent implements OnInit, OnDestroy {
 
   cartQty: number = 0;
   medicinesPurchased:any;
@@ -30,15 +30,20 @@ export class NavbarComponent implements OnInit {
     });
   userPhoto?:string= "../../../assets/images/user_male.jpeg" ;
   allTenants: any[] = [];
-  tenantsSubscription = new Subscription();
+
   diagnosisAPIres: any;
-  patientInfoSubscription = new Subscription();
   testCountry:any =localStorage.getItem('tenant')
   currentContry:any
   defultCountry: any = {
     'name': 'UAE',
     'logo': '../../../assets/images/navbar-footer/uae.png'
   };
+
+  // API Subscriptions Variables
+  tenantsSubscription = new Subscription();
+  medicinesSubscription = new Subscription();
+  removeMedicinesSubscription = new Subscription();
+  patientInfoSubscription = new Subscription();
 
   constructor(private _PatientProfileService:PatientProfileService,private _DataService: DataService, private _CartService: CartService, private _TranslateService: TranslateService, private _AuthService: AuthService, private toastr: ToastrService) { }
 
@@ -107,20 +112,20 @@ export class NavbarComponent implements OnInit {
             this.rtlDir = true;
             this.direction = 'rtl';
           }
-      this._CartService.getAllPurchasedMedicines(lang).subscribe({
-        next: (medicinesPurchased) => { // to calculate quantity for first time (when refreshing)
-          console.log(medicinesPurchased)
-          console.log(medicinesPurchased.data.length != 0)
-          this.medicinesPurchased = medicinesPurchased.data
-          this.cartQty = 0;
-          if(typeof(medicinesPurchased.data)!='string' && (typeof(medicinesPurchased.data)=='object' && medicinesPurchased.data.length!=0) && medicinesPurchased.data.user_cart_items.length != 0){
-            medicinesPurchased.data.user_cart_items.forEach((element: any) => {
-              this.cartQty += Number(element.qty)
-            });
-          } else {
-            console.log("ggg")
+          this.medicinesSubscription = this._CartService.getAllPurchasedMedicines(lang).subscribe({
+          next: (medicinesPurchased) => { // to calculate quantity for first time (when refreshing)
+            console.log(medicinesPurchased)
+            console.log(medicinesPurchased.data.length != 0)
+            this.medicinesPurchased = medicinesPurchased.data
+            this.cartQty = 0;
+            if(typeof(medicinesPurchased.data)!='string' && (typeof(medicinesPurchased.data)=='object' && medicinesPurchased.data.length!=0) && medicinesPurchased.data.user_cart_items.length != 0){
+              medicinesPurchased.data.user_cart_items.forEach((element: any) => {
+                this.cartQty += Number(element.qty)
+              });
+            } else {
+              console.log("ggg")
 
-              }
+            }
 
         },
         error: (error) => {
@@ -191,7 +196,7 @@ export class NavbarComponent implements OnInit {
   removeCart(medicineId:number) {
     this.selectedDeleteMedicine = medicineId;
     this.isVisibleDeleteSpinner = true;
-    this._CartService.removeCart(medicineId).subscribe({
+    this.removeMedicinesSubscription = this._CartService.removeCart(medicineId).subscribe({
       next:(message)=>{
         console.log(message)
         this.getCartQty();
@@ -244,7 +249,7 @@ export class NavbarComponent implements OnInit {
   }
 
   getPatientInfo(){
-    this.patientInfoSubscription = this._PatientProfileService.getPatientInfo().subscribe({
+    this.patientInfoSubscription = this._PatientProfileService.getPatientInfo(this.lang).subscribe({
       next: (patientInfo) => {
         if(patientInfo.data.photo != ''){
           this._DataService.userPhoto.next(patientInfo.data.photo)
@@ -261,7 +266,8 @@ export class NavbarComponent implements OnInit {
 
         //   }
         // })
-        if(patientInfo.data.insurance){
+        console.log(patientInfo)
+        if(patientInfo.data.insurance && patientInfo.data.insurance_status==1){
           const discount = Number(patientInfo.data.insurance.discount_percentage) + Number(patientInfo.data.insurance.company_rate)
           localStorage.setItem("insuranceDiscount", discount.toString())
           localStorage.setItem("insuranceID",patientInfo.data.insurance.id)
@@ -284,5 +290,14 @@ export class NavbarComponent implements OnInit {
     // console.log(findTenant);
   }
 
+    /*=============================================( Destroying Method )=============================================*/
+
+    ngOnDestroy() {
+      this.patientInfoSubscription.unsubscribe();
+      this.removeMedicinesSubscription.unsubscribe();
+      this.medicinesSubscription.unsubscribe();
+      this.tenantsSubscription.unsubscribe();
+    }
+    
 
 }

@@ -1,4 +1,4 @@
-import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, HostListener, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { DataService } from 'src/app/core/services/data.service';
 import { DoctorService } from '../../service/doctor.service';
 import { Doctor } from 'src/app/core/interfaces/doctor';
@@ -19,7 +19,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./doctors.component.scss']
 })
 
-export class DoctorsComponent implements OnInit {
+export class DoctorsComponent implements OnInit, OnDestroy  {
 
   /*=============================================( Variables )=============================================*/
 
@@ -30,9 +30,14 @@ export class DoctorsComponent implements OnInit {
 
   // API Variables
   allDoctors: Doctor[] = [];
-  doctorsSubscription = new Subscription();
   allSpecializations: Specialize[] = [];
   hospitalPhone:string = "";
+
+  // API Subscriptions Variables
+  countersSubscription = new Subscription();
+  specializationsSubscription = new Subscription();
+  doctorsSubscription = new Subscription();
+  hospitalDetailsSubscription = new Subscription();
 
   // Pagination Configuration Variables
   numDoctorsPerPage: number = 10; // number of doctors displayed per one page
@@ -127,7 +132,7 @@ export class DoctorsComponent implements OnInit {
 
   //----- Method 2
   gethospitalDetails() {
-    this._DataService.gethospitalDetails().subscribe({
+    this.hospitalDetailsSubscription = this._DataService.gethospitalDetails().subscribe({
       next:(details)=>{
         console.log(details.data[0])
         this.hospitalPhone = details.data[0].phone;
@@ -199,7 +204,7 @@ export class DoctorsComponent implements OnInit {
           this.direction = 'rtl';
         }
 
-        this._SpecializationService.getAllSpecializations(this.lang).subscribe({
+        this.specializationsSubscription = this._SpecializationService.getAllSpecializations(this.lang).subscribe({
           next:(specializations)=>{
             this.allSpecializations = specializations.data;
             console.log(this.allSpecializations)
@@ -422,7 +427,7 @@ export class DoctorsComponent implements OnInit {
 
 
   getCounterVals() {
-    this._DataService.getCounterVals().subscribe({
+    this.countersSubscription = this._DataService.getCounterVals().subscribe({
       next:(res)=>{
         this.numOfDoctors = res.doctors;
         this.numOfSpecializations = res.sections-1;
@@ -433,7 +438,11 @@ export class DoctorsComponent implements OnInit {
   /*=============================================( Destroying Method )=============================================*/
 
   ngOnDestroy() {
+    this.countersSubscription.unsubscribe();
+    this.specializationsSubscription.unsubscribe();
     this.doctorsSubscription.unsubscribe();
+    this.hospitalDetailsSubscription.unsubscribe();
+
     const currentUrl = this.router.url;
 
     if(!currentUrl.includes("doctors")) {

@@ -333,10 +333,12 @@ p {
 
 .lang-dropdown-ar {
   transform: translateX(25%);
+  -moz-transform: translateX(120%);
 }
 
 .tanant-dropdown-ar {
   transform: translateX(-50%);
+  -moz-transform: translateX(100%);
 }
 
 .user-dropdown-ar {

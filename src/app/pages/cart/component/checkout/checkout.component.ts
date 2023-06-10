@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { CartService } from 'src/app/pages/cart/service/cart.service';
 import { DataService } from 'src/app/core/services/data.service';
@@ -7,13 +7,14 @@ import { MedicinePurchased } from 'src/app/core/interfaces/medicine-purchased';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Roadmap } from 'src/app/core/interfaces/roadmap';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-checkout',
   templateUrl: './checkout.component.html',
   styleUrls: ['./checkout.component.scss']
 })
-export class CheckoutComponent implements OnInit {
+export class CheckoutComponent implements OnInit, OnDestroy {
 
   /*=============================================( Variables )=============================================*/
 
@@ -25,6 +26,11 @@ export class CheckoutComponent implements OnInit {
   // API Variables
   allMedicinesPurchased:MedicinePurchased[] = []
   
+  // API Subscriptions Variables
+  cartMedicinesSubscription = new Subscription();
+  checkoutSubscription = new Subscription();
+  paymentMethodSubscription = new Subscription();
+
   // Other Variables
   totalPrice:number = 0;
   totalPriceDiscount:number = 0;
@@ -89,7 +95,7 @@ export class CheckoutComponent implements OnInit {
 
   /*=============================================( Component Created Methods )=============================================*/
 
-getPurchasedMedicines() {
+  getPurchasedMedicines() {
     this._DataService._lang.subscribe({
       next:(lang)=>{
         this.lang = lang;
@@ -100,7 +106,7 @@ getPurchasedMedicines() {
           this.rtlDir = true;
           this.direction = 'rtl';
         }
-        this._CartService.getAllPurchasedMedicines(lang).subscribe({
+        this.cartMedicinesSubscription = this._CartService.getAllPurchasedMedicines(lang).subscribe({
           next:(purchasedMedicines)=>{
             if(typeof(purchasedMedicines.data)=='string' || (typeof(purchasedMedicines.data)=='object' && purchasedMedicines.data.length==0) || purchasedMedicines.data.user_cart_items.length == 0) {
               this.noData = true;
@@ -142,12 +148,12 @@ getPurchasedMedicines() {
           this.checkoutForm.controls["insurance_id"].setValue(JSON.parse(localStorage.getItem('insuranceID')!))
         }
         console.log(this.checkoutForm)
-        this._CartService.checkoutDetails(this.checkoutForm.value).subscribe({
+        this.checkoutSubscription = this._CartService.checkoutDetails(this.checkoutForm.value).subscribe({
           next:(res)=>{
             console.log(res)
             this._CartService.medicinesQty.next(0);
             if(this.paymentMethod == 'cash') {
-              this._CartService.paymentOrder(2).subscribe({
+              this.paymentMethodSubscription = this._CartService.paymentOrder(2).subscribe({
                 next:(res)=>{
                   this.toastr.success(!this.rtlDir?`Your Order has been Submitted Successfully`:`تم تسجيل طلبك بنجاح`, !this.rtlDir?`Checkout Result`:`ناتج عملية الشراء`);
                   console.log(res)
@@ -161,7 +167,7 @@ getPurchasedMedicines() {
             } else if(this.paymentMethod == 'online') {
               this.isVisibleSpinner = true
               this.toastr.success(!this.rtlDir?`You will be redirected to paymob to complete your online payment`:`سيتم توجيهك الى صفحة paymob لاكمال عملية الدفع الالكترونية`, !this.rtlDir?`Checkout Result`:`ناتج عملية الشراء`);
-              this._CartService.paymentOrder(1).subscribe({
+              this.paymentMethodSubscription = this._CartService.paymentOrder(1).subscribe({
                 next:(res)=>{
                   // this._DataService.curruntService.next('orders')
                   this.isVisibleSpinner = false;
@@ -191,6 +197,14 @@ getPurchasedMedicines() {
     this.paymentMethod = paymentMethod;
   }
 
+
+  /*=============================================( Destroying Method )=============================================*/
+
+  ngOnDestroy() {
+    this.cartMedicinesSubscription.unsubscribe();
+    this.checkoutSubscription.unsubscribe();
+    this.paymentMethodSubscription.unsubscribe();
+  }
 
 }
 

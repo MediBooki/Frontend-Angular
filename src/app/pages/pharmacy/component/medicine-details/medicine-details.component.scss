@@ -156,15 +156,15 @@
       // max-width: 600px;
       // position: relative;
 
-// color: #2c2c2c;
-color: $mainColor6;
-font-size: 32px;
-font-weight: 700;
+      // color: #2c2c2c;
+      color: $mainColor6;
+      font-size: 32px;
+      font-weight: 700;
 
-display: flex;
+      display: flex;
 
-justify-content: center;
-align-items: center;
+      justify-content: center;
+      align-items: center;
 
     }
     h2:before {
@@ -181,7 +181,6 @@ align-items: center;
       height: 6px;
       background-color: #afafaf;
       flex: 1 0 0;
-      margin-right: 15px;
     }
     h2:after {
       // content: "";
@@ -197,7 +196,26 @@ align-items: center;
       height: 6px;
       background-color: #afafaf;
       flex: 1 0 0;
+    }
+  }
+
+  .related-title-english {
+    h2:before {
+      margin-right: 15px;
+    }
+
+    h2:after {
       margin-left: 15px;
+    }
+  }
+
+  .related-title-arabic {
+    h2:before {
+      margin-left: 15px;
+    }
+
+    h2:after {
+      margin-right: 15px;
     }
   }
 }

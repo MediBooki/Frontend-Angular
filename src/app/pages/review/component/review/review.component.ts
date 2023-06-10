@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/pages/Auth/services/auth.service';
 import { DataService } from 'src/app/core/services/data.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -16,7 +16,7 @@ import { ToastrService } from 'ngx-toastr';
   templateUrl: './review.component.html',
   styleUrls: ['./review.component.scss']
 })
-export class ReviewComponent implements OnInit {
+export class ReviewComponent implements OnInit, OnDestroy {
   id: any;
   reviewId!: any;
 
@@ -27,8 +27,6 @@ export class ReviewComponent implements OnInit {
   rtlDir: boolean = false;
   //////////////////////////////////
   // isVisibleSpinner: boolean = true;
-  reviewSubscription = new Subscription();
-  reviewDoctorSubscription = new Subscription();
   reviewdoctor:reviewDoctor={
     id: 0,
     comment: '',
@@ -80,8 +78,14 @@ export class ReviewComponent implements OnInit {
     experience: ''
   }
   public formReview!: FormGroup;
-
-
+  
+  // API Subscriptions Variables
+  doctorsSubscribtion = new Subscription();
+  updateReviewSubscription = new Subscription();
+  createReviewSubscription = new Subscription();
+  reviewSubscription = new Subscription();
+  reviewDoctorSubscription = new Subscription();
+  
 
   defaultDoctorImg:string = this._DataService.defaultNoImg;
 
@@ -101,7 +105,7 @@ export class ReviewComponent implements OnInit {
   }
 
   submitReview() {
-    this._ReviewService.updatereview.subscribe((res: any) => {
+    this.updateReviewSubscription = this._ReviewService.updatereview.subscribe((res: any) => {
       console.log(res)
       const updatereview = localStorage.getItem('updatereview');
       this.reviewStatus = updatereview ? JSON.parse(updatereview) : false
@@ -112,7 +116,7 @@ export class ReviewComponent implements OnInit {
           rating: this.formReview.value.rating1,
           comment: this.formReview.value.comment
         }
-        this._ReviewService.createReviewPatient(model).subscribe((res: any) => {
+        this.createReviewSubscription = this._ReviewService.createReviewPatient(model).subscribe((res: any) => {
           this.toastr.success(!this.rtlDir?`success`:`تم تسجيل تقييم الدكتور` , `${res.message}`)
           this._DataService.is_login.next(true);
           this.router.navigate(['/my-profile'])
@@ -128,7 +132,7 @@ export class ReviewComponent implements OnInit {
           rating: this.formReview.value.rating1,
           comment: this.formReview.value.comment
         }
-        this._ReviewService.updateReviewPatient(model).subscribe((res: any) => {
+        this.updateReviewSubscription = this._ReviewService.updateReviewPatient(model).subscribe((res: any) => {
           this.toastr.success(!this.rtlDir?`success`:`تم تسجيل تقييم الدكتور` , `${res.message}`)
           this._DataService.is_login.next(true);
           this.router.navigate(['/my-profile'])
@@ -217,6 +221,17 @@ export class ReviewComponent implements OnInit {
         // this.isVisibleSpinner = false;
       }
     });
+  }
+
+
+  /*=============================================( Destroying Method )=============================================*/
+
+  ngOnDestroy() {
+    this.reviewSubscription.unsubscribe();
+    this.doctorsSubscribtion.unsubscribe();
+    this.createReviewSubscription.unsubscribe();
+    this.reviewDoctorSubscription.unsubscribe();
+    this.updateReviewSubscription.unsubscribe();
   }
 
 }

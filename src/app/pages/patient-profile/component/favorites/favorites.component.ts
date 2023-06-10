@@ -1,20 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { DataService } from 'src/app/core/services/data.service';
 import { PatientProfileService } from '../../service/patient-profile.service';
 import { Medicine } from 'src/app/core/interfaces/medicine';
 import { Subscription } from 'rxjs';
-import { CartService } from 'src/app/pages/cart/service/cart.service';
+import { PharmacyService } from 'src/app/pages/pharmacy/service/pharmacy.service';
 
 @Component({
   selector: 'app-favorites',
   templateUrl: './favorites.component.html',
   styleUrls: ['./favorites.component.scss']
 })
-export class FavoritesComponent implements OnInit {
+export class FavoritesComponent implements OnInit, OnDestroy {
   // constructor & dependency injection
-  constructor(private _DataService:DataService, private _PatientProfileService:PatientProfileService, private toastr: ToastrService ,  private router: Router,private _cartservice : CartService) { }
+  constructor(private _DataService:DataService, private _PatientProfileService:PatientProfileService, private toastr: ToastrService ,  private router: Router,private _pharmacyService : PharmacyService) { }
 
   ngOnInit(): void {
     this.getLang();
@@ -27,9 +27,12 @@ export class FavoritesComponent implements OnInit {
   direction:string = 'ltr';
 
   favMedicines:Medicine[] = [];
-  medicinesSubscription = new Subscription();
   favMedicinesAPIres: any;
   allFav_notempty?:boolean=true;
+
+  // API Subscriptions Variables
+  medicinesSubscription = new Subscription();
+  favoritesSubscription = new Subscription();
 
 /*--------------------------------------------------------------(methods)--------------------------------- */
   //----- Method 1
@@ -53,7 +56,7 @@ export class FavoritesComponent implements OnInit {
   getMedicines() {
     // to get all Favorites
     this._DataService._lang.subscribe({next:(language)=>{
-      this.medicinesSubscription = this._cartservice.getAllFavorite().subscribe({
+      this.medicinesSubscription = this._pharmacyService.getAllFavorite(this.lang).subscribe({
       next: (favMedicines) => {
         this.favMedicines = favMedicines.data;
         this.favMedicinesAPIres = favMedicines;
@@ -75,19 +78,27 @@ export class FavoritesComponent implements OnInit {
   setFavorite() {
     let favoritesId:number[] = []
       if (localStorage.getItem("token") != null) {
-        if(this._cartservice.favoritesId.value.length == 0) {
-          this._cartservice.getAllFavorite().subscribe({
+        if(this._pharmacyService.favoritesId.value.length == 0) {
+          this.favoritesSubscription = this._pharmacyService.getAllFavorite(this.lang).subscribe({
           next:(favorites)=>{
             console.log(favorites.data)
             favorites.data.forEach((favMedicine:any)=>{
               favoritesId.push(favMedicine.id)
             })
-            this._cartservice.favoritesId.next(favoritesId);
+            this._pharmacyService.favoritesId.next(favoritesId);
             console.log(favoritesId)
           }
         })
       }
     }
+  }
+
+  
+  /*=============================================( Destroying Method )=============================================*/
+
+  ngOnDestroy() {
+    this.medicinesSubscription.unsubscribe();
+    this.favoritesSubscription.unsubscribe();
   }
 
 }

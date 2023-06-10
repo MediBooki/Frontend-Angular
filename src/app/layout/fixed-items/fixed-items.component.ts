@@ -1,6 +1,6 @@
-import { Component, ElementRef, HostListener, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, HostListener, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { DataService } from '../../core/services/data.service';
-import { DoctorService } from 'src/app/pages/doctors/service/doctor.service';
+import { Subscription } from 'rxjs';
 
 // to initiate Watson Chatbot
 declare global {
@@ -15,7 +15,7 @@ declare global {
   styleUrls: ['./fixed-items.component.scss']
 })
 
-export class FixedItemsComponent implements OnInit {
+export class FixedItemsComponent implements OnInit, OnDestroy {
 
   /*=============================================( Variables )=============================================*/
 
@@ -34,9 +34,12 @@ export class FixedItemsComponent implements OnInit {
   // ChatBot variables
   createdChatBots:string[] = [] // created chatbots instances ('en' or 'ar' pushed when instance created)
 
+  // API Subscriptions Variables
+  hospitalDetailsSubscription = new Subscription();
+
   /*=============================================( Initialization Methods )=============================================*/
 
-  constructor(private _DataService: DataService,private _DoctorService: DoctorService) { }
+  constructor(private _DataService: DataService) { }
 
   ngOnInit(): void {
     this._DataService._lang.subscribe((language) => {
@@ -157,7 +160,7 @@ export class FixedItemsComponent implements OnInit {
   //----- Method 5
   // Get Hospital Details
   gethospitalDetails() {
-    this._DataService.gethospitalDetails().subscribe({
+    this.hospitalDetailsSubscription = this._DataService.gethospitalDetails().subscribe({
       next:(details)=>{
         console.log(details.data[0])
         this.hospitalPhone = details.data[0].phone;
@@ -183,4 +186,12 @@ export class FixedItemsComponent implements OnInit {
       window.open(`https://t.me/+2${this.hospitalTelegram}`, "_blank");
     }
   }
+
+
+  /*=============================================( Destroying Method )=============================================*/
+
+  ngOnDestroy() {
+    this.hospitalDetailsSubscription.unsubscribe();
+  }
+  
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { DataService } from 'src/app/core/services/data.service';
 import { PatientProfileService } from '../../service/patient-profile.service';
 import { ToastrService } from 'ngx-toastr';
@@ -11,7 +11,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   templateUrl: './profile-details.component.html',
   styleUrls: ['./profile-details.component.scss']
 })
-export class ProfileDetailsComponent implements OnInit {
+export class ProfileDetailsComponent implements OnInit, OnDestroy {
   // constructor & dependency injection
   constructor( private _DataService:DataService, private _PatientProfileService:PatientProfileService, private toastr: ToastrService ,  private router: Router) { }
 
@@ -30,7 +30,6 @@ export class ProfileDetailsComponent implements OnInit {
   updatePhoto:any;
   updateFormdata?: any;
   userPhoto?:string= "../../../assets/images/user_male.jpeg" ;
-  patientInfoSubscription = new Subscription();
   patientInfoAPIres: any;
   patientInfo: any = "";
   patientName?: string;
@@ -47,9 +46,12 @@ export class ProfileDetailsComponent implements OnInit {
 
   })
 
+  // API Subscriptions Variables
+  patientInfoSubscription = new Subscription();
+
 /*--------------------------------------------------------------(methods)--------------------------------- */
 
-  //----- Method 1
+//----- Method 1
   // Setting Direction
   getLang() {
     this._DataService._lang.subscribe({next:(language)=>{
@@ -68,7 +70,7 @@ export class ProfileDetailsComponent implements OnInit {
 
   //----- Method 2
   getPatientInfo(){
-    this.patientInfoSubscription = this._PatientProfileService.getPatientInfo().subscribe({
+    this.patientInfoSubscription = this._PatientProfileService.getPatientInfo(this.lang).subscribe({
       next: (patientInfo) => {
         this.patientInfo = patientInfo.data;
         this.patientName = patientInfo.data.name
@@ -139,4 +141,12 @@ export class ProfileDetailsComponent implements OnInit {
    onFileChange(event: any) {
     this.updatePhoto = event.target.files[0];
   }
+
+    
+  /*=============================================( Destroying Method )=============================================*/
+
+  ngOnDestroy() {
+    this.patientInfoSubscription.unsubscribe();
+  }
+
 }
