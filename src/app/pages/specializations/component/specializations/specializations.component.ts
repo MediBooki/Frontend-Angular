@@ -18,7 +18,7 @@ export class SpecializationsComponent implements OnInit, OnDestroy  {
   // Direction Variables
   lang: string = "en";
   rtlDir: boolean = false;
-  noData:boolean = true;
+  noData:boolean = false;
   noDataError: any; // in case of error
 
   specializations: Specialize[] = [];

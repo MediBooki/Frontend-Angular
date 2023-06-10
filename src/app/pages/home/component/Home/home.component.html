@@ -5,7 +5,7 @@
   <!-- =============================================================================================================== -->
 
   <!-- First Section Main -->
-  <ngx-skeleton-loader *ngIf="sliderImages.length == 0" appearance="line" [theme]="{height: '70vh', background: '#dbd9d9'}"></ngx-skeleton-loader>
+  <ngx-skeleton-loader *ngIf="sliderImages.length == 0" appearance="line" [theme]="{height: '70vh', background: '#dbd9d9', marginBottom: '-6px'}"></ngx-skeleton-loader>
 
   <section class=" main-section position-relative " #mainSection>
     <form (ngSubmit)="bookDoctor(doctors)" [class.d-none]="sliderImages.length == 0"> <!--  -->

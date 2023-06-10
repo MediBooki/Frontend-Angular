@@ -66,10 +66,6 @@ export class FooterComponent implements OnInit, OnDestroy {
     
   }
 
-  openInsurances() {
-    this._DataService.curruntService.next('insurance')
-    this.router.navigate(['/my-profile'])
-  }
 
 
   /*=============================================( Destroying Method )=============================================*/

@@ -20,11 +20,11 @@
               class=" main-search-filter bg-white  d-flex justify-content-center align-items-center text-white"
               [ngClass]="rtlDir? 'main-search-filter-arabic' : 'main-search-filter-english'">
 
-              <label for="searchMedicine1" class="h-100 d-flex justify-content-around align-items-center specialize-search">
-                <i class="fa-solid fa-capsules mx-2" *ngIf="searchForm.controls['name'].value == ''"></i>
+              <label for="searchSpecialization1" class="h-100 d-flex justify-content-around align-items-center specialize-search">
+                <i class="fa-solid fa-tags mx-2" *ngIf="searchForm.controls['name'].value == ''"></i>
                 <i class="fa-solid fa-rotate mx-2" *ngIf="searchForm.controls['name'].value != ''" (click)="resetSearch()"></i>
-                <input #nameInput id="searchMedicine1" type="text" class="form-control" name="medicine1-search1"
-                  placeholder="{{'PharmacyPage.SearchName' | translate}}" formControlName="name">
+                <input #nameInput id="searchSpecialization1" type="text" class="form-control" name="specialization1-search1"
+                  placeholder="{{'specializationPage.SearchName' | translate}}" formControlName="name">
               </label>
 
 
@@ -43,7 +43,7 @@
 
   </section>
   <!--  =======================================================( specialization )=======================================================  -->
-  <section class="pt-5 specialization-section">
+  <section class="py-5 specialization-section">
     <div class=" container">
 
 
@@ -78,7 +78,7 @@
 
     <ng-template #error>
 
-      <div class=" search-empty text-center p-5 rounded mb-5">
+      <div class=" search-empty text-center p-5 bg-white rounded">
           <div class="my-4">
             <i class="fa-solid fa-tags search-icon"></i>
           </div>
