@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { DoctorRegisterComponent } from '../../component/doctor-register/doctor-register.component';
 import { SharedModule } from 'src/app/layout/shared/shared.module';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { DoctorRegisterRoutingModule } from '../../doctor-register-routing.module';
 
 @NgModule({
   declarations: [
@@ -12,6 +13,7 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
     CommonModule,
     SharedModule,
     NgMultiSelectDropDownModule.forRoot(),
+    DoctorRegisterRoutingModule
 
   ],
   exports:[

@@ -7,6 +7,7 @@ import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { registerLocaleData } from '@angular/common';
 import { Subscription, find } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { ConnectivityService } from './core/services/Connectivity/connectivity-service.service';
 
 
 @Component({
@@ -23,7 +24,7 @@ export class AppComponent implements OnInit {
   allTenants: any[] = [];
   tenantsSubscription = new Subscription();
 
-  constructor(private _DataService: DataService, private service: AuthService,private renderer: Renderer2,private router: Router) {
+  constructor(private _DataService: DataService, private service: AuthService,private renderer: Renderer2,private router: Router,private _connectivityService: ConnectivityService) {
 
   }
 
@@ -40,6 +41,11 @@ export class AppComponent implements OnInit {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         this.addAnimateClasses();
+      }
+    });
+    this._connectivityService.getOnlineStatus().subscribe((isOnline) => {
+      if (isOnline) {
+        location.reload();
       }
     });
 
@@ -79,8 +85,8 @@ export class AppComponent implements OnInit {
 
   setMainCountry() {
     if(localStorage.getItem('tenant')==null){
-      localStorage.setItem('tenant','http://medibookidashbord.test/api')
-      environment.apimain='http://medibookidashbord.test/api'
+      localStorage.setItem('tenant','https://benaahadees.com/mediBookiDashbord/public/api')
+      environment.apimain='https://benaahadees.com/mediBookiDashbord/public/api'
     }else {
       environment.apimain = localStorage.getItem('tenant')!;
       // const currentCountry= localStorage.getItem('tenant')

@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { SharedModule } from 'src/app/layout/shared/shared.module';
+import { AppModule } from 'src/app/app.module';
 import { ProfileDetailsComponent } from './profile-details.component';
 
 describe('ProfileDetailsComponent', () => {
@@ -8,7 +9,8 @@ describe('ProfileDetailsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ProfileDetailsComponent ]
+      declarations: [ ProfileDetailsComponent ],
+      imports:[SharedModule,AppModule]
     })
     .compileComponents();
 

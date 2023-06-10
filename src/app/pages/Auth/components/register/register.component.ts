@@ -10,7 +10,6 @@ import { ToastrService } from 'ngx-toastr';
 // import { defineLocale } from 'ngx-bootstrap/chronos';
 // import { arLocale } from 'ngx-bootstrap/locale';
 import { TermCondition } from 'src/app/core/interfaces/term-condition';
-import { Subscription } from 'rxjs';
 
 
 
@@ -49,12 +48,8 @@ export class RegisterComponent implements OnInit {
 
   isVisibleSpinner: boolean = false;
 
-  termsConditions:TermCondition[]=[]
+termsConditions:TermCondition[]=[]
   isSmallScreen = false;
-
-  // API Subscriptions Variables
-  registerSubscription = new Subscription();
-  termsSubscription = new Subscription();
 
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {
@@ -153,7 +148,7 @@ export class RegisterComponent implements OnInit {
 
   initFormControl() {
     this.username = new FormControl('', [Validators.required, Validators.minLength(3), Validators.pattern(/^[a-zA-Z\s]{1,}$/)]),
-      this.email = new FormControl('', [Validators.required, Validators.pattern(/^[a-zA-Z0-9]{1,}.*[a-zA-Z0-9]{1,}@[a-z]{2,}\.[a-zA-Z]{2,}$/)]),
+      this.email = new FormControl('', [Validators.required, Validators.pattern(/^[a-zA-Z0-9]{2,}@[a-z]{2,}\.[a-zA-Z]{2,}$/)]),
       this.phoneNumber = new FormControl('', [Validators.required, Validators.pattern(/^\+?(002)?[\d\s()-]{4,}$/)]),
       this.password = new FormControl('', [Validators.required, Validators.pattern(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/)]),
       this.confirmPassword = new FormControl('', Validators.required),
@@ -195,9 +190,9 @@ export class RegisterComponent implements OnInit {
     }
     console.log(model);
     this.isVisibleSpinner = true;
-    this.registerSubscription = this._AuthService.createPatient(model).subscribe(res => {
+    this._AuthService.createPatient(model).subscribe(res => {
       this.toastr.success(!this.rtlDir?`patient Added Successfully`:`تمت اضافة المريض بنجاح`)
-      this.router.navigate(['/Login'])
+      this.router.navigate(['/auth/Login'])
       this.isVisibleSpinner = false;
     },(error)=>{
       console.log(error);
@@ -210,8 +205,8 @@ export class RegisterComponent implements OnInit {
       // .forEach(([key , value] : any)
 
     })
-    this._AuthService.AuthlayoutLeft.next(false);
-    this._AuthService.istrigger.next(true);
+    this._AuthService.AuthlayoutLeft?.next(false);
+    this._AuthService.istrigger?.next(true);
 
   }
 
@@ -249,7 +244,7 @@ export class RegisterComponent implements OnInit {
           this.rtlDir = true;
 
         }
-        this.termsSubscription = this._AuthService.getTerms(this.lang).subscribe({
+        this._AuthService.getTerms(this.lang).subscribe({
           next:(terms)=>{
             console.log(terms)
             this.termsConditions = terms.data;
@@ -262,12 +257,7 @@ export class RegisterComponent implements OnInit {
   }
 
 
-    /*=============================================( Destroying Method )=============================================*/
 
-    ngOnDestroy() {
-      this.registerSubscription.unsubscribe();
-      this.termsSubscription.unsubscribe();
-    }
 
 
 }

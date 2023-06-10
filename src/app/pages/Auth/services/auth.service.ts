@@ -9,7 +9,7 @@ import { createAccount } from 'src/app/core/interfaces/patients';
   providedIn: 'root'
 })
 export class AuthService {
-  _sharedApi: string = "http://medibookidashbord.test/api";
+  _sharedApi: string = "https://benaahadees.com/mediBookiDashbord/public/api";
   // _sharedApi:string = "http://127.0.0.1:8000/api";
 
   constructor(private http: HttpClient, private router: Router) { }
@@ -17,7 +17,7 @@ export class AuthService {
   istrigger = new BehaviorSubject(false);
   isLogedIn = new BehaviorSubject(false);
 
-  createPatient(model: createAccount) {
+  createPatient(model: createAccount):Observable<any>  {
     return this.http.post(this._sharedApi + '/patient/register', model);
   }
   login(model: Login):Observable<any> {

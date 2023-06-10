@@ -4,20 +4,20 @@
       <div [ngClass]="rtlDir?'ms-auto':'me-auto'">
         <div class="d-inline" *ngIf="!is_login">
           <!-- <span class="d-md-inline d-none" >
-            <a class="text-decoration-none text-white fw-bold" routerLink="/Login">{{'navbar.Login'
+            <a class="text-decoration-none text-white fw-bold" routerLink="/auth/Login">{{'navbar.Login'
               | translate}}</a>
             <span class="mx-1">|</span>
-            <a class="text-decoration-none text-white fw-bold" routerLink="/Register">{{'navbar.Register' |
+            <a class="text-decoration-none text-white fw-bold" routerLink="/auth/Register">{{'navbar.Register' |
               translate}}</a>
           </span> -->
           <span class="d-inline">
-            <a class="text-decoration-none text-white fw-bold" routerLink="/Login"><i class="fa-solid fa-right-to-bracket mx-2"></i>{{'navbar.Login'
+            <a class="text-decoration-none text-white fw-bold" routerLink="/auth/Login"><i class="fa-solid fa-right-to-bracket mx-2"></i>{{'navbar.Login'
               | translate}}</a>
           </span>
         </div>
         <div class="d-inline" *ngIf="is_login">
           <span>
-            <a class="text-decoration-none text-white fw-bold rounded-circle dropdown-toggle" role="button"><img class="rounded-circle" [src]="userPhoto" width="30px" height="30px" alt=""></a>
+            <a class="text-decoration-none text-white fw-bold rounded-circle dropdown-toggle" role="button"><img class="rounded-circle" [src]="userPhoto" width="30px" height="30px" alt="User image"></a>
             <ul class="dropdown-menu animate__animated animate__fadeIn" [ngClass]="{'user-dropdown': !rtlDir, 'user-dropdown-ar': rtlDir}">
               <li><a class="dropdown-item text-center fw-bold" routerLink="/my-profile"><i class="fa-solid fa-user px-2"></i>{{'navbar.my-profile'
                 | translate}}</a></li>
@@ -85,18 +85,18 @@
           </div> -->
           <span >|</span>
           <div class="dropdown d-inline">
-            <a class="text-decoration-none text-white fw-bold px-2 dropdown-toggle" *ngIf="testCountry == 'http://medibookidashbord.test/api'">
+            <a class="text-decoration-none text-white fw-bold px-2 dropdown-toggle" *ngIf="testCountry == 'https://benaahadees.com/mediBookiDashbord/public/api'">
               <i class="fa-solid fa-caret-down"></i>
               <span class="mx-1">UAE</span>
               <img class="rounded-circle mb-1" src="../../../assets/images/navbar-footer/uae.png" width="20px"
-                height="20px">
+                height="20px" alt="Country image">
             </a>
             <ng-container *ngFor="let tenant of allTenants">
               <a class="text-decoration-none text-white fw-bold px-2 dropdown-toggle" *ngIf=" testCountry == 'http://'+tenant.domain+'/api'">
                 <i class="fa-solid fa-caret-down"></i>
                 <span class="mx-1">{{tenant.name | uppercase}}</span>
                 <img class="rounded-circle mb-1" [src]="tenant.logo" width="20px"
-                  height="20px">
+                  height="20px" alt="Country image">
               </a>
             </ng-container>
             <!-- <a class="text-decoration-none text-white fw-bold px-2 dropdown-toggle">
@@ -129,7 +129,7 @@
                       <div class="d-flex justify-content-between align-items-center border-top border-bottom px-3 py-1" *ngFor="let medicine of medicinesPurchased.user_cart_items">
                         <div class="d-flex">
                           <div [routerLink]="['/pharmacy/medicineDetails' , medicine.id]" class="rounded mx-2 cart-medicine-img">
-                            <img class="rounded" [src]="medicine.photo" alt="">
+                            <img class="rounded" [src]="medicine.photo" alt="Medicine image">
                           </div>
                           <div class="px-3">
                             <p [routerLink]="['/pharmacy/medicineDetails' , medicine.id]" class="m-0 fw-bold cart-medicine-name" [ngClass]="rtlDir?'text-end':'text-start'">{{medicine.medicine_name}}</p>
@@ -164,7 +164,7 @@
 
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container">
-      <a class="navbar-brand" routerLink="/home"><img src="../../../assets/images/MediBooki_Colors.png" /></a>
+      <a class="navbar-brand" routerLink="/home"><img src="../../../assets/images/MediBooki_Colors.png" alt="Logo image" /></a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -194,11 +194,11 @@
             <a class="nav-link link-hover justify-content-center d-flex" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show" routerLink="/faq" [routerLinkActive]="['active-link']">{{'navbar.navlink7' | translate}}</a>
           </li>
           <li class="nav-item text-center d-md-none">
-              <a class="nav-link" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show" routerLink="/Login">{{'navbar.Login'
+              <a class="nav-link" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show" routerLink="/auth/Login">{{'navbar.Login'
                 | translate}}</a>
           </li>
           <li class="nav-item text-center d-md-none">
-              <a class="nav-link" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show" routerLink="/Register">{{'navbar.Register' |
+              <a class="nav-link" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show" routerLink="/auth/Register">{{'navbar.Register' |
                 translate}}</a>
           </li>
           <li class="nav-item text-center d-md-none">

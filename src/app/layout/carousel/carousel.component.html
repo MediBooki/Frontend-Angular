@@ -36,7 +36,7 @@
     <div *ngFor="let image of carouselItems;let i = index">
       <div class="item">
         <div class="position-relative h-100">
-          <img class="img-fluid w-100 default-img" [src]="image.photo || defaultImg" alt=""> <!-- || defaultImg" alt=""-->
+          <img class="img-fluid w-100 default-img" [src]="image.photo || defaultImg" alt="Main image"> <!-- || defaultImg" alt=""-->
           <div class="main-carousle-layer"></div>
           <div class="main-carousle-title">
             <h2>{{image.title}}</h2>
@@ -53,7 +53,7 @@
       <div class="specialization" (click)="filterDoctors(specialization.id, specialization.name)"> <!-- routerLink="/specialize/{{specialization.id}}" "-->
         <div class=" h-100 rounded">
         <div class="overflow-hidden">
-            <img class="img-fluid rounded default-img" [src]="specialization.photo || defaultImg" alt="">
+            <img class="img-fluid rounded default-img" [src]="specialization.photo || defaultImg" alt="Specialization image">
             <!-- <img class="img-fluid rounded default-img" [src]="defaultImg" alt="" *ngIf="!specialization.photo"> -->
         </div>
         <div class="specialization-info p-3">
@@ -91,7 +91,7 @@
             <div class="d-flex justify-content-center">
               <div class="doctor-img" routerLink="/appointments/{{doctor.id}}">
                 <span>
-                  <img class="img-fluid default-img" [src]="doctor.photo || defaultImg" alt="">
+                  <img class="img-fluid default-img" [src]="doctor.photo || defaultImg" alt="Doctor image">
                 </span>
               </div>
             </div>

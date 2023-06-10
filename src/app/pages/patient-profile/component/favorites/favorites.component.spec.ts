@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { SharedModule } from 'src/app/layout/shared/shared.module';
+import { AppModule } from 'src/app/app.module';
 import { FavoritesComponent } from './favorites.component';
 
 describe('FavoritesComponent', () => {
@@ -8,7 +9,8 @@ describe('FavoritesComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ FavoritesComponent ]
+      declarations: [ FavoritesComponent ],
+      imports: [AppModule, SharedModule]
     })
     .compileComponents();
 

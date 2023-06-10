@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { SharedModule } from 'src/app/layout/shared/shared.module';
+import { AppModule } from 'src/app/app.module';
 import { MyInsuranceComponent } from './my-insurance.component';
 
 describe('MyInsuranceComponent', () => {
@@ -8,7 +9,8 @@ describe('MyInsuranceComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ MyInsuranceComponent ]
+      declarations: [ MyInsuranceComponent ],
+      imports:[AppModule,SharedModule]
     })
     .compileComponents();
 

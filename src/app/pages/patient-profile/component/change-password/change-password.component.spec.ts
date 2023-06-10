@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { SharedModule } from 'src/app/layout/shared/shared.module';
+import { AppModule } from 'src/app/app.module';
 import { ChangePasswordComponent } from './change-password.component';
 
 describe('ChangePasswordComponent', () => {
@@ -8,7 +9,8 @@ describe('ChangePasswordComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ChangePasswordComponent ]
+      declarations: [ ChangePasswordComponent ],
+      imports: [AppModule,SharedModule]
     })
     .compileComponents();
 

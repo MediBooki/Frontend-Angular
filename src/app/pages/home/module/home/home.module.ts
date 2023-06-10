@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { HomeComponent } from '../../component/Home/home.component';
 import { SharedModule } from 'src/app/layout/shared/shared.module';
 import { ArticleModule } from 'src/app/pages/articles/module/article/article.module';
-
+import { HomeRoutingModule } from '../../home-routing.module';
 
 @NgModule({
   declarations: [
@@ -11,8 +11,9 @@ import { ArticleModule } from 'src/app/pages/articles/module/article/article.mod
   ],
   imports: [
     CommonModule,
+    HomeRoutingModule,
     SharedModule,
-    ArticleModule
+    ArticleModule,
   ],
   exports:[
     HomeComponent

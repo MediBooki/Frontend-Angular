@@ -10,7 +10,7 @@ import { environment } from 'src/environments/environment';
 })
 export class PharmacyService {
 
-  sharedApi: string = environment.apimain;
+  sharedApi: string = 'https://benaahadees.com/mediBookiDashbord/public/api';
   favoritesId = new BehaviorSubject<number[]>([]); // medicines IDs added to favorite
   // General Method to Create Authorization Header
   createAuthorizationHeader(headers: HttpHeaders) {

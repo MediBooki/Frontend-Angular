@@ -1,13 +1,13 @@
 <div class="article-component animate" [dir]=" 'dir' | translate "  [lang]="lang">
   <div class="p-1">
-    <div class="card p-2 " [routerLink]="['/article', article.id]">
+    <div class="card p-2 " [routerLink]="['/articles/article', article.id]">
       <div class="card-img-link overflow-hidden">
-        <img [src]="article.photo || defaultImg" class="w-100 rounded w-100 h-100 default-img" alt="...">
+        <img [src]="article.photo || defaultImg" class="w-100 rounded w-100 h-100 default-img" alt="Article Image">
       </div>
 
       <div class="card-body">
         <div class="d-flex justify-content-between">
-          <span routerLink="/specialize/{{article.section.id}}" class="card-title"><i class="fa-solid fa-tags mx-1"></i>{{article.section.name}}</span>
+          <span  class="card-title"><i class="fa-solid fa-tags mx-1"></i>{{article.section.name}}</span>
           <p><i class="far fa-clock mx-1"></i>{{article.created_at}}</p>
         </div>
 

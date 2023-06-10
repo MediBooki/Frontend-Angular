@@ -55,7 +55,7 @@
         <div class="col-md-3 p-2" *ngFor="let medicine of orderDetails[0]?.user_medicine_items">
           <div class="bg-white rounded pb-1 shadow" [routerLink]="['/pharmacy/medicineDetails' , medicine.id]">
             <div class="medicine-img">
-              <img class="rounded w-100 h-100 default-img" [src]="medicine.photo || defaultImg" alt="">
+              <img class="rounded w-100 h-100 default-img" [src]="medicine.photo || defaultImg" alt="Medicine Image">
             </div>
             <div class="">
               <div class="px-1">

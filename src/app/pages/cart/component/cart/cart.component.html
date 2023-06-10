@@ -119,7 +119,7 @@
                     <div *ngFor="let medicine of allMedicinesPurchased" class="card product-card my-3" style="max-width: 540px;">
                         <div class="row g-0">
                             <div class="col-4 product-img-details position-relative">
-                                <img [src]="medicine.photo || defaultMedicineImg" class="img-fluid h-100 rounded-start shadow default-img" alt="...">
+                                <img [src]="medicine.photo || defaultMedicineImg" class="img-fluid h-100 rounded-start shadow default-img" alt="Medicine Image">
                                 <div class="delete-product"  [ngClass]="rtlDir? 'delete-product-arabic' : 'delete-product-english'">
                                     <i (click)="removeCart(medicine.id)" class="fa-solid fa-xmark fs-4 text-danger" *ngIf="selectedDeleteMedicine!=medicine.id"></i>
                                     <div class="cart-spinner" *ngIf="isVisibleDeleteSpinner && selectedDeleteMedicine==medicine.id"></div>

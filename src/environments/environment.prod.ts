@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
   tenants: [],
-  apimain: 'http://medibookidashbord.test/api',
+  apimain: 'https://benaahadees.com/mediBookiDashbord/public/api',
   // apiOther:  'https://'+localStorage.getItem('tenant')+'/api'
 };

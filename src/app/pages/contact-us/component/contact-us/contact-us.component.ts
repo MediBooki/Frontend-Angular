@@ -9,7 +9,7 @@ import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-contact-us',
-  templateUrl: './contact-us.component.html',
+  templateUrl: './contact-us.component.html', 
   styleUrls: ['./contact-us.component.scss']
 })
 export class ContactUsComponent implements OnInit, OnDestroy {

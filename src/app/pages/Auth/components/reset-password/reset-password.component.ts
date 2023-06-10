@@ -84,7 +84,7 @@ export class ResetPasswordComponent implements OnInit, OnDestroy  {
       this.isVisibleSpinner = false;
       localStorage.removeItem("reset_token")
       localStorage.removeItem("email_patient")
-      this.router.navigate(['/Login'])
+      this.router.navigate(['/auth/Login'])
     }, (error) => {
       this.toastr.error(!this.rtlDir?`password is incorrect`:`كلمة المرور خاطئة` )
       this.isVisibleSpinner = false;

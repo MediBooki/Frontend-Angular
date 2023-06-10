@@ -4,6 +4,7 @@ import { PharmacyComponent } from '../component/pharmacy/pharmacy.component';
 import { MedicineDetailsComponent } from '../component/medicine-details/medicine-details.component';
 import { SharedModule } from 'src/app/layout/shared/shared.module';
 import { NgxSliderModule } from '@angular-slider/ngx-slider';
+import { PharmacyRoutingModule } from '../pharmacy-routing.module';
 
 
 
@@ -16,6 +17,7 @@ import { NgxSliderModule } from '@angular-slider/ngx-slider';
     CommonModule,
     SharedModule,
     NgxSliderModule,
+    PharmacyRoutingModule
 
   ],
   exports:[

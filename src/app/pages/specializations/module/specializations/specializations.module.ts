@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { SpecializationsComponent } from '../../component/specializations/specializations.component';
 import { SpecializeComponent } from '../../component/specialize/specialize.component';
 import { SharedModule } from 'src/app/layout/shared/shared.module';
+import { SpecializationsRoutingModule } from '../../specializations-routing.module';
 
 
 
@@ -14,7 +15,8 @@ import { SharedModule } from 'src/app/layout/shared/shared.module';
   ],
   imports: [
     CommonModule,
-    SharedModule
+    SharedModule,
+    SpecializationsRoutingModule
   ],
   exports:[
     SpecializationsComponent,

@@ -87,9 +87,28 @@ a {
     opacity: 0;
   }
 }
+/* =======================================================( Scroll )======================================================= */
 
 
-
+.scrollable{
+  max-height: 400px;
+  overflow-y: auto;
+  margin-bottom: 20px;
+}
+.scrollable::-webkit-scrollbar {
+  width: 5px; /* Width of the scrollbar */
+  
+}
+.scrollable::-webkit-scrollbar-track {
+  background-color: unset !important; /* Color of the scrollbar track */
+}
+.scrollable::-webkit-scrollbar-thumb {
+  background-color: #888; /* Color of the scrollbar thumb */
+  border-radius: 4px; /* Rounded corners of the scrollbar thumb */
+}
+.scrollable::-webkit-scrollbar-thumb:hover {
+  background-color: #555; /* Color of the scrollbar thumb on hover */
+}
 /* =======================================================( Media Query )======================================================= */
 
 @media (width <=768px) {

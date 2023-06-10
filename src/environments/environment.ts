@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   tenants: [],
-  apimain: 'http://medibookidashbord.test/api',
+  apimain: 'https://benaahadees.com/mediBookiDashbord/public/api',
 };
 
 /*

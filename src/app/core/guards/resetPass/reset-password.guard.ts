@@ -24,7 +24,7 @@ export class ResetPasswordGuard implements CanActivate {
         }else{
           this.toastr.error(`please enter your email first`)
         }
-        this.router.navigate(['/forgetPassword']); // Redirect to a forgetPassword page
+        this.router.navigate(['/auth/forgetPassword']); // Redirect to a forgetPassword page
         return false;
       }
   }

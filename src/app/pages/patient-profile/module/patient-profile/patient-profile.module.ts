@@ -12,6 +12,7 @@ import { FavoritesComponent } from '../../component/favorites/favorites.componen
 import { OrdersComponent } from '../../component/orders/orders.component';
 import { ReviewsComponent } from '../../component/reviews/reviews.component';
 import { MyAppointmentsComponent } from '../../component/my-appointments/my-appointments.component';
+import { PatientProfileRoutingModule } from '../../patient-profile-routing.module';
 
 
 
@@ -31,7 +32,8 @@ import { MyAppointmentsComponent } from '../../component/my-appointments/my-appo
   ],
   imports: [
     CommonModule,
-    SharedModule
+    SharedModule,
+    PatientProfileRoutingModule
   ],
   exports:[
     PatientProfileComponent,

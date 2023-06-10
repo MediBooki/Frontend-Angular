@@ -24,8 +24,7 @@ import { FAQComponent } from './pages/FAQ/component/faq/faq.component';
 import { AuthGuard } from './core/guards/auth.guard';
 import { unAuthGuard } from './core/guards/auth.guard';
 import { ReviewGuard } from './core/guards/review.guard';
-import { CheckoutGuard } from './core/guards/checkout/checkout.guard';
-import { ResetPasswordGuard } from './core/guards/resetPass/reset-password.guard';
+
 import { ProfileDetailsComponent } from './pages/patient-profile/component/profile-details/profile-details.component';
 import { ChangePasswordComponent } from './pages/patient-profile/component/change-password/change-password.component';
 import { MyInsuranceComponent } from './pages/patient-profile/component/my-insurance/my-insurance.component';
@@ -38,51 +37,21 @@ import { ReviewsComponent } from './pages/patient-profile/component/reviews/revi
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: 'home', component: HomeComponent },
-  {
-    path: 'doctors', children: [
-      { path: '', component: DoctorsComponent },
-      { path: ':name', component: DoctorsComponent }
-    ]
-  },
-  { path: 'appointments/:id', component: AppointmentsComponent },
-  { path: 'review/:id', component: ReviewComponent,canActivateChild:[AuthGuard],canActivate:[ReviewGuard] },
-  { path: 'cart',
-   canActivateChild:[AuthGuard],
-   children: [
-    { path: '', component: CartComponent},
-    { path: 'checkout', component: CheckoutComponent, canActivate:[CheckoutGuard]}
-  ]},
-  {
-    path: 'my-profile', component: PatientProfileComponent,children: [
-      { path: '', redirectTo: 'details', pathMatch: 'full' },
-      { path: 'details', component: ProfileDetailsComponent, canActivate:[AuthGuard]},
-      { path: 'change-password', component: ChangePasswordComponent, canActivate:[AuthGuard]},
-      { path: 'insurance', component: MyInsuranceComponent, canActivate:[AuthGuard]},
-      { path: 'appointments', component: MyAppointmentsComponent, canActivate:[AuthGuard]},
-      { path: 'history', component: HistoryComponent, canActivate:[AuthGuard]},
-      { path: 'invoices', component: InvoicesComponent, canActivate:[AuthGuard]},
-      { path: 'favorites', component: FavoritesComponent, canActivate:[AuthGuard]},
-      { path: 'orders', component: OrdersComponent, canActivate:[AuthGuard]},
-      { path: 'reviews', component: ReviewsComponent, canActivate:[AuthGuard]}
-  ] ,canActivate:[AuthGuard]  },
   { path: 'order/:id', component:OrderDetailsComponent, canActivate:[AuthGuard]},
-  {
-    path: 'pharmacy', children: [
-      { path: '', component: PharmacyComponent },
-      { path: 'medicineDetails/:id', component: MedicineDetailsComponent }
-    ]
-  },
-  { path: 'specializations', component: SpecializationsComponent },
-  { path: 'Register', component: RegisterComponent, data: { animation: 'Register' },canActivate:[unAuthGuard] },
-  { path: 'Login', component: LoginComponent, data: { animation: 'login' },canActivate:[unAuthGuard] },
-  { path: 'joinus', component: DoctorRegisterComponent },
-  { path: 'articles', component: ArticlesComponent },
-  { path: 'article/:id', component: OneArticleComponent },
-  { path: 'contactus', component: ContactUsComponent },
-  { path: 'faq', component: FAQComponent },
-  { path:'forgetPassword' , component:ForgetPasswordComponent,canActivate:[unAuthGuard]},
-  { path:'ResetPassword' , component:ResetPasswordComponent,canActivate:[unAuthGuard,ResetPasswordGuard]},
+  { path: 'home', loadChildren: () => import('./pages/home/module/home/home.module').then(m => m.HomeModule) },
+  { path: 'appointments', loadChildren: () => import('./pages/appointments/module/appointment/appointment.module').then(m => m.AppointmentModule) },
+  { path: 'articles', loadChildren: () => import('./pages/articles/module/article/article.module').then(m => m.ArticleModule) },
+  { path: 'auth', loadChildren: () => import('./pages/Auth/module/auth/auth.module').then(m => m.AuthModule) },
+  { path: 'cart', loadChildren: () => import('./pages/cart/module/cart/cart.module').then(m => m.CartModule),canActivateChild:[AuthGuard] },
+  { path: 'contactus', loadChildren: () => import('./pages/contact-us/module/contact-us.module').then(m => m.ContactUsModule) },
+  { path: 'joinus', loadChildren: () => import('./pages/doctor-register/module/doctor-register/doctor-register.module').then(m => m.DoctorRegisterModule) },
+  { path: 'doctors', loadChildren: () => import('./pages/doctors/module/doctors.module').then(m => m.DoctorsModule) },
+  { path: 'contactus', loadChildren: () => import('./pages/contact-us/module/contact-us.module').then(m => m.ContactUsModule) },
+  { path: 'faq', loadChildren: () => import('./pages/FAQ/modules/faq/faq.module').then(m => m.FAQModule) },
+  { path: 'my-profile', loadChildren: () => import('./pages/patient-profile/module/patient-profile/patient-profile.module').then(m => m.PatientProfileModule) },
+  { path: 'pharmacy', loadChildren: () => import('./pages/pharmacy/module/pharmacy.module').then(m => m.PharmacyModule) },
+  { path: 'review', loadChildren: () => import('./pages/review/module/review/review.module').then(m => m.ReviewModule) },
+  { path: 'specializations', loadChildren: () => import('./pages/specializations/module/specializations/specializations.module').then(m => m.SpecializationsModule) },
   { path: '**', component: NotFoundComponent },
 ];
 

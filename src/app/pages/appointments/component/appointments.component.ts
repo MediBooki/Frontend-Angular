@@ -1,6 +1,6 @@
 import { Time } from 'src/app/core/interfaces/time';
 import { Doctor } from './../../../core/interfaces/doctor';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { DataService } from 'src/app/core/services/data.service';
 import { AuthService } from '../../Auth/services/auth.service';
 import { AppointmentsService } from '../service/appointments.service';
@@ -21,7 +21,7 @@ import { SafeHtml ,DomSanitizer } from '@angular/platform-browser';
   templateUrl: './appointments.component.html',
   styleUrls: ['./appointments.component.scss']
 })
-export class AppointmentsComponent implements OnInit, OnDestroy  {
+export class AppointmentsComponent implements OnInit {
 
   /*=============================================( Variables )=============================================*/
 
@@ -49,9 +49,12 @@ export class AppointmentsComponent implements OnInit, OnDestroy  {
   overallRating:number = 0
   htmlCode!: SafeHtml;
 
+  addClass:boolean = false
+
 
   
   // API Variables
+  appointmentSubscription = new Subscription();
   doctor: Doctor = {
     id: 0,
     name: '',
@@ -92,15 +95,11 @@ export class AppointmentsComponent implements OnInit, OnDestroy  {
   incrementCount = 1; // Number of reviews to increment on "Show More" button click
 
   
-  // API Subscriptions Variables
+  
   bookSubscription = new Subscription();
-  appointmentSubscription = new Subscription();
-  bookDaySubscription = new Subscription();
-  createAppointmentSubscription = new Subscription();
-  
-
-  
   listOfBook!: patientAppointment[]
+  
+  bookDaySubscription = new Subscription();
   listOfDayBook!: patientAppointment[]
   timeBookList: any[] = [];
   filterintervals: any[] = []
@@ -350,7 +349,7 @@ activeIndex = null;
       time: this.selectedtime
     }
     this.isVisibleSpinner = true;
-    this.createAppointmentSubscription = this._AppointmentsService.createAppointmentPatient(model).subscribe((res:any) => {
+    this._AppointmentsService.createAppointmentPatient(model).subscribe((res:any) => {
       console.log(model);
       console.log(res.count);
       if(res.count === 1 ){
@@ -435,14 +434,4 @@ activeIndex = null;
     console.log(this.displayCount)
   }
 
-
-  /*=============================================( Destroying Method )=============================================*/
-
-  ngOnDestroy() {
-    this.createAppointmentSubscription.unsubscribe();
-    this.bookDaySubscription.unsubscribe();
-    this.appointmentSubscription.unsubscribe();
-    this.bookSubscription.unsubscribe();
-  }
-    
 }

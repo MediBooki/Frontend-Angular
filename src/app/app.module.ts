@@ -4,7 +4,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
-import { ContactUsComponent } from './pages/contact-us/component/contact-us/contact-us.component';
 import { SharedModule } from './layout/shared/shared.module';
 import { PharmacyModule } from './pages/pharmacy/module/pharmacy.module';
 import { DoctorsModule } from './pages/doctors/module/doctors.module';
@@ -18,14 +17,12 @@ import { ReviewModule } from './pages/review/module/review/review.module';
 import { SpecializationsModule } from './pages/specializations/module/specializations/specializations.module';
 import { HomeModule } from './pages/home/module/home/home.module';
 import { FAQModule } from './pages/FAQ/modules/faq/faq.module';
-// import { RegisterHabdaComponent } from './pages/Auth/components/register-habda/register-habda.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     NotFoundComponent,
-    ContactUsComponent,
-
   ],
   imports: [
     BrowserModule,

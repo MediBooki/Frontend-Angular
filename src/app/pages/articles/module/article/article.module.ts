@@ -4,6 +4,7 @@ import { ArticlesComponent } from '../../component/articles/articles.component';
 import { ArticleComponent } from '../../component/article/article.component'; 
 import { OneArticleComponent } from '../../component/article-details/one-article.component';
 import { SharedModule } from 'src/app/layout/shared/shared.module';
+import { ArticlesRoutingModule } from '../../articles-routing.module';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import { SharedModule } from 'src/app/layout/shared/shared.module';
   ],
   imports: [
     CommonModule,
-    SharedModule
+    SharedModule,
+    ArticlesRoutingModule
   ],
   exports:[
     ArticlesComponent,

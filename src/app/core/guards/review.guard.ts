@@ -36,7 +36,7 @@ export class ReviewGuard implements CanActivate {
               let flag = true
               this.appointmentData?.forEach((appointment:any) => {
                 const appointmentDate = new Date(appointment.date); 
-                if(appointment.doctor.id === parseInt(this.doctorId)  && (appointmentDate) <= (currentDate)  ){
+                if(appointment.doctor.id === parseInt(this.doctorId)  && (appointmentDate) <= (currentDate) && appointment.status === 1  ){
                   observer.next(true);
                   observer.complete(); 
                   flag = false    
@@ -51,7 +51,7 @@ export class ReviewGuard implements CanActivate {
       
                     this.doctor = Doctor.data;
                     console.log(this.doctor)
-                    this.toastr.error(`please book this doctor to review this doctor`)
+                    this.toastr.error(`You must attend an examination for this doctor`)
                     this.router.navigate(['/appointments/'+this.doctorId])
 
                     // this.isVisibleSpinner = false;

@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
 import { RegisterComponent } from './register.component';
 import { AuthService } from '../../services/auth.service';
 import { ToastrService } from 'ngx-toastr';
@@ -23,7 +23,7 @@ describe('RegisterComponent', () => {
         { provide: AuthService, useValue: authSpy },
         { provide: ToastrService, useValue: toastrSpy },
       ],
-      imports: [ReactiveFormsModule,SharedModule,AppModule],
+      imports: [ReactiveFormsModule, SharedModule,AppModule],
     }).compileComponents();
   });
 
@@ -34,18 +34,20 @@ describe('RegisterComponent', () => {
 
     authService = TestBed.inject(AuthService) as jasmine.SpyObj<AuthService>;
     toastrService = TestBed.inject(ToastrService) as jasmine.SpyObj<ToastrService>;
-      // Initialize authService.istrigger with a BehaviorSubject
+
+    // Initialize authService.istrigger with a BehaviorSubject
     const istriggerSubject = new BehaviorSubject<boolean>(false);
     authService.istrigger = istriggerSubject;
   });
 
-  it('should submit the patient registration form successfully', () => {
+
+
+  it('should submit the patient registration form successfully', fakeAsync(() => {
     // Mock patientForm value
     const email = 'test@example.com';
     const password = 'password123';
-    const confirmPassword = 'password123'; // Add confirmPassword value
     const username = 'John Doe';
-    const dateOfBirth = new Date('1990-01-01'); // Use a Date object instead of string
+    const dateOfBirth = new Date('1990-01-01');
     const phoneNumber = '1234567890';
     const gender = 'male';
     const bloodGroup = 'A+';
@@ -54,7 +56,7 @@ describe('RegisterComponent', () => {
     component.patientForm.setValue({
       email,
       password,
-      confirmPassword, // Set the value for confirmPassword
+      confirmPassword: password,
       username,
       date_of_birth: dateOfBirth,
       phoneNumber,
@@ -70,43 +72,40 @@ describe('RegisterComponent', () => {
   
     // Trigger the submit function
     component.submit();
-  
+    tick();
+    fixture.whenStable().then(() => {
     // Expectations
     expect(authService.createPatient).toHaveBeenCalledWith({
       email,
       password,
-      confirmPassword, // Include confirmPassword in the expected object
       name: username,
       date_of_birth: dateOfBirth,
       phone: phoneNumber,
       gender,
       blood_group: bloodGroup,
       address,
-      terms_conditions: true, // Include terms_conditions in the expected object
     });
     expect(toastrService.success).toHaveBeenCalledWith('patient Added Successfully');
+    // expect(router.navigate).toHaveBeenCalledWith(['/Login']);
   });
-  
-  
+  }));
   
 
-  it('should handle patient registration error', () => {
+  it('should handle patient registration error', fakeAsync(() => {
     // Mock patientForm value
     const email = 'test@example.com';
     const password = 'password123';
-    const confirmPassword = 'password123';
     const username = 'John Doe';
-    const dateOfBirth = new Date('1990-01-01'); // Use a Date object instead of string
+    const dateOfBirth = new Date('1990-01-01');
     const phoneNumber = '1234567890';
     const gender = 'male';
     const bloodGroup = 'A+';
     const address = '123 Main St';
 
-
     component.patientForm.setValue({
       email,
       password,
-      confirmPassword,
+      confirmPassword: password,
       username,
       date_of_birth: dateOfBirth,
       phoneNumber,
@@ -128,22 +127,27 @@ describe('RegisterComponent', () => {
 
     // Trigger the submit function
     component.submit();
-
+    tick();
+    fixture.whenStable().then(() => {
     // Expectations
     expect(authService.createPatient).toHaveBeenCalledWith({
       email,
       password,
-      confirmPassword,
+      // confirmPassword,
       name: username,
       date_of_birth: dateOfBirth,
       phone: phoneNumber,
       gender,
       blood_group: bloodGroup,
       address,
-      terms_conditions: true,
+      // terms_conditions: true,
     });
     expect(toastrService.error).toHaveBeenCalledWith('Email is already taken');
   });
-
-
+  }));
+  afterEach(() => {
+    TestBed.resetTestingModule(); // Reset the testing module after each test
+    fixture.destroy(); 
+  });
 });
+

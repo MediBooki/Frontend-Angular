@@ -245,7 +245,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
   }
 
   getCountry(domain:string) {
-    localStorage.setItem('tenant',`http://${domain}/api`);
+    localStorage.setItem('tenant',`https://${domain}/mediBookiDashbord/public/api`);
   }
 
   getPatientInfo(){

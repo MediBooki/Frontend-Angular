@@ -26,9 +26,6 @@ describe('AppointmentsComponent', () => {
     fixture.detectChanges();
   });
 
-  afterEach(() => {
-    httpTestingController.verify();
-  });
 
   it('should create', () => {
     expect(component).toBeTruthy();

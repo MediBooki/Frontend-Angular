@@ -22,7 +22,7 @@ export class AuthGuard implements CanActivateChild {
       }else{
         this.toastr.error(`please login first`)
       }
-      this.router.navigate(['/Login'])
+      this.router.navigate(['/auth/Login'])
       return false
     }
   }
@@ -41,7 +41,7 @@ export class AuthGuard implements CanActivateChild {
         }else{
           this.toastr.error(`please login first`)
         }
-        this.router.navigate(['/Login'])
+        this.router.navigate(['/auth/Login'])
         return false
       }
     }

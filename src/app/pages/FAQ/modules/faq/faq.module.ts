@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { FAQComponent } from '../../component/faq/faq.component'; 
 import { SharedModule } from 'src/app/layout/shared/shared.module';
 import { SingleFaqComponent } from '../../component/single-faq/single-faq.component';
-
+import { FAQRoutingModule } from '../../faq-routing.module';
 
 @NgModule({
   declarations: [
@@ -13,7 +13,8 @@ import { SingleFaqComponent } from '../../component/single-faq/single-faq.compon
   ],
   imports: [
     CommonModule,
-    SharedModule
+    SharedModule,
+    FAQRoutingModule
   ],
   exports: [
     FAQComponent,

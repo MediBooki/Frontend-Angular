@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AppointmentsComponent } from '../../component/appointments.component';
 import { SharedModule } from 'src/app/layout/shared/shared.module';
+import { AppointmentRoutingRoutingModule } from './appointment-routing-.module';
 import { DatePipe } from '@angular/common';
 
 
@@ -12,7 +13,8 @@ import { DatePipe } from '@angular/common';
   ],
   imports: [
     CommonModule,
-    SharedModule
+    SharedModule,
+    AppointmentRoutingRoutingModule
   ],
   exports:[
     AppointmentsComponent,
