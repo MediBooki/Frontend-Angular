@@ -11,6 +11,7 @@ import { FormGroup, FormBuilder, FormArray } from '@angular/forms';
 import { Specialize } from 'src/app/core/interfaces/specialize';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
+import { HomeService } from 'src/app/pages/home/service/home.service';
 
 
 @Component({
@@ -77,7 +78,7 @@ export class DoctorsComponent implements OnInit, OnDestroy  {
   /*=============================================( Initialization Methods )=============================================*/
 
 
-  constructor(private _DataService: DataService, private _SpecializationService:SpecializationService, private _DoctorService: DoctorService, private _AuthService: AuthService, private _FormBuilder:FormBuilder, private toastr: ToastrService, private router: Router) {
+  constructor(private _DataService: DataService, private _SpecializationService:SpecializationService, private _DoctorService: DoctorService, private _HomeService:HomeService, private _AuthService: AuthService, private _FormBuilder:FormBuilder, private toastr: ToastrService, private router: Router) {
     // Declare FilterForm
     this.filterForm = this._FormBuilder.group({
       titles: new FormArray([]),
@@ -421,7 +422,7 @@ export class DoctorsComponent implements OnInit, OnDestroy  {
 
 
   getCounterVals() {
-    this.countersSubscription = this._DataService.getCounterVals().subscribe({
+    this.countersSubscription = this._HomeService.getCounterVals().subscribe({
       next:(res)=>{
         this.numOfDoctors = res.doctors;
         this.numOfSpecializations = res.sections-1;

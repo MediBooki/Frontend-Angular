@@ -27,4 +27,12 @@ export class HomeService {
       return throwError(e)
     }));
   }
+
+  getCounterVals(): Observable<any> {
+    console.log(`${this.sharedApi}/counts`)
+    return this._HttpClient.get(`${this.sharedApi}/counts`).pipe(catchError((e: any) => {
+      console.log(e)
+      return throwError(e)
+      }));
+  }
 }

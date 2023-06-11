@@ -11,6 +11,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Options } from '@angular-slider/ngx-slider';
 import { Router } from '@angular/router';
 import { PharmacyService } from '../../service/pharmacy.service';
+import { HomeService } from 'src/app/pages/home/service/home.service';
 
 
 @Component({
@@ -79,7 +80,7 @@ export class PharmacyComponent implements OnInit {
 
   /*=============================================( Initialization Methods )=============================================*/
   
-  constructor(private _DataService:DataService ,private _PharmacyService:PharmacyService, private _AuthService:AuthService , private _FormBuilder:FormBuilder, private toastr: ToastrService, private router: Router) {
+  constructor(private _DataService:DataService ,private _PharmacyService:PharmacyService, private _HomeService:HomeService , private _FormBuilder:FormBuilder, private toastr: ToastrService, private router: Router) {
     this.medicineFilterForm = this._FormBuilder.group({
       name:"",
       minPrice: "",
@@ -485,7 +486,7 @@ export class PharmacyComponent implements OnInit {
   // }
 
   getCounterVals() {
-    this.countersSubscribtion = this._DataService.getCounterVals().subscribe({
+    this.countersSubscribtion = this._HomeService.getCounterVals().subscribe({
       next:(res)=>{
         this.numOfMedicines = res.medicine;
       }

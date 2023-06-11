@@ -7,7 +7,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class DataService {
-  sharedApi = environment.apimain
+  sharedApi:any = environment.apimain
   defaultNoImg:string = "../../../assets/images/No_Image_Available.png"
   userPhoto= new BehaviorSubject('../../../assets/images/user_male.jpeg')
   firstSectionHeight: any = 0; // variable to know first component section height to show scrollToTop Btn
@@ -34,16 +34,10 @@ export class DataService {
     }
   }
 
-  getCounterVals(): Observable<any> {
-    return this._HttpClient.get(`${this.sharedApi}/counts`).pipe(catchError((e: any) => {
-      console.log(e)
-      return throwError(e)
-      }));
-  }
+
 
 
   gethospitalDetails(): Observable<any> {
-    console.log(`${this.sharedApi}/settings`)
     return this._HttpClient.get<any[]>(`${this.sharedApi}/settings`).pipe(catchError((e: any) => {
       console.log(e)
       return throwError(e)

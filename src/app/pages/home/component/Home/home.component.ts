@@ -276,37 +276,43 @@ export class HomeComponent implements OnInit, OnDestroy  {
     let counterSectionHeight = this.countersSection?.nativeElement.offsetHeight; // section height
 
     // to check if we reached section level
-    if (scrollPosition >= counterSectionOffset - counterSectionHeight * 0.5 && (this.doctorsCounter == 0 || this.usersCounter == 0 || this.specializationCounter == 0) && (this.numOfDoctors!=0 && this.numOfUsers!=0 && this.numOfSpecializations!=0)) {
+    if (scrollPosition >= counterSectionOffset - counterSectionHeight * 0.5 && (this.doctorsCounter == 0 || this.usersCounter == 0 || this.specializationCounter == 0)) {
       let doctorsCounter: number = 0;
       let usersCounter: number = 0;
       let specializationCounter: number = 0;
       let numOfAll = this.numOfDoctors + this.numOfUsers + this.numOfSpecializations;
 
-      // loop on counter untill reach stop point
-      let doctorsCounterStop: any = setInterval(() => {
-        doctorsCounter++;
-        this.doctorsCounter = doctorsCounter
-        if (this.doctorsCounter >= this.numOfDoctors) {
-          //clearinterval will stop counter
-          clearInterval(doctorsCounterStop);
-        }
-      }, (numOfAll / this.numOfDoctors) * 10)
+      if(this.numOfDoctors!=0) {
+        // loop on counter untill reach stop point
+        let doctorsCounterStop: any = setInterval(() => {
+          doctorsCounter++;
+          this.doctorsCounter = doctorsCounter
+          if (this.doctorsCounter >= this.numOfDoctors) {
+            //clearinterval will stop counter
+            clearInterval(doctorsCounterStop);
+          }
+        }, (numOfAll / this.numOfDoctors) * 10)
+      }
 
-      let usersCounterStop: any = setInterval(() => {
-        usersCounter++;
-        this.usersCounter = usersCounter;
-        if (this.usersCounter >= this.numOfUsers) {
-          clearInterval(usersCounterStop);
-        }
-      }, (numOfAll / this.numOfUsers) * 10)
+      if(this.numOfUsers!=0) {
+        let usersCounterStop: any = setInterval(() => {
+          usersCounter++;
+          this.usersCounter = usersCounter;
+          if (this.usersCounter >= this.numOfUsers) {
+            clearInterval(usersCounterStop);
+          }
+        }, (numOfAll / this.numOfUsers) * 10)
+      }
 
-      let specializationCounterStop: any = setInterval(() => {
-        specializationCounter++;
-        this.specializationCounter = specializationCounter;
-        if (this.specializationCounter == this.numOfSpecializations) {
-          clearInterval(specializationCounterStop);
-        }
-      }, (numOfAll / this.numOfSpecializations) * 10)
+      if(this.numOfSpecializations!=0) {
+        let specializationCounterStop: any = setInterval(() => {
+          specializationCounter++;
+          this.specializationCounter = specializationCounter;
+          if (this.specializationCounter == this.numOfSpecializations) {
+            clearInterval(specializationCounterStop);
+          }
+        }, (numOfAll / this.numOfSpecializations) * 10)
+      }
     }
 
   }
@@ -420,11 +426,12 @@ bookDoctor(eve:any) {
   }
 
   getCounterVals() {
-    this.countersSubscription = this._DataService.getCounterVals().subscribe({
+    this.countersSubscription = this._HomeService.getCounterVals().subscribe({
       next:(res)=>{
         this.numOfDoctors = res.doctors;
         this.numOfUsers = res.patients;
         this.numOfSpecializations = res.sections;
+        console.log(this.numOfDoctors)
       }
     })
   }
