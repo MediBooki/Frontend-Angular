@@ -31,8 +31,11 @@
           </span>
         </div>
         <span class="px-1 d-none d-md-inline">|</span>
-        <span class="d-none d-md-inline"><i class=" px-2 fa-brands fa-facebook-f"></i><i class=" px-2 fa-brands fa-instagram"></i><i
-            class="px-2 fa-brands fa-twitter"></i></span>
+        <span class="d-none d-md-inline">
+          <a class="text-white" href="{{contacts?.facebook}}"><i class=" px-2 fa-brands fa-facebook-f"></i></a>
+          <a class="text-white" href="{{contacts?.instagram}}"><i class=" px-2 fa-brands fa-instagram"></i></a>
+          <a class="text-white" href="{{contacts?.twitter}}"><i class="px-2 fa-brands fa-twitter"></i></a>
+        </span>
       </div>
       <div [ngClass]="rtlDir?'me-auto':'ms-auto'">
         <span>
@@ -87,8 +90,8 @@
           <div class="dropdown d-inline">
             <a class="text-decoration-none text-white fw-bold px-2 dropdown-toggle" *ngIf="testCountry == 'https://benaahadees.com/mediBookiDashbord/public/api'">
               <i class="fa-solid fa-caret-down"></i>
-              <span class="mx-1">UAE</span>
-              <img class="rounded-circle mb-1" src="../../../assets/images/navbar-footer/uae.png" width="20px"
+              <span class="mx-1">EGYPT</span>
+              <img class="rounded-circle mb-1" src="../../../assets/images/navbar-footer/egypt.png" width="20px"
                 height="20px" alt="Country image">
             </a>
             <ng-container *ngFor="let tenant of allTenants">
@@ -106,8 +109,8 @@
                 height="20px">
             </a> -->
                 <ul class="dropdown-menu text-center animate__animated animate__fadeIn" [ngClass]="{'tanant-dropdown': !rtlDir, 'tanant-dropdown-ar': rtlDir}">
-                  <li (click)="getCountry('benaahadees.com')"><a class="dropdown-item" href="">UAE</a></li>
-                  <li *ngFor="let tenant of allTenants" (click)="getCountry(tenant.domain)"><a class="dropdown-item" href="">{{tenant.name | titlecase }}</a></li>
+                  <li (click)="getCountry('benaahadees.com')"><a class="dropdown-item" href="">EGYPT</a></li>
+                  <li *ngFor="let tenant of allTenants" (click)="getCountry(tenant.domain)"><a class="dropdown-item" href="">{{tenant.name | uppercase }}</a></li>
                   <!-- <li><a class="dropdown-item" href="#">Action</a></li>
                   <li><a class="dropdown-item" href="#">Another action</a></li>
                   <li><hr class="dropdown-divider"></li>

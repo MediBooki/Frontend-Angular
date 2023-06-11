@@ -4,6 +4,7 @@ import { AuthService } from 'src/app/pages/Auth/services/auth.service';
 import { TermCondition } from 'src/app/core/interfaces/term-condition';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { ContactUsService } from 'src/app/pages/contact-us/service/contact-us.service';
 
 @Component({
   selector: 'app-footer',
@@ -14,11 +15,14 @@ export class FooterComponent implements OnInit, OnDestroy {
 
   // API Subscriptions Variables
   termsSubscription = new Subscription();
+  contactsSubscription = new Subscription();
+  contacts: any;
 
-  constructor(private _DataService:DataService, private _AuthService:AuthService, private router: Router) { }
+  constructor(private _DataService:DataService, private _AuthService:AuthService, private router: Router, private _contactus:ContactUsService) { }
 
   ngOnInit(): void {
     this.getTerms();
+    this.getcontacts();
   }
   lang:string = "en";
   rtlDir:boolean = false;
@@ -53,7 +57,7 @@ export class FooterComponent implements OnInit, OnDestroy {
           this.rtlDir = true;
 
         }
-        
+
         this.termsSubscription = this._AuthService.getTerms(this.lang).subscribe({
           next:(terms)=>{
             console.log(terms)
@@ -63,15 +67,22 @@ export class FooterComponent implements OnInit, OnDestroy {
 
       }
     })
-    
+
   }
 
-
+  getcontacts() {
+    this.contactsSubscription = this._contactus.getContact().subscribe({
+      next:(res)=>{
+        this.contacts = res.data[0];
+      }
+    })
+}
 
   /*=============================================( Destroying Method )=============================================*/
 
   ngOnDestroy() {
     this.termsSubscription.unsubscribe();
+    this.contactsSubscription.unsubscribe();
   }
-  
+
 }

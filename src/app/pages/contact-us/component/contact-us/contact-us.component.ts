@@ -9,7 +9,7 @@ import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-contact-us',
-  templateUrl: './contact-us.component.html', 
+  templateUrl: './contact-us.component.html',
   styleUrls: ['./contact-us.component.scss']
 })
 export class ContactUsComponent implements OnInit, OnDestroy {
@@ -20,7 +20,7 @@ export class ContactUsComponent implements OnInit, OnDestroy {
     roadMabFirstLink: {arabic:'الرئيسية',english:'Home',link:'/home'},
     roadMabLastLink: {arabic:'تواصل معنا',english:'Contact Us'},
     roadMabIntermediateLinks: [
-      
+
     ]
   }
 
@@ -30,6 +30,7 @@ export class ContactUsComponent implements OnInit, OnDestroy {
     // Promise.resolve().then(() => this._AuthService.isLogedIn.next(true));
     // Promise.resolve().then(() => this._DataService.isPageLoaded.next(false));
     this.getLang();
+    this.getcontacts()
   }
 
   // when view load completely
@@ -54,6 +55,8 @@ export class ContactUsComponent implements OnInit, OnDestroy {
 
   // API Subscriptions Variables
   contactUsSubscription = new Subscription();
+  contactsSubscription = new Subscription();
+  contacts: any;
 
   /*=============================================( Component Created Methods )=============================================*/
 
@@ -96,10 +99,18 @@ export class ContactUsComponent implements OnInit, OnDestroy {
 
   }
 
+  getcontacts() {
+        this.contactsSubscription = this._contactus.getContact().subscribe({
+          next:(res)=>{
+            this.contacts = res.data[0];
+          }
+        })
+  }
 
   /*=============================================( Destroying Method )=============================================*/
 
   ngOnDestroy() {
     this.contactUsSubscription.unsubscribe();
+    this.contactsSubscription.unsubscribe();
   }
 }

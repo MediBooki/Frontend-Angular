@@ -7,6 +7,7 @@ import { CartService } from 'src/app/pages/cart/service/cart.service';
 import { PatientProfileService } from 'src/app/pages/patient-profile/service/patient-profile.service';
 import { environment } from 'src/environments/environment';
 import { ToastrService } from 'ngx-toastr';
+import { ContactUsService } from 'src/app/pages/contact-us/service/contact-us.service';
 
 @Component({
   selector: 'app-navbar',
@@ -44,8 +45,10 @@ export class NavbarComponent implements OnInit, OnDestroy {
   medicinesSubscription = new Subscription();
   removeMedicinesSubscription = new Subscription();
   patientInfoSubscription = new Subscription();
+  contactsSubscription = new Subscription();
+  contacts: any;
 
-  constructor(private _PatientProfileService:PatientProfileService,private _DataService: DataService, private _CartService: CartService, private _TranslateService: TranslateService, private _AuthService: AuthService, private toastr: ToastrService) { }
+  constructor(private _PatientProfileService:PatientProfileService,private _DataService: DataService, private _CartService: CartService, private _TranslateService: TranslateService, private _AuthService: AuthService, private toastr: ToastrService, private _contactus:ContactUsService) { }
 
   ngOnInit(): void {
     this.getLang();
@@ -62,6 +65,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
       }
     });
     this.getCurrentCountry();
+    this.getcontacts();
 
   }
 
@@ -290,6 +294,14 @@ export class NavbarComponent implements OnInit, OnDestroy {
     // console.log(findTenant);
   }
 
+  getcontacts() {
+    this.contactsSubscription = this._contactus.getContact().subscribe({
+      next:(res)=>{
+        this.contacts = res.data[0];
+      }
+    })
+}
+
     /*=============================================( Destroying Method )=============================================*/
 
     ngOnDestroy() {
@@ -297,7 +309,8 @@ export class NavbarComponent implements OnInit, OnDestroy {
       this.removeMedicinesSubscription.unsubscribe();
       this.medicinesSubscription.unsubscribe();
       this.tenantsSubscription.unsubscribe();
+      this.contactsSubscription.unsubscribe();
     }
-    
+
 
 }

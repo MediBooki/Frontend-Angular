@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { OrderDetailsComponent } from './pages/patient-profile/component/order-details/order-details.component';
 import { AuthGuard } from './core/guards/auth.guard';
+import { PatientProfileComponent } from './pages/patient-profile/component/patient-profile/patient-profile.component';
 
 
 const routes: Routes = [
@@ -18,7 +19,8 @@ const routes: Routes = [
   { path: 'doctors', loadChildren: () => import('./pages/doctors/module/doctors.module').then(m => m.DoctorsModule) },
   { path: 'contactus', loadChildren: () => import('./pages/contact-us/module/contact-us.module').then(m => m.ContactUsModule) },
   { path: 'faq', loadChildren: () => import('./pages/FAQ/modules/faq/faq.module').then(m => m.FAQModule) },
-  { path: 'my-profile', loadChildren: () => import('./pages/patient-profile/module/patient-profile/patient-profile.module').then(m => m.PatientProfileModule) },
+  { path: 'my-profile', redirectTo: 'my-profile/details', pathMatch: 'full' },
+  { path: 'my-profile',component: PatientProfileComponent, loadChildren: () => import('./pages/patient-profile/module/patient-profile/patient-profile.module').then(m => m.PatientProfileModule) },
   { path: 'pharmacy', loadChildren: () => import('./pages/pharmacy/module/pharmacy.module').then(m => m.PharmacyModule) },
   { path: 'review', loadChildren: () => import('./pages/review/module/review/review.module').then(m => m.ReviewModule) },
   { path: 'specializations', loadChildren: () => import('./pages/specializations/module/specializations/specializations.module').then(m => m.SpecializationsModule) },

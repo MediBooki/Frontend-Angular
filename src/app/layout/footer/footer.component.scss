@@ -3,20 +3,20 @@
 .bgcolor {
     background:$mainColor2;
   }
-  
+
   .footer-link-hover:hover {
     text-decoration: underline!important;
     cursor: pointer;
   }
-  
+
   .w-fit {
     width: fit-content;
   }
-  
+
   .big-rounded {
     border-radius: 1.5rem!important;
   }
-  
+
   .h-fit {
     height: fit-content;
   }
@@ -33,7 +33,7 @@
       margin-right: 0 !important;
     }
   }
-  
+
   .modal-header-arabic {
     .btn-close {
       margin-left: 0 !important;
@@ -43,4 +43,8 @@
 
   .footer-logo {
     width: 75%;
+  }
+
+  ul {
+    padding: 0;
   }
