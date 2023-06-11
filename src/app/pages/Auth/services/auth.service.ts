@@ -4,12 +4,13 @@ import { Router } from '@angular/router';
 import { BehaviorSubject, Observable, catchError, throwError } from 'rxjs';
 import { Login } from 'src/app/core/interfaces/patients';
 import { createAccount } from 'src/app/core/interfaces/patients';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  _sharedApi: string = "https://benaahadees.com/mediBookiDashbord/public/api";
+  _sharedApi: string = environment.apimain;
   // _sharedApi:string = "http://127.0.0.1:8000/api";
 
   constructor(private http: HttpClient, private router: Router) { }

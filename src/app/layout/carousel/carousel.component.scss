@@ -97,16 +97,23 @@
     
       .main-carousle-title {
         position: absolute;
-        top: 15%;
-        left: 6%;
+        top: 20%;
         width: 500px;
         color: rgba(255,255,255,0.8);
-        text-align: center;
+        // text-align: center;
     
         h2 {
           font-weight: 900;
           font-size: 4rem;
         }
+      }
+
+      .main-carousle-title-english {
+        left: 7.5%;
+      }
+
+      .main-carousle-title-arabic {
+        right: 7.5%;
       }
     }
     

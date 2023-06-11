@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, ElementRef, HostListener, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { AuthService } from 'src/app/pages/Auth/services/auth.service';
 import { DataService } from 'src/app/core/services/data.service';
 import { ContactUsService } from '../../service/contact-us.service';
@@ -27,8 +27,8 @@ export class ContactUsComponent implements OnInit, OnDestroy {
   constructor(private _AuthService: AuthService,private _DataService: DataService,private _contactus:ContactUsService,private toastr: ToastrService) { }
 
   ngOnInit(): void {
-    // Promise.resolve().then(() => this._AuthService.isLogedIn.next(true));
-    // Promise.resolve().then(() => this._DataService.isPageLoaded.next(false));
+    this._DataService.firstSectionHeight = this.firstSection?.nativeElement.offsetHeight;
+
     this.getLang();
     this.getcontacts()
   }
@@ -61,6 +61,13 @@ export class ContactUsComponent implements OnInit, OnDestroy {
   /*=============================================( Component Created Methods )=============================================*/
 
   //----- Method 1
+  @ViewChild('firstSection') firstSection: ElementRef | undefined;
+  @HostListener('window:scroll') // method triggered every scroll
+  checkScroll() {
+    this._DataService.firstSectionHeight = this.firstSection?.nativeElement.offsetHeight;
+  }
+
+  //----- Method 2
   // Setting Direction
   getLang() {
     this._DataService._lang.subscribe({next:(language)=>{
@@ -77,7 +84,7 @@ export class ContactUsComponent implements OnInit, OnDestroy {
     }})
   }
 
-  //----- Method 1
+  //----- Method 3
   // Setting Direction
   contactUs(){
     console.log(this.contactUsForm)

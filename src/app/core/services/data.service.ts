@@ -52,7 +52,7 @@ export class DataService {
   }
 
   getAllTenants(): Observable<any> {
-    return this._HttpClient.get<any[]>(`https://benaahadees.com/mediBookiDashbord/public/api/tenants`).pipe(catchError((e: any) => {
+    return this._HttpClient.get<any[]>(`${this.sharedApi}/tenants`).pipe(catchError((e: any) => {
       console.log(e)
       return throwError(e)
     }));

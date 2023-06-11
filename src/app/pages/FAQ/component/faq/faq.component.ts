@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
 import { DataService } from 'src/app/core/services/data.service';
 import { FaqService } from '../../service/faq.service';
 import { Faq } from 'src/app/core/interfaces/faq';
@@ -65,9 +65,17 @@ export class FAQComponent implements OnInit {
   constructor(private _DataService: DataService, private _FaqService:FaqService) { }
 
   ngOnInit(): void {
+    this._DataService.firstSectionHeight = this.firstSection?.nativeElement.offsetHeight;
     this.getLang();
   }
 
+
+    //----- Method 1
+    @ViewChild('firstSection') firstSection: ElementRef | undefined;
+    @HostListener('window:scroll') // method triggered every scroll
+    checkScroll() {
+      this._DataService.firstSectionHeight = this.firstSection?.nativeElement.offsetHeight;
+    }
 
   getLang() {
     this._DataService._lang.subscribe({

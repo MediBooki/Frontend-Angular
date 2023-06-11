@@ -89,8 +89,7 @@ export class DoctorsComponent implements OnInit, OnDestroy  {
   }
   
   ngOnInit(): void {
-    // Promise.resolve().then(() => this._DataService.isPageLoaded.next(false));
-    // Promise.resolve().then(() => this._AuthService.isLogedIn.next(true));
+    this._DataService.firstSectionHeight = this.firstSection?.nativeElement.offsetHeight;
 
     this.gethospitalDetails(); // to get book phone
     this.getFilteredForm(); // to set filter form and use localstorage
@@ -100,11 +99,6 @@ export class DoctorsComponent implements OnInit, OnDestroy  {
     // this.isVisibleSpinner = true;
   }
 
-  // ngAfterViewInit() {
-  //   setTimeout(() => {
-  //     Promise.resolve().then(() => this._DataService.isPageLoaded.next(true))
-  //   }, 0);
-  // }
 
 
   /*=============================================( Component Created Methods )=============================================*/

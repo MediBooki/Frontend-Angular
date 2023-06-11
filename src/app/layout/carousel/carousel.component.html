@@ -38,7 +38,7 @@
         <div class="position-relative h-100">
           <img class="img-fluid w-100 default-img" [src]="image.photo || defaultImg" alt="Main image"> <!-- || defaultImg" alt=""-->
           <div class="main-carousle-layer"></div>
-          <div class="main-carousle-title">
+          <div class="main-carousle-title" [ngClass]="rtlDir ? 'main-carousle-title-arabic' : 'main-carousle-title-english'">
             <h2>{{image.title}}</h2>
           </div>
         </div>

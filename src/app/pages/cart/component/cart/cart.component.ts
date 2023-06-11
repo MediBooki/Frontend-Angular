@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, ElementRef, HostListener, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { DataService } from 'src/app/core/services/data.service';
 import { AuthService } from 'src/app/pages/Auth/services/auth.service';
 import { CartService } from 'src/app/pages/cart/service/cart.service';
@@ -52,8 +52,8 @@ export class CartComponent implements OnInit, OnDestroy {
   constructor(private _DataService:DataService , private _AuthService:AuthService , private _CartService:CartService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
-    // Promise.resolve().then(()=>this._DataService.isPageLoaded.next(false));
-    // Promise.resolve().then(() => this._AuthService.isLogedIn.next(true));
+    this._DataService.firstSectionHeight = this.firstSection?.nativeElement.offsetHeight;
+
     this.getPurchasedMedicines();
     this.listenTotalQty();
   }
@@ -68,6 +68,13 @@ export class CartComponent implements OnInit, OnDestroy {
 
   /*=============================================( Component Created Methods )=============================================*/
   isVisibleAddRemoveSpinner:boolean = false;
+
+  @ViewChild('firstSection') firstSection: ElementRef | undefined;
+  @HostListener('window:scroll') // method triggered every scroll
+  checkScroll() {
+    this._DataService.firstSectionHeight = this.firstSection?.nativeElement.offsetHeight;
+  }
+
   //----- Method 1
   // increase medicine amount
   increase(medicineId:number , medicineQty:number) {

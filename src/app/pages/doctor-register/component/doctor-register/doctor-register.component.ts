@@ -26,8 +26,8 @@ export class DoctorRegisterComponent implements OnInit, OnDestroy {
 
 
   ngOnInit(): void {
-    // Promise.resolve().then(()=>this._DataService.isPageLoaded.next(false));
-    // Promise.resolve().then(() => this._AuthService.isLogedIn.next(true));
+    this._DataService.firstSectionHeight = 0;
+
     this.getLang();
     this.getSections();
     this.getAppointments();

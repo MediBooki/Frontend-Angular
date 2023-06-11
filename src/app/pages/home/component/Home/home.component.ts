@@ -77,7 +77,7 @@ export class HomeComponent implements OnInit, OnDestroy  {
 
 
   // main section variable to know its height to use as start point to show scroll up button
-  @ViewChild('mainSection') mainSection: ElementRef | undefined;
+  @ViewChild('mainSection') firstSection: ElementRef | undefined;
 
   // counters section variable to know its height to use as start point to begin counter
   @ViewChild('countersSection') countersSection: ElementRef | undefined;
@@ -104,9 +104,7 @@ export class HomeComponent implements OnInit, OnDestroy  {
   }
 
   ngOnInit(): void {
-    // Promise.resolve().then(() => this._DataService.isPageLoaded.next(false));
-    // Promise.resolve().then(() => this._AuthService.isLogedIn.next(true));
-    // this.Authservice.isLogedIn.next(true);
+    this._DataService.firstSectionHeight = this.firstSection?.nativeElement.offsetHeight;
     this.getLang();
     this.getFilteredDoctors();
     this.getSpecializations();
@@ -264,11 +262,6 @@ export class HomeComponent implements OnInit, OnDestroy  {
   selectedDoctor:any = '';
   /*---------------------------------------------( Counter )---------------------------------------------*/
 
-  // @HostListener('.specialization-main-select2:change') // method triggered every scroll
-  // ggg() {
-  //   console.log("hi")
-  // }
-
   //----- Method 4
   @HostListener('window:scroll') // method triggered every scroll
   checkScroll() {
@@ -276,7 +269,7 @@ export class HomeComponent implements OnInit, OnDestroy  {
     const scrollPosition = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
 
     //////////////////////////////// 1. scrollUp logic
-    this._DataService.firstSectionHeight = this.mainSection?.nativeElement.offsetHeight;
+    this._DataService.firstSectionHeight = this.firstSection?.nativeElement.offsetHeight;
 
     //////////////////////////////// 2. counter logic
     let counterSectionOffset = this.countersSection?.nativeElement.offsetTop; // section offset from website top

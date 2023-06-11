@@ -1,5 +1,5 @@
 import { Subscription } from 'rxjs';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, ElementRef, HostListener, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { AuthService } from 'src/app/pages/Auth/services/auth.service';
 import { DataService } from 'src/app/core/services/data.service';
 import { ActivatedRoute } from '@angular/router';
@@ -43,8 +43,7 @@ export class OneArticleComponent implements OnInit, OnDestroy  {
   }
 
   ngOnInit(): void {
-    // Promise.resolve().then(() => this._AuthService.isLogedIn.next(true));
-    // Promise.resolve().then(() => this._DataService.isPageLoaded.next(false));
+    this._DataService.firstSectionHeight = this.firstSection?.nativeElement.offsetHeight;
     this.getLang();
     this.articleId = this._activatedRouting.snapshot.params['id'];
     this.getArticle();
@@ -74,6 +73,13 @@ export class OneArticleComponent implements OnInit, OnDestroy  {
   /*=============================================( Component Created Methods )=============================================*/
 
   //----- Method 1
+  @ViewChild('firstSection') firstSection: ElementRef | undefined;
+  @HostListener('window:scroll') // method triggered every scroll
+  checkScroll() {
+    this._DataService.firstSectionHeight = this.firstSection?.nativeElement.offsetHeight;
+  }
+
+  //----- Method 2
   // Setting Direction
   getLang() {
     this._DataService._lang.subscribe({next:(language)=>{
@@ -90,7 +96,7 @@ export class OneArticleComponent implements OnInit, OnDestroy  {
     }})
   }
 
-  //----- Method 1
+  //----- Method 3
   getArticle(){
     this._DataService._lang.subscribe({next:(language)=>{
       // to get all sections

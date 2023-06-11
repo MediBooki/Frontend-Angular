@@ -42,6 +42,7 @@ export class FixedItemsComponent implements OnInit, OnDestroy {
   constructor(private _DataService: DataService) { }
 
   ngOnInit(): void {
+    this.checkScrollMethod();
     this._DataService._lang.subscribe((language) => {
       if (language == 'en') {
         this.rtlDir = false;
@@ -61,17 +62,22 @@ export class FixedItemsComponent implements OnInit, OnDestroy {
   //----- Method 1
   @HostListener('window:scroll') // method triggered every scroll
   checkScroll() {
+    this.checkScrollMethod()
+  }
+
+  checkScrollMethod() {
     const scrollPosition = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
 
+    
     this.firstSectionHeight = this._DataService.firstSectionHeight;
-    if (scrollPosition >= this.firstSectionHeight - screen.height * 0.25) {
+    if (scrollPosition >= this.firstSectionHeight - screen.height * 0.25 && this.firstSectionHeight != 0) {
       this.showScrollBtn = true; // show scroll button
     } else {
       this.showScrollBtn = false; // hide scroll button
     }
+    console.log(this.showScrollBtn)
   }
-
-  //----- Method 2
+  //----- Method 3
   // triggered when clicking scrollBtn
   scrollTop(): void {
     window.scroll({
@@ -83,7 +89,7 @@ export class FixedItemsComponent implements OnInit, OnDestroy {
 
   /*---------------------------------------------( Chatbot )---------------------------------------------*/
 
-  //----- Method 3
+  //----- Method 4
   // Initiate English Watson Chatbot
   chatBotEnglishInit() {
 
@@ -120,7 +126,7 @@ export class FixedItemsComponent implements OnInit, OnDestroy {
     
   }
 
-  //----- Method 4
+  //----- Method 5
   // Initiate Arabic Watson Chatbot
   chatBotArabicInit() {
 
@@ -157,7 +163,7 @@ export class FixedItemsComponent implements OnInit, OnDestroy {
 
   /*---------------------------------------------( Fast Links )---------------------------------------------*/
 
-  //----- Method 5
+  //----- Method 6
   // Get Hospital Details
   gethospitalDetails() {
     this.hospitalDetailsSubscription = this._DataService.gethospitalDetails().subscribe({
@@ -171,7 +177,7 @@ export class FixedItemsComponent implements OnInit, OnDestroy {
     })
   }
 
-  //----- Method 6
+  //----- Method 7
   // Open WhatsApp Chat When Clicking WhatsApp Icon
   openWhatsApp() {
     if(this.hospitalWhatsApp != "") {
@@ -179,7 +185,7 @@ export class FixedItemsComponent implements OnInit, OnDestroy {
     }
   }
 
-  //----- Method 7
+  //----- Method 8
   // Open Telegram Chat When Clicking Telegram Icon
   openTelegram() {
     if(this.hospitalTelegram != "") {

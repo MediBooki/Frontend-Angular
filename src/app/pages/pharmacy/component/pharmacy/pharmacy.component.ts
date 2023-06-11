@@ -89,14 +89,12 @@ export class PharmacyComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // Promise.resolve().then(()=>this._DataService.isPageLoaded.next(false));
-    // Promise.resolve().then(() => this._AuthService.isLogedIn.next(true));
+    this._DataService.firstSectionHeight = this.firstSection?.nativeElement.offsetHeight;
     this.getFilteredForm(); // to set filter form and use localstorage
     this.getFilteredMedicines(); // get filtered medicines from API
     this.getCategories(); // get categories from API
     this.setFavorite();
     this.getCounterVals();
-    // this.isVisibleSpinner = true;
   }
 
   //  // when view load completely

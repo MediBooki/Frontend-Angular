@@ -39,9 +39,7 @@ export class LoginComponent implements OnInit, OnDestroy  {
 
 
   ngOnInit(): void {
-    // Promise.resolve().then(() => this._DataService.isPageLoaded.next(false));
-    // Promise.resolve().then(() => this._AuthService.isLogedIn.next(false));
-    // Promise.resolve().then(() => this._AuthService.AuthlayoutLeft.next(true));
+    this._DataService.firstSectionHeight = 0;
     this.createForm();
     this.getLang()
   }

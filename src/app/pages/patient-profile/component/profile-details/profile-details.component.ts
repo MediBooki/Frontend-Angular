@@ -16,6 +16,7 @@ export class ProfileDetailsComponent implements OnInit, OnDestroy {
   constructor( private _DataService:DataService, private _PatientProfileService:PatientProfileService, private toastr: ToastrService ,  private router: Router) { }
 
   ngOnInit(): void {
+    this._DataService.firstSectionHeight = 0;
     this._DataService.curruntService.next('details')
     this.getPatientInfo();
     this._DataService.userPhoto.subscribe(res => {

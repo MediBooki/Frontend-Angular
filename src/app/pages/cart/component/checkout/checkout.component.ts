@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, ElementRef, HostListener, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { CartService } from 'src/app/pages/cart/service/cart.service';
 import { DataService } from 'src/app/core/services/data.service';
@@ -76,8 +76,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    // Promise.resolve().then(()=>this._DataService.isPageLoaded.next(false));
-    // Promise.resolve().then(() => this._AuthService.isLogedIn.next(true));
+    this._DataService.firstSectionHeight = this.firstSection?.nativeElement.offsetHeight;
     this.getPurchasedMedicines();
     console.log(this._CartService.getTotalQty())
 
@@ -94,6 +93,13 @@ export class CheckoutComponent implements OnInit, OnDestroy {
 
 
   /*=============================================( Component Created Methods )=============================================*/
+
+  //----- Method 1
+  @ViewChild('firstSection') firstSection: ElementRef | undefined;
+  @HostListener('window:scroll') // method triggered every scroll
+  checkScroll() {
+    this._DataService.firstSectionHeight = this.firstSection?.nativeElement.offsetHeight;
+  }
 
   getPurchasedMedicines() {
     this._DataService._lang.subscribe({

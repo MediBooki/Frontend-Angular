@@ -102,6 +102,8 @@ export class MedicineDetailsComponent implements OnInit, OnDestroy {
    }
 
   ngOnInit(): void {
+    this._DataService.firstSectionHeight = this.firstSection?.nativeElement.offsetHeight;
+
     this._ActivatedRoute.params.subscribe((params) => {
       this.medicineDetails = {
         id:0,

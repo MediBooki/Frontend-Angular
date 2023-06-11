@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, ElementRef, HostListener, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { AuthService } from '../../../Auth/services/auth.service';
 import { DataService } from 'src/app/core/services/data.service';
 import { ArticlesService } from '../../service/articles.service';
@@ -26,8 +26,8 @@ export class ArticlesComponent implements OnInit, OnDestroy  {
   constructor(private _AuthService: AuthService,private _DataService: DataService, private _ArticlesService :ArticlesService ) { }
 
   ngOnInit(): void {
-    // Promise.resolve().then(() => this._AuthService.isLogedIn.next(true));
-    // Promise.resolve().then(() => this._DataService.isPageLoaded.next(false));
+    this._DataService.firstSectionHeight = this.firstSection?.nativeElement.offsetHeight;
+
     this.getArticales();
     this.getLang();
   }
@@ -60,6 +60,13 @@ export class ArticlesComponent implements OnInit, OnDestroy  {
 
   
   /*=============================================( Component Created Methods )=============================================*/
+
+  //----- Method 1
+  @ViewChild('firstSection') firstSection: ElementRef | undefined;
+  @HostListener('window:scroll') // method triggered every scroll
+  checkScroll() {
+    this._DataService.firstSectionHeight = this.firstSection?.nativeElement.offsetHeight;
+  }
 
   //----- Method 1
   // Setting Direction

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
+import { Component, ElementRef, EventEmitter, HostListener, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Specialize } from 'src/app/core/interfaces/specialize';
 import { DataService } from 'src/app/core/services/data.service';
@@ -78,12 +78,18 @@ export class SpecializationsComponent implements OnInit, OnDestroy  {
   }
 
   ngOnInit(): void {
-    // Promise.resolve().then(() => this._DataService.isPageLoaded.next(false));
-    // Promise.resolve().then(() => this._AuthService.isLogedIn.next(true));
+    this._DataService.firstSectionHeight = this.firstSection?.nativeElement.offsetHeight;
+
     this.getSpecializations();
     this.getLang()
   }
 
+  //----- Method 1
+  @ViewChild('firstSection') firstSection: ElementRef | undefined;
+  @HostListener('window:scroll') // method triggered every scroll
+  checkScroll() {
+    this._DataService.firstSectionHeight = this.firstSection?.nativeElement.offsetHeight;
+  }
 
   getSpecializations() {
     this._DataService._lang.subscribe({

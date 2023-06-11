@@ -1,6 +1,6 @@
 import { Time } from 'src/app/core/interfaces/time';
 import { Doctor } from './../../../core/interfaces/doctor';
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
 import { DataService } from 'src/app/core/services/data.service';
 import { AuthService } from '../../Auth/services/auth.service';
 import { AppointmentsService } from '../service/appointments.service';
@@ -136,8 +136,8 @@ activeIndex = null;
   }
 
   ngOnInit(): void {
-    // Promise.resolve().then(() => this._DataService.isPageLoaded.next(false));
-    // Promise.resolve().then(() => this._AuthService.isLogedIn.next(true));
+    this._DataService.firstSectionHeight = this.firstSection?.nativeElement.offsetHeight;
+
     this.getLang();
     this.getBookDoctorList(this.convertDate)
     this.getDoctorById();
@@ -162,6 +162,12 @@ activeIndex = null;
   
   /*=============================================( Component Created Methods )=============================================*/
 
+    //----- Method 1
+    @ViewChild('firstSection') firstSection: ElementRef | undefined;
+    @HostListener('window:scroll') // method triggered every scroll
+    checkScroll() {
+      this._DataService.firstSectionHeight = this.firstSection?.nativeElement.offsetHeight;
+    }
 
     /*---------------------------------------------( API )---------------------------------------------*/
 
