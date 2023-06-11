@@ -9,7 +9,6 @@ import { environment } from 'src/environments/environment';
 export class DataService {
   sharedApi = environment.apimain
   defaultNoImg:string = "../../../assets/images/No_Image_Available.png"
-  curruntService = new BehaviorSubject("details")
   userPhoto= new BehaviorSubject('../../../assets/images/user_male.jpeg')
   firstSectionHeight: any = 0; // variable to know first component section height to show scrollToTop Btn
   _lang = new BehaviorSubject(this.getLocalLang());

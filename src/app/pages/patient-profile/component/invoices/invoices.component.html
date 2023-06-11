@@ -63,37 +63,3 @@
   </div>
   </ng-template>
 </div>
-<!-- invoice Modal -->
-<div class="modal fade" id="colModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
-  <div class="modal-dialog">
-    <div class="modal-content" *ngIf="allInvoices[colDataIndex]!=undefined">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">{{allInvoices[colDataIndex].service}}</h1>
-      </div>
-      <div class="modal-body row">
-        <div class="col-6">
-          <label class="text-secondary">{{'patientProfile.tap6col2' | translate}}</label>
-          <p class="fw-bold">{{allInvoices[colDataIndex].invoice_date}}</p>
-        </div>
-        <div class="col-6">
-          <label class="text-secondary">{{'patientProfile.tap6col3' | translate}}</label>
-          <p class="fw-bold">{{allInvoices[colDataIndex].doctor}}</p>
-        </div>
-        <div class="col-6">
-          <label class="text-secondary">{{'patientProfile.tap6col4' | translate}}</label>
-          <p class="fw-bold">{{allInvoices[colDataIndex].total_with_tax}}</p>
-        </div>
-        <div class="col-6">
-          <label class="text-secondary">{{'patientProfile.tap6col5' | translate}}</label>
-          <p class="fw-bold">
-            <span *ngIf="allInvoices[colDataIndex].type==2">{{'patientProfile.tap6type2' | translate}}</span>
-            <span *ngIf="allInvoices[colDataIndex].type==1">{{'patientProfile.tap6type1' | translate}}</span>
-          </p>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>

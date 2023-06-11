@@ -74,6 +74,10 @@ export class InvoicesComponent implements OnInit, OnDestroy {
   //----- Method 4
   gitColData(i:number){
     this.colDataIndex = i;
+    this._PatientProfileService.emitInvoiceChange({
+      invoices:this.allInvoices,
+      id:this.colDataIndex
+    })
   }
 
   //----- Method 5

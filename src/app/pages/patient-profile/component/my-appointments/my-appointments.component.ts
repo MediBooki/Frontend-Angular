@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import { DataService } from 'src/app/core/services/data.service';
 import { PatientProfileService } from '../../service/patient-profile.service';
 import { ToastrService } from 'ngx-toastr';
@@ -40,6 +40,7 @@ export class MyAppointmentsComponent implements OnInit, OnDestroy {
   // API Subscriptions Variables
   AppointmentsSubscription = new Subscription();
   PatientReviewsSubscription = new Subscription();
+
 
 /*--------------------------------------------------------------(methods)--------------------------------- */
 
@@ -102,6 +103,15 @@ export class MyAppointmentsComponent implements OnInit, OnDestroy {
       this.updateReviewBtn=false
       this.reviewBtn = false
     }
+
+    // to show modal in parent
+    this._PatientProfileService.emitAppointmentChange({
+      appointments:this.Appointments,
+      id:this.appointmentColDataIndex,
+      review:this.reviewBtn,
+      updateReview:this.updateReviewBtn,
+      reviewId:this.reviewId
+    })
   }
 
   //----- Method 5
@@ -125,18 +135,6 @@ export class MyAppointmentsComponent implements OnInit, OnDestroy {
     }});
   }
 
-   //----- Method 6
-   getifUpdate(check :number){
-    if(check == 1){
-      // this._DataService.updatereview.next(true)
-      localStorage.setItem('updatereview', JSON.stringify(true));
-      // console.log(this._DataService.updatereview)
-    }else{
-      // this._DataService.updatereview.next(false)
-      localStorage.setItem('updatereview', JSON.stringify(false));
-    }
-
-  }
 
    //----- Method 7
    getPatientReviews(){

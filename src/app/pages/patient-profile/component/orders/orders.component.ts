@@ -105,7 +105,7 @@ export class OrdersComponent implements OnInit, OnDestroy {
               this.toastr.error(this.rtlDir?`An Error has occured`:`حدث خطأ ما`)
             }
           })
-          this._DataService.curruntService.next('orders')
+          // this._DataService.curruntService.next('orders')
           // this.curruntService = 'orders';
           console.log(params['success'])
 

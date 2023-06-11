@@ -168,8 +168,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
                   console.log(error)
                 }
               })
-              this._DataService.curruntService.next("orders")
-              this.router.navigate(['/my-profile'])
+              this.router.navigate(['/my-profile/orders'])
             } else if(this.paymentMethod == 'online') {
               this.isVisibleSpinner = true
               this.toastr.success(!this.rtlDir?`You will be redirected to paymob to complete your online payment`:`سيتم توجيهك الى صفحة paymob لاكمال عملية الدفع الالكترونية`, !this.rtlDir?`Checkout Result`:`ناتج عملية الشراء`);

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { Observable, catchError, throwError } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, catchError, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -13,6 +13,30 @@ export class PatientProfileService {
   // variables
   // sharedApi: string = "http://127.0.0.1:8000/api";
   sharedApi: string = environment.apimain;
+
+  /*---------------------------------(Modals Trigger)--------------------------------- */
+
+  private emitAppointmentChangeSource = new Subject<any>();
+  changeAppointmentEmitted$ = this.emitAppointmentChangeSource.asObservable();
+  emitAppointmentChange(change: any) {
+      this.emitAppointmentChangeSource.next(change);
+  }  
+  
+  private emitInvoiceChangeSource = new Subject<any>();
+  changeInvoiceEmitted$ = this.emitInvoiceChangeSource.asObservable();
+  emitInvoiceChange(change: any) {
+      this.emitInvoiceChangeSource.next(change);
+  }  
+
+  private emitDetailsChangeSource = new Subject<any>();
+  changeDetailsEmitted$ = this.emitDetailsChangeSource.asObservable();
+  emitDetailsChange(change: any) {
+      this.emitDetailsChangeSource.next(change);
+  }  
+
+
+  checkIfUpdate = new BehaviorSubject(false)
+
   authAcceptHeaders = new HttpHeaders({
     'Accept': 'application/json',
     authorization : `${localStorage.getItem('token')}`

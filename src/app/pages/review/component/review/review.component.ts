@@ -119,8 +119,7 @@ export class ReviewComponent implements OnInit, OnDestroy {
         this.createReviewSubscription = this._ReviewService.createReviewPatient(model).subscribe((res: any) => {
           this.toastr.success(!this.rtlDir?`success`:`تم تسجيل تقييم الدكتور` , `${res.message}`)
           this._DataService.is_login.next(true);
-          this.router.navigate(['/my-profile'])
-          this._DataService.curruntService.next("appointments")
+          this.router.navigate(['/my-profile/appointments'])
           this._ReviewService.isreview.next(true)
         }, error => {
           this.toastr.error(!this.rtlDir?`An Error has occured`:`حدث خطأ ما` , `${error.error.message}`);
@@ -135,8 +134,7 @@ export class ReviewComponent implements OnInit, OnDestroy {
         this.updateReviewSubscription = this._ReviewService.updateReviewPatient(model).subscribe((res: any) => {
           this.toastr.success(!this.rtlDir?`success`:`تم تسجيل تقييم الدكتور` , `${res.message}`)
           this._DataService.is_login.next(true);
-          this.router.navigate(['/my-profile'])
-          this._DataService.curruntService.next("appointments")
+          this.router.navigate(['/my-profile/appointments'])
           this._ReviewService.isreview.next(true)
         }, error => {
           this.toastr.error(!this.rtlDir?`An Error has occured`:`حدث خطأ ما` , `${error.error.message}`);

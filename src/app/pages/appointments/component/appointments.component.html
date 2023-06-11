@@ -47,14 +47,7 @@
                     class="fa-solid fa-wallet mx-1"></i>{{'appointmentPage.Fees'|
                   translate}}: {{doctor.price}} $
                 </h6>
-                <div class="mb-4 w-100 fs-4 d-flex">
-                  <div class=" d-flex align-items-center rounded justify-content-center border icon ">
-                    <i class=" fa-brands fa-facebook "></i>
-                  </div>
-                  <div class=" d-flex align-items-center rounded justify-content-center border icon mx-2">
-                    <i class=" fa-brands fa-instagram "></i>
-                  </div>
-                </div>
+
                 <p class="card-text">
                   <small class=" active border p-1 rounded text-light" *ngIf="intervals.length != timeBookList.length">{{'appointmentPage.appointmentAvailable'|
                     translate}}</small>
@@ -255,7 +248,7 @@
                 <div class=" col-lg-3 col-sm-6 mb-2">
 
                   <select class="form-select text-light mb-2 day-select2 " 
-                    (change)="onDaySelect($event)">
+                    (change)="onDaySelect($event)" #days>
                     <option selected disabled></option>
                     <!-- <option value=null selected> {{'appointmentPage.selectedDay'| translate}}</option> -->
                     <option  *ngFor="let appointment of doctor.appointments;" [value]="appointment.name">
@@ -343,7 +336,7 @@
                   translate}}</p>
               </div>
               <div class="d-flex justify-content-center">
-                <button type="submit" [disabled]="patientAppointmentForm.invalid" (click)="submit()"
+                <button type="submit" [disabled]="patientAppointmentForm.invalid" (click)="submit(days)"
                   class="btn btn-primary rounded-pill text-uppercase my-2" id="submitBtn">
                   {{'appointmentPage.payCach'| translate}}
                 </button>

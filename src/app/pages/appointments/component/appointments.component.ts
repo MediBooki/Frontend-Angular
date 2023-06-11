@@ -348,30 +348,34 @@ activeIndex = null;
 
   //This function is used to book a doctor appointment
   // this.bookSubscription = this._AppointmentsService.getBookDoctorList().subscribe({
-  submit() {
-    const model: AppointmentsPatient = {
-      patient_id: this.Patient_idNum,
-      doctor_id: parseInt(this.singleDoctorId),
-      price: parseInt(this.doctor.price),
-      date: this.convertDate,
-      time: this.selectedtime
-    }
-    this.isVisibleSpinner = true;
-    this._AppointmentsService.createAppointmentPatient(model).subscribe((res:any) => {
-      console.log(model);
-      console.log(res.count);
-      if(res.count === 1 ){
-        this.toastr.success(!this.rtlDir?`Book Doctor Success!`:`تم حجز الطبيب بنجاح`)
-        this.isVisibleSpinner = false;
-        this._DataService.curruntService.next("appointments")
-        this.router.navigate(['/my-profile'])
-      }else{
-        this.toastr.error("You can't book doctor" , "please choose another day");
-        this.isVisibleSpinner = false;
+  submit(select2Event:any) {
+    if(this.patientAppointmentForm.status != 'INVALID' && select2Event.value != "") {
+      const model: AppointmentsPatient = {
+        patient_id: this.Patient_idNum,
+        doctor_id: parseInt(this.singleDoctorId),
+        price: parseInt(this.doctor.price),
+        date: this.convertDate,
+        time: this.selectedtime
       }
-    })
-    this._AuthService.AuthlayoutLeft.next(false);
-    this._AuthService.istrigger.next(true);
+      this.isVisibleSpinner = true;
+      this._AppointmentsService.createAppointmentPatient(model).subscribe((res:any) => {
+        console.log(model);
+        console.log(res.count);
+        if(res.count === 1 ){
+          this.toastr.success(!this.rtlDir?`Book Doctor Success!`:`تم حجز الطبيب بنجاح`)
+          this.isVisibleSpinner = false;
+          this.router.navigate(['/my-profile/appointments'])
+        }else{
+          this.toastr.error(!this.rtlDir?"You can't book doctor":"لا يمكنك حجز هذا الطبيب" , !this.rtlDir?"please choose another day":"برجاء اختيار يوم اخر");
+          this.isVisibleSpinner = false;
+        }
+      })
+      this._AuthService.AuthlayoutLeft.next(false);
+      this._AuthService.istrigger.next(true);
+    } else {
+      this.toastr.error(!this.rtlDir?"Please Fill Appointment data":"برجاء ملء البيانات اولا");
+      return
+    }
 
   }
 
