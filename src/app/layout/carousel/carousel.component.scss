@@ -463,12 +463,7 @@
             width: 88%;
     
             .owl-stage-outer {
-              // overflow: unset;
-              // position: relative;
               overflow-x: hidden;
-              // -webkit-transform: translate3d(0,0,0);
-              // overflow-y: visible;
-              // padding: 7px 0;
             }
 
             .related {
@@ -496,29 +491,6 @@
                 }
             }
             }
-    
-    
-            // .owl-prev , 
-            // .owl-next {
-            //     display: flex;
-            //     justify-content: center;
-            //     align-items: center;
-            //     position: absolute;
-            //     top: 0;
-            //     background: $mainColor6 !important;
-            //     font-size: 25px !important;
-            //     transition: all .2s ease-in-out;
-            //     z-index: 3 !important;
-            //     margin: 0 !important;
-            // }
-
-
-            // .owl-prev , 
-            // .owl-next {
-            //     width: 6%;
-            //     height: 100%;
-            // }
-
 
             .owl-prev,
             .owl-next {
@@ -529,76 +501,7 @@
     
   
     };
-    
-    // English Style
-    // .related-carousel-english::ng-deep {
 
-
-    //     .owl-prev {
-    //         left: -7%;
-
-    //         .carousel-left {
-    //             transition: all .3s ease;
-    //         }
-
-    //         &:hover {
-    //             .carousel-left {
-    //                 transform: translateX(-35%);
-    //             }
-    //         }
-        
-    //     }
-
-    //     .owl-next {
-    //         right: -7%;
-
-    //         .carousel-right {
-    //             transition: all .3s ease;
-    //         }
-
-    //         &:hover {
-    //             .carousel-right {
-    //                 transform: translateX(35%);
-    //             }
-    //         }
-    //     }
-
-    // };
-    
-    // // Arabic Style
-    // .related-carousel-arabic::ng-deep {
-
-    //     .owl-prev {
-    //         right: -7%;
-
-    //         .carousel-left {
-    //             transition: all .3s ease;
-    //         }
-
-    //         &:hover {
-    //             .carousel-left {
-    //                 transform: translateX(35%);
-    //             }
-    //         }
-        
-    //     }
-
-    //     .owl-next {
-    //         left: -7%;
-
-    //         .carousel-right {
-    //             transition: all .3s ease;
-    //         }
-
-    //         &:hover {
-    //             .carousel-right {
-    //                 transform: translateX(-35%);
-    //             }
-    //         }
-    //     }
-
-    // }
-  
   };
 
 

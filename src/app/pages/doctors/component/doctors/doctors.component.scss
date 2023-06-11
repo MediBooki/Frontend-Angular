@@ -53,103 +53,7 @@
         bottom: 20px;
         right: 50%;
         transform: translate(50%);
-        /*
-        .doctor-specialization-select2-container {
-  
-            ::ng-deep .select2-container {
-                height: 100%;
-                width: 250px !important;
-        
-                .select2-selection {
-                    background-color: transparent;
-                    border-radius: 0;
-                    height: 100% !important;
-                    display: flex;
-                    justify-content: flex-start;
-                    align-items: center;
-                    border-top: none;
-                    border-bottom: none;
-        
-                    .select2-selection__arrow {
-                        height: 100% !important;
-            
-                        b {
-                            border-width: 8px 6px 0 6px;
-                        }
-                    }
-        
-                    .select2-selection__rendered {
-                        color: $mainColor;
-            
-                        &::before {
-                            font-family: "Font Awesome 5 Free"; 
-                            font-weight: 900;
-                            content: "\f0fa";
-                        }
-            
-                        .select2-selection__placeholder {
-                            color: $mainColor;
-                        }
-                    }
-                }
-        
-                &.select2-container--open {
-                    .select2-selection--single {
-                        .select2-selection__arrow {
-                            b {
-                                border-width: 0px 6px 8px 6px !important;
-                                border-color: transparent transparent #888 transparent !important;
-                            }
-                        }
-                    }
-                }
-            } 
-        }  
 
-
-        // change select2 placeholder in arabic and english
-        // English Style
-        .doctor-specialization-select2-container-english{
-            ::ng-deep  .select2-selection {
-                border-left: none;
-                border-right: 1px solid #34b1de8f;
-                border-bottom-left-radius: 15px !important;
-                border-top-left-radius: 15px !important;
-                padding-left: 10px;
-        
-                .select2-selection__arrow {
-                    right: 15px !important;
-                }
-    
-                .select2-selection__rendered {
-                    &::before {
-                    margin-right: 10px !important;
-                    }
-                }
-            }
-        }
-        
-        // Arabic Style
-        .doctor-specialization-select2-container-arabic {
-            ::ng-deep  .select2-selection {
-                border-right: none;
-                border-left: 1px solid #34b1de8f;
-                border-bottom-right-radius: 15px !important;
-                border-top-right-radius: 15px !important;
-                padding-right: 10px;
-            
-                .select2-selection__arrow {
-                    left: 15px !important;
-                }
-            
-                .select2-selection__rendered {
-                    &::before {
-                    margin-left: 10px;
-                    }
-                }
-            }
-        }
-*/
         /* second search filter method */
         .doctor-search {
             cursor: pointer;
@@ -239,19 +143,6 @@
     }
 }
   
-/*
-// Select2 Dropdown Style
-::ng-deep .select2-dropdown--below {
-    top: 4px !important;
-    border-top: 1px solid #aaa !important;
-}
-  
-::ng-deep .select2-dropdown--above {
-    top: -4px !important;
-    border-bottom: 1px solid #aaa !important;
-}
-*/
-
 
 /* =======================================================( aside filter )======================================================= */
 
@@ -265,137 +156,6 @@
         }
     }
 
-    // // Filter General
-    // .accordion {
-    //     // width: 225px;
-    //     width: 90%;
-
-    //     // Filter Button
-    //     .accordion-button {
-    //         color: $mainColor;
-    //         box-shadow: none !important;
-    
-    //         /* removing accordion arrow to put our arrow */
-    //         &::after {
-    //             background-image: none;
-    //             font-family: "Font Awesome 5 Free"; 
-    //             font-weight: 900;
-    //             content: "\f078";
-    //             display: flex;
-    //             justify-content: center;
-    //         }
-    
-    //         &:not(.collapsed) {
-    //             &::after {
-    //                 background-image: none;
-    //             }
-    //         }
-    //     }
-
-    //     // Filter Item
-    //     .accordion-item {
-
-    //         // Filter Title
-    //         .accordion-title {
-    //             cursor: default !important;
-    //             color: white;
-    //             box-shadow: inset 0 -1px 0 rgba(0,0,0,.125); 
-    //             width: 100%;
-    //             padding: 1rem 1.25rem;
-    //             font-size: 1rem;
-    //             text-align: left;
-    //             background: $mainColor2;
-    
-    //             h4 {
-    //                 font-size: 18px;
-    //             }
-
-    //             border-top-left-radius: 1rem;
-    //             border-top-right-radius: 1rem;
-    //         }
-
-    //         /* accordion top */
-    //         &:first-of-type {
-    //             border-top-left-radius: 1rem;
-    //             border-top-right-radius: 1rem;
-    //         }
-
-    //         /* accordion bottom */
-    //         &:last-of-type {
-    //             border-bottom-right-radius: 1rem;
-    //             border-bottom-left-radius: 1rem;
-
-    //             .accordion-button {
-    //                 &.collapsed {
-    //                     border-bottom-right-radius: 1rem;
-    //                     border-bottom-left-radius: 1rem;
-    //                 }
-    //             }
-    //         }
-
-    //         // Filter Body
-    //         .accordion-body {
-    //             label {
-    //                 cursor: pointer;
-    //             }
-
-    //             // .accordion-body-item {
-    //             //     margin-bottom: 5px;
-    //             //     .specialization-label {
-    //             //         font-size: 0.85rem;
-    //             //     }
-    //             // }
-    //         }
-
-    //     }
-
-    // }
-
-    // // Filter English
-    // .accordion-english {
-
-    //     .accordion-body {
-    //         input[type="checkbox"] {
-    //             margin-right: 10px;
-    //         }
-    //     }
-
-    //     .accordion-body {
-    //         input[type="radio"] {
-    //             margin-right: 10px;
-    //         }
-    //     }
-
-    //     .accordion-button {
-    //         &::after {
-    //             margin-right: inherit;
-    //             margin-left: auto;
-    //         }
-    //     }
-
-    // }
-
-    // // Filter Arabic
-    // .accordion-arabic {
-    //     .accordion-body {
-    //         input[type="checkbox"] {
-    //             margin-left: 10px;
-    //         }
-    //     }
-
-    //     .accordion-body {
-    //         input[type="radio"] {
-    //             margin-left: 10px;
-    //         }
-    //     }
-
-    //     .accordion-button {
-    //         &::after {
-    //             margin-right: auto;
-    //             margin-left: inherit;
-    //         }
-    //     }
-    // }
 
     // Aside Filter in General
     .aside-filter {
@@ -431,74 +191,6 @@
 
 }
   
-
-/* =======================================================( small-filter )======================================================= */
-  
-
-// #small-filter {
-//     background-color: $lightGreyColor;
-//     z-index: 999999;
-//     top: 0;
-
-//     input {
-//         margin: 4px;
-//     }
-
-//     h2 {
-//         background-color: $mainColor;
-//     }
-
-//     #filter-close-icon {
-//         cursor: pointer;
-//         position: absolute;
-//         top: 50%;
-//         transform: translateY(-50%);
-//     }
-
-//     .filter-close-english {
-//         left: 20px;
-//     }
-
-//     .filter-close-arabic {
-//         right: 20px;
-//     }
-
-//     .small-filter-item {
-//         border-radius: 15px;
-//         box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-
-//         .small-filter-head {
-//             color: $mainColor;
-//         }
-
-        
-//         .small-filter-body {
-//             label {
-//                 &:hover {
-//                     cursor: pointer;
-//                 }
-//             }
-
-//             .accordion-body-item {
-//                 &:last-child {
-//                     border-bottom: 0 !important;
-//                 }
-//             }
-//         }
-//     }
-
-//     .small-filter-buttons {
-//         button {
-//             font-size: 1.25rem;
-//             border-radius: 10px;
-//             width: 155px;
-//             height: 45px;
-//         }
-//     }
-    
-// }
-
-
 /* =======================================================( filtered-content )======================================================= */
 
 
@@ -606,21 +298,7 @@
             flex-wrap: wrap;
             bottom: 45% !important;
             box-shadow: none !important;
-/*
-            // select2
-            .doctor-specialization-select2-container {
-                width: 100% !important;
 
-                ::ng-deep .select2-container {
-                    width: 100% !important;
-                }
-
-                ::ng-deep .select2-selection {
-                    border: none !important;
-                    border-radius: 15px;
-                }
-            }
-*/
             // search input
             .doctor-search {
                 background-color: white;

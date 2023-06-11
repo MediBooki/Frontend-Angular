@@ -1,6 +1,5 @@
 /* =======================================================( Common )======================================================= */
 @import '../../../../../pagination.scss';
-// @import '../../../../../styles.scss';
 
 .specialization-section {
     background-color: $lightGreyColor;
@@ -32,9 +31,7 @@
   }
 
 .main-search-section {
-    // background-color: $mainColor; //#98C8F4
-    // position: relative;
-    
+
     .main-search-title {
         font-family: 'Roboto Condensed', sans-serif;
     }
@@ -68,7 +65,6 @@
     .main-search-filter {
         box-shadow: rgb(204, 204, 204) 0px 0px 10px;
         height: 60px;
-        // border-radius: 15px;
         border-radius: 50px;
         border: 2px solid white;
         z-index: 50;
