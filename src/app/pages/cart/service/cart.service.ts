@@ -64,19 +64,19 @@ export class CartService {
     this.getAllPurchasedMedicines("en").subscribe({
       next:(medicinesPurchased)=>{
         if(typeof(medicinesPurchased.data)!='string' && (typeof(medicinesPurchased.data)=='object' && medicinesPurchased.data.length!=0) && medicinesPurchased.data.user_cart_items != 0) {
-          console.log(medicinesPurchased.data.user_cart_items)
+           
           medicinesPurchased.data.user_cart_items.forEach((element:any) => {
             cartQty += Number(element.qty)
           });
           this.medicinesQty.next(cartQty);
         } else {
-          console.log("hello")
+           
           this.medicinesQty.next(0);
         }
 
       },
       error:(error)=>{
-        console.log(error)
+         
       }
     })
   }
@@ -88,7 +88,7 @@ export class CartService {
     headers = this.createAuthorizationHeader(headers);
     return this.http.post(this.sharedApi + `/patient/orders` , model , {headers: headers}).pipe(
       catchError(error => {
-        console.log(error);
+         
         return throwError('Something went wrong');
       })
     );
@@ -104,7 +104,7 @@ export class CartService {
     headers = this.createAuthorizationHeader(headers);
     return this.http.post(this.sharedApi + `/patient/payments` , model , {headers: headers}).pipe(
       catchError(error => {
-        console.log(error);
+         
         return throwError('Something went wrong');
       })
     );
@@ -124,7 +124,7 @@ export class CartService {
   //   })
   //   return found;
   //       //     let favoriteFound = favorites.data.find((favorite:any) => favorite.id == this.medicine.id)
-  //   //     console.log(favoriteFound)
+  //   //      
   //   //     if(favoriteFound == undefined) {
   //   //       this.favoriteAdded = false
   //   //     } else {
@@ -143,10 +143,10 @@ export class CartService {
     let headers = new HttpHeaders();
     headers = this.createAuthorizationHeader(headers);
     // const parse = JSON.parse(par)
-    console.log(model.genders)
-    // console.log(params)
+     
+    //  
     return this.http.get<any[]>(`${this.sharedApi}/patient/callback`, { params: params ,  headers: headers}).pipe(catchError((e: any) => {
-      console.log(e)
+       
       return throwError(e)
     }));
 
@@ -154,7 +154,7 @@ export class CartService {
 
   setcartData(data: any) {
     this.cartData = data;
-    // console.log(this.appointmentData[0].doctor.id)
+    //  
   }
   
 

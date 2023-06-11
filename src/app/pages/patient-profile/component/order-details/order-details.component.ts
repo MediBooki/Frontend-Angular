@@ -69,11 +69,11 @@ export class OrderDetailsComponent implements OnInit, OnDestroy {
         next: (order) => {
           this.orderDetails = order.data;
           this.oneOrderAPIres = order;
-          console.log(order);
+           
         },
         error: (error) => {
           this.oneOrderAPIres = error;
-          console.log(error);
+           
         }
         });
       }});

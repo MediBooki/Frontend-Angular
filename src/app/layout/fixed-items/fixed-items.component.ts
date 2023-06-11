@@ -75,7 +75,7 @@ export class FixedItemsComponent implements OnInit, OnDestroy {
     } else {
       this.showScrollBtn = false; // hide scroll button
     }
-    console.log(this.showScrollBtn)
+     
   }
   //----- Method 3
   // triggered when clicking scrollBtn
@@ -168,7 +168,7 @@ export class FixedItemsComponent implements OnInit, OnDestroy {
   gethospitalDetails() {
     this.hospitalDetailsSubscription = this._DataService.gethospitalDetails().subscribe({
       next:(details)=>{
-        console.log(details.data[0])
+         
         this.hospitalPhone = details.data[0].phone;
         this.hospitalWhatsApp = details.data[0].whatsapp_phone;
         this.hospitalTelegram = details.data[0].whatsapp_phone;

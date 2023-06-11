@@ -31,7 +31,7 @@ export class DoctorRegisterService {
 
   getAppointments(lang: string): Observable<any> {
     return this._HttpClient.get<Appointments[]>(`${this.sharedApi}/appointments?lang=${lang}`).pipe(catchError((e: any) => {
-      console.log(e)
+       
       return throwError(e)
     }));
   }

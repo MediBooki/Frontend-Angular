@@ -58,7 +58,7 @@ export class PatientProfileService {
     let headers = new HttpHeaders();
     headers = this.createAuthorizationHeader(headers);
     return this._HttpClient.get(`${this.sharedApi}/patient/diagnosis?lang=${lang}`,{  headers: headers  }).pipe(catchError((e: any) => {
-      console.log(e)
+       
       return throwError(e)
     }));
   }
@@ -67,7 +67,7 @@ export class PatientProfileService {
     let headers = new HttpHeaders();
     headers = this.createAuthorizationHeader(headers);
     return this._HttpClient.get(`${this.sharedApi}/insurances?lang=${lang}`,{  headers: headers  }).pipe(catchError((e: any) => {
-      console.log(e)
+       
       return throwError(e)
     }));
   }
@@ -84,7 +84,7 @@ export class PatientProfileService {
     let headers = new HttpHeaders();
     headers = this.createAuthorizationHeader(headers);
     return this._HttpClient.get(`${this.sharedApi}/patient/information?lang=${lang}`,{  headers: headers  }).pipe(catchError((e: any) => {
-      console.log(e)
+       
       return throwError(e)
     }));
   }
@@ -100,7 +100,7 @@ export class PatientProfileService {
     let headers = new HttpHeaders();
     headers = this.createAuthorizationHeader(headers);
     return this._HttpClient.get(`${this.sharedApi}/patient/invoices?lang=${lang}`,{  headers: headers  }).pipe(catchError((e: any) => {
-      console.log(e)
+       
       return throwError(e)
     }));
   }
@@ -109,7 +109,7 @@ export class PatientProfileService {
     let headers = new HttpHeaders();
     headers = this.createAuthorizationHeader(headers);
     return this._HttpClient.get(`${this.sharedApi}/patient/all/orders`,{  headers: headers  }).pipe(catchError((e: any) => {
-      console.log(e)
+       
       return throwError(e)
     }));
   }
@@ -118,7 +118,7 @@ export class PatientProfileService {
     let headers = new HttpHeaders();
     headers = this.createAuthorizationHeader(headers);
     return this._HttpClient.get(`${this.sharedApi}/patient/order/detail?id=${id}&lang=${lang}`,{  headers: headers  }).pipe(catchError((e: any) => {
-      console.log(e)
+       
       return throwError(e)
     }));
   }
@@ -130,7 +130,7 @@ export class PatientProfileService {
     let headers = new HttpHeaders();
     headers = this.createAuthorizationHeader(headers);
     return this._HttpClient.get(`${this.sharedApi}/patient/book/doctor?lang=${lang}`,{  headers: headers  }).pipe(catchError((e: any) => {
-      console.log(e)
+       
       return throwError(e)
     }));
   }
@@ -139,7 +139,7 @@ export class PatientProfileService {
     let headers = new HttpHeaders();
     headers = this.createAuthorizationHeader(headers);
     return this._HttpClient.get(`${this.sharedApi}/patient/DoctorReview?lang=${lang}`,{  headers: headers  }).pipe(catchError((e: any) => {
-      console.log(e)
+       
       return throwError(e)
     }));
   }

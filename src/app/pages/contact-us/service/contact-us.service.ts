@@ -17,7 +17,7 @@ export class ContactUsService {
 
   getContact(): Observable<any> {
     return this.http.get(`${this.sharedApi}/settings`).pipe(catchError((e: any) => {
-      console.log(e)
+       
       return throwError(e)
       }));
   }

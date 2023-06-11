@@ -66,9 +66,9 @@ export class ProfileDetailsComponent implements OnInit, OnDestroy {
         next: (patientInfo) => {
           this.patientInfo = patientInfo.data;
           this.patientName = patientInfo.data.name
-          console.log(this.patientInfo)
+           
           this.patientInfoAPIres = patientInfo;
-          console.log(patientInfo);
+           
           if(this.patientInfo.photo != ''){
             this._DataService.userPhoto.next(this.patientInfo.photo)
           }
@@ -81,7 +81,7 @@ export class ProfileDetailsComponent implements OnInit, OnDestroy {
         },
         error: (error) => {
           this.patientInfoAPIres = null;
-          console.log(error);
+           
         }
       });
     })

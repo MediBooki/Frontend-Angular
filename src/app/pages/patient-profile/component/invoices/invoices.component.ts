@@ -59,7 +59,7 @@ export class InvoicesComponent implements OnInit, OnDestroy {
     }else{
       this.curruntColNum=1;
     }
-    console.log(this.curruntColNum);
+     
   }
 
   //----- Method 3
@@ -69,7 +69,7 @@ export class InvoicesComponent implements OnInit, OnDestroy {
     }else{
       this.curruntColNum=4;
     }
-    console.log(this.curruntColNum);
+     
   }
   //----- Method 4
   gitColData(i:number){
@@ -90,12 +90,12 @@ export class InvoicesComponent implements OnInit, OnDestroy {
         this.allInvoices = invoices.data;
         this.invoicesAPIres = invoices;
         this.allInvoices_notempty = this.allInvoices.length > 0;
-        console.log(invoices);
+         
       },
       error: (error) => {
         this.invoicesAPIres = error;
         this.allInvoices_notempty = false;
-        console.log(error);
+         
       }
       });
     }});

@@ -63,7 +63,7 @@ export class MyInsuranceComponent implements OnInit, OnDestroy {
 
 //----- Method 1
 addInsuranceFun(){
-  console.log(this.addInsuranceForm);
+   
   if(this.addInsuranceForm.valid){
       const model = {
         "insurance_id": this.addInsuranceForm.value.company_id,
@@ -72,12 +72,12 @@ addInsuranceFun(){
       }
       this._PatientProfileService.addInsurance(model).subscribe({
         next: (response) => {
-          console.log(response);
+           
           this.toastr.success(!this.rtlDir?`Insurance request sent successfully! Please wait confirmation`:`تم ارسال طلبك بنجاح وهو تحت المراجعة`);
           // this.router.navigate(['/home']);
         },
         error : (error)=> {
-          console.log(error.error.data);
+           
           this.toastr.error(!this.rtlDir?`Something went wrong`:`هناك خطأ ما` );
         }
       })
@@ -95,11 +95,11 @@ addInsuranceFun(){
       next: (insurance) => {
         this.allInsurance = insurance.data;
         this.insuranceAPIres = insurance;
-        console.log(insurance);
+         
       },
       error: (error) => {
         this.insuranceAPIres = error;
-        console.log(error);
+         
       }
       });
     }});
@@ -112,7 +112,7 @@ addInsuranceFun(){
 
         this.patientInfoSubscription = this._PatientProfileService.getPatientInfo(this.lang).subscribe({
           next: (patientInfo) => {
-            console.log(patientInfo);
+             
             this.patientInsurance = patientInfo.data.insurance
             if(patientInfo.data.insurance && patientInfo.data.insurance_status==1){
               this.insuranceExist = true;

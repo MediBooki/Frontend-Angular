@@ -151,9 +151,9 @@ export class PharmacyComponent implements OnInit {
           next: (medicines)=>{
             this.noData = medicines.data.length == 0 ? true : false // no data will be true in case that filteredDoctors is empty
             this.totalRecords = medicines.count.count
-            console.log(this.totalRecords)
+             
             this.allMedicines = medicines.data;
-            console.log(this.allMedicines)
+             
             if (this.page == 1) {
               this.numMedicinesPerPage = medicines.data.length // length of one page in API
             }
@@ -188,7 +188,7 @@ export class PharmacyComponent implements OnInit {
         this.categoriesSubscription = this._PharmacyService.getCategories(this.lang).subscribe({
           next:(categories)=>{
             this.allCategories = categories.data;
-            console.log(this.allCategories)
+             
             this.getSpecificCategory(); // to change name when change dir
           }
         })
@@ -243,11 +243,11 @@ export class PharmacyComponent implements OnInit {
         maxPrice:JSON.parse(localStorage.getItem("medicineFilterForm")!).maxPrice
       })
 
-      console.log(this.medicineFilterForm.value["categories"])
+       
 
       // to set array filter items from local storage
       this.filterArrays.forEach((filterName)=>{
-        console.log(filterName)
+         
         JSON.parse(localStorage.getItem("medicineFilterForm")!)[filterName].forEach((filterNum:any) => {
           this.medicineFilterForm.value[filterName].push(filterNum);
           switch (filterName) {
@@ -311,7 +311,7 @@ export class PharmacyComponent implements OnInit {
   //----- Method 9
   // triggered when check or uncheck any filter input
   getStats(event:any,formControlName:string) {
-    console.log(JSON.parse(localStorage.getItem("medicineFilterForm")!)[formControlName])
+     
     // if(JSON.parse(localStorage.getItem("medicineFilterForm")!)[formControlName].includes(event.target.value)) { // in case that checkbox checked before and clicked then remove check
     
     // to check or uncheck the exact checkbox input
@@ -379,8 +379,8 @@ export class PharmacyComponent implements OnInit {
   // triggered when we submit price range
   submitPrice() {
     this.page = 1;
-    console.log(this.lowPrice)
-    console.log(this.highPrice)
+     
+     
     // Number(this.medicineFilterForm.get("minPrice")?.value) <= Number(this.medicineFilterForm.get("maxPrice")?.value) || (Number(this.medicineFilterForm.get("minPrice")?.value)==0 || Number(this.medicineFilterForm.get("maxPrice")?.value)==0)
 
     if(this.smallFilterVisible) {
@@ -394,7 +394,7 @@ export class PharmacyComponent implements OnInit {
     localStorage.setItem("medicineFilterForm",JSON.stringify(this.medicineFilterForm.value)); // put new values in localstorage
     this.getFilteredMedicines();
     this.toastr.success(!this.rtlDir?`Filter by Price has been set successfully!`:`تم تصنيف الأدوية بالسعر بنجاح` , !this.rtlDir?`Filter Result`:`ناتج التصنيف`)
-    console.log(Number(this.medicineFilterForm.get("minPrice")?.value))
+     
   }
 
   //----- Method 14
@@ -415,7 +415,7 @@ export class PharmacyComponent implements OnInit {
   // when clicking on search button 
   submitForm() {
     this.page = 1;
-    console.log(this.medicineFilterForm.controls['name'].value)
+     
     this.setFilterForm(); // set filter form with local storage value
     localStorage.setItem("medicineFilterForm",JSON.stringify(this.medicineFilterForm.value)); // put new values in localstorage
     this.getFilteredMedicines();
@@ -443,12 +443,12 @@ export class PharmacyComponent implements OnInit {
       if(this._PharmacyService.favoritesId.value.length == 0) {
         this.favoritesSubscribtion = this._PharmacyService.getAllFavorite(this.lang).subscribe({
           next:(favorites)=>{
-            console.log(favorites.data)
+             
             favorites.data.forEach((favMedicine:any)=>{
               favoritesId.push(favMedicine.id)
             })
             this._PharmacyService.favoritesId.next(favoritesId);
-            console.log(favoritesId)
+             
           }
         })
       }
@@ -457,7 +457,7 @@ export class PharmacyComponent implements OnInit {
 
   // favoritesFound(medicineId:number):boolean {
   //   let found = this.allFavorites.find((favorite:any) => favorite.id == medicineId)
-  //   console.log(found)
+  //    
     
   //   return found == undefined? false : true
   // }
@@ -469,9 +469,9 @@ export class PharmacyComponent implements OnInit {
   //     this._CartService.getAllFavorite().subscribe({
   //       next:(favorites)=>{
   
-  //         console.log(favorites.data)
+  //          
   //         let favoriteFound = favorites.data.find((favorite:any) => favorite.id == medicineId)
-  //         console.log(favoriteFound)
+  //          
   //         if(favoriteFound == undefined) {
   //           return false
   //         } else {

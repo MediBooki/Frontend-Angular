@@ -103,7 +103,7 @@ export class SpecializationsComponent implements OnInit, OnDestroy  {
         // this.isVisibleSpinner = true;
         this.specializeSubscription = this._specializeService.getSpecialization(lang, this.page , this.searchForm.get('name')?.value ).subscribe({
           next: (specialize) => {
-            console.log(specialize)
+             
             if(specialize.data.length == 0) {
               this.noData = true;
             } else {
@@ -115,11 +115,11 @@ export class SpecializationsComponent implements OnInit, OnDestroy  {
               if(this.page===1){
                 this.numSepicaistPerPage = specialize.data.length
               }
-              console.log(this.specializations[0].id)
+               
             }
           },
           error: (error) => {
-            console.log(error)
+             
             this.noDataError = error;
             // this.isVisibleSpinner = false;
           }
@@ -152,17 +152,17 @@ export class SpecializationsComponent implements OnInit, OnDestroy  {
           this.rtlDir = true;
         }
         // this.isVisibleSpinner = true;
-        console.log(id)
+         
         this.specializeDetailsSubscription = this._specializeService.getSpecializeDetails(lang,id ).subscribe({
           next: (specialize) => {
-            console.log(specialize)
+             
             // this.isVisibleSpinner = false;
             this.specializeDetails = specialize.data;
-            console.log(this.specializeDetails)
+             
             
           },
           error: (error) => {
-            console.log(error)
+             
             // this.isVisibleSpinner = false;
           }
         });
@@ -189,7 +189,7 @@ export class SpecializationsComponent implements OnInit, OnDestroy  {
     // Handle the "specialize" event here
     // This method will be triggered when the "specialize" event is emitted
     this.specializeDetails=specializeDetail
-    console.log("Specialize event emitted:",this.specializeDetails);
+     
   }
 
 

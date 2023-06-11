@@ -61,13 +61,13 @@ export class FavoritesComponent implements OnInit, OnDestroy {
         this.favMedicines = favMedicines.data;
         this.favMedicinesAPIres = favMedicines;
         this.allFav_notempty = this.favMedicines.length > 0;
-        console.log( this.favMedicines);
+         
         // this.isVisibleSpinner = false;
       },
       error: (error) => {
         this.favMedicinesAPIres = error;
         this.allFav_notempty = false;
-        console.log(error);
+         
         // this.isVisibleSpinner = false;
       }
     });
@@ -82,12 +82,12 @@ export class FavoritesComponent implements OnInit, OnDestroy {
         if(this._pharmacyService.favoritesId.value.length == 0) {
           this.favoritesSubscription = this._pharmacyService.getAllFavorite(this.lang).subscribe({
           next:(favorites)=>{
-            console.log(favorites.data)
+             
             favorites.data.forEach((favMedicine:any)=>{
               favoritesId.push(favMedicine.id)
             })
             this._pharmacyService.favoritesId.next(favoritesId);
-            console.log(favoritesId)
+             
           }
         })
       }

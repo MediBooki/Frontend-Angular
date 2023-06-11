@@ -50,7 +50,7 @@ export class ReviewGuard implements CanActivate {
                   next: (Doctor) => {
       
                     this.doctor = Doctor.data;
-                    console.log(this.doctor)
+                     
                     this.toastr.error(`You must attend an examination for this doctor`)
                     this.router.navigate(['/appointments/'+this.doctorId])
 

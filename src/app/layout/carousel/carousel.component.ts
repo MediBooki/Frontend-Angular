@@ -79,7 +79,7 @@ export class CarouselComponent implements OnInit {
     // onResize(event:any) {
     //   let tez = event.target.innerWidth
     //   $('.main-carousel .owl-carousel .owl-item').css('width' , `${tez}px`)
-    //   console.log(event.target.innerWidth);
+    //    
     // }
   
 }

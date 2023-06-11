@@ -60,12 +60,12 @@ export class HistoryComponent implements OnInit, OnDestroy {
         this.allDiagnosis = diagnosis.data;
         this.allDiagnosis_notempty = diagnosis.count > 0;
         this.diagnosisAPIres = diagnosis;
-        console.log(diagnosis);
+         
       },
       error: (error) => {
         this.diagnosisAPIres = error;
         this.allDiagnosis_notempty = false
-        console.log(error);
+         
       }
     });
   }});

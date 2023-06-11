@@ -32,7 +32,7 @@ export class CheckoutGuard implements CanActivate {
             }
             this._CartService.getAllPurchasedMedicines(lang).subscribe({
               next:(purchasedMedicines)=>{
-                console.log(purchasedMedicines)
+                 
                 if(typeof(purchasedMedicines.data)=='string' || (typeof(purchasedMedicines.data)=='object' && purchasedMedicines.data.length==0) || purchasedMedicines.data.user_cart_items.length == 0) {
                   this.toastr.error(`please add medicine to cart to do checkout`)
                   this.router.navigate(['/pharmacy'])

@@ -51,7 +51,7 @@ export class AuthService {
 
   getTerms(lang: string): Observable<any> {
     return this.http.get(`${this._sharedApi}/terms?lang=${lang}`).pipe(catchError((e: any) => {
-      console.log(e)
+       
       return throwError(e)
       }));
   }

@@ -61,29 +61,29 @@ export class OrdersComponent implements OnInit, OnDestroy {
         this.orders = orders.data;
         this.ordersAPIres = orders;
         this.allOrders_notempty = this.orders.length > 0;
-        console.log( orders);
+         
       },
       error: (error) => {
         this.ordersAPIres = error;
         this.allOrders_notempty = false;
-        console.log(error);
+         
       }
     });
   }
 
 
   savePaymentOnline() {
-    console.log("fiiiiiiiiiiiiiiiiirst")
+     
     this.route.queryParams.subscribe(params => {
       // Access the "pending" parameter here
       const isPending = params['order'];
-      console.log(isPending);
+       
       if(localStorage.getItem('currentPaymentId') != null) {
-      console.log("seeeeeeeeeeeeeeeeeeecond")
+       
 
-      console.log(isPending == JSON.parse(localStorage.getItem('currentPaymentId')!))
+       
         if(isPending!=null && isPending == JSON.parse(localStorage.getItem('currentPaymentId')!) && params['success']=='true') {
-        console.log("thiiiiiiiiiiiiird")
+         
 
           let model = {
             "amount_cents" : params['amount_cents'],
@@ -97,7 +97,7 @@ export class OrdersComponent implements OnInit, OnDestroy {
           }
           this.savePaymentSubscription = this._cartservice.savePaymentOnline(model).subscribe({
             next:(res)=>{
-              console.log(res)
+               
               localStorage.removeItem('currentPaymentId');
               this._cartservice.medicinesQty.next(0)
               this.toastr.success(!this.rtlDir?`Your Order has been Submitted Successfully`:`تم تسجيل طلبك بنجاح`, !this.rtlDir?`Checkout Result`:`ناتج عملية الشراء`);
@@ -107,9 +107,9 @@ export class OrdersComponent implements OnInit, OnDestroy {
           })
           // this._DataService.curruntService.next('orders')
           // this.curruntService = 'orders';
-          console.log(params['success'])
+           
 
-          console.log("gggggggggggggggggg")
+           
           // call API to save patient information
         }
       }

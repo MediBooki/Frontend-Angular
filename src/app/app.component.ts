@@ -36,7 +36,7 @@ export class AppComponent implements OnInit {
     });
     this.service.isLogedIn.subscribe(res => {
       this.login = res
-      console.log(this.login);
+       
     });
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
@@ -52,7 +52,7 @@ export class AppComponent implements OnInit {
 
 
     // this._DataService.isPageLoaded.subscribe((status) => {
-    //   console.log('called with ' + status)
+    //    
     //   this.loaded = status;
     //   if (status == false) {
     //     // document.body.classList.add('overflow-hidden');

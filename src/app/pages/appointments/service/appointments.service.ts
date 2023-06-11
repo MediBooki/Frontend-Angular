@@ -29,7 +29,7 @@ export class AppointmentsService {
   getDoctorById(lang: string, id: any): Observable<any> {
     //get data from local file json
     return this._HttpClient.get<any>(`${this._sharedApi}/doctors/${id}?lang=${lang}`).pipe(catchError((e: any) => {
-      console.log(e)
+       
       return throwError(e)
     }));
   };
@@ -63,7 +63,7 @@ export class AppointmentsService {
         this.AppointmentsSubscription = this._PatientProfileService.getPatientAppointments(language).subscribe({
         next: (Appointments) => {
           this.appointmentData = Appointments.data;
-          console.log(this.appointmentData);
+           
         }
         });
       }});
@@ -73,7 +73,7 @@ export class AppointmentsService {
   
   
   // getAppointmentData() {
-  //   console.log(this.appointmentData)
+  //    
   //   return this.appointmentData;
   // }
 }

@@ -84,7 +84,7 @@ export class CartComponent implements OnInit, OnDestroy {
       // this.isVisibleSpinner = true;
       this.addCartSubscription = this._CartService.addCart(medicineId).subscribe({
         next:(message)=>{
-          console.log(message)
+           
           this.getPurchasedMedicines(); // to update UI
           setTimeout(() => {
             this.toastr.success(!this.rtlDir?`Medicine's Quantity increased by one`:`تم زيادة كمية الدواء المضافة الى عربة الشراء`, !this.rtlDir?`Cart Result`:`ناتج عربة الشراء`)
@@ -112,12 +112,12 @@ export class CartComponent implements OnInit, OnDestroy {
   decrease(medicineId:number , medicineQty:number) {
     if(medicineQty>1) {
       this.selectedAddRemoveMedicine = medicineId;
-      console.log(medicineQty)
+       
       this.isVisibleAddRemoveSpinner = true;
       // this.isVisibleSpinner = true;
       this.decreaseCartSubscription = this._CartService.decreaseCart(medicineId).subscribe({
         next:(message)=>{
-          console.log(message)
+           
           this.getPurchasedMedicines(); // to update UI
           setTimeout(() => {
             this.toastr.success(!this.rtlDir?`Medicine's Quantity decreased by one`:`تم تقليل كمية الدواء المضافة الى عربة الشراء`, !this.rtlDir?`Cart Result`:`ناتج عربة الشراء`)
@@ -153,7 +153,7 @@ export class CartComponent implements OnInit, OnDestroy {
       this.isVisibleDeleteSpinner = true;
       this.removeCartSubscription = this._CartService.removeCart(medicineId).subscribe({
         next:(message)=>{
-          console.log(message)
+           
           this.getPurchasedMedicines(); // to update UI
           setTimeout(() => {
             this.toastr.info(!this.rtlDir?`Medicine was removed from cart`:`تم حذف الدواء من عربة الشراء`, !this.rtlDir?`Cart Result`:`ناتج عربة الشراء`)
@@ -189,14 +189,14 @@ export class CartComponent implements OnInit, OnDestroy {
 
         this.cartMedicinesSubscription = this._CartService.getAllPurchasedMedicines(lang).subscribe({
           next:(purchasedMedicines)=>{
-            console.log(purchasedMedicines)
-            // console.log(typeof(purchasedMedicines.data))
+             
+            //  
             if(typeof(purchasedMedicines.data)=='string' || (typeof(purchasedMedicines.data)=='object' && purchasedMedicines.data.length==0) || purchasedMedicines.data.user_cart_items.length == 0) {
               this.noData = true;
             } else {
               this.allMedicinesPurchased = purchasedMedicines.data.user_cart_items;
               this._CartService.setcartData(this.allMedicinesPurchased)
-              console.log(purchasedMedicines.data.user_cart_items);
+               
               this.totalPrice = 0;
               purchasedMedicines.data.user_cart_items.forEach((element:any) => {
                 this.totalPrice += (element.qty * element.price)
@@ -205,7 +205,7 @@ export class CartComponent implements OnInit, OnDestroy {
           // this.isVisibleSpinner = false;
         },
       error:(error)=>{
-        console.log(error);
+         
         if(error.error.message == 'Too Many Attempts.') {
           this.toastr.error(!this.rtlDir?`Too Many Requests please try again in a while`:`طلبات كثيرة جدًا ، يرجى المحاولة مرة أخرى بعد فترة`) 
         } else {
@@ -233,7 +233,7 @@ export class CartComponent implements OnInit, OnDestroy {
             // this.isVisibleSpinner = false;
           },
           error: (error) => {
-            console.log(error)
+             
             // this.isVisibleSpinner = false;
           }
         });
@@ -247,7 +247,7 @@ export class CartComponent implements OnInit, OnDestroy {
       this.isVisibleSpinner = true;
       this.removeAllCartSubscription = this._CartService.deleteAllCart().subscribe({
         next:(message)=>{
-          console.log(message)
+           
           this.getPurchasedMedicines(); // to update UI
           setTimeout(() => {
             this.toastr.info(!this.rtlDir?`All Medicines were removed from cart`:`تم حذف جميع الأدوية من عربة الشراء`, !this.rtlDir?`Cart Result`:`ناتج عربة الشراء`)

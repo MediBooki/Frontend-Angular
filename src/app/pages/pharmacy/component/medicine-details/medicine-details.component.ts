@@ -121,8 +121,8 @@ export class MedicineDetailsComponent implements OnInit, OnDestroy {
       }
       this.medicineId = params["id"];
       this.getMedicineDetails();
-      // console.log(params["id"]);
-      // console.log(this._ActivatedRoute.snapshot.data);
+      //  
+      //  
     });
     // this.isVisibleSpinner = true;
     // Promise.resolve().then(()=>this._DataService.isPageLoaded.next(false));
@@ -132,7 +132,7 @@ export class MedicineDetailsComponent implements OnInit, OnDestroy {
     // this.getMedicineQuantity();
     // this.listenTotalQty();
     // this.setFavorite();
-    console.log(this.medicineId);
+     
     
   }
 
@@ -176,15 +176,15 @@ export class MedicineDetailsComponent implements OnInit, OnDestroy {
     // if(specializationId == 'all') {
     //   this.getFilteredDoctors();
     // } else {
-      console.log(this.medicineDetails.category.id)
+       
       this.medicineFilterForm.value["categories"].push(this.medicineDetails.category.id)
-      console.log(this.medicineFilterForm.value["categories"])
+       
       this.medicinesSubscription = this._PharmacyService.getFilteredMedicines(this.medicineFilterForm.value, this.lang, 1).subscribe({
         next:(res)=>{
-          console.log(res.data)
+           
           const filteredMedicines = res.data.filter((medicine:any) => medicine.id !== this.medicineDetails.id);
           this.categoryMedicines = filteredMedicines;
-          console.log(filteredMedicines)
+           
           this.categoriesLoaded = true
           // this.isVisibleSpinner = false;
         }
@@ -243,7 +243,7 @@ export class MedicineDetailsComponent implements OnInit, OnDestroy {
           next: (medicine)=>{
             this.medicineDetails = medicine.data;
             // this.setMedicineAmount();
-            console.log(this.medicineDetails)
+             
             // this.isVisibleSpinner = false;
             // this.isVisibleSpinner = false;
             window.scroll({ 
@@ -268,7 +268,7 @@ export class MedicineDetailsComponent implements OnInit, OnDestroy {
   // numberOnly(event:any): boolean 
   // {
   //   const charCode = (event.which) ? event.which : event.keyCode;
-  //   console.log(event)
+  //    
   //   return ((charCode > 31 && (charCode < 48 || charCode > 57)) || this.amount.toString().length >=1 || (this.amount.toString().length == 0 && charCode == 48)) ?  false :  true;
   // }
 
@@ -284,11 +284,11 @@ export class MedicineDetailsComponent implements OnInit, OnDestroy {
         this.addFavoriteSubscription = this._pharmacyService.addFavorite(this.medicineDetails.id).subscribe({
           next:(res)=>{
             this.toastr.success(!this.rtlDir?`This Medicine Added to Favorites`:`تم اضافة الدواء الى المفضلة`, !this.rtlDir?`Favorites Result`:`ناتج التفضيلات`)
-            console.log(res)
+             
             let newFavorites = this._pharmacyService.favoritesId.value;
             newFavorites.push(this.medicineDetails.id);
             this._pharmacyService.favoritesId.next(newFavorites);
-            console.log(this._pharmacyService.favoritesId.value)
+             
           },
           error:(error)=>{
             this.toastr.error(!this.rtlDir?`An Error has occured`:`حدث خطأ ما` , `${error}`)
@@ -300,12 +300,12 @@ export class MedicineDetailsComponent implements OnInit, OnDestroy {
         this.removeFavoriteSubscription = this._pharmacyService.removeFavorite(this.medicineDetails.id).subscribe({
           next:(res)=>{
             this.toastr.info(!this.rtlDir?`This Medicine Removed from Favorites`:`تم ازالة الدواء من المفضلة`, !this.rtlDir?`Favorites Result`:`ناتج التفضيلات`)
-            console.log(res)
+             
             let newFavorites = this._pharmacyService.favoritesId.value;
             let removeIndex = this._pharmacyService.favoritesId.value.indexOf(this.medicineDetails.id); // to know index of removed medicine from favorites
             newFavorites.splice(removeIndex, 1);
             this._pharmacyService.favoritesId.next(newFavorites);
-            console.log(this._pharmacyService.favoritesId.value)
+             
           },
           error:(error)=>{
             this.toastr.error(!this.rtlDir?`An Error has occured`:`حدث خطأ ما` , `${error}`)
@@ -322,7 +322,7 @@ export class MedicineDetailsComponent implements OnInit, OnDestroy {
   //   // to check whether the product were purchased or not to make amount equalls in each component and to get the right amount of product if it was purchased
   //   if(this.purchasedFound = this._CartService.medicinesPurchasedGetter.find( ({ medicine }) => medicine.id === Number(this.medicineDetails.id) ))
   //   {
-  //     console.log(this.purchasedFound);
+  //      
   //     this.amount = this.purchasedFound.quantity;
   //   }
   // }
@@ -364,19 +364,19 @@ export class MedicineDetailsComponent implements OnInit, OnDestroy {
   //     this._CartService.getAllPurchasedMedicines(this.lang).subscribe({
   //       next:(medicines)=>{
   //         if(typeof(medicines.data)!='string' && (typeof(medicines.data)=='object' && medicines.data.length!=0) && medicines.data.user_cart_items != 0) {
-  //           console.log(medicines.data.user_cart_items)
+  //            
   //           let medicineQuantityFound = medicines.data.user_cart_items.find((medicine:any)=>medicine.id == this.medicineDetails.id);
-  //           console.log(medicineQuantityFound)
+  //            
   //           if(medicineQuantityFound != null) {
   //             this.medicineQuantity = medicineQuantityFound.qty
   //           }
   //         }
   //         // else {
   //         //   this.medicineQuantity = 0;
-  //         //   console.log("whhhhhhhhhhhhhhhy")
+  //         //    
   //         // }
   //       } , error:(error)=>{
-  //         console.log(error)
+  //          
   //       }
   //     })
   //   }
@@ -393,14 +393,14 @@ export class MedicineDetailsComponent implements OnInit, OnDestroy {
     this.FavoritesSubscribtion = this._pharmacyService.getAllFavorite(this.lang).subscribe({
       next:(favorites)=>{
         // this.isVisibleSpinner = false;
-        console.log(favorites.data)
+         
         favorites.data.forEach((favMedicine:any)=>{
           favoritesId.push(favMedicine.id)
         })
         this._pharmacyService.favoritesId.next(favoritesId);
-        console.log(favoritesId)
+         
       } , error:(error)=>{
-        console.log(error)
+         
       }
     })
   // }
@@ -413,9 +413,9 @@ export class MedicineDetailsComponent implements OnInit, OnDestroy {
       this.FavoritesSubscribtion = this._pharmacyService.getAllFavorite(this.lang).subscribe({
         next:(favorites)=>{
   
-          console.log(favorites.data)
+           
           let favoriteFound = favorites.data.find((favorite:any) => favorite.id == this.medicineDetails.id)
-          console.log(favoriteFound)
+           
           if(favoriteFound == undefined) {
             this.favoriteAdded = false
           } else {
@@ -426,7 +426,7 @@ export class MedicineDetailsComponent implements OnInit, OnDestroy {
   
       //     // this.allFavorites = favorites.data;
       //     // for (let i = 0; i < favorites.data.length; i++) {
-      //     //   console.log(favorites.data[i].id)
+      //     //    
       //     //   // this.favoritesId.push(favorites.data[i].id)
       //     // }
   
@@ -436,7 +436,7 @@ export class MedicineDetailsComponent implements OnInit, OnDestroy {
         }
       })
     } else {
-      // console.log(this.isVisibleSpinner)
+      //  
       // this.isVisibleSpinner = false;
     }
        
@@ -483,9 +483,9 @@ export class MedicineDetailsComponent implements OnInit, OnDestroy {
   //       this._CartService.getAllPurchasedMedicines(this.lang).subscribe({
   //         next:(medicines)=>{
   //           if(typeof(medicines.data)!='string' && (typeof(medicines.data)=='object' && medicines.data.length!=0) && medicines.data.user_cart_items != 0) {
-  //             console.log(medicines.data.user_cart_items)
+  //              
   //             let medicineQuantityFound = medicines.data.user_cart_items.find((medicine:any)=>medicine.id == this.medicineDetails.id);
-  //             console.log(medicineQuantityFound)
+  //              
   //             if(medicineQuantityFound == null || qty == 0) {
   //               this.medicineQuantity = 0;
   //             } else {

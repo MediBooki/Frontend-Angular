@@ -10,7 +10,7 @@ export class LoadingScreenComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    console.log('loading is in')
+     
   }
 
   

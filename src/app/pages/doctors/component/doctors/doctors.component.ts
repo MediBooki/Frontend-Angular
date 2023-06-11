@@ -129,7 +129,7 @@ export class DoctorsComponent implements OnInit, OnDestroy  {
   gethospitalDetails() {
     this.hospitalDetailsSubscription = this._DataService.gethospitalDetails().subscribe({
       next:(details)=>{
-        console.log(details.data[0])
+         
         this.hospitalPhone = details.data[0].phone;
       }
     })
@@ -143,7 +143,7 @@ export class DoctorsComponent implements OnInit, OnDestroy  {
     this._DataService._lang.subscribe({
       next: (lang) => {
         // const box = document.getElementsByClassName('.overlay-container');
-        // console.log(box)
+        //  
         this.lang = lang;
         if (lang == 'en') {
           this.rtlDir = false;
@@ -160,17 +160,17 @@ export class DoctorsComponent implements OnInit, OnDestroy  {
         // this.isVisibleSpinner = true; //trigger spinner
         this.doctorsSubscription = this._DoctorService.getFilteredDoctors(this.filterForm.value,this.lang, this.page).subscribe({
           next: (doctors) => {
-            console.log(this.doctorsSubscription)
+             
             this.noData = doctors.data.length == 0 ? true : false // no data will be true in case that filteredDoctors is empty
             this.totalRecords = doctors.count
             this.allDoctors = doctors.data;
-            console.log(this.allDoctors)
+             
             if (this.page == 1) {
               this.numDoctorsPerPage = doctors.data.length // length of one page in API
             }
             // this.numDoctorsPerPage = doctors.data.length // length of one page in API
             // this.isVisibleSpinner = false;
-            console.log(this.filterForm.value)
+             
           },
           error: (error) => {
             localStorage.setItem("filterForm",JSON.stringify(this.filterForm.value)); // put new values in localstorage
@@ -202,7 +202,7 @@ export class DoctorsComponent implements OnInit, OnDestroy  {
         this.specializationsSubscription = this._SpecializationService.getAllSpecializations(this.lang).subscribe({
           next:(specializations)=>{
             this.allSpecializations = specializations.data;
-            console.log(this.allSpecializations)
+             
             this.getSpecificSpecialization(); // to change name when change dir
           }
         })
@@ -294,7 +294,7 @@ export class DoctorsComponent implements OnInit, OnDestroy  {
   //----- Method 9
   // triggered when check or uncheck any input checkbox filter 
   getStats(event:any,formControlName:string) {
-    console.log(JSON.parse(localStorage.getItem("filterForm")!)[formControlName])
+     
 
     // to check or uncheck the correct checkbox input
     switch (formControlName) {
@@ -318,7 +318,7 @@ export class DoctorsComponent implements OnInit, OnDestroy  {
     if(!event.target.checked) { // in case that checkbox checked before and clicked then remove check
       this.setFilterForm(); // set filter form with local storage value
       let removeIndex = this.filterForm.value[formControlName].indexOf(event.target.value); // to know index of unchecked input
-      console.log(removeIndex)
+       
       if (removeIndex !== -1) {
         this.filterForm.value[formControlName].splice(removeIndex, 1); // to delete unchecked input
       }

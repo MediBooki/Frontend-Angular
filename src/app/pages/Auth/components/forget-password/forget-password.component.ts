@@ -67,7 +67,7 @@ export class ForgetPasswordComponent implements OnInit, OnDestroy  {
     }
     this.isVisibleSpinner = true;
     this.forgetPasswordSubscription = this._AuthService.forgetPassword(model).subscribe((res: any) => {
-      // console.log(res);
+      //  
       localStorage.setItem("reset_token", res.reset_token)
       localStorage.setItem("email_patient", this.forgetPasswordForm.value.email)
       // this._DataService.is_login.next(true);
@@ -75,10 +75,10 @@ export class ForgetPasswordComponent implements OnInit, OnDestroy  {
       this.isVisibleSpinner = false;
     }, (error) => {
       this.toastr.error(!this.rtlDir?`Email not found`:`البريد الالكتروني غير موجود`)
-      console.log(error)
+       
       this.isVisibleSpinner = false;
     })
-    console.log(this.forgetPasswordForm.value)
+     
   }
 
       /*=============================================( Destroying Method )=============================================*/

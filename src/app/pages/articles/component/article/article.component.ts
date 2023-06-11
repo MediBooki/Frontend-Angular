@@ -27,7 +27,7 @@ export class ArticleComponent implements OnInit {
 
   ngOnInit(): void {
     this.getLang();
-    console.log(this.article)
+     
   }
 
   /*=============================================( Variables )=============================================*/

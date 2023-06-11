@@ -60,7 +60,7 @@ export class PatientProfileComponent implements OnInit{
         this.direction = 'rtl';
       }
     }})
-    console.log(this.router.url.includes('details'))
+     
   }
 
   // -----------------------------------------------appointments modal----------------------------------------------- //
@@ -86,7 +86,7 @@ export class PatientProfileComponent implements OnInit{
   getDetailsModal() {
     this._PatientProfileService.changeDetailsEmitted$.subscribe(response => {
       this.patientInfo = response.info.data;
-      console.log(this.patientInfo)
+       
 
       this.updateProfile = new FormGroup({
       name: new FormControl(this.patientInfo.name, [Validators.required, Validators.minLength(3), Validators.pattern(/^[a-zA-Z]{1,}[a-zA-Z0-9]*$/)]),
@@ -116,7 +116,7 @@ export class PatientProfileComponent implements OnInit{
       "phone": this.updateProfile.value.phone,
       "address": this.updateProfile.value.address
     }
-    console.log(model)
+     
     this.updateFormdata = new FormData();
     Object.entries(model).forEach(([key , value] : any) => {
       if(key=='name' && value==''){
@@ -129,16 +129,16 @@ export class PatientProfileComponent implements OnInit{
         this.updateFormdata.append(key , value);
       }
     })
-    console.log(this.updateFormdata)
+     
     this._PatientProfileService.updateProfile(this.updateFormdata).subscribe({
       next: (response) => {
-        console.log(response);
+         
         this.toastr.success(!this.rtlDir?`profile updated successfully!`:`تم تحديث الملف الشخصي بنجاح`);
         // this.getPatientInfo();
         this._PatientProfileService.checkIfUpdate.next(!this._PatientProfileService.checkIfUpdate.value)
       },
       error : (error)=> {
-        console.log(error);
+         
       }
     })
   }
@@ -160,10 +160,10 @@ export class PatientProfileComponent implements OnInit{
 
   getInvoicesModal() {
     this._PatientProfileService.changeInvoiceEmitted$.subscribe(response => {
-      console.log(response.appointments);
+       
       this.myInvoicesModal = response;
-      console.log(this.myAppointmentModal);
-      console.log(response.id);
+       
+       
     });
   }
 

@@ -75,17 +75,17 @@ export class DoctorComponent implements OnInit, OnChanges {
     let sum = 0;
     // let avg = 0;
     this.doctor.reviews.forEach((doctorReview)=>{
-      // console.log(doctorReview)
+      //  
       sum = sum + doctorReview.rating
     })
     this.overallRating = sum / this.doctor.reviews.length;
 
     
-    // console.log(Math.floor((avg%1.0)*100))
+    //  
     // if(Math.floor((avg%1.0)*100) >= 25 && Math.floor((avg%1.0)*100) < 75) {
     //   this.overallRating = Math.floor(avg) + 0.5
     // } else if (Math.floor((avg%1.0)*100) >= 75) {
-    //   console.log(Math.ceil(avg))
+    //    
     //   this.overallRating = Math.ceil(avg)
     // } else {
     //   this.overallRating = Math.floor(avg)

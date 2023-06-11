@@ -17,7 +17,7 @@ export class SpecializationService {
   getSpecialization(lang: string, page: number,search:string): Observable<any> {
     //get data from local file json
     return this._HttpClient.get<any>(`${this._sharedApi}/sections?lang=${lang}&page=${page}&search=${search}`).pipe(catchError((e: any) => {
-      console.log(e)
+       
       return throwError(e)
     }));
   };
@@ -25,7 +25,7 @@ export class SpecializationService {
   getSpecializeDetails(lang: string , specialistID : number): Observable<any> {
     //get data from local file json
     return this._HttpClient.get<any>(`${this._sharedApi}/sections/${specialistID}?lang=${lang}`).pipe(catchError((e: any) => {
-      console.log(e)
+       
       return throwError(e)
     }));
   };
@@ -33,7 +33,7 @@ export class SpecializationService {
   getAllSpecializations(lang: string): Observable<any> {
     //get data from local file json
     return this._HttpClient.get<any>(`${this._sharedApi}/get/section?lang=${lang}`).pipe(catchError((e: any) => {
-      console.log(e)
+       
       return throwError(e)
     }));
   };

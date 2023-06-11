@@ -110,7 +110,7 @@ termsConditions:TermCondition[]=[]
       terms_conditions:this.terms_conditions
     }
     )
-    console.log(this.patientForm)
+     
   }
 
 
@@ -125,16 +125,16 @@ termsConditions:TermCondition[]=[]
       blood_group: this.patientForm.value.blood_group,
       address: this.patientForm.value.address,
     }
-    console.log(model);
+     
     this.isVisibleSpinner = true;
     this._AuthService.createPatient(model).subscribe(res => {
       this.toastr.success(!this.rtlDir?`patient Added Successfully`:`تمت اضافة المريض بنجاح`)
       this.router.navigate(['/auth/Login'])
       this.isVisibleSpinner = false;
     },(error)=>{
-      console.log(error);
+       
       Object.entries(error.error.errors).forEach(([key , value] : any) => {
-        console.log(key,value)
+         
         this.toastr.error(value[0])
       })
       this.isVisibleSpinner = false;
@@ -183,7 +183,7 @@ termsConditions:TermCondition[]=[]
         }
         this._AuthService.getTerms(this.lang).subscribe({
           next:(terms)=>{
-            console.log(terms)
+             
             this.termsConditions = terms.data;
           }
         })

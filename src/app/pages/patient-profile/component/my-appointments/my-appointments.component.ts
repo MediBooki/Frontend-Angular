@@ -68,7 +68,7 @@ export class MyAppointmentsComponent implements OnInit, OnDestroy {
     }else{
       this.AppointmentCurruntColNum=1;
     }
-    console.log(this.AppointmentCurruntColNum);
+     
   }
 
   //----- Method 3
@@ -78,24 +78,24 @@ export class MyAppointmentsComponent implements OnInit, OnDestroy {
     }else{
       this.AppointmentCurruntColNum=4;
     }
-    console.log(this.AppointmentCurruntColNum);
+     
   }
 
   //----- Method 4
   appointmentGetColData(i:number , id:number , Dateapp:string){
     this.appointmentColDataIndex = i;
-    console.log(i)
+     
     const date = new Date(Dateapp)
     const currentDate = new Date();
 
     if(this.allPatientReviews.find(r => r.doctor.id  === id ) && currentDate >= date  ){
       this.reviewId = this.allPatientReviews.find(r => r.doctor.id  === id )?.id
-      console.log(this.reviewId)
-      console.log(this.allPatientReviews.find(r => r.doctor.id  === id ))
+       
+       
       this.updateReviewBtn=true
       this.reviewBtn = false
       this._DataService.idReview.next(this.allPatientReviews.find(r=> r.doctor.id == id )!.id)
-      console.log(this._DataService.idReview)
+       
     }else if(currentDate >= date && !this.allPatientReviews.find(r => r.doctor.id  === id )){
       this.updateReviewBtn=false
       this.reviewBtn = true
@@ -124,12 +124,12 @@ export class MyAppointmentsComponent implements OnInit, OnDestroy {
         this.AppointmentsAPIres = Appointments;
         this.allAppointment_notempty = this.Appointments.length > 0;
         // this._AppointmentsService.setAppointmentData(this.Appointments)
-        console.log(this.Appointments);
+         
       },
       error: (error) => {
         this.AppointmentsAPIres = null;
         this.allAppointment_notempty = false
-        console.log(error);
+         
       }
       });
     }});
@@ -144,11 +144,11 @@ export class MyAppointmentsComponent implements OnInit, OnDestroy {
       next: (PatientReviews) => {
         this.allPatientReviews = PatientReviews.data;
         this.PatientReviewsAPIres = PatientReviews;
-        console.log(PatientReviews);
+         
       },
       error: (error) => {
         this.PatientReviewsAPIres = error;
-        console.log(error);
+         
       }
       });
     }});

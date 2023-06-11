@@ -84,12 +84,12 @@ export class MedicineComponent implements OnInit {
         this.addFavoriteSubscription = this._PharmacyService.addFavorite(this.medicine.id).subscribe({
           next:(res)=>{
             this.toastr.success(!this.rtlDir?`This Medicine Added to Favorites`:`تم اضافة الدواء الى المفضلة`, !this.rtlDir?`Favorites Result`:`ناتج التفضيلات`)
-            console.log(res)
-            console.log(this._PharmacyService.favoritesId.value)
+             
+             
             let newFavorites = this._PharmacyService.favoritesId.value;
             newFavorites.push(this.medicine.id);
             this._PharmacyService.favoritesId.next(newFavorites);
-            console.log(this._PharmacyService.favoritesId.value)
+             
           },
           error:(error)=>{
             this.toastr.error(!this.rtlDir?`An Error has occured`:`حدث خطأ ما` , `${error}`)
@@ -101,12 +101,12 @@ export class MedicineComponent implements OnInit {
         this.removeFavoriteSubscription = this._PharmacyService.removeFavorite(this.medicine.id).subscribe({
           next:(res)=>{
             this.toastr.info(!this.rtlDir?`This Medicine Removed from Favorites`:`تم ازالة الدواء من المفضلة`, !this.rtlDir?`Favorites Result`:`ناتج التفضيلات`)
-            console.log(res)
+             
             let newFavorites = this._PharmacyService.favoritesId.value;
             let removeIndex = this._PharmacyService.favoritesId.value.indexOf(this.medicine.id); // to know index of removed medicine from favorites
             newFavorites.splice(removeIndex, 1);
             this._PharmacyService.favoritesId.next(newFavorites);
-            console.log(this._PharmacyService.favoritesId.value);
+             
             this.removeFavEmit();
           },
           error:(error)=>{
@@ -131,9 +131,9 @@ export class MedicineComponent implements OnInit {
   //     this._CartService.getAllFavorite().subscribe({
   //       next:(favorites)=>{
   
-  //         console.log(favorites.data)
+  //          
   //         let favoriteFound = favorites.data.find((favorite:any) => favorite.id == this.medicine.id)
-  //         console.log(favoriteFound)
+  //          
   //         if(favoriteFound == undefined) {
   //           this.favoriteAdded = false
   //         } else {
@@ -152,9 +152,9 @@ export class MedicineComponent implements OnInit {
       this._PharmacyService.favoritesId.subscribe({
         next:(res)=>{
           // if(res.length != 0) {
-            console.log(res)
+             
             let favoriteFound = res.find((favoriteId:any) => favoriteId == this.medicine.id)
-            console.log(favoriteFound)
+             
             if(favoriteFound == undefined) {
               this.favoriteAdded = false
             } else {
@@ -173,11 +173,11 @@ export class MedicineComponent implements OnInit {
   // @Input() medicineFavorite:number[] = [];
 
   // ngOnChanges(): void {
-  //   console.log(this.medicineFavorite);
+  //    
   //   if(this.medicineFavorite.includes(this.medicine.id)) {
-  //     console.log('yup')
+  //      
   //   } else {
-  //     console.log("nob")
+  //      
   //   }
 
   // }

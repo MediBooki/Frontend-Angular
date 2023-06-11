@@ -31,7 +31,7 @@ export class RoadmapComponent implements OnInit {
     this._DataService._lang.subscribe({
       next: (lang) => {
         // const box = document.getElementsByClassName('.overlay-container');
-        // console.log(box)
+        //  
         this.lang = lang;
         if (lang == 'en') {
           this.rtlDir = false;

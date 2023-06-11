@@ -56,7 +56,7 @@ export class ChangePasswordComponent implements OnInit, OnDestroy {
 
   //----- Method 2
   changePasswordFun(){
-    console.log(this.changePassword);
+     
     if(this.changePassword.valid){
       if(this.changePassword.controls.password_confirmation.value == this.changePassword.controls.password.value){
         const model = {
@@ -66,12 +66,12 @@ export class ChangePasswordComponent implements OnInit, OnDestroy {
         }
         this.changePasswordSubscription = this._PatientProfileService.changePassword(model).subscribe({
           next: (response) => {
-            console.log(response);
+             
             this.toastr.success(!this.rtlDir?`Password changed successfully!`:`تم تغيير كلمة المرور بنجاح`);
             this.router.navigate(['/home']);
           },
           error : (error)=> {
-            console.log(error.error.data);
+             
             if(error.error.data == 'wrong old password'){
               this.toastr.error(!this.rtlDir?`Wrong old password`:`كلمة المرور الحالية خاطئة` )
             }

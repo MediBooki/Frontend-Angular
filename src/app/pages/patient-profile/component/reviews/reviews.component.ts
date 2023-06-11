@@ -61,12 +61,12 @@ export class ReviewsComponent implements OnInit, OnDestroy {
         this.allPatientReviews = PatientReviews.data;
         this.PatientReviewsAPIres = PatientReviews;
         this.allReviews_notempty = this.allPatientReviews.length > 0;
-        console.log(PatientReviews);
+         
       },
       error: (error) => {
         this.PatientReviewsAPIres = error;
         this.allReviews_notempty = false;
-        console.log(error);
+         
       }
       });
     }});

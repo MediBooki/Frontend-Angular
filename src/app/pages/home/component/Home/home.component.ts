@@ -224,7 +224,7 @@ export class HomeComponent implements OnInit, OnDestroy  {
   //----- Method 3
   // Change Select2
   changeSelect2() {
-    console.log("whaaaaaaaaaaaaaaaaaat????????")
+     
     this._TranslateService.get('HomePage.Select2Specialization').subscribe((data)=>{
       this.specializationSelect2Placeholder = data;
       $('.specialization-main-select2').select2({
@@ -235,7 +235,7 @@ export class HomeComponent implements OnInit, OnDestroy  {
 
       // triggered when we select specialization from specialization select2 to get doctors in this specialization
       $('.specialization-main-select2').change((event:any)=>{
-        console.log(event.target.value)
+         
         this.filterDoctorsBySpecialize(event.target.value);
       })
     }); // put palceholder for specialization select2
@@ -250,7 +250,7 @@ export class HomeComponent implements OnInit, OnDestroy  {
 
       // triggered when we select doctor from doctors select2
       $('.doctors-main-select2').change((event:any)=>{
-        console.log(event.target.value)
+         
         this.selectedDoctor = event.target.value;
         // this.filterDoctorsBySpecialize(event.target.value);
       })
@@ -338,7 +338,7 @@ export class HomeComponent implements OnInit, OnDestroy  {
           next:(specializations)=>{
             this.allSpecializations = specializations.data;
             this.latestSpecializations = specializations.data.slice(0,5); // get latest specializations added
-            console.log(this.allSpecializations)
+             
 
           }
         })
@@ -357,7 +357,7 @@ filterDoctorsBySpecialize(specializationId:any) {
   //   this.getFilteredDoctors();
   // } else {
     this.filterForm.value["sections"].push(specializationId)
-    console.log(this.filterForm.value["sections"])
+     
     this.getFilteredDoctors();
   // }
 }
@@ -375,13 +375,13 @@ getFilteredDoctors() {
 
           this.doctorsSubscription = this._DoctorService.getFilteredDoctors(this.filterForm.value,this.lang, 1).subscribe({
             next: (doctors) => {
-              console.log(doctors.data)
+               
               this.allDoctors = doctors.data;
             }
           })
     }
   })
-  // console.log(this.allDoctors)
+  //  
 }
 
 
@@ -392,13 +392,13 @@ bookDoctor(eve:any) {
     return
   }
   this.router.navigate(['/appointments',eve.value])
-  console.log(eve.value)
+   
 }
 
 
 // @HostListener('window:resize', ['$event'])
 // onResize(event:any) {
-//   console.log(event.target.innerWidth)
+//    
 // }
 
 
@@ -418,7 +418,7 @@ bookDoctor(eve:any) {
         this.distinguishedDoctorsSubscription = this._HomeService.getDistinguishedDoctors(lang).subscribe({
           next:(doctors)=>{
             this.distinguishedDoctors = doctors.data;
-            console.log(doctors)
+             
           }
         })
       }
@@ -431,7 +431,7 @@ bookDoctor(eve:any) {
         this.numOfDoctors = res.doctors;
         this.numOfUsers = res.patients;
         this.numOfSpecializations = res.sections;
-        console.log(this.numOfDoctors)
+         
       }
     })
   }
@@ -450,7 +450,7 @@ bookDoctor(eve:any) {
         }
         this.sliderImgsSubscription = this._HomeService.getSliderImages(this.lang).subscribe({
           next:(res)=>{
-            console.log(res)
+             
             this.sliderImages = res.data;
             // this.isVisibleSpinner = false;
           } , 
@@ -469,10 +469,10 @@ bookDoctor(eve:any) {
         this.articlesSubscription = this._ArticlesService.getArticales(language).subscribe({
           next: (articales) => {
             this.articles = articales.data.slice(0,3);
-            console.log(articales);
+             
           },
           error: (error) => {
-            console.log(error)
+             
             // this.articalsRes = error;
           }
       });

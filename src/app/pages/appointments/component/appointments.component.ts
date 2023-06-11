@@ -131,8 +131,8 @@ activeIndex = null;
 
   constructor(private _AuthService: AuthService, private _DataService: DataService, private _AppointmentsService: AppointmentsService, private route: ActivatedRoute, private fb: FormBuilder, private router: Router, private datePipe: DatePipe, private toastr: ToastrService , private sanitizer: DomSanitizer) {
     this.singleDoctorId = this.route.snapshot.paramMap.get('id');
-    // console.log(this.intervals)
-    // console.log(this.timeBookList)
+    //  
+    //  
   }
 
   ngOnInit(): void {
@@ -207,7 +207,7 @@ activeIndex = null;
           // this.isVisibleSpinner = true;
           this.appointmentSubscription = this._AppointmentsService.getDoctorById(lang, this.singleDoctorId).subscribe({
             next: (Doctor) => {
-              console.log(Doctor)
+               
 
               this.doctor = Doctor.data;
               this.startDate = this.doctor.start;
@@ -215,9 +215,9 @@ activeIndex = null;
               this.duration = this.doctor.patient_time_minute;
               this.reviews = this.doctor.reviews;
               this.noReviews = this.reviews.length>0 ? false : true
-              console.log(this.reviews)
+               
               this.displayedReviews = this.reviews.slice(0, this.displayCount);
-              console.log(this.displayedReviews)
+               
               let sum = 0;
 
               this.doctor.reviews.forEach((doctorReview)=>{
@@ -241,7 +241,7 @@ activeIndex = null;
     getDayIndex(day: any) {
       if (typeof day === 'string' && day !== 'null') {
         const dayName = day.toLowerCase();
-        console.log(dayName)
+         
         if(localStorage.getItem('lang') == 'en'){
           const daysOfWeek = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
           const index = daysOfWeek.indexOf(dayName);
@@ -260,13 +260,13 @@ activeIndex = null;
       //This function is used to select a day of the week and then convert it into a date format
   onDaySelect(day: any) {
     this.selectedDay = day; // Bind the selected day value to the component property
-    console.log(this.selectedDay)
+     
     this.dayIndex = this.getDayIndex(this.selectedDay); // Get the index of the selected day
     if (this.dayIndex !== null) {
-      console.log(this.dayIndex)
+       
       this.desiredDayOfWeek = this.dayIndex; // Do something with the index
       const desiredDate = new Date();
-      console.log(desiredDate)
+       
       // Calculate the number of days to add to reach the next desired day of the week
       const daysToAdd = (this.desiredDayOfWeek - desiredDate.getDay() + 7) % 7;
 
@@ -277,7 +277,7 @@ activeIndex = null;
       this.convertDate = ''
     }
 
-    console.log(typeof(this.convertDate));
+     
     this.getBookDoctorList(this.convertDate)
   }
 
@@ -317,7 +317,7 @@ activeIndex = null;
 
     }
 
-    console.log(this.intervals)
+     
   }
 
   /////////////////////////////////
@@ -359,8 +359,8 @@ activeIndex = null;
       }
       this.isVisibleSpinner = true;
       this._AppointmentsService.createAppointmentPatient(model).subscribe((res:any) => {
-        console.log(model);
-        console.log(res.count);
+         
+         
         if(res.count === 1 ){
           this.toastr.success(!this.rtlDir?`Book Doctor Success!`:`تم حجز الطبيب بنجاح`)
           this.isVisibleSpinner = false;
@@ -391,29 +391,29 @@ activeIndex = null;
       doctor_id: parseInt(this.singleDoctorId),
       date: convertDate,
     }
-    console.log(model)
+     
     // passing in the model object as a parameter
     this.bookDaySubscription = this._AppointmentsService.getAllTimeBookeed(model).subscribe({
       //The response from this method is stored in the BookDayAppointment variable
       next: (BookDayAppointment) => {
-        console.log(BookDayAppointment)
+         
         this.timeBookList=[]
         this.listOfDayBook = BookDayAppointment.data;
         this.filterintervals = this.intervals
         for(let x = 0  ; x < this.listOfDayBook.length; x++){
           const new_day =  this.listOfDayBook[x].date
           const edit_timeBook = this.listOfDayBook[x].time?.substring(0,5);
-          console.log(edit_timeBook)
+           
           if(new_day === convertDate && parseInt( this.singleDoctorId) === this.listOfDayBook[x].doctor.id){ 
             this.filterintervals = this.filterintervals.filter(time => time !== edit_timeBook)
             if(!this.timeBookList.includes(edit_timeBook)){
-              console.log(!this.timeBookList.includes(edit_timeBook))
+               
               this.timeBookList.push(edit_timeBook)
             }       
           }   
         }
-        console.log(this.timeBookList)  
-        console.log(this.intervals)       
+         
+         
       }
     })
   }
@@ -425,7 +425,7 @@ activeIndex = null;
     });
 
     $('.day-select2').change((event:any)=>{
-      console.log(event.target.value)
+       
       this.onDaySelect(event.target.value);
     })
   }
@@ -433,7 +433,7 @@ activeIndex = null;
   showMoreReviews(){
     // Increment the display count
     this.displayCount += this.incrementCount;
-    console.log(this.displayCount)
+     
 
     // Update the displayed reviews array
     this.displayedReviews = this.reviews.slice(0, this.displayCount);
@@ -443,7 +443,7 @@ activeIndex = null;
     this.displayCount -= this.fixedDisplayCount;
     // Update the displayed reviews array
     this.displayedReviews = this.reviews.slice(0, this.displayCount);
-    console.log(this.displayCount)
+     
   }
 
 }

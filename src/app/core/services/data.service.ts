@@ -39,14 +39,14 @@ export class DataService {
 
   gethospitalDetails(): Observable<any> {
     return this._HttpClient.get<any[]>(`${this.sharedApi}/settings`).pipe(catchError((e: any) => {
-      console.log(e)
+       
       return throwError(e)
     }));
   }
 
   getAllTenants(): Observable<any> {
     return this._HttpClient.get<any[]>(`${this.sharedApi}/tenants`).pipe(catchError((e: any) => {
-      console.log(e)
+       
       return throwError(e)
     }));
   }

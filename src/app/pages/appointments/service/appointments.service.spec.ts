@@ -41,7 +41,7 @@ describe('AppointmentsService', () => {
       time: ''
     };
     service.createAppointmentPatient(model).subscribe((res) => {
-      console.log(res)
+       
       expect(res).toBeTruthy();
       expect(res).toBe(200);
       expect(res).toEqual(model);

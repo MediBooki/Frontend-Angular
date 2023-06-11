@@ -60,7 +60,7 @@ export class FooterComponent implements OnInit, OnDestroy {
 
         this.termsSubscription = this._AuthService.getTerms(this.lang).subscribe({
           next:(terms)=>{
-            console.log(terms)
+             
             this.termsConditions = terms.data;
           }
         })

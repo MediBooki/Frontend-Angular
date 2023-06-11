@@ -20,9 +20,9 @@ export class DoctorService {
     let params = new HttpParams();
 
     for (let obj in model) {
-      console.log(typeof (model[obj]))
+       
       if (typeof (model[obj]) == 'object') {
-        console.log(typeof (model[obj]) == 'object');
+         
         model[obj].forEach((arr: string) => {
           params = params.append(`${obj}[]`, arr);
         })
@@ -33,10 +33,10 @@ export class DoctorService {
     }
 
     // const parse = JSON.parse(par)
-    console.log(model.genders)
-    // console.log(params)
+     
+    //  
     return this._HttpClient.get<any[]>(`${this.sharedApi}/filter/doctors?lang=${lang}&page=${page}`, { params: params }).pipe(catchError((e: any) => {
-      console.log(e)
+       
       return throwError(e)
     }));
 

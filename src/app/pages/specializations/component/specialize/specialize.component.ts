@@ -75,18 +75,18 @@ export class SpecializeComponent implements OnInit, OnDestroy {
             this.rtlDir = true;
           }
           // this.isVisibleSpinner = true;
-          console.log(id)
+           
           this.specializeDetailsSubscription = this._specializeService.getSpecializeDetails(lang,id ).subscribe({
             next: (specialize) => {
-              console.log(specialize)
+               
               // this.isVisibleSpinner = false;
               this.specializeDetails = specialize.data;
               this.specializeDetail.emit(this.specializeDetails);
-              console.log(this.specializeDetails)
+               
               
             },
             error: (error) => {
-              console.log(error)
+               
               // this.isVisibleSpinner = false;
             }
           });

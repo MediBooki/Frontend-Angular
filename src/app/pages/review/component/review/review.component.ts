@@ -106,10 +106,10 @@ export class ReviewComponent implements OnInit, OnDestroy {
 
   submitReview() {
     this.updateReviewSubscription = this._ReviewService.updatereview.subscribe((res: any) => {
-      console.log(res)
+       
       const updatereview = localStorage.getItem('updatereview');
       this.reviewStatus = updatereview ? JSON.parse(updatereview) : false
-      console.log(this.reviewStatus === 'false')
+       
       if(this.reviewStatus === 'false'){
         const model: patientReview = {
           doctor_id: parseInt(this.id),
@@ -154,7 +154,7 @@ export class ReviewComponent implements OnInit, OnDestroy {
     // });
     this.reviewId = this.route.snapshot.paramMap.get('id');
     this.getreviewPatient()
-    console.log(this.reviewId)
+     
   }
 
   // // when view load completely
@@ -190,9 +190,9 @@ export class ReviewComponent implements OnInit, OnDestroy {
         // this.isVisibleSpinner = true;
         this.reviewSubscription = this._AppointmentsService.getDoctorById(lang, this.id).subscribe({
           next: (Doctor) => {
-            console.log(Doctor)
+             
             this.doctor = Doctor.data;
-            console.log(this.doctor)
+             
             // this.isVisibleSpinner = false;
           },
           error: (error) => {
@@ -207,9 +207,9 @@ export class ReviewComponent implements OnInit, OnDestroy {
   getreviewPatient(){
     this.reviewDoctorSubscription = this._ReviewService.getReviewPatient(this.id).subscribe({
       next: (reviewDoctor) => {
-        console.log(reviewDoctor.data)
+         
         this.reviewdoctor = reviewDoctor.data;
-        console.log(this.reviewdoctor)
+         
         this.formReview.get("rating1")?.setValue(this.reviewdoctor.rating);
         this.formReview.get("comment")?.setValue(this.reviewdoctor.comment);
         // this.isVisibleSpinner = false;

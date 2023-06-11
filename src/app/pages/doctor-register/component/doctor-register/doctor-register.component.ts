@@ -131,7 +131,7 @@ export class DoctorRegisterComponent implements OnInit, OnDestroy {
     }else{
       this.stepNum = 1;
     }
-    console.log(this.stepNum);
+     
   }
 
   //----- Method 2
@@ -141,7 +141,7 @@ export class DoctorRegisterComponent implements OnInit, OnDestroy {
     }else{
       this.stepNum = 5;
     }
-    console.log(this.stepNum);
+     
   }
 
   //----- Method 3
@@ -163,17 +163,17 @@ export class DoctorRegisterComponent implements OnInit, OnDestroy {
 
   //----- Method 4
   getFormData(){
-    console.log(this.joinusForm)
-    console.log($('.gender-select2').select2('data')[0].id)
+     
+     
 
     if(this.joinusForm.valid){
       if(this.joinusForm.controls.re_password.value == this.joinusForm.controls.password.value){
         this.selectedItems.forEach(element => {
           this.appointments_id.push(element.id);
         });
-        console.log(this.appointments_id);
+         
         this.appointments_id = this.appointments_id.sort();
-        console.log(this.appointments_id);
+         
 
         const model: DoctorJoin = {
           name_en:this.joinusForm.value.name_en,
@@ -209,17 +209,17 @@ export class DoctorRegisterComponent implements OnInit, OnDestroy {
         })
         this.joinUsSubscription = this._DoctorRegisterService.doctorJoinus(this.formdata).subscribe({
           next: (response) => {
-            console.log(response);
+             
             this.formSuccess = true;
             this.toastr.success(!this.rtlDir?`successfully registered we will contact you soon!`:`تم التسجيل بنجاح وسيتم التواصل معك قريبا`);
             this.router.navigate(['/home']);
           },
           error : (error)=> {
-            console.log(error);
+             
             this.formSuccess = false;
             this.formAPIerrors = error.error.errors
             this.toastr.error(!this.rtlDir?`An Error has occured`:`حدث خطأ ما` )
-            console.log(this.formAPIerrors);
+             
 
           }
           })
@@ -262,11 +262,11 @@ export class DoctorRegisterComponent implements OnInit, OnDestroy {
     this.joinusForm.get('photo')?.setValue(event.target.files[0])
 
     // const file = event.target.files[0];
-    // console.log(file);
+    //  
     // // Create a new FormData object
     // this.formdata = new FormData();
     // this.formdata.set('file', file, file.name);
-    // console.log(this.formdata)
+    //  
 
   }
 

@@ -78,7 +78,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this._DataService.firstSectionHeight = this.firstSection?.nativeElement.offsetHeight;
     this.getPurchasedMedicines();
-    console.log(this._CartService.getTotalQty())
+     
 
   }
 
@@ -118,7 +118,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
               this.noData = true;
             } else {
               this.allMedicinesPurchased = purchasedMedicines.data.user_cart_items;
-              console.log(purchasedMedicines.data.user_cart_items);
+               
               this.totalPrice = 0;
               purchasedMedicines.data.user_cart_items.forEach((element:any) => {
                 this.totalPrice += (element.qty * element.price)
@@ -153,19 +153,19 @@ export class CheckoutComponent implements OnInit, OnDestroy {
         if(localStorage.getItem("insuranceID") != null) {
           this.checkoutForm.controls["insurance_id"].setValue(JSON.parse(localStorage.getItem('insuranceID')!))
         }
-        console.log(this.checkoutForm)
+         
         this.checkoutSubscription = this._CartService.checkoutDetails(this.checkoutForm.value).subscribe({
           next:(res)=>{
-            console.log(res)
+             
             this._CartService.medicinesQty.next(0);
             if(this.paymentMethod == 'cash') {
               this.paymentMethodSubscription = this._CartService.paymentOrder(2).subscribe({
                 next:(res)=>{
                   this.toastr.success(!this.rtlDir?`Your Order has been Submitted Successfully`:`تم تسجيل طلبك بنجاح`, !this.rtlDir?`Checkout Result`:`ناتج عملية الشراء`);
-                  console.log(res)
+                   
                 },
                 error:(error)=>{
-                  console.log(error)
+                   
                 }
               })
               this.router.navigate(['/my-profile/orders'])
@@ -178,17 +178,17 @@ export class CheckoutComponent implements OnInit, OnDestroy {
                   this.isVisibleSpinner = false;
                   localStorage.setItem("currentPaymentId" , JSON.stringify(res.details.payment_id))
                   window.location.href = `${res.details.redirect_url}`;
-                  console.log(res)
+                   
 
                 },
                 error:(error)=>{
-                  console.log(error)
+                   
                 }
               })
             }
           },
           error:(error)=>{
-            console.log(error)
+             
           }
         })
       // }

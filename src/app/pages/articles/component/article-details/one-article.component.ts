@@ -103,11 +103,11 @@ export class OneArticleComponent implements OnInit, OnDestroy  {
       this.articleSubscription = this._ArticlesService.getOneArticale(language,this.articleId).subscribe({
         next: (article) => {
           this.article = article.data;
-          console.log(article);
+           
           this.articleRes = article;
         },
         error: (error) => {
-          console.log(error)
+           
           this.articleRes = null;
         }
       });

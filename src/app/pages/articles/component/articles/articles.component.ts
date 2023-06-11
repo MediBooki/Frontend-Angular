@@ -100,18 +100,18 @@ export class ArticlesComponent implements OnInit, OnDestroy  {
 
 
         this.articles = articles.data;
-        console.log(articles);
+         
         this.articalsRes = articles
         if(this.articles.length>0){
           this.noData = false;
-          console.log(this.noData)
+           
         }else{
           this.noData = true;
-          console.log(this.noData)
+           
         }
       },
       error: (error) => {
-        console.log(error)
+         
         this.articalsRes = error;
       }
     });
@@ -122,7 +122,7 @@ export class ArticlesComponent implements OnInit, OnDestroy  {
   // changing page in pagination
   changePage(pageNum: any) {
     this.page = pageNum;
-    console.log(this.page)
+     
     this.getArticales();
   }
 

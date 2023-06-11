@@ -23,7 +23,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
   direction:string = 'ltr' ;
   is_login: boolean= false;
   islogsub = this._DataService.is_login.subscribe(res => {
-      console.log(res)
+       
       if(res==true) {
         this.getCartQty();
       }
@@ -72,7 +72,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
   getLang() {
     this._DataService._lang.subscribe({next:(language)=>{
       this.lang = language;
-      console.log(this.lang)
+       
       if(language == 'en')
       {
         this.rtlDir = false;
@@ -100,7 +100,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
     this.setLang(lang)
     this._TranslateService.use(lang);
     this._DataService._lang.next(lang);
-    console.log(lang);
+     
     this.setlangToLocal(lang);
   }
 
@@ -118,8 +118,8 @@ export class NavbarComponent implements OnInit, OnDestroy {
           }
           this.medicinesSubscription = this._CartService.getAllPurchasedMedicines(lang).subscribe({
           next: (medicinesPurchased) => { // to calculate quantity for first time (when refreshing)
-            console.log(medicinesPurchased)
-            console.log(medicinesPurchased.data.length != 0)
+             
+             
             this.medicinesPurchased = medicinesPurchased.data
             this.cartQty = 0;
             if(typeof(medicinesPurchased.data)!='string' && (typeof(medicinesPurchased.data)=='object' && medicinesPurchased.data.length!=0) && medicinesPurchased.data.user_cart_items.length != 0){
@@ -127,13 +127,13 @@ export class NavbarComponent implements OnInit, OnDestroy {
                 this.cartQty += Number(element.qty)
               });
             } else {
-              console.log("ggg")
+               
 
             }
 
         },
         error: (error) => {
-          console.log(error)
+           
         }
       });
     }})
@@ -144,7 +144,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
             this.medicinesPurchased = medicinesPurchased.data
           },
           error: (error) => {
-            console.log(error)
+             
           }
         });
       });
@@ -202,7 +202,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
     this.isVisibleDeleteSpinner = true;
     this.removeMedicinesSubscription = this._CartService.removeCart(medicineId).subscribe({
       next:(message)=>{
-        console.log(message)
+         
         this.getCartQty();
         this._CartService.calculateTotalQty()
         this.isVisibleDeleteSpinner = false;
@@ -270,7 +270,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
         //   }
         // })
-        console.log(patientInfo)
+         
         if(patientInfo.data.insurance && patientInfo.data.insurance_status==1){
           const discount = Number(patientInfo.data.insurance.discount_percentage) + Number(patientInfo.data.insurance.company_rate)
           localStorage.setItem("insuranceDiscount", discount.toString())
@@ -291,7 +291,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
     // const findTenant= this.allTenants.find(function(item) {
     //   return item.domain == currentDomain
     // });
-    // console.log(findTenant);
+    //  
   }
 
   getcontacts() {

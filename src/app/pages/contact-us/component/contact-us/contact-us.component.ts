@@ -87,16 +87,16 @@ export class ContactUsComponent implements OnInit, OnDestroy {
   //----- Method 3
   // Setting Direction
   contactUs(){
-    console.log(this.contactUsForm)
+     
     if(this.contactUsForm.valid){
       this.contactUsSubscription = this._contactus.contactUs(this.contactUsForm.value).subscribe({
         next: (response) => {
-          console.log(response);
+           
           this.toastr.success(!this.rtlDir?`Your inquiry has been sent successfully!`:`تم ارسال استفسارك بنجاح`);
           // this.router.navigate(['/home']);
         },
         error : (error)=> {
-          console.log(error.error.data);
+           
           this.toastr.error(!this.rtlDir?`Something went wrong try again`:`هناك خطأ ما حاول مجدداً` );
         }
       })
