@@ -67,13 +67,14 @@ import 'select2';
         // PharmacyModule,
         CommonModule,
         HttpClientModule,
-        TranslateModule.forRoot({
+        TranslateModule.forChild({
             defaultLanguage: 'en',
             loader: {
                 provide: TranslateLoader,
                 useFactory: createTranslateLoader,
                 deps: [HttpClient]
-            }
+            },
+            isolate: false
         }),
         ToastrModule.forRoot({
             timeOut: 4000,

@@ -92,7 +92,7 @@
                 height="20px" alt="Country image">
             </a>
             <ng-container *ngFor="let tenant of allTenants">
-              <a class="text-decoration-none text-white fw-bold px-2 dropdown-toggle" *ngIf=" testCountry == 'http://'+tenant.domain+'/api'">
+              <a class="text-decoration-none text-white fw-bold px-2 dropdown-toggle" *ngIf=" testCountry == 'https://'+tenant.domain+'/mediBookiDashbord/public/api'">
                 <i class="fa-solid fa-caret-down"></i>
                 <span class="mx-1">{{tenant.name | uppercase}}</span>
                 <img class="rounded-circle mb-1" [src]="tenant.logo" width="20px"
@@ -106,7 +106,7 @@
                 height="20px">
             </a> -->
                 <ul class="dropdown-menu text-center animate__animated animate__fadeIn" [ngClass]="{'tanant-dropdown': !rtlDir, 'tanant-dropdown-ar': rtlDir}">
-                  <li (click)="getCountry('medibookidashbord.test')"><a class="dropdown-item" href="">UAE</a></li>
+                  <li (click)="getCountry('benaahadees.com')"><a class="dropdown-item" href="">UAE</a></li>
                   <li *ngFor="let tenant of allTenants" (click)="getCountry(tenant.domain)"><a class="dropdown-item" href="">{{tenant.name | titlecase }}</a></li>
                   <!-- <li><a class="dropdown-item" href="#">Action</a></li>
                   <li><a class="dropdown-item" href="#">Another action</a></li>

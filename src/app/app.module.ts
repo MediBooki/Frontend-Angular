@@ -17,6 +17,9 @@ import { ReviewModule } from './pages/review/module/review/review.module';
 import { SpecializationsModule } from './pages/specializations/module/specializations/specializations.module';
 import { HomeModule } from './pages/home/module/home/home.module';
 import { FAQModule } from './pages/FAQ/modules/faq/faq.module';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { HttpClient } from '@angular/common/http';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 
 @NgModule({
@@ -40,12 +43,24 @@ import { FAQModule } from './pages/FAQ/modules/faq/faq.module';
     ReviewModule,
     SpecializationsModule,
     HomeModule,
-    FAQModule
+    FAQModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: createTranslateLoader,
+        deps: [HttpClient]
+      },
+      isolate : false
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+export function createTranslateLoader(http: HttpClient) {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
 
 // "node_modules/bootstrap/dist/css/bootstrap.rtl.min.css",
 
