@@ -101,6 +101,7 @@ export class OrdersComponent implements OnInit, OnDestroy {
               localStorage.removeItem('currentPaymentId');
               this._cartservice.medicinesQty.next(0)
               this.toastr.success(!this.rtlDir?`Your Order has been Submitted Successfully`:`تم تسجيل طلبك بنجاح`, !this.rtlDir?`Checkout Result`:`ناتج عملية الشراء`);
+              this.getOrders();
             }, error:()=>{
               this.toastr.error(this.rtlDir?`An Error has occured`:`حدث خطأ ما`)
             }

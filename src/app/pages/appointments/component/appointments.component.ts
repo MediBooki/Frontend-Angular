@@ -332,7 +332,7 @@ activeIndex = null;
     this.patientName = new FormControl('', [Validators.required, Validators.minLength(3)]),
       this.patientAge = new FormControl('', [Validators.required]),
       this.patientemail = new FormControl('', [Validators.required, Validators.pattern(/^[a-zA-Z][a-zA-Z0-9]{2,}@[a-z]{3,10}\.(com|net|org)$/)]),
-      this.phoneNumberPatient = new FormControl('', [Validators.required, Validators.pattern(/^01[0125][0-9]{8}$/)]),
+      this.phoneNumberPatient = new FormControl('', [Validators.required, Validators.pattern(/^\+?(002)?[\d\s()-]{4,}$/)]),
       this.time = new FormControl('', Validators.required)
   }
   //This function creates a new FormGroup object called patientAppointmentForm.

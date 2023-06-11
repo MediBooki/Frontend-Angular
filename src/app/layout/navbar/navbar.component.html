@@ -11,8 +11,9 @@
               translate}}</a>
           </span> -->
           <span class="d-inline">
-            <a class="text-decoration-none text-white fw-bold" routerLink="/auth/Login"><i class="fa-solid fa-right-to-bracket mx-2"></i>{{'navbar.Login'
-              | translate}}</a>
+            <a class="text-decoration-none text-white fw-bold" routerLink="/auth/Login"><i class="fa-solid fa-right-to-bracket mx-2 d-none d-sm-inline"></i>{{'navbar.Login'
+              | translate}}</a> 
+              <span class="px-3 d-inline d-sm-none">|</span>
           </span>
         </div>
         <div class="d-inline" *ngIf="is_login">
@@ -90,7 +91,7 @@
           <div class="dropdown d-inline">
             <a class="text-decoration-none text-white fw-bold px-2 dropdown-toggle" *ngIf="testCountry == 'https://benaahadees.com/mediBookiDashbord/public/api'">
               <i class="fa-solid fa-caret-down"></i>
-              <span class="mx-1">EGYPT</span>
+              <span class="mx-1">EGY</span>
               <img class="rounded-circle mb-1" src="../../../assets/images/navbar-footer/egypt.png" width="20px"
                 height="20px" alt="Country image">
             </a>

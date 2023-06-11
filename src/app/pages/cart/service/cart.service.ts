@@ -17,6 +17,7 @@ export class CartService {
 
   // General Method to Create Authorization Header
   createAuthorizationHeader(headers: HttpHeaders) {
+    console.log(localStorage.getItem("token")!);
     return headers.append('Authorization', localStorage.getItem("token")!);
   }
 
@@ -102,7 +103,8 @@ export class CartService {
 
     let headers = new HttpHeaders();
     headers = this.createAuthorizationHeader(headers);
-    return this.http.post(this.sharedApi + `/patient/payments` , model , {headers: headers}).pipe(
+    console.log(headers)
+    return this.http.post( `${this.sharedApi}/patient/payments` , model , {headers: headers}).pipe(
       catchError(error => {
          
         return throwError('Something went wrong');

@@ -76,6 +76,7 @@ export class PatientProfileComponent implements OnInit{
   getAppointmentModal() {
     this._PatientProfileService.changeAppointmentEmitted$.subscribe(response => {
       this.myAppointmentModal = response;
+      console.log(this.myAppointmentModal)
     });
   }
 

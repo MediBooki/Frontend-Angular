@@ -162,13 +162,13 @@ export class CheckoutComponent implements OnInit, OnDestroy {
               this.paymentMethodSubscription = this._CartService.paymentOrder(2).subscribe({
                 next:(res)=>{
                   this.toastr.success(!this.rtlDir?`Your Order has been Submitted Successfully`:`تم تسجيل طلبك بنجاح`, !this.rtlDir?`Checkout Result`:`ناتج عملية الشراء`);
-                   
+                  this.router.navigate(['/my-profile/orders'])
                 },
                 error:(error)=>{
                    
                 }
               })
-              this.router.navigate(['/my-profile/orders'])
+
             } else if(this.paymentMethod == 'online') {
               this.isVisibleSpinner = true
               this.toastr.success(!this.rtlDir?`You will be redirected to paymob to complete your online payment`:`سيتم توجيهك الى صفحة paymob لاكمال عملية الدفع الالكترونية`, !this.rtlDir?`Checkout Result`:`ناتج عملية الشراء`);

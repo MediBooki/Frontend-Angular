@@ -191,10 +191,10 @@
         <div class="col-md-6 why-content d-flex align-items-center text-white my-2">
           <div>
             <h2 class="why-title mb-5">{{'HomePage.WhySection' | translate}}</h2>
-            <h3><i class="fa-solid fa-lungs-virus mx-3"></i>{{'HomePage.why1Title' | translate}}</h3>
-            <h3><i class="fa-solid fa-list-check mx-3"></i>{{'HomePage.why2Title' | translate}}</h3>
-            <h3><i class="fa-solid fa-ticket mx-3"></i>{{'HomePage.why3Title' | translate}}</h3>
-            <h3><i class="fa-brands fa-bots mx-3"></i>{{'HomePage.why4Title' | translate}}</h3>
+            <h3 class="px-3"><i class="fa-solid fa-lungs-virus" [ngClass]="rtlDir? 'ps-2' : 'pe-2'"></i>{{'HomePage.why1Title' | translate}}</h3>
+            <h3 class="px-3"><i class="fa-solid fa-list-check" [ngClass]="rtlDir? 'ps-2' : 'pe-2'"></i>{{'HomePage.why2Title' | translate}}</h3>
+            <h3 class="px-3"><i class="fa-solid fa-ticket" [ngClass]="rtlDir? 'ps-2' : 'pe-2'"></i>{{'HomePage.why3Title' | translate}}</h3>
+            <h3 class="px-3"><i class="fa-brands fa-bots" [ngClass]="rtlDir? 'ps-2' : 'pe-2'"></i>{{'HomePage.why4Title' | translate}}</h3>
           </div>
 
         </div>
