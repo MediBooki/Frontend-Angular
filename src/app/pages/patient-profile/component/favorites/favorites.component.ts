@@ -66,6 +66,7 @@ export class FavoritesComponent implements OnInit, OnDestroy {
       },
       error: (error) => {
         this.favMedicinesAPIres = error;
+        this.allFav_notempty = false;
         console.log(error);
         // this.isVisibleSpinner = false;
       }

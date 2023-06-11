@@ -1,6 +1,6 @@
 <div class="m-4 p-3 bg-white rounded animate" >
   <h2 class="fw-bold text-center">{{'patientProfile.sidenav9' | translate}}</h2>
-  <div *ngIf="ordersAPIres?.success && allOrders_notempty else noorders">
+  <div *ngIf="allOrders_notempty else noorders">
     <div *ngFor="let order of orders" class="big-rounded border border-1 p-3 my-4 shadow">
       <div class="pb-2">
         <div class="d-flex align-items-center justify-content-between">
@@ -65,6 +65,10 @@
           ><i class="fas fa-check-circle mx-2" ></i></li>
         </ul>
       </div> -->
+    </div>
+
+    <div *ngIf="orders.length == 0">
+      <ngx-skeleton-loader appearance="line" [theme]="{height: '250px', background: '#dbd9d9', borderRadius: '1.5rem'}"></ngx-skeleton-loader>
     </div>
   </div>
   <ng-template #noorders>

@@ -117,7 +117,8 @@ export class MyAppointmentsComponent implements OnInit, OnDestroy {
         console.log(this.Appointments);
       },
       error: (error) => {
-        this.AppointmentsAPIres = error;
+        this.AppointmentsAPIres = null;
+        this.allAppointment_notempty = false
         console.log(error);
       }
       });

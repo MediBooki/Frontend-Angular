@@ -1,6 +1,6 @@
 <div class="m-4 p-3 bg-white rounded animate">
   <h2 class="fw-bold text-center">{{'patientProfile.sidenav10' | translate}}</h2>
-  <div class="row" *ngIf="PatientReviewsAPIres?.success && allReviews_notempty else noreviews">
+  <div class="row" *ngIf="allReviews_notempty else noreviews">
     <div class="col-md-6 p-2" *ngFor="let review of allPatientReviews">
       <div class="border rounded py-2">
         <div class="d-flex">
@@ -12,11 +12,7 @@
           <div class="px-2">
             <p class="m-0 fs-5">{{review.doctor.name}}</p>
             <p class="m-0">
-              <span><i class="fa-solid fa-star" [ngClass]="{'text-warning': review.rating>=1}"></i></span>
-              <span><i class="fa-solid fa-star" [ngClass]="{'text-warning': review.rating>=2}"></i></span>
-              <span><i class="fa-solid fa-star" [ngClass]="{'text-warning': review.rating>=3}"></i></span>
-              <span><i class="fa-solid fa-star" [ngClass]="{'text-warning': review.rating>=4}"></i></span>
-              <span><i class="fa-solid fa-star" [ngClass]="{'text-warning': review.rating>=5}"></i></span>
+              <app-rating [rating]="review.rating"></app-rating>
             </p>
             <p class="m-0">{{review.updated_at}}</p>
           </div>
@@ -29,6 +25,37 @@
         </div>
       </div>
     </div>
+
+    <ng-container *ngIf="allPatientReviews.length == 0">
+      <div class="col-md-6 p-2" *ngFor="let item of [0,0,0]">
+        <div class="border rounded py-2">
+          <div class="d-flex">
+            <div class="mx-3">
+             <div class="rounded-circle doc-review-img">
+              <ngx-skeleton-loader appearance="circle" [theme]="{height: '75px', width: '75px', background: '#dbd9d9'}"></ngx-skeleton-loader>
+               <!-- <img [src]="review.doctor.photo ||  defaultImg" alt="" class="w-100 h-100 default-img"> -->
+             </div>
+            </div>
+            <div class="px-2">
+              <div>
+                <ngx-skeleton-loader appearance="line" [theme]="{width: '150px', background: '#dbd9d9', marginBottom: '3px'}"></ngx-skeleton-loader>
+              </div>
+              <div>
+                <ngx-skeleton-loader appearance="line" [theme]="{width: '150px', background: '#dbd9d9', marginBottom: '3px'}"></ngx-skeleton-loader>
+              </div>
+              <div>
+                <ngx-skeleton-loader appearance="line" [theme]="{width: '100px', background: '#dbd9d9', marginBottom: '3px'}"></ngx-skeleton-loader>
+              </div>
+  
+            </div>
+          </div>
+          <div class="px-2">
+            <ngx-skeleton-loader appearance="line" [theme]="{width: '80%', background: '#dbd9d9', margin: '14px 0'}"></ngx-skeleton-loader>
+          </div>
+  
+        </div>
+      </div>
+    </ng-container>
   </div>
   <ng-template #noreviews>
     <!-- <div class="alert alert-danger text-center my-3" role="alert">
@@ -46,3 +73,4 @@
   </div>
   </ng-template>
 </div>
+

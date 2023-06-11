@@ -1,61 +1,77 @@
 <!-- <app-spinner *ngIf="isVisibleSpinner"></app-spinner> -->
 <div class="appointment-component" [dir]=" 'dir' | translate " [lang]="lang">
-    <!--  =======================================================( landing )======================================================= -->
-  
-    <section class=" position-relative justify-content-center align-content-center">
-      <div class="landing d-flex  align-items-center">
-        <div class=" mx-5 docbooking ">
-          <h1 class=" fw-bolder mb-3">{{'appointmentPage.Doctor'| translate}} {{doctor.name}} -<br>{{'reviewPage.review'| translate}} </h1>
-          <a href="" class="fw-bolder text-success text-decoration-none fs-5">{{'appointmentPage.Home'| translate}} <i
-            [ngClass]="rtlDir? 'fa-angles-left fa-solid mx-2 fs-6' : 'fa-solid fa-angles-right mx-2 fs-6'" ></i></a>
-          <span class=" mx-2 fw-bolder">{{'appointmentPage.Doctor'| translate}} {{doctor.name}} - {{'reviewPage.review'| translate}}</span>
-        </div>
+  <!--  =======================================================( landing )======================================================= -->
+
+  <section class=" position-relative justify-content-center align-content-center">
+    <div class="landing d-flex  align-items-center">
+      <div class=" mx-5 docbooking ">
+        <h1 class=" fw-bolder mb-3">{{'appointmentPage.Doctor'| translate}} {{doctor.name}} -<br>{{'reviewPage.review'| translate}} </h1>
+        <a href="" class="fw-bolder text-success text-decoration-none fs-5">{{'appointmentPage.Home'| translate}} <i
+          [ngClass]="rtlDir? 'fa-angles-left fa-solid mx-2 fs-6' : 'fa-solid fa-angles-right mx-2 fs-6'" ></i></a>
+        <span class=" mx-2 fw-bolder">{{'appointmentPage.Doctor'| translate}} {{doctor.name}} - {{'reviewPage.review'| translate}}</span>
       </div>
-    </section>
-    <!--  =======================================================( Doctor review )=======================================================  -->
-  
-    <section class=" pt-5">
-      <div class="container">
-        <div class="card docreview mb-3">
-          <div class="row g-0">
+    </div>
+  </section>
+  <!--  =======================================================( Doctor review )=======================================================  -->
+
+  <section class=" pt-5">
+    <div class="container">
+      <div class="card docreview mb-3">
+        <div class="row g-0">
+          <div class="doctor-info" *ngIf="doctor.id != 0">
             <div class="col-lg-12 col-md-12 col-10 text-center pt-3 position-relative image mb-3 mx-3 mx-sm-0 doctor_pic">
-              <img [src]="doctor.photo || defaultDoctorImg" class="img-fluid rounded-circle px-sm-2 default-img"
+              <img [src]="doctor.photo || defaultDoctorImg" class="img-fluid rounded-circle  default-img"
                 alt="Doctor image" *ngIf="doctor.photo">
-            </div>
-            <div class="row justify-content-between col-12">
-              <div class="col-lg-12">
-                <div class="card-body container">
-                  <h4 class=" fs-5 text-center">{{'appointmentPage.Doctor'| translate}} {{doctor.name}} <i class="fa-solid fa-circle-check fs-6"></i></h4>
-  
-                  <form [formGroup]="formReview">
-                    <h3 class="mx-2 fs-2"> {{'reviewPage.overallRating'| translate}}</h3>
-                    <div class="cont d-flex">
-                      <div class="stars">
-                        <ngx-star-rating formControlName="rating1" [id]="'rating'"></ngx-star-rating>
-                      </div>
-                    </div>
-                    <div class="card-body">
-                      <h4 class="mb-2">{{'reviewPage.yourReview'| translate}}</h4>
-                      <div class="input-field w-100 h-100 rounded-3 p-2 col-lg-12 col-md-12 col-sm-12 form-group mb-3">
-                        <textarea type="text" name="message" class="px-3 fw-bolder text-secondary w-100 border-0 lh-1 p-2"
-                          id="review-comment" placeholder="{{ 'reviewPage.reviewPlaceholder' | translate }}"[value]="reviewdoctor.comment" required formControlName="comment"></textarea>
-                      </div>
-                      <div class="text-center rounded-pill p-2 col-lg-12 col-md-12 col-sm-12 form-group mb-3">
-                        <button type="submit" (click)="submitReview()" [disabled]="formReview.invalid" class="btn btn-primary rounded-pill text-uppercase my-2 " id="submitBtnLogin">
-                          {{'reviewPage.submitReview'| translate}}
-                        </button>
-                      </div>
-                    </div>
-                  </form>
+              </div>
+              <div>
+                <h4 class=" fs-5 text-center">{{'appointmentPage.Doctor'| translate}} {{doctor.name}} <i class="fa-solid fa-circle-check fs-6"></i></h4>
+              </div>
+          </div>
+          <div class="doctor-info" *ngIf="doctor.id == 0">
+            <div class="col-lg-12 col-md-12 col-10 text-center pt-3 position-relative image mb-3 mx-3 mx-sm-0 doctor_pic">
+              <ngx-skeleton-loader appearance="circle" [theme]="{height: '250px', width: '250px', background: '#dbd9d9'}"></ngx-skeleton-loader>
+
+              </div>
+              <div class="d-flex justify-content-center my-2">
+                <div class="col-2">
+                  <!-- <h4 class=" fs-5 text-center">{{'appointmentPage.Doctor'| translate}} {{doctor.name}} <i class="fa-solid fa-circle-check fs-6"></i></h4> -->
+                  <ngx-skeleton-loader appearance="line" [theme]="{background: '#dbd9d9'}"></ngx-skeleton-loader>
                 </div>
               </div>
-              <div class="col-lg-12 mt-lg-3 ">
-  
+          </div>
+          <div class="row justify-content-between col-12">
+            <div class="col-lg-12">
+              <div class="card-body container">
+
+                <form [formGroup]="formReview">
+                  <h3 class="mx-2 fs-2"> {{'reviewPage.overallRating'| translate}}</h3>
+                  <div class="cont d-flex">
+                    <div class="stars">
+                      <ngx-star-rating formControlName="rating1" [id]="'rating'"></ngx-star-rating>
+                    </div>
+                  </div>
+                  <div class="card-body">
+                    <h4 class="mb-2">{{'reviewPage.yourReview'| translate}}</h4>
+                    <div class="input-field w-100 h-100 rounded-3 p-2 col-lg-12 col-md-12 col-sm-12 form-group mb-3">
+                      <textarea type="text" name="message" class="px-3 fw-bolder text-secondary w-100 border-0 lh-1 p-2"
+                        id="review-comment" placeholder="{{ 'reviewPage.reviewPlaceholder' | translate }}"[value]="reviewdoctor.comment" required formControlName="comment"></textarea>
+                    </div>
+                    <div class="text-center rounded-pill p-2 col-lg-12 col-md-12 col-sm-12 form-group mb-3">
+                      <button type="submit" (click)="submitReview()" [disabled]="formReview.invalid" class="btn btn-primary rounded-pill text-uppercase my-2 " id="submitBtnLogin">
+                        {{'reviewPage.submitReview'| translate}}
+                      </button>
+                    </div>
+                  </div>
+                </form>
               </div>
+            </div>
+            <div class="col-lg-12 mt-lg-3 ">
+
             </div>
           </div>
         </div>
       </div>
-    </section>
-  </div>
-  
+    </div>
+  </section>
+</div>
+

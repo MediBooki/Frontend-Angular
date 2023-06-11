@@ -19,20 +19,72 @@
 
   </section>
 
-  <section class="container ">
-    <div>
-      <h1 class="fw-bold text-center py-5">{{article.title}}</h1>
-      <div class="m-auto created-fixed-width">
-        <img [src]="article.photo || defaultImg" class="w-100 h-100 default-img" alt="Artice Image">
-      </div>
-      <div class="created-fixed-width m-auto d-flex justify-content-between fs-5 fw-bold h-auto">
-        <span><i class="fa-solid fa-tags mx-1"></i>{{article.section.name}}</span>
-        <span><i class="far fa-clock mx-1"></i>{{article.created_at}}</span>
-      </div>
-      <div class="containerm py-3 created-fixed-width m-auto">
-        <p>{{article.description}}</p>
+  <section class="article-details-container py-5">
+    <div class="container">
+      <div class=" d-flex justify-content-center" *ngIf="articleRes != undefined">
+        <div class="bg-white article-details rounded p-4">
+          <h1 class="fw-bold text-center py-5">{{article.title}}</h1>
+            <div class="created-fixed-width mx-auto">
+              <img [src]="article.photo || defaultImg" class="w-100 img-fluid default-img" alt="Artice Image">
+            </div>
+            <div class="fs-5 py-2 fw-bold h-auto article-details-content">
+              <div><i class="fa-solid fa-tags mx-1"></i>{{article.section.name}}</div>
+              <div><i class="far fa-clock mx-1"></i>{{article.created_at}}</div>
+            </div>
+            <div class="containerm py-3">
+              <p>{{article.description}}</p>
+            </div>
+        </div>
+  
       </div>
 
+      <div class="skeleton-aricle-details d-flex justify-content-center" *ngIf="articleRes == undefined">
+        <div class="bg-white article-details rounded p-4">
+          <!-- <h1 class="fw-bold text-center py-5">{{article.title}}</h1> -->
+          <div class="d-flex justify-content-center py-5">
+            <div class="col-md-4 col-6">
+              <ngx-skeleton-loader appearance="line" [theme]="{background: '#dbd9d9'}"></ngx-skeleton-loader>
+
+            </div>
+          </div>
+
+            <!-- <div class="created-fixed-width mx-auto">
+              <img [src]="article.photo || defaultImg" class="w-100 img-fluid default-img" alt="">
+            </div> -->
+            <div class="d-flex justify-content-center py-5">
+              <div class="col-md-8 col-11">
+              <ngx-skeleton-loader appearance="line" [theme]="{height: '400px', background: '#dbd9d9', marginBottom: '0px'}"></ngx-skeleton-loader>
+
+              </div>
+            </div>
+
+            <!-- <div class="fs-5 py-2 fw-bold h-auto article-details-content">
+              <div><i class="fa-solid fa-tags mx-1"></i>{{article.section.name}}</div>
+              <div><i class="far fa-clock mx-1"></i>{{article.created_at}}</div>
+            </div> -->
+
+            <div class="d-flex justify-content-between flex-wrap">
+              <div class="col-lg-4 col-12 py-1">
+              <ngx-skeleton-loader appearance="line" [theme]="{background: '#dbd9d9'}"></ngx-skeleton-loader>
+                
+              </div>
+              <div class="col-lg-4 col-12 py-1">
+                <ngx-skeleton-loader appearance="line" [theme]="{background: '#dbd9d9'}"></ngx-skeleton-loader>
+                  
+                </div>
+            </div>
+            <!-- <div class="containerm py-3">
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda officiis omnis totam architecto quod dolorum tenetur esse asperiores debitis amet? Veniam alias delectus nemo non quia dignissimos atque eius iste?</p>
+            </div> -->
+
+            <div>
+              <ngx-skeleton-loader appearance="line" [theme]="{height: '50px', background: '#dbd9d9', marginTop: '20px'}"></ngx-skeleton-loader>
+            </div>
+
+        </div>
+  
+      </div>
     </div>
   </section>
 </div>
+

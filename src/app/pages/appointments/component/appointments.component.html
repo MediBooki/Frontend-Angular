@@ -21,9 +21,9 @@
   <section class=" pt-5">
     <div class="container">
       <div class="card docinfo mb-3">
-        <div class="row g-0 mx-3">
+        <div class="row g-0 mx-3"  *ngIf="doctor.id != 0">
           <div class="col-lg-3 col-md-5 col-11 text-center pt-3  position-relative image mb-3 mx-3 mx-sm-0 ">
-            <img [src]="doctor.photo || defaultDoctorImg" class="img-fluid rounded-4 px-sm-2 w-100 h-100 default-img" alt="Doctor Image">
+            <img [src]="doctor.photo || defaultDoctorImg" class="img-fluid rounded-4 w-100 h-100 default-img" alt="Doctor Image">
           </div>
           <div class="row justify-content-between col-lg-9 col-md-7">
             <div class="col-lg-6">
@@ -37,8 +37,6 @@
                   <i class="fa-solid fa-star"></i> -->
                   <app-rating [rating]="overallRating"></app-rating>
                 </div>
-                <span><i class="fa-solid fa-signs-post mx-1"></i> Dhanmondi</span>
-                <p><i class="fa-solid fa-phone mx-1"></i> 654488787</p>
                 <p class="card-text"><small class=" border p-1 rounded ">{{doctor.specialization}}</small>
                 </p>
               </div>
@@ -67,6 +65,42 @@
             </div>
           </div>
         </div>
+
+        <div class="row g-0 mx-3" *ngIf="doctor.id == 0">
+          <div class="col-lg-3 col-md-5 col-11 text-center pt-3  position-relative image mb-3 mx-3 mx-sm-0 ">
+            <ngx-skeleton-loader appearance="line" [theme]="{height: '300px', width: '100%', background: '#dbd9d9', borderRadius: '1rem'}"></ngx-skeleton-loader>
+
+          </div>
+          <div class="row justify-content-between col-lg-9 col-md-7">
+            <div class="col-lg-6 px-4">
+              <div>
+                <ngx-skeleton-loader appearance="line" [theme]="{width: '40%', background: '#dbd9d9', marginTop: '20px'}"></ngx-skeleton-loader>
+              </div>
+
+              <div>
+                <ngx-skeleton-loader appearance="line" [theme]="{width: '50%', background: '#dbd9d9'}"></ngx-skeleton-loader>
+              </div>
+
+              <div>
+                <ngx-skeleton-loader appearance="line" [theme]="{width: '40%', background: '#dbd9d9'}"></ngx-skeleton-loader>
+              </div>
+
+              <div>
+                <ngx-skeleton-loader appearance="line" [theme]="{width: '30%', background: '#dbd9d9'}"></ngx-skeleton-loader>
+              </div>
+                
+            </div>
+            <div class="col-lg-4 mt-lg-3 offset-lg-1">
+              <div>
+                <ngx-skeleton-loader appearance="line" [theme]="{width: '50%', background: '#dbd9d9'}"></ngx-skeleton-loader>
+              </div>
+              <div>
+                <ngx-skeleton-loader appearance="line" [theme]="{width: '60%', background: '#dbd9d9'}"></ngx-skeleton-loader>
+              </div>
+
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -82,8 +116,8 @@
             translate}}</button>
         </li>
         <li class="nav-item" role="presentation">
-          <button class="nav-link  mb-1" id="pills-review-tab" data-bs-toggle="pill"
-            data-bs-target="#pills-review" type="button" role="tab" (click)="addClass = true" aria-controls="pills-review"
+          <button class="nav-link  mb-1" id="pills-review-tab" (click)="addClass = true" data-bs-toggle="pill"
+            data-bs-target="#pills-review" type="button" role="tab" aria-controls="pills-review"
             aria-selected="false">{{'appointmentPage.Reviews'| translate}}</button>
         </li>
         <li class="nav-item" role="presentation">
@@ -92,13 +126,13 @@
             aria-selected="false">{{'appointmentPage.Booking'| translate}}</button>
         </li>
       </ul>
-      <div class="tab-content container"  id="pills-tabContent">
+      <div class="tab-content container" id="pills-tabContent">
         <!-- ============================== ( Reviews of the Doctor ) =================================== -->
         <div class="tab-pane fade container row " [ngClass]="{'d-flex justify-content-center': addClass}" [ngClass]="{'scrollable': displayedReviews.length >= 3}" id="pills-review" role="tabpanel" aria-labelledby="pills-review-tab">
           <div class="card w-75 mb-3" *ngFor="let review of displayedReviews">
             <div class="card-body row ">
               <div class="col-lg-3 col-md-5 col-5 text-center pt-3 position-relative image mb-3 mx-3 mx-sm-0 ">
-                <img [src]="review.patient_image || defaultDoctorImg" class="img-fluid rounded-circle px-sm-2 w-100 h-100 default-img" alt="Patient Image">
+                <img [src]="review.patient_image || defaultDoctorImg" class="img-fluid rounded-circle px-sm-2 default-img" width="150px" height="150px" alt="Patient Image">
               </div>
               <div class="col-7 mt-3 mx-3 mx-sm-0">
                 <h3>{{review.patient_name}}</h3>
@@ -108,7 +142,47 @@
               </div>
             </div>
           </div>
-          <div class="d-flex justify-content-center">
+
+          <ng-container *ngIf="reviews.length == 0 && !noReviews; else noReviewsError">
+            <div class="card w-75 mb-3" *ngFor="let review of [0,0]">
+              <div class="card-body row ">
+                <div class="col-lg-3 col-md-5 col-5 text-center pt-3 position-relative image mb-3 mx-sm-0 ">
+                  <ngx-skeleton-loader appearance="circle" [theme]="{height: '150px', width: '150px', background: '#dbd9d9'}"></ngx-skeleton-loader>
+                </div>
+                <div class="col-7 mt-3 mx-3 mx-sm-0">
+                  <div>
+                    <ngx-skeleton-loader appearance="line" [theme]="{width: '200px', background: '#dbd9d9'}"></ngx-skeleton-loader>
+                  </div>
+                  <div>
+                    <ngx-skeleton-loader appearance="line" [theme]="{width: '180px', background: '#dbd9d9'}"></ngx-skeleton-loader>
+                  </div>
+                  <div>
+                    <ngx-skeleton-loader appearance="line" [theme]="{width: '150px', background: '#dbd9d9'}"></ngx-skeleton-loader>
+                  </div>
+                  <div>
+                    <ngx-skeleton-loader appearance="line" [theme]="{width: '90%', minWidth: '220px' , background: '#dbd9d9'}"></ngx-skeleton-loader>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ng-container>
+
+          <ng-template #noReviewsError>
+            <!-- <i class="fa-regular fa-star"></i>
+            <h2>No Reviews on this doctor yet</h2> -->
+            <div class=" search-empty text-center p-5 my-4 rounded">
+              <div class="my-4">
+                <i class="fa-regular fa-star search-icon"></i>
+              </div>
+              <div class="search-empty-content">
+                  <div class="my-3">
+                      <h2 class="fw-bold">{{"appointmentPage.NoReviews" | translate}}</h2>
+                  </div>
+              </div>
+          </div>
+          </ng-template>
+
+          <div class="d-flex justify-content-center" *ngIf="reviews.length>0">
             <button (click)="showMoreReviews()" class="btn btn-primary text-center mb-3 rounded-3" *ngIf="displayedReviews.length < reviews.length">
               {{'appointmentPage.showMore'| translate}}
             </button>
@@ -119,10 +193,15 @@
         </div>
         <!-- ============================== ( Overview about Doctor ) =================================== -->
         <div class="tab-pane fade  " id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-          <div [innerHTML]="htmlCode"></div>
           <div class="Specializations">
             <h4 class="">{{'appointmentPage.Specialist'| translate}}</h4>
-            <p><i class="fa-solid {{direction === 'ltr' ? 'fa-right-long' : 'fa-left-long'}} fs6 mx-3"></i>{{doctor.specialization}}</p>
+            <div class="d-flex align-items-center">
+              <i class="fa-solid {{direction === 'ltr' ? 'fa-right-long' : 'fa-left-long'}} fs6 mx-3"></i>
+              <span>{{doctor.specialization}}</span>
+              <div class="col-6" *ngIf="doctor.id == 0">
+                <ngx-skeleton-loader appearance="line" [theme]="{width: '20%', background: '#dbd9d9', marginBottom: '0'}"></ngx-skeleton-loader>
+              </div>
+            </div>
           </div>
           <div class="Education mb-5 ">
             <h4 class="">{{'appointmentPage.Education'| translate}}</h4>
@@ -133,6 +212,7 @@
               </div>
               <div class="Educationinfo">
                 <p>{{doctor.education}}</p>
+                <ngx-skeleton-loader *ngIf="doctor.id == 0" appearance="line" [theme]="{width: '100%', minWidth: '250px', background: '#dbd9d9', marginBottom: '0'}"></ngx-skeleton-loader>
               </div>
             </div>
           </div>
@@ -145,6 +225,7 @@
               </div>
               <div class="Educationinfo">
                 <p>{{doctor.experience}}</p>
+                <ngx-skeleton-loader *ngIf="doctor.id == 0" appearance="line" [theme]="{width: '100%', minWidth: '300px', background: '#dbd9d9', marginBottom: '0'}"></ngx-skeleton-loader>
               </div>
             </div>
           </div>
@@ -204,10 +285,13 @@
                   *ngFor="let intervalBook of timeBookList ; let i= index" disabled
                   class="col-4 col-lg-1 time d-flex justify-content-center align-items-center text-decoration-none border mb-2 display_none">{{intervalBook}}
                 </a> -->
+                <div class="px-2 w-100" *ngIf="doctor.id == 0">
+                  <ngx-skeleton-loader *ngFor="let item of [0,0,0,0,0,0,0]" appearance="line" [theme]="{height: '32px', width: '102px', background: '#dbd9d9', marginLeft: '40px'}"></ngx-skeleton-loader>
+                </div>
+  
               </div>
-
             </div>
-          </div>
+          </div>  
           <!-- ============================== ( Appointment Form ) =================================== -->
           <div class="row container mb-4 appointmentForm">
             <h3 class=" text-center">{{'appointmentPage.appointmentForm'| translate}}</h3>

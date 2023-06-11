@@ -27,10 +27,13 @@
   </div>
 
   <ng-template #showInsurance>
-    <div>
+    <div *ngIf="patientInsurance.id != 0">
       <div class="d-flex justify-content-between align-items-center">
-        <div class="py-3 d-flex align-items-center"><img class="insurance-img" src="../../../assets/images/Patient_Profile/Insurance.png" alt="Insurance Image"/><span class="insurance-name fw-bold">{{patientInsurance.name}}</span></div>
-        <h5>Insurance Number:- <span class="fw-bold">{{insurance_number}}</span></h5>
+        <div class="py-3 d-flex align-items-center">
+          <img class="insurance-img" src="../../../assets/images/Patient_Profile/Insurance.png" alt="Insurance image"/>
+          <span class="insurance-name fw-bold">{{patientInsurance.name}}</span>
+        </div>
+        <h5>{{'patientProfile.tap3info1' | translate}}:- <span class="fw-bold">{{insurance_number}}</span></h5>
 
       </div>
       
@@ -42,7 +45,7 @@
             <div class="progress-bar bg-info" style="width: 50%"></div>
           </div> -->
 
-          <span>Insurance Discount:- </span>
+          <span>{{'patientProfile.tap3info2' | translate}}:- </span>
           <div class="progress w-100 mt-2">
             <div class="progress-bar" role="progressbar" aria-label="Info example" style="width: {{patientInsurance.company_rate}}%" aria-valuemin="0" aria-valuemax="100">{{patientInsurance.company_rate}}%</div>
           </div>
@@ -52,7 +55,7 @@
       <div class="col-md-6 my-2">
         <div class="hospital-discount">
           <!-- <h2>{{patientInsurance.company_rate}}</h2> -->
-          <span>Hospital Discount:- </span>
+          <span>{{'patientProfile.tap3info3' | translate}}:- </span>
 
           <div class="progress w-100 mt-2">
             <div class="progress-bar" role="progressbar" aria-label="Info example" style="width: {{patientInsurance.discount_percentage}}%"  aria-valuemin="0" aria-valuemax="100">{{patientInsurance.discount_percentage}}%</div>
@@ -61,11 +64,50 @@
       </div>
     </div>
 
-    <div>
+    <div class="d-flex justify-content-between align-items-center my-4 insurance-result">
+      <h2 class="d-flex align-items-center">{{'patientProfile.tap3info4' | translate}}:-  <span class="total-discount text-success fw-bold mx-1">{{totalDiscount}}%</span></h2>
+      <h5>{{'patientProfile.tap3input3' | translate}}:- <span class="fw-bold">{{insurance_date}}</span></h5>
     </div>
+    </div>
+
+
+
+
+
+
+
+    <div *ngIf="patientInsurance.id == 0">
+      <div class="d-flex justify-content-between align-items-center">
+        <div class="py-3 d-flex align-items-center ggg">
+          <img class="insurance-img" src="../../../assets/images/Patient_Profile/Insurance.png"/>
+          <!-- <span class="insurance-name fw-bold">{{patientInsurance.name}}</span> -->
+          <div class="col-8">
+            <ngx-skeleton-loader appearance="line" [theme]="{background: '#dbd9d9', marginBottom: '-6px'}"></ngx-skeleton-loader>
+          </div>
+        </div>
+        <div class="col-md-2 col-5">
+          <ngx-skeleton-loader appearance="line" [theme]="{background: '#dbd9d9', marginBottom: '-6px'}"></ngx-skeleton-loader>
+        </div>
+
+      </div>
+      
+    <div class="row my-4 d-flex justify-content-between">
+          <div class="col-md-5 col-12 my-2">
+            <ngx-skeleton-loader appearance="line" [theme]="{height: '66px', background: '#dbd9d9', marginBottom: '-6px'}"></ngx-skeleton-loader>
+          </div>
+
+        <div class="col-md-5 col-12 my-2">
+          <ngx-skeleton-loader appearance="line" [theme]="{height: '66px', background: '#dbd9d9', marginBottom: '-6px'}"></ngx-skeleton-loader>
+        </div>
+    </div>
+
     <div class="d-flex justify-content-between align-items-center my-4">
-      <h2 class="d-flex align-items-center">Total Discount:-  <span class="total-discount text-success fw-bold mx-1">{{totalDiscount}}%</span></h2>
-      <h5>Your Insurance will expire at:- <span class="fw-bold">{{insurance_date}}</span></h5>
+      <div class="col-4">
+        <ngx-skeleton-loader appearance="line" [theme]="{background: '#dbd9d9', marginBottom: '-6px'}"></ngx-skeleton-loader>
+      </div>
+      <div class="col-4">
+        <ngx-skeleton-loader appearance="line" [theme]="{background: '#dbd9d9', marginBottom: '-6px'}"></ngx-skeleton-loader>
+      </div>
     </div>
     </div>
   </ng-template>
@@ -74,3 +116,4 @@
 
   </div>
 </div>
+

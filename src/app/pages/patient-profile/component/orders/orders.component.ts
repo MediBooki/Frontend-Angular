@@ -65,6 +65,7 @@ export class OrdersComponent implements OnInit, OnDestroy {
       },
       error: (error) => {
         this.ordersAPIres = error;
+        this.allOrders_notempty = false;
         console.log(error);
       }
     });

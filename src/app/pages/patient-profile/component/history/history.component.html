@@ -2,7 +2,7 @@
   <h2 class="fw-bold text-center">{{'patientProfile.sidenav5' | translate}}</h2>
 
 
-  <div class="timeline timeline-ar my-5 position-relative" [ngClass]="{'timeline-ar': rtlDir,'timeline-en': !rtlDir }" *ngIf="diagnosisAPIres?.success && allDiagnosis_notempty else nodiagnosis">
+  <div class="timeline timeline-ar my-5 position-relative" [ngClass]="{'timeline-ar': rtlDir,'timeline-en': !rtlDir }" *ngIf="allDiagnosis_notempty else nodiagnosis">
     <ul class="list-unstyled" >
       <li class="position-relative w-100 py-4 px-5" *ngFor="let item of allDiagnosis">
         <div class="content p-3 border rounded bg-light-gray">
@@ -20,6 +20,29 @@
           {{item.date}}
         </div>
       </li>
+
+      <ng-container class="skeleton-history">
+        <li class="position-relative w-100 py-4 px-5" *ngIf="allDiagnosis.length == 0">
+          <div class="content p-3 border rounded bg-light-gray">
+            <div>
+              <ngx-skeleton-loader appearance="line" [theme]="{width: '220px', background: '#dbd9d9'}"></ngx-skeleton-loader>
+            </div>
+
+            <div>
+              <ngx-skeleton-loader appearance="line" [theme]="{height: '50px', background: '#dbd9d9', margin: '30px 0'}"></ngx-skeleton-loader>
+            </div>
+
+            <div>
+              <ngx-skeleton-loader appearance="line" [theme]="{height: '50px', background: '#dbd9d9'}"></ngx-skeleton-loader>
+            </div>
+          </div>
+          <div class="time position-absolute py-1 px-3 rounded-pill text-center">
+            <ngx-skeleton-loader appearance="line" [theme]="{background: 'rgb(52, 142, 199)', width: '70px', marginBottom: '-4px'}"></ngx-skeleton-loader>
+
+          </div>
+        </li>
+      </ng-container>
+      
     </ul>
   </div>
     <ng-template #nodiagnosis>

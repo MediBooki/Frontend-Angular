@@ -1,4 +1,32 @@
+@import "../../../../../colors.scss";
+
+
 .created-fixed-width {
-  width: 700px;
-  height: 300px;
+  max-width: 400px;
+  height: auto;
+  max-height: 400px;
+}
+
+
+.article-details {
+  width: 80%
+}
+
+.article-details-container {
+  background-color: $lightGreyColor;
+}
+
+.article-details-content {
+  display: flex;
+  justify-content: space-between;
+}
+
+@media (width <=768px) {
+  .article-details-content {
+    display: block;
+    div {
+      margin-top: 5px;
+      font-size: 1rem;
+    }
+  }
 }

@@ -44,7 +44,8 @@ export class AppointmentsComponent implements OnInit {
   singleDoctorId:any
   Patient_idStr: any = localStorage.getItem('patient_id');
   Patient_idNum = parseInt(this.Patient_idStr)
-  
+  noReviews:boolean = false;
+
   isVisibleSpinner: boolean = false;
   overallRating:number = 0
   htmlCode!: SafeHtml;
@@ -206,7 +207,8 @@ activeIndex = null;
               this.startDate = this.doctor.start;
               this.endDate = this.doctor.end;
               this.duration = this.doctor.patient_time_minute;
-              this.reviews = this.doctor.reviews
+              this.reviews = this.doctor.reviews;
+              this.noReviews = this.reviews.length>0 ? false : true
               console.log(this.reviews)
               this.displayedReviews = this.reviews.slice(0, this.displayCount);
               console.log(this.displayedReviews)

@@ -1,6 +1,6 @@
 <div class="m-4 p-3 bg-white rounded animate">
   <h2 class="fw-bold text-center">{{'patientProfile.sidenav6' | translate}}</h2>
-  <table *ngIf="invoicesAPIres?.success && allInvoices_notempty else noInvoices" class="w-100 text-center table table-striped">
+  <table *ngIf="allInvoices_notempty else noInvoices" class="w-100 text-center table table-striped">
       <thead class="text-white bg-icon">
           <th class="table-header">{{'patientProfile.tap6col2' | translate}}</th>
           <th class="table-header" [ngClass]="{'d-none': curruntColNum!=1}">
@@ -38,6 +38,13 @@
           </td>
           <td class="table-header fs-4"><i class="fa-solid fa-eye" role="button" (click)="gitColData(i)" data-bs-toggle="modal" data-bs-target="#colModal"></i></td>
         </tr>
+        <ng-container *ngIf="allInvoices.length == 0">
+          <tr *ngFor="let item of [0,0,0]">
+            <td colspan="6">
+                <ngx-skeleton-loader appearance="line" [theme]="{height: '35px', background: '#dbd9d9', marginBottom: '-6px'}"></ngx-skeleton-loader>
+            </td>
+          </tr>
+        </ng-container>
       </tbody>
   </table>
   <ng-template #noInvoices>

@@ -1,26 +1,27 @@
 <div [dir]=" 'dir' | translate " [lang]="lang">
 
   <div class="border big-rounded container my-4 p-0 animate" *ngIf="orderDetails && orderDetails.length > 0">
-    <div class="border-bottom ">
-      <h1 class="text-center text-main fst-italic">Order #{{orderDetails[0]?.id}} Details</h1>
+    <div class="border-bottom d-flex justify-content-between align-items-center">
+      <h1 class="text-center text-main fst-italic px-3">{{ 'patientProfile.order'| translate}} #{{orderDetails[0]?.id}}</h1>
+      <h3 class="text-main fst-italic px-3 text-decoration-underline" routerLink="/my-profile/orders" role="button">{{ 'patientProfile.back'| translate}}</h3>
     </div>
     <div class="m-3 border rounded row py-4">
       <div class="col-lg-3">
-        <p class="text-secondary fw-bold"><i class="fa-solid fa-calendar px-1"></i>ORDER DATE</p>
+        <p class="text-secondary fw-bold"><i class="fa-solid fa-calendar px-1"></i>{{ 'patientProfile.orderdate'| translate}}</p>
         <p>{{orderDetails[0]?.created_at | date: 'dd MMM YYYY'}}</p>
       </div>
       <div class="col-lg-3">
-        <p class="text-secondary fw-bold"><i class="fa-solid fa-money-bill-wave px-1"></i>TOTAL PRICE</p>
+        <p class="text-secondary fw-bold"><i class="fa-solid fa-money-bill-wave px-1"></i>{{ 'patientProfile.total'| translate}}</p>
         <p>{{orderDetails[0].total_after_discount!=null?orderDetails[0].total_after_discount:orderDetails[0].total}} {{"SharedData.Currency" | translate}}</p>
       </div>
       <div class="col-lg-3">
-        <p class="text-secondary fw-bold"><i class="fa-solid fa-truck-fast px-1"></i>SHIPPING STATUS</p>
+        <p class="text-secondary fw-bold"><i class="fa-solid fa-truck-fast px-1"></i>{{ 'patientProfile.shipping'| translate}}</p>
         <p *ngIf="orderDetails[0]?.shipping_status==0">{{'patientProfile.tap9shipping0' | translate}}</p>
         <p *ngIf="orderDetails[0]?.shipping_status==2">{{'patientProfile.tap9shipping2' | translate}}</p>
         <p *ngIf="orderDetails[0]?.shipping_status==1">{{'patientProfile.tap9shipping1' | translate}}</p>
       </div>
       <div class="col-lg-3">
-        <p class="text-secondary fw-bold"><i class="fa-solid fa-pen-to-square px-1"></i>STATUS UPDATED AT</p>
+        <p class="text-secondary fw-bold"><i class="fa-solid fa-pen-to-square px-1"></i>{{ 'patientProfile.statusdate'| translate}}</p>
         <p>{{orderDetails[0]?.updated_at | date: 'dd MMM YYYY'}}</p>
       </div>
     </div>
@@ -52,7 +53,7 @@
     </div>
     <div class="py-4 border-top mx-3">
       <div class="row container m-auto px-5">
-        <div class="col-md-3 p-2" *ngFor="let medicine of orderDetails[0]?.user_medicine_items">
+        <div class="col-lg-3 col-md-6 p-2" *ngFor="let medicine of orderDetails[0]?.user_medicine_items">
           <div class="bg-white rounded pb-1 shadow" [routerLink]="['/pharmacy/medicineDetails' , medicine.id]">
             <div class="medicine-img">
               <img class="rounded w-100 h-100 default-img" [src]="medicine.photo || defaultImg" alt="Medicine Image">
@@ -74,4 +75,90 @@
       </div>
     </div>
   </div>
+
+
+
+
+
+  <div class="border big-rounded container my-4 p-0 animate" *ngIf="!orderDetails">
+      <div class="mt-">
+        <ngx-skeleton-loader appearance="line" [theme]="{height: '30px', width: '200px', background: '#dbd9d9', margin: '15px'}"></ngx-skeleton-loader>
+      </div>
+    <div class="mx-3 border rounded row py-4">
+      <div class="col-lg-3">
+        <p class="text-secondary fw-bold"><i class="fa-solid fa-calendar px-1"></i>{{ 'patientProfile.orderdate'| translate}}</p>
+        <ngx-skeleton-loader appearance="line" [theme]="{width: '100px', background: '#dbd9d9', marginTop: '10px'}"></ngx-skeleton-loader>
+      </div>
+      <div class="col-lg-3">
+        <p class="text-secondary fw-bold"><i class="fa-solid fa-money-bill-wave px-1"></i>{{ 'patientProfile.total'| translate}}</p>
+        <ngx-skeleton-loader appearance="line" [theme]="{width: '100px', background: '#dbd9d9', marginTop: '10px'}"></ngx-skeleton-loader>
+      </div>
+      <div class="col-lg-3">
+        <p class="text-secondary fw-bold"><i class="fa-solid fa-truck-fast px-1"></i>{{ 'patientProfile.shipping'| translate}}</p>
+        <ngx-skeleton-loader appearance="line" [theme]="{width: '100px', background: '#dbd9d9', marginTop: '10px'}"></ngx-skeleton-loader>
+      </div>
+      <div class="col-lg-3">
+        <p class="text-secondary fw-bold"><i class="fa-solid fa-pen-to-square px-1"></i>{{ 'patientProfile.statusdate'| translate}}</p>
+        <ngx-skeleton-loader appearance="line" [theme]="{width: '100px', background: '#dbd9d9', marginTop: '10px'}"></ngx-skeleton-loader>
+      </div>
+    </div>
+    <div class="mb-5 mt-5 mx-3 track">
+      <div>
+        <div class="track-bar position-relative bg-secondary">
+          <span class="bg-secondary text-white rounded-circle d-flex justify-content-center align-items-center position-absolute">
+            <i class="fa-solid fa-user"></i>
+            <p class="text-dark position-absolute text-nowrap">{{'patientProfile.tap9shipping0' | translate}}</p>
+          </span>
+        </div>
+      </div>
+      <div>
+        <div class="track-bar position-relative bg-secondary">
+          <span class="bg-secondary text-white rounded-circle d-flex justify-content-center align-items-center position-absolute">
+            <i class="fa-solid fa-motorcycle" [ngClass]="{'fa-flip-horizontal': rtlDir}"></i>
+            <p class="text-dark position-absolute text-nowrap">{{'patientProfile.tap9shipping2' | translate}}</p>
+          </span>
+        </div>
+      </div>
+      <div>
+        <div class="track-bar position-relative bg-secondary">
+          <span class="bg-secondary text-white rounded-circle d-flex justify-content-center align-items-center position-absolute">
+            <i class="fa-solid fa-gift"></i>
+            <p class="text-dark position-absolute text-nowrap">{{'patientProfile.tap9shipping1' | translate}}</p>
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="py-4 border-top mx-3">
+      <div class="row container m-auto px-5">
+        <div class="col-lg-3 col-md-6 p-2" *ngFor="let item of[0,0,0,0]">
+          <!-- <div class="bg-white rounded pb-1 shadow" [routerLink]="['/pharmacy/medicineDetails' , medicine.id]">
+            <div class="medicine-img">
+              <img class="rounded w-100 h-100 default-img" [src]="medicine.photo || defaultImg" alt="">
+            </div>
+            <div class="">
+              <div class="px-1">
+                <div class="py-2">
+                  <span class="bg-icon text-white fw-bold px-2 py-1 rounded mx-2"><i class="fa-solid fa-prescription-bottle m-1"></i> {{medicine.qty}} {{"SharedData.item" | translate}}</span>
+                </div>
+                <div>
+                  <span class="mt-2 mb-0 medicine-name"><i class="fa-solid fa-pills mx-2"></i>{{medicine.medicine_name}}</span>
+                </div>
+
+                <h5 class="medicine-price mt-1 mb-3 text-danger mx-1 fw-bold">{{medicine.price}} {{"SharedData.Currency" | translate}}</h5>
+              </div>
+            </div>
+          </div> -->
+          <div class="shadow">
+            <ngx-skeleton-loader class="rounded-0 rounded-top" appearance="line" [theme]="{height: '220px', background: '#dbd9d9', marginBottom: '-5px'}"></ngx-skeleton-loader>
+            <div class="p-2 bg-white rounded-bottom">
+              <ngx-skeleton-loader appearance="line" [theme]="{background: '#dbd9d9', width: '50%'}"></ngx-skeleton-loader>
+              <ngx-skeleton-loader appearance="line" [theme]="{background: '#dbd9d9', marginBottom: '4px', width: '80%'}"></ngx-skeleton-loader>
+              <ngx-skeleton-loader appearance="line" [theme]="{background: '#dbd9d9', width: '50%'}"></ngx-skeleton-loader>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
+

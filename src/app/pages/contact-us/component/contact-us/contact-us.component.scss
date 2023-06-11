@@ -1,21 +1,25 @@
 @import '../../../../../colors.scss';
 
-.form-floating-en>.form-control:focus~label {
-  transform: scale(.85) translateY(-0.5rem) translateX(-5.15rem) !important;
-}
+// .form-floating-en>.form-control:focus~label {
+//   transform: scale(.85) translateY(-0.5rem) translateX(-5.15rem) !important;
+// }
 
-// .form-floating-en>.form-control:-webkit-autofill~label {
-.form-floating-en>.form-control:not(:placeholder-shown)~label {
+// // .form-floating-en>.form-control:-webkit-autofill~label {
+// .form-floating-en>.form-control:not(:placeholder-shown)~label {
 
-  transform: scale(.85) translateY(-0.5rem) translateX(-5.15rem) !important;
-}
+//   transform: scale(.85) translateY(-0.5rem) translateX(-5.15rem) !important;
+// }
 
 .form-floating-ar>.form-control:focus~label {
-  transform: scale(.85) translateY(-0.5rem) translateX(-0.15rem) !important;
+  transform: scale(.85) translateY(-0.5rem) translateX(5.15rem) !important;
 }
 
 .form-floating-ar>.form-control:-webkit-autofill~label {
-  transform: scale(.85) translateY(-0.5rem) translateX(-5.15rem) !important;
+  transform: scale(.85) translateY(-0.5rem) translateX(5.15rem) !important;
+}
+
+.form-floating-ar>.form-control:not(:placeholder-shown)~label{
+  transform: scale(.85) translateY(-0.5rem) translateX(5.15rem);
 }
 
 .btn-main{

@@ -102,7 +102,7 @@ export class OneArticleComponent implements OnInit, OnDestroy  {
         },
         error: (error) => {
           console.log(error)
-          this.articleRes = error;
+          this.articleRes = null;
         }
       });
     }});

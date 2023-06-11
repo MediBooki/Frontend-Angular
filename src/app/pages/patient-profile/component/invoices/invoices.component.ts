@@ -90,6 +90,7 @@ export class InvoicesComponent implements OnInit, OnDestroy {
       },
       error: (error) => {
         this.invoicesAPIres = error;
+        this.allInvoices_notempty = false;
         console.log(error);
       }
       });

@@ -313,7 +313,8 @@
     "error2": "Your Name is Not Valid *no spaces*!",
     "error3": "The name does not contain enough characters",
     "error4": "Enter Valid Email *ex: lorem@gmail.com*!",
-    "error5": "Enter Valid Phone Number *Egyptian Numbers*!"
+    "error5": "Enter Valid Phone Number *Egyptian Numbers*!",
+    "NoReviews": "No Reviews on this doctor yet!"
   },
   "patientProfile" : {
     "noLogin": "Sorry You Should Login First",
@@ -349,6 +350,10 @@
     "tap3input1" : "Insurance Company",
     "tap3input2" : "ID Number",
     "tap3input3" : "Expiry Date",
+    "tap3info1" : "Insurance Number",
+    "tap3info2" : "Insurance Discount",
+    "tap3info3" : "Hospital Discount",
+    "tap3info4" : "Total Discount",
     "tap4col1": "Doctor Name",
     "tap4col2": "Reservation Day",
     "tap4col3": "Reservation time",
@@ -381,7 +386,13 @@
     "tap9shipping1": "Delivered",
     "cash": "Cash On Delivery",
     "online": "Paid Online",
-    "modalh": "Order Items"
+    "modalh": "Order Items",
+    "order": "Order",
+    "back": "back to orders",
+    "orderdate": "ORDER DATE",
+    "total": "TOTAL PRICE",
+    "shipping": "SHIPPING STATUS",
+    "statusdate": "STATUS UPDATED AT"
   },
   "errors" : {
     "required" : "this field is required",

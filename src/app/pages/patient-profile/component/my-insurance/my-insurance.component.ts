@@ -29,7 +29,7 @@ export class MyInsuranceComponent implements OnInit, OnDestroy {
   direction:string = 'ltr';
   allInsurance: any[] = [];
   insuranceAPIres: any;
-  insuranceExist:boolean = false;
+  insuranceExist:boolean = true;
   totalDiscount:number = 0;
   patientInsurance:{
     company_rate: number,
@@ -107,21 +107,28 @@ addInsuranceFun(){
 
   //----- Method 3
   getPatientInfo() {
-    this.patientInfoSubscription = this._PatientProfileService.getPatientInfo(this.lang).subscribe({
-      next: (patientInfo) => {
-        console.log(patientInfo);
-        this.patientInsurance = patientInfo.data.insurance
-        if(patientInfo.data.insurance && patientInfo.data.insurance_status==1){
-          this.insuranceExist = true;
-          this.insurance_date = patientInfo.data.insurance_date;
-          this.insurance_number = patientInfo.data.insurance_number;
-          this.totalDiscount = Number(this.patientInsurance.company_rate) + Number(this.patientInsurance.discount_percentage);
-          // const discount = Number(patientInfo.data.insurance.discount_percentage) + Number(patientInfo.data.insurance.company_rate)
-          // localStorage.setItem("insuranceDiscount", discount.toString())
-          // localStorage.setItem("insuranceID",patientInfo.data.insurance.id)
-        }
-      }
-    });
+    this._DataService._lang.subscribe({
+      next:(language)=>{
+
+        this.patientInfoSubscription = this._PatientProfileService.getPatientInfo(this.lang).subscribe({
+          next: (patientInfo) => {
+            console.log(patientInfo);
+            this.patientInsurance = patientInfo.data.insurance
+            if(patientInfo.data.insurance && patientInfo.data.insurance_status==1){
+              this.insuranceExist = true;
+              this.insurance_date = patientInfo.data.insurance_date;
+              this.insurance_number = patientInfo.data.insurance_number;
+              this.totalDiscount = Number(this.patientInsurance.company_rate) + Number(this.patientInsurance.discount_percentage);
+              // const discount = Number(patientInfo.data.insurance.discount_percentage) + Number(patientInfo.data.insurance.company_rate)
+              // localStorage.setItem("insuranceDiscount", discount.toString())
+              // localStorage.setItem("insuranceID",patientInfo.data.insurance.id)
+            } else {
+              this.insuranceExist = false;
+
+            }
+          }
+        });
+  }})
   }
 
   //----- Method 4

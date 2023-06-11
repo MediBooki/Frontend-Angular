@@ -65,6 +65,7 @@ export class ReviewsComponent implements OnInit, OnDestroy {
       },
       error: (error) => {
         this.PatientReviewsAPIres = error;
+        this.allReviews_notempty = false;
         console.log(error);
       }
       });

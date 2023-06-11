@@ -106,7 +106,6 @@ export class ArticlesComponent implements OnInit, OnDestroy  {
       error: (error) => {
         console.log(error)
         this.articalsRes = error;
-        this.noData = true;
       }
     });
     }});

@@ -1,12 +1,12 @@
 <div class="m-4 p-3 rounded bg-white animate">
   <h2 class="fw-bold text-center mb-3">{{'patientProfile.sidenav1' | translate }}</h2>
-  <div class="row">
+  <div class="row" *ngIf="patientInfoAPIres != null">
 
     <!-- user image div -->
       <div class="col-md-4">
 
           <div class="position-relative px-5 pt-2  d-flex justify-content-center">
-            <img class="w-75 rounded-circle" [src]="userPhoto" width="200" height="180" alt="User Image"/>
+            <img class="w-75 rounded-circle" [src]="userPhoto" width="200" height="200" alt="User Image"/>
 <!--
             <label class="filebutton position-absolute cam-icon-position text-black rounded-circle text-center">
                 <i class="fa-solid fa-camera fs-5 bg-light-gray p-2 w-100 h-100"></i>
@@ -26,48 +26,108 @@
       </div>
       <!-- edit form div -->
       <div class="col-md-8">
-            <div class="row w-100">
+        <div class="row w-100">
 
-                      <div class="pb-2 col-md-6 px-2"><label>{{'patientProfile.tap1input2' | translate}}</label><div class="form-control bg-light-gray ">{{patientInfo.email}}</div></div>
+          <div class="pb-2 col-md-6 px-2"><label>{{'patientProfile.tap1input2' | translate}}</label><div class="form-control bg-light-gray ">{{patientInfo.email}}</div></div>
 
-                      <div class="pb-2 col-md-6 px-2"><label>{{'patientProfile.tap1input4' | translate}}</label><div class="form-control bg-light-gray ">{{patientInfo.date_of_birth}}</div></div>
-                      <div class="pb-2 col-md-6 px-2">
-                        <label>{{'patientProfile.tap1input5' | translate}}</label>
-                        <div class="form-control bg-light-gray ">{{patientInfo.blood_group}}</div>
-                      </div>
-                      <div class="pb-2 col-md-6 px-2">
-                        <label>{{'patientProfile.tap1input6' | translate}}</label>
-                        <div class="form-control bg-light-gray ">{{patientInfo.gender}}</div>
-                      </div>
-                      <div class="pb-2 col-md-6 px-2">
-                        <label>{{'patientProfile.tap1input1' | translate}}</label>
-                        <!-- username -->
-                        <div class="form-control bg-light-gray ">{{patientInfo.name}}</div>
-                        <!-- <input formControlName="name" type="text" class="form-control bg-light-gray" [value]="patientInfo.name"> -->
-                      </div>
-                      <div class="pb-2 col-md-6 px-2">
-                        <label>{{'patientProfile.tap1input3' | translate}}</label>
-                        <!-- phone -->
-                        <div class="form-control bg-light-gray ">{{patientInfo.phone}}</div>
-                        <!-- <input formControlName="phone" type="tel" class="form-control bg-light-gray" [(ngModel)]="patientInfo.phone"> -->
-                      </div>
-                      <div class="pb-2 col-md-6 px-2">
-                        <label>{{'patientProfile.tap1input7' | translate}}</label>
-                        <!-- address -->
-                        <div class="form-control bg-light-gray ">{{patientInfo.address}}</div>
-                        <!-- <input formControlName="address"  type="text" class="form-control" [(ngModel)]="patientInfo.address"> -->
-                      </div>
-                    </div>
-                    <!-- <div class=" d-flex justify-content-end"> -->
-                      <!-- <input type="submit" value="Update" class="btn btn-main border-0 m-auto" [disabled]="updateProfile.invalid"/> -->
-                      <!-- <input value="Update" class="btn btn-main border-0 m-auto" data-bs-toggle="modal" data-bs-target="#exampleModal"/> -->
-                      <!-- <button class="btn btn-main border-0" data-bs-toggle="modal" data-bs-target="#exampleModal">Update</button>
-                    </div> -->
+          <div class="pb-2 col-md-6 px-2"><label>{{'patientProfile.tap1input4' | translate}}</label><div class="form-control bg-light-gray ">{{patientInfo.date_of_birth}}</div></div>
+          <div class="pb-2 col-md-6 px-2">
+            <label>{{'patientProfile.tap1input5' | translate}}</label>
+            <div class="form-control bg-light-gray ">{{patientInfo.blood_group}}</div>
+          </div>
+          <div class="pb-2 col-md-6 px-2">
+            <label>{{'patientProfile.tap1input6' | translate}}</label>
+            <div class="form-control bg-light-gray ">{{patientInfo.gender}}</div>
+          </div>
+          <div class="pb-2 col-md-6 px-2">
+            <label>{{'patientProfile.tap1input1' | translate}}</label>
+            <!-- username -->
+            <div class="form-control bg-light-gray ">{{patientInfo.name}}</div>
+            <!-- <input formControlName="name" type="text" class="form-control bg-light-gray" [value]="patientInfo.name"> -->
+          </div>
+          <div class="pb-2 col-md-6 px-2">
+            <label>{{'patientProfile.tap1input3' | translate}}</label>
+            <!-- phone -->
+            <div class="form-control bg-light-gray ">{{patientInfo.phone}}</div>
+            <!-- <input formControlName="phone" type="tel" class="form-control bg-light-gray" [(ngModel)]="patientInfo.phone"> -->
+          </div>
+          <div class="pb-2 col-md-6 px-2">
+            <label>{{'patientProfile.tap1input7' | translate}}</label>
+            <!-- address -->
+            <div class="form-control bg-light-gray ">{{patientInfo.address}}</div>
+            <!-- <input formControlName="address"  type="text" class="form-control" [(ngModel)]="patientInfo.address"> -->
+          </div>
+        </div>
+        <!-- <div class=" d-flex justify-content-end"> -->
+          <!-- <input type="submit" value="Update" class="btn btn-main border-0 m-auto" [disabled]="updateProfile.invalid"/> -->
+          <!-- <input value="Update" class="btn btn-main border-0 m-auto" data-bs-toggle="modal" data-bs-target="#exampleModal"/> -->
+          <!-- <button class="btn btn-main border-0" data-bs-toggle="modal" data-bs-target="#exampleModal">Update</button>
+        </div> -->
 
-                  </div>
-
+      </div>
   </div>
 
+  <div class="row skeleton-profile-details" *ngIf="patientInfoAPIres == null">
+
+    <!-- user image div -->
+      <div class="col-md-4">
+
+        <div class="doctor-info">
+          <div class="col-lg-12 col-md-12 col-10 text-center pt-3 position-relative image mb-3 mx-3 mx-sm-0 doctor_pic">
+            <ngx-skeleton-loader appearance="circle" [theme]="{height: '200px', width: '200px', background: '#dbd9d9'}"></ngx-skeleton-loader>
+
+            </div>
+            <div class="d-flex justify-content-center my-2">
+              <div class="col-6">
+                <ngx-skeleton-loader appearance="line" [theme]="{background: '#dbd9d9'}"></ngx-skeleton-loader>
+              </div>
+            </div>
+        </div>
+          
+      </div>
+      <!-- edit form div -->
+      <div class="col-md-8">
+        <div class="row w-100">
+
+          <div class="pb-2 col-md-6 px-2">
+            <label>{{'patientProfile.tap1input2' | translate}}</label>
+            <ngx-skeleton-loader appearance="line" [theme]="{height: '38px', background: '#dbd9d9', marginBottom: '0'}"></ngx-skeleton-loader>
+          </div>
+
+          <div class="pb-2 col-md-6 px-2">
+            <label>{{'patientProfile.tap1input4' | translate}}</label>
+            <ngx-skeleton-loader appearance="line" [theme]="{height: '38px', background: '#dbd9d9', marginBottom: '0'}"></ngx-skeleton-loader>
+          </div>
+
+          <div class="pb-2 col-md-6 px-2">
+            <label>{{'patientProfile.tap1input5' | translate}}</label>
+            <ngx-skeleton-loader appearance="line" [theme]="{height: '38px', background: '#dbd9d9', marginBottom: '0'}"></ngx-skeleton-loader>
+          </div>
+
+          <div class="pb-2 col-md-6 px-2">
+            <label>{{'patientProfile.tap1input6' | translate}}</label>
+            <ngx-skeleton-loader appearance="line" [theme]="{height: '38px', background: '#dbd9d9', marginBottom: '0'}"></ngx-skeleton-loader>
+          </div>
+
+          <div class="pb-2 col-md-6 px-2">
+            <label>{{'patientProfile.tap1input1' | translate}}</label>
+            <ngx-skeleton-loader appearance="line" [theme]="{height: '38px', background: '#dbd9d9', marginBottom: '0'}"></ngx-skeleton-loader>
+          </div>
+
+          <div class="pb-2 col-md-6 px-2">
+            <label>{{'patientProfile.tap1input3' | translate}}</label>
+            <ngx-skeleton-loader appearance="line" [theme]="{height: '38px', background: '#dbd9d9', marginBottom: '0'}"></ngx-skeleton-loader>
+          </div>
+
+          <div class="pb-2 col-md-6 px-2">
+            <label>{{'patientProfile.tap1input7' | translate}}</label>
+            <ngx-skeleton-loader appearance="line" [theme]="{height: '38px', background: '#dbd9d9', marginBottom: '0'}"></ngx-skeleton-loader>
+          </div>
+
+        </div>
+
+      </div>
+  </div>
 </div>
 
 <!-- update Modal -->
@@ -129,3 +189,4 @@
   </form>
   </div>
 </div>
+

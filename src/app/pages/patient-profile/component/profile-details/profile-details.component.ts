@@ -97,7 +97,7 @@ export class ProfileDetailsComponent implements OnInit, OnDestroy {
         // })
       },
       error: (error) => {
-        this.patientInfoAPIres = error;
+        this.patientInfoAPIres = null;
         console.log(error);
       }
     });

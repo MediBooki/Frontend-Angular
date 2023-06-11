@@ -1,8 +1,18 @@
 <div class="m-4 p-3 bg-white rounded animate">
   <h2 class="fw-bold text-center">{{'patientProfile.sidenav8' | translate}}</h2>
-    <div class="row bg-light-gray rounded box-s" *ngIf="favMedicinesAPIres?.success && allFav_notempty else nofav">
+    <div class="row bg-light-gray rounded box-s" *ngIf="allFav_notempty else nofav">
       <!-- <h3 class="fw-bold text-center my-2"><i class="fa-solid fa-tablets fs-4"></i> {{'patientProfile.tap8medicine' | translate}}</h3> -->
       <app-medicine class="col-xl-4 col-sm-6 py-3 rounded p-2" *ngFor="let medicine of favMedicines" [medicine]="medicine" (emitChanges)="getMedicines()"></app-medicine>
+      <div class="row" *ngIf="favMedicines.length == 0">
+        <div class="col-xl-4 col-sm-6 p-2" *ngFor="let item of [0,0,0]">
+          <ngx-skeleton-loader class="rounded-0 rounded-top" appearance="line" [theme]="{height: '220px', background: '#dbd9d9', marginBottom: '-5px'}"></ngx-skeleton-loader>
+          <div class="p-3 bg-white rounded-bottom">
+            <ngx-skeleton-loader appearance="line" [theme]="{background: '#dbd9d9', width: '60%'}"></ngx-skeleton-loader>
+            <ngx-skeleton-loader appearance="line" [theme]="{background: '#dbd9d9', width: '50%'}"></ngx-skeleton-loader>
+            <ngx-skeleton-loader appearance="line" [theme]="{background: '#dbd9d9', width: '80%'}"></ngx-skeleton-loader>
+          </div>
+        </div>
+    </div>
     </div>
     <ng-template #nofav>
       <!-- <div class="alert alert-danger text-center my-3" role="alert">

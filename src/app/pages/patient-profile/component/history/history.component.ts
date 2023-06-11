@@ -64,6 +64,7 @@ export class HistoryComponent implements OnInit, OnDestroy {
       },
       error: (error) => {
         this.diagnosisAPIres = error;
+        this.allDiagnosis_notempty = false
         console.log(error);
       }
     });
