@@ -82,7 +82,8 @@ export class OrdersComponent implements OnInit, OnDestroy {
        
 
        
-        if(isPending!=null && isPending == JSON.parse(localStorage.getItem('currentPaymentId')!) && params['success']=='true') {
+        // if(isPending!=null && isPending == JSON.parse(localStorage.getItem('currentPaymentId')!) && params['success']=='true') {
+        if(JSON.parse(localStorage.getItem('currentPaymentId')!) != null) {
          
 
           let model = {
