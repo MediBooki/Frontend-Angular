@@ -26,12 +26,12 @@ export class ReviewService {
       authorization : `${localStorage.getItem('token')}`
     })
 
-  createReviewPatient(model: patientReview) {
+  createReviewPatient(model: patientReview): Observable<any>  {
     return this._HttpClient.post(this.sharedApi + '/patient/DoctorReview', model, { headers: this.authAcceptHeaders });
   }
 
 
-  updateReviewPatient(model: patientReview) {
+  updateReviewPatient(model: patientReview): Observable<any>  {
     return this._HttpClient.post(this.sharedApi + '/patient/DoctorReview', model, { headers: this.authAcceptHeaders });
   }
 

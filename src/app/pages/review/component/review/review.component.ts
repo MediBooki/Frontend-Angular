@@ -93,7 +93,7 @@ export class ReviewComponent implements OnInit, OnDestroy {
 
   constructor(private _AuthService: AuthService, private _ReviewService: ReviewService, private _DataService: DataService,private route: ActivatedRoute,private _AppointmentsService: AppointmentsService,private fb: FormBuilder , private router: Router, private toastr: ToastrService) { 
     this.id = this.route.snapshot.paramMap.get('id');
-    
+    console.log(this.id)
 
   }
 
@@ -102,13 +102,16 @@ export class ReviewComponent implements OnInit, OnDestroy {
       rating1: ['', Validators.required],
       comment : ['' , Validators.required]
     })
+    console.log(this.formReview.value)
   }
 
   submitReview() {
+    console.log("svdvadv")
     this.updateReviewSubscription = this._ReviewService.updatereview.subscribe((res: any) => {
        
       const updatereview = localStorage.getItem('updatereview');
       this.reviewStatus = updatereview ? JSON.parse(updatereview) : false
+      // console.log(model)
        
       if(this.reviewStatus === 'false'){
         const model: patientReview = {
@@ -116,12 +119,15 @@ export class ReviewComponent implements OnInit, OnDestroy {
           rating: this.formReview.value.rating1,
           comment: this.formReview.value.comment
         }
+        console.log(model)
+
         this.createReviewSubscription = this._ReviewService.createReviewPatient(model).subscribe((res: any) => {
           this.toastr.success(!this.rtlDir?`success`:`تم تسجيل تقييم الدكتور` , `${res.message}`)
           this._DataService.is_login.next(true);
           this.router.navigate(['/my-profile/appointments'])
           this._ReviewService.isreview.next(true)
         }, error => {
+          console.log(model)
           this.toastr.error(!this.rtlDir?`An Error has occured`:`حدث خطأ ما` , `${error.error.message}`);
         })
       }else{
@@ -152,7 +158,11 @@ export class ReviewComponent implements OnInit, OnDestroy {
     // this.route.queryParams.subscribe(params => {
     //   this.reviewId = params['id'];
     // });
-    this.reviewId = this.route.snapshot.paramMap.get('id');
+    this.route.queryParams.subscribe(params => {
+      // Access the "pending" parameter here
+      // const isPending = params['order'];
+      this.reviewId =params['id'];
+    })
     this.getreviewPatient()
      
   }
@@ -205,7 +215,7 @@ export class ReviewComponent implements OnInit, OnDestroy {
   }
 
   getreviewPatient(){
-    this.reviewDoctorSubscription = this._ReviewService.getReviewPatient(this.id).subscribe({
+    this.reviewDoctorSubscription = this._ReviewService.getReviewPatient(this.reviewId).subscribe({
       next: (reviewDoctor) => {
          
         this.reviewdoctor = reviewDoctor.data;
