@@ -2,7 +2,7 @@
     <div class="Specialties_service animated " >
       <a  data-bs-toggle="modal" data-bs-target="#specializeModal" (click)="onSpecializeClicked(specialize.id)" (click)="onSpecialize(specializeDetails)"
         class="text-decoration-none"> <!--[routerLink]="rtlDir ? '/doctors/'+specialize.name.split(' ').slice(1): '/doctors/'+specialize.name.split(' ')[0]"-->
-    
+
         <div class="card">
           <div class="overflow-hidden img-container">
             <img [src]="specialize && specialize.photo ? specialize.photo : defaultSpecializationImg"
@@ -11,7 +11,7 @@
           <div class="card-body">
             <h5 class="card-title my-3 text-dark fw-bolder"> {{specialize && specialize.name ? specialize.name : ''}}
             </h5>
-            <p class="card-text my-3 text-muted">{{specialize && specialize.description ? specialize.description : ''}}</p>
+            <p class="card-text my-3 text-muted">{{ (specialize.description.length>47)? (specialize.description | slice:0:47)+' ...':(specialize.description)}}</p>
           </div>
         </div>
       </a>
@@ -19,8 +19,8 @@
       <!-- <button type="button" class="btn btn-primary" >
         Launch demo modal
       </button> -->
-      
+
     </div>
-    
+
   </div>
 

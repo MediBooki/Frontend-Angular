@@ -1,7 +1,7 @@
 @import '../../../../../pagination.scss';
 @import '../../../../../filters.scss';
 
-  
+
 /* =======================================================( First Section )======================================================= */
 
 // Roadmap Design
@@ -10,38 +10,38 @@
     height: 50vh;
     background-size: cover;
     overflow: hidden;
-  
+
     >div {
       background: rgba(255, 255, 255, 0.8);
       // opacity: 0.8;
       width: 88%;
       max-height: 100%;
-      
+
       .header {
         color: #003367;
       }
-  
+
       .lines-img {
         transform: translateY(-50%);
       }
     }
   }
-  
-  
+
+
 // Main Search
 .roadmap {
     .filter-count {
         color: #003367;
         font-weight: bold;
     }
-    
+
     /* first search filter method */
     .main-search-section {
 
         .main-search-title {
             font-family: 'Roboto Condensed', sans-serif;
         }
-        
+
         h1 {
             font-size: 19px;
         }
@@ -52,13 +52,13 @@
                 color: #c4c3c3;
             }
         }
-        
+
         .doctors-img {
             img {
                 height: 240px;
             }
         }
-        
+
         ul {
             list-style: none;
             i {
@@ -66,7 +66,7 @@
                 font-size: 8px;
             }
         }
-        
+
         // Main-Search-Filter (select2)
         .main-search-filter {
             box-shadow: rgb(204, 204, 204) 0px 0px 10px;
@@ -75,16 +75,16 @@
             border-radius: 50px;
             border: 2px solid white;
             z-index: 50;
-            
+
             .medicine-search {
                 cursor: pointer;
                 padding-left: 10px;
                 padding-right: 10px;
-                
+
                 i {
                     color: $mainColor;
                 }
-                
+
                 input {
                     border: 0;
                     box-shadow: none !important;
@@ -95,21 +95,21 @@
                         color: $mainColor;
                         opacity: 1; /* Firefox */
                     }
-                    
+
                     &::-ms-input-placeholder { /* Internet Explorer 10-11 */
                         color: $mainColor;
                     }
-                    
+
                     &::-ms-input-placeholder { /* Microsoft Edge */
                         color: $mainColor;
                     }
                 }
             }
-            
+
             /* search filter button */
             .search-btn-container {
                 height: 100%;
-                
+
                 .search-btn {
                     width: 125px;
                     height: 100%;
@@ -117,7 +117,7 @@
                     color: white;
                     box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px;
                     border-radius: 50px;
-                    
+
                     &:hover {
                         box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
                     }
@@ -131,7 +131,7 @@
 
 .medicines-list-section {
     background-color: #E2E6EA;
-    
+
     // 1. link to home
     .medicines-roadmap {
         a {
@@ -156,7 +156,7 @@
     }
 
     /* =======================================================( filtered-content )======================================================= */
-    
+
     // 3. filtered medicines
     .filtered-content {
 
@@ -170,11 +170,11 @@
                 font-size: 1rem;
                 text-align: left;
                 background: $mainColor2;
-    
+
                 h4 {
                     font-size: 18px;
                 }
-    
+
                 border-top-left-radius: 1rem;
                 border-top-right-radius: 1rem;
             }
@@ -184,20 +184,20 @@
             p {
                 font-size: 15px;
             }
-        
+
             h2 {
                 font-size: 20px;
             }
-        
+
             .filtered-title {
                 font-family: "Roboto Condensed", sans-serif;
-        
+
                 span {
                     &::after {
                         content: " ,";
                         // color: black;
                     }
-            
+
                     &:last-child {
                         &::after {
                             content: "";
@@ -220,13 +220,13 @@
                 .fa-arrows-left-right {
                     font-size: 2rem;
                 }
-            
+
                 label {
                     &:hover {
                         cursor: pointer;
                     }
                 }
-            
+
                 .accordion-body-item {
                     &:last-child {
                         border-bottom: 0 !important;
@@ -253,7 +253,7 @@
             }
         }
     }
-    
+
 }
 
 .ngx-slider::ng-deep {
@@ -313,4 +313,13 @@
         width: 110px !important;
         font-size: 0.8rem;
     }
+}
+
+@media (width <=600px) {
+  .roadmap {
+    >div {
+      width: 100% !important;
+    }
+  }
+
 }

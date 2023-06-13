@@ -8,7 +8,7 @@
     position: fixed;
     top: 25%;
     z-index: 999;
-    box-shadow: rgba(0, 0, 0, 0.4) 6px 2px 16px 0px; 
+    box-shadow: rgba(0, 0, 0, 0.4) 6px 2px 16px 0px;
 
     a {
         text-decoration: none !important;
@@ -37,7 +37,7 @@
         z-index: 999;
 
         .tooltip-inner {
- 
+
             font-size: 12px;
             padding: 10px;
             background-color: #FFFFFF !important;
@@ -85,7 +85,7 @@
 
 .scroll-up {
     position: fixed;
-    bottom: 30px;
+    bottom: 17px;
     width: 55px;
     height: 55px;
     display: flex;
@@ -99,7 +99,7 @@
     // background-color: #78bdcc;
     // color: rgba(0, 0, 0, .7);
     // box-shadow: var(--WatsonAssistantChat-BASE-box-shadow);
-    
+
     cursor: pointer;
     transition: all .5s ease-in-out;
     z-index: 999;
@@ -108,7 +108,7 @@
         transform: translateY(-10px);
     }
 }
-  
+
 
 
 /*------------------------------------------------( 3.Watson Chatbot )------------------------------------------------  */
@@ -119,7 +119,7 @@
     // right: inherit !important;
     // box-shadow: 0 0 10px rgba(0,0,0,.3);
 // }
-  
+
   // .WACWidget {
   //   left : var(--WatsonAssistantChat-BASE-right-position) !important;
   //   right: var(--WatsonAssistantChat-BASE-left-position) !important;
@@ -138,7 +138,7 @@
 
 
 
-::ng-deep .WACLauncherComplex__SmallLauncherContainer, 
+::ng-deep .WACLauncherComplex__SmallLauncherContainer,
 ::ng-deep .WACLauncherComplex__SmallLauncherContainer .WACLauncher__Button {
     right: var(--WatsonAssistantChat-LAUNCHER-position-bottom) !important;
     height: var(--WatsonAssistantChat-LAUNCHER-default-size) !important;
@@ -148,4 +148,4 @@
     -webkit-animation: none !important;
     animation: none !important;
 }
-    
+

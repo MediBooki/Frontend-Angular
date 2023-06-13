@@ -9,12 +9,12 @@
             <form  [formGroup]="loginForm">
               <header class=" fw-bolder text-center fs-1 text-secondary my-5">{{ 'loginPage.title' | translate }}</header>
               <!-- ////////////////////////////////////user name/////////////////////////////// -->
-              <div class="row">
+              <div>
                 <!-- ///////////////////////////////email//////////////////////////////////// -->
-                
+
                 <div class="input-field d-flex flex-column position-relative px-3 ">
                     <input type="text" class="input w-100 bg-transparent mb-4" id="email" required autocomplete="off" formControlName="email">
-                    
+
                     <label for="email" class=" position-absolute"><i class="fa-solid fa-envelope px-2 fs-6"></i>{{ 'loginPage.email' | translate }}</label>
                     <div
                     *ngIf="loginForm.controls['email']?.invalid && loginForm.controls['email']?.touched && loginForm.controls['email']?.dirty">
@@ -26,7 +26,7 @@
                 <!-- ///////////////////////////////password//////////////////////////////////// -->
                 <div class="input-field d-flex flex-column position-relative px-3 ">
                     <input type="{{passwordType}}" class="input w-100 bg-transparent mb-4" id="PasswordRegister" required autocomplete="off" formControlName="Password">
-                    
+
                     <label for="PasswordRegister" class=" position-absolute"><i class="fas fa-lock  px-2 fs-6"></i>{{ 'loginPage.password' | translate }}</label>
                     <i class="fa-solid {{passwordType ? 'fa-eye' : 'fa-eye-slash' }} text-center p-3 fs-6 position-absolute" [ngClass]="direction === 'ltr' ? 'end-0' : 'start-0'"  (click)="togglePassword()"></i>
                     <div *ngIf="loginForm.controls['Password']?.invalid && loginForm.controls['Password']?.touched && loginForm.controls['Password']?.dirty">
@@ -39,11 +39,11 @@
 
               <!-- /////////////////////////////////////////////////////////////////// -->
               <div class="row mb-3">
-                  
+
                   <div class="input-field d-flex  position-relative justify-content-between align-items-center px-3">
                     <input type="submit" class="submit w-50 border-circle " value="{{ 'loginPage.login' | translate }}"  [disabled]="loginForm.invalid" (click)="login()" id="submitBtn">
-                    <a routerLink="/auth/forgetPassword" class=" text-decoration-none text-success forgotPassword fs-6 fw-bolder">{{ 'loginPage.forgotPass' | translate }}</a>
-                    
+                    <a routerLink="/auth/forgetPassword" class="fs-made text-decoration-none text-success forgotPassword fw-bolder">{{ 'loginPage.forgotPass' | translate }}</a>
+
                   </div>
               </div>
             </div>

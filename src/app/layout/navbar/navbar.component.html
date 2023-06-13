@@ -1,6 +1,6 @@
 <div class="navbar-component" [dir]=" 'dir' | translate " [lang]="lang">
   <div class="bg-fixed-nav fixed-nav start-0 end-0 position-fixed z-index-high" #navbar>
-    <div class="container py-2 text-white d-flex fixed-nav-container">
+    <div class=" py-2 text-white d-flex fixed-nav-container m-auto">
       <div [ngClass]="rtlDir?'ms-auto':'me-auto'">
         <div class="d-inline" *ngIf="!is_login">
           <!-- <span class="d-md-inline d-none" >
@@ -12,8 +12,8 @@
           </span> -->
           <span class="d-inline">
             <a class="text-decoration-none text-white fw-bold" routerLink="/auth/Login"><i class="fa-solid fa-right-to-bracket mx-2 d-none d-sm-inline"></i>{{'navbar.Login'
-              | translate}}</a> 
-              <span class="px-3 d-inline d-sm-none">|</span>
+              | translate}}</a>
+              <span class="px-1 d-inline d-sm-none">|</span>
           </span>
         </div>
         <div class="d-inline" *ngIf="is_login">
@@ -90,7 +90,7 @@
           <span >|</span>
           <div class="dropdown d-inline">
             <a class="text-decoration-none text-white fw-bold px-2 dropdown-toggle" *ngIf="testCountry == 'https://benaahadees.com/mediBookiDashbord/public/api'">
-              <i class="fa-solid fa-caret-down"></i>
+              <!-- <i class="fa-solid fa-caret-down"></i> -->
               <span class="mx-1">EGY</span>
               <img class="rounded-circle mb-1" src="../../../assets/images/navbar-footer/egypt.png" width="20px"
                 height="20px" alt="Country image">
@@ -197,11 +197,11 @@
           <li class="nav-item">
             <a class="nav-link link-hover justify-content-center d-flex" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show" routerLink="/faq" [routerLinkActive]="['active-link']">{{'navbar.navlink7' | translate}}</a>
           </li>
-          <li class="nav-item text-center d-md-none">
+          <li class="nav-item text-center d-md-none" *ngIf="!is_login">
               <a class="nav-link" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show" routerLink="/auth/Login">{{'navbar.Login'
                 | translate}}</a>
           </li>
-          <li class="nav-item text-center d-md-none">
+          <li class="nav-item text-center d-md-none" *ngIf="!is_login">
               <a class="nav-link" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show" routerLink="/auth/Register">{{'navbar.Register' |
                 translate}}</a>
           </li>

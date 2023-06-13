@@ -8,25 +8,25 @@
     width: 95%;
     margin: auto;
   }
-  
+
   @mixin CarouselSectionItem {
     // margin: auto !important;
     cursor: pointer;
   }
-  
+
   @mixin CarouselSectionsImg {
     transition: all .4s ease-in-out;
   }
-  
+
   @mixin CarouselSectionImgHover {
     transform: scale(1.1);
   }
-  
+
   @mixin CarouselSectionTitleHover {
     transition: all .2s ease-in-out;
     color: $mainColor;
   }
-  
+
   @mixin SpecializationCarouselOwlNextPrev {
     position: absolute !important;
     top: 50% !important;
@@ -50,13 +50,13 @@
       color: $whiteColor !important;
     }
   }
-  
+
   @mixin MediaQueryCarouselSection {
     width: 90% !important;
     margin: auto !important;
   }
-  
-  
+
+
 
 
 /* =======================================================( Specialization )======================================================= */
@@ -80,7 +80,7 @@
 
     .item {
       height: 70vh;
-  
+
       .main-carousle-layer {
         position: absolute;
         top: 0;
@@ -94,14 +94,14 @@
         max-height: 120% !important;
         min-height: 100%;
       }
-    
+
       .main-carousle-title {
         position: absolute;
         top: 20%;
         width: 500px;
         color: rgba(255,255,255,0.8);
         // text-align: center;
-    
+
         h2 {
           font-weight: 900;
           font-size: 4rem;
@@ -116,7 +116,7 @@
         right: 7.5%;
       }
     }
-    
+
     .owl-carousel {
       counter-reset: dots; // to change dots content to counter numbers
       .owl-dots {
@@ -126,7 +126,7 @@
         display: flex;
         flex-direction: column;
         align-content: flex-start;
-  
+
         .owl-dot {
           outline: none !important;
 
@@ -178,64 +178,66 @@
 };
 
 
-  
+
 /*------------------------------------------------( 2.specialization Carousel )------------------------------------------------  */
 
 /* Carousel Arrows */
 .specialization-section,
 .related-section {
     // background-color: $lightGreyColor;
-  
+
     .specialization-carousel::ng-deep {
-  
+
       .owl-carousel {
         @include CarouselSection();
-  
+
         .specialization {
+
           box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
           margin: 5px 15px !important;
           border-radius: 10px;
           @include CarouselSectionItem();
-      
+
           > div {
+            min-height: 200px;
             background-color: $whiteColor;
           }
-      
+
           img {
             height: 220px;
             @include CarouselSectionsImg();
           }
-      
+
           &:hover {
             img {
               @include CarouselSectionImgHover();
             }
-      
+
             h4 {
               @include CarouselSectionTitleHover();
             }
           }
         }
-  
-  
+
+
         .owl-prev {
           @include SpecializationCarouselOwlNextPrev();
         }
-      
+
         .owl-next {
           @include SpecializationCarouselOwlNextPrev();
         }
       }
-    
-  
+
+
     };
-    
+
     // English Style
     .specialization-carousel-english::ng-deep,
     .related-carousel-english::ng-deep {
       .owl-prev {
         left: -60px !important;
-    
+
         &:hover {
           .carousel-left{
             position: relative !important;
@@ -243,10 +245,10 @@
           }
         }
       }
-    
+
       .owl-next {
         right: -60px !important;
-    
+
         &:hover {
           .carousel-right {
             position: relative !important;
@@ -255,13 +257,13 @@
         }
       }
     };
-    
+
     // Arabic Style
     .specialization-carousel-arabic::ng-deep,
     .related-carousel-arabic::ng-deep {
       .owl-prev {
         right: -60px !important;
-    
+
         &:hover {
           .carousel-left{
             position: relative !important;
@@ -271,7 +273,7 @@
       }
       .owl-next {
         left: -60px !important;
-    
+
         &:hover {
           .carousel-right {
             position: relative !important;
@@ -280,22 +282,22 @@
         }
       }
     }
-  
+
   };
-  
+
   /* Carousel Arrows Animation */
   @keyframes carousel-left {
     0%, 100% {right: 0;}
     50% {right: 4px;}
   }
-  
-  
+
+
   @keyframes carousel-right {
     0%, 100% {left: 0;}
     50% {left: 4px;}
   }
-  
-  
+
+
 /*------------------------------------------------( 3.docrors Carousel )------------------------------------------------  */
 
 
@@ -333,18 +335,18 @@
           object-fit: cover;
           @include CarouselSectionsImg();
         }
-    
+
         .book-btn {
           color: $mainColor !important;
           border: 2px solid $mainColor;
-    
+
           &:hover {
             background-color: $mainColor;
             color: $whiteColor !important;
           }
         }
-    
-    
+
+
         .doctor-img {
           overflow: hidden;
           width: 160px;
@@ -353,55 +355,55 @@
           // border: 1px solid rgba(90, 132, 235, .6);
           border: 3px solid rgba(255, 255, 255, 1);
           transform: translateY(50%);
-    
+
           &:hover {
             img {
               @include CarouselSectionImgHover();
             }
           }
         }
-    
+
         .doctor-layer {
           background-color: white;
           border-radius: 15px;
           padding-top: 3.5rem;
           box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-    
+
           .doctor-ratings {
             background-color: #eef0f27c;
-    
+
             p {
               padding: 0;
               margin: 0;
             }
           }
-    
+
           .doctor-job-info {
             h5 {
               transition: color 0.5s ease;
             }
           }
-    
+
           .doctor-booking-info {
             p {
               font-size: .8rem;
             }
-    
+
             i {
               color: $mainColor;
             }
           }
-          
+
         }
-    
+
         span {
-          
+
           h3 {
             &:hover {
             @include CarouselSectionTitleHover();
             }
           }
-    
+
           h5 {
             &:hover {
             @include CarouselSectionTitleHover();
@@ -415,16 +417,16 @@
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
-  
+
         .owl-dot {
           outline: none !important;
-  
+
           &:hover {
             span {
               background-color: $mainColor;
             }
           }
-  
+
           span {
             width: 28px;
             height: 28px;
@@ -436,7 +438,7 @@
             justify-content: center;
             align-items: center;
           }
-  
+
           &.active {
             span {
               background: $mainColor2;
@@ -447,21 +449,21 @@
       }
     }
   }
-  
+
 }
 
-  
+
 /*------------------------------------------------( 4.related medicines Carousel )------------------------------------------------  */
 
 
   .related-section {
 
     .related-carousel::ng-deep {
-  
+
         .owl-carousel {
             @include CarouselSection();
             width: 88%;
-    
+
             .owl-stage-outer {
               overflow-x: hidden;
             }
@@ -471,21 +473,21 @@
             margin: 5px 15px !important;
             border-radius: 10px;
             @include CarouselSectionItem();
-        
+
             > div {
                 background-color: $whiteColor;
             }
-        
+
             img {
                 height: 220px;
                 @include CarouselSectionsImg();
             }
-        
+
             &:hover {
                 img {
                 @include CarouselSectionImgHover();
                 }
-        
+
                 h4 {
                 @include CarouselSectionTitleHover();
                 }
@@ -498,8 +500,8 @@
             }
 
         }
-    
-  
+
+
     };
 
   };
@@ -514,22 +516,22 @@
 
     .related-section {
         .related-carousel::ng-deep {
-  
+
             .owl-carousel {
               @include MediaQueryCarouselSection();
-        
+
               /* Carousel Dots in Mobiles */
               .owl-dots {
                 margin-top: 2rem;
                 display: flex;
                 flex-wrap: wrap;
                 justify-content: center;
-        
+
                 .owl-dot {
                   margin-top: 5px;
                   margin-bottom: 5px;
                   outline: none !important;
-        
+
                   span {
                     width: 18px;
                     height: 18px;
@@ -541,13 +543,13 @@
                     justify-content: center;
                     align-items: center;
                   }
-        
+
                   &:hover {
                     span {
                       background: $mainColor;
                     }
                   }
-        
+
                   &.active {
                     span {
                       background: $mainColor2;
@@ -555,8 +557,8 @@
                     }
                   }
                 }
-        
-        
+
+
               }
             }
           }
@@ -570,8 +572,8 @@
               display: none !important;
             }
           }
-    
-        } 
+
+        }
       }
 
       .main-carousle-title {
@@ -581,7 +583,7 @@
         width: 250px !important;
         color: rgba(255,255,255,0.8);
         text-align: center;
-    
+
         h2 {
           font-weight: 900;
           font-size: 2rem !important;
@@ -597,7 +599,7 @@
             }
           }
     }
-    
+
 }
 
 
@@ -605,28 +607,39 @@
 
 
   @media (width <=600px) {
-  
-  
-    // .offers-section,
-    
+
+
+    // English Style
+    .main-carousel-english::ng-deep {
+      .owl-dots {
+        left: 0.01rem !important;
+      }
+    }
+
+    // Arabic Style
+    .main-carousel-arabic::ng-deep {
+      .owl-dots {
+        right: 0.01rem !important;
+      }
+    }
     .specialization-section {
       .specialization-carousel::ng-deep {
-  
+
         .owl-carousel {
           @include MediaQueryCarouselSection();
-    
+
           /* Carousel Dots in Mobiles */
           .owl-dots {
             margin-top: 2rem;
             // display: flex;
             flex-wrap: wrap;
             justify-content: center;
-    
+
             .owl-dot {
               margin-top: 5px;
               margin-bottom: 5px;
               outline: none !important;
-    
+
               span {
                 width: 18px;
                 height: 18px;
@@ -638,13 +651,13 @@
                 justify-content: center;
                 align-items: center;
               }
-    
+
               &:hover {
                 span {
                   background: $mainColor;
                 }
               }
-    
+
               &.active {
                 span {
                   background: $mainColor2;
@@ -652,14 +665,14 @@
                 }
               }
             }
-    
-    
+
+
           }
         }
       }
-      
-    } 
-  
+
+    }
+
     .specialization-section {
       .specialization-carousel::ng-deep {
         .owl-carousel {
@@ -668,12 +681,12 @@
             display: none !important;
           }
         }
-  
-      } 
+
+      }
     }
   }
-  
-  
+
+
   @media (width >600px) {
     .specialization-section {
       .specialization-carousel::ng-deep {
@@ -683,4 +696,3 @@
       }
     }
   }
-  

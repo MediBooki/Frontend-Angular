@@ -353,6 +353,11 @@ p {
   margin-top: -3px;
 }
 
+@media (width <=600px) {
+  .fixed-nav-container {
+    width: 80%;
+  }
+}
 
 
 // @media (width <768px) {

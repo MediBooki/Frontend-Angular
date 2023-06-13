@@ -9,7 +9,7 @@
       <div class=" mx-5 docbooking ">
         <h1 class=" fw-bolder mb-3" [class.arabic-font]="rtlDir">{{'appointmentPage.Doctor'| translate}}{{doctor.name}}
           -<br>{{'appointmentPage.Booking'| translate}} </h1>
-        <a href="/home" class="fw-bolder text-success text-decoration-none fs-5">{{'appointmentPage.Home'| translate}}
+        <a routerLink="/home" class="fw-bolder text-success text-decoration-none fs-5">{{'appointmentPage.Home'| translate}}
           <i class="fa-solid  mx-2 fs-6" [ngClass]="rtlDir? 'fa-angles-left' : 'fa-angles-right'"></i></a>
         <span class=" mx-2 fw-bolder">{{'appointmentPage.Doctor'| translate}}{{doctor.name}} -
           {{'appointmentPage.Booking'| translate}}</span>
@@ -81,7 +81,7 @@
               <div>
                 <ngx-skeleton-loader appearance="line" [theme]="{width: '30%', background: '#dbd9d9'}"></ngx-skeleton-loader>
               </div>
-                
+
             </div>
             <div class="col-lg-4 mt-lg-3 offset-lg-1">
               <div>
@@ -122,21 +122,21 @@
       <div class="tab-content container" id="pills-tabContent">
         <!-- ============================== ( Reviews of the Doctor ) =================================== -->
         <div class="tab-pane fade container row " [ngClass]="{'d-flex justify-content-center': addClass}" [ngClass]="{'scrollable': displayedReviews.length >= 3}" id="pills-review" role="tabpanel" aria-labelledby="pills-review-tab">
-          <div class="card w-75 mb-3" *ngFor="let review of displayedReviews">
-            <div class="card-body row ">
-              <div class="col-lg-3 col-md-5 col-5 text-center pt-3 position-relative image mb-3 mx-3 mx-sm-0 ">
-                <img [src]="review.patient_image || defaultDoctorImg" class="img-fluid rounded-circle px-sm-2 default-img" width="150px" height="150px" alt="Patient Image">
-              </div>
-              <div class="col-7 mt-3 mx-3 mx-sm-0">
-                <h3>{{review.patient_name}}</h3>
-                <app-rating [rating]="review.rating" class="me-0"></app-rating>
-                <h5 class="card-title">{{review.created_at}}</h5>
-                <p class="card-text">{{review.comment}}</p>
+          <ng-container *ngIf="reviews.length != 0 && !noReviews; else noReviewsError">
+            <div class="card w-75 mb-3" *ngFor="let review of displayedReviews">
+              <div class="card-body row ">
+                <div class="col-lg-3 col-md-5 col-5 text-center pt-3 position-relative image mb-3 mx-3 mx-sm-0 ">
+                  <img [src]="review.patient_image || defaultDoctorImg" class="img-fluid rounded-circle px-sm-2 default-img" width="150px" height="150px" alt="Patient Image">
+                </div>
+                <div class="col-7 mt-3 mx-3 mx-sm-0">
+                  <h3>{{review.patient_name}}</h3>
+                  <app-rating [rating]="review.rating" class="me-0"></app-rating>
+                  <h5 class="card-title">{{review.created_at}}</h5>
+                  <p class="card-text">{{review.comment}}</p>
+                </div>
               </div>
             </div>
-          </div>
-
-          <ng-container *ngIf="reviews.length == 0 && !noReviews; else noReviewsError">
+            <ng-container *ngIf="reviews.length == 0 && noReviews">
             <div class="card w-75 mb-3" *ngFor="let review of [0,0]">
               <div class="card-body row ">
                 <div class="col-lg-3 col-md-5 col-5 text-center pt-3 position-relative image mb-3 mx-sm-0 ">
@@ -159,6 +159,9 @@
               </div>
             </div>
           </ng-container>
+          </ng-container>
+
+
 
           <ng-template #noReviewsError>
             <!-- <i class="fa-regular fa-star"></i>
@@ -247,7 +250,7 @@
                 <h4 class="col-lg-9 col-sm-6">{{'appointmentPage.Choose_Your_Date_Time'| translate}}</h4>
                 <div class=" col-lg-3 col-sm-6 mb-2">
 
-                  <select class="form-select text-light mb-2 day-select2 " 
+                  <select class="form-select text-light mb-2 day-select2 "
                     (change)="onDaySelect($event)" #days>
                     <option selected disabled></option>
                     <!-- <option value=null selected> {{'appointmentPage.selectedDay'| translate}}</option> -->
@@ -255,7 +258,7 @@
                       {{appointment.name}}</option>
                   </select>
 
-                  
+
                   <!-- <select #doctors class="p-2 text-white doctors-main-select2" name="doctors">
                     <option [selected]="selectedDoctor == ''" disabled ></option>
                     <option *ngFor="let doctor of allDoctors" [value]="doctor.id" [selected]="selectedDoctor == doctor.id">{{doctor.name}}</option>
@@ -269,22 +272,22 @@
 
                 <a href="javascript:void(0)" (click)="toggleActiveClass(i)"
                   *ngFor="let interval of intervals ; let i= index"
-                  [class.active_link]="interval === selectedtime" 
+                  [class.active_link]="interval === selectedtime"
                   [class.display_none]="timeBookList.includes(interval)"
                   (click)="onTimeSelect(interval)"
                   class="col-4 col-lg-1 time d-flex justify-content-center align-items-center text-decoration-none border mb-2">{{interval}}
                 </a>
-                <!-- <a href="javascript:void(0)" 
+                <!-- <a href="javascript:void(0)"
                   *ngFor="let intervalBook of timeBookList ; let i= index" disabled
                   class="col-4 col-lg-1 time d-flex justify-content-center align-items-center text-decoration-none border mb-2 display_none">{{intervalBook}}
                 </a> -->
                 <div class="px-2 w-100" *ngIf="doctor.id == 0">
                   <ngx-skeleton-loader *ngFor="let item of [0,0,0,0,0,0,0]" appearance="line" [theme]="{height: '32px', width: '102px', background: '#dbd9d9', marginLeft: '40px'}"></ngx-skeleton-loader>
                 </div>
-  
+
               </div>
             </div>
-          </div>  
+          </div>
           <!-- ============================== ( Appointment Form ) =================================== -->
           <div class="row container mb-4 appointmentForm">
             <h3 class=" text-center">{{'appointmentPage.appointmentForm'| translate}}</h3>

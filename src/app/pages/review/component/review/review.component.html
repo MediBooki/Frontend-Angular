@@ -6,7 +6,7 @@
     <div class="landing d-flex  align-items-center">
       <div class=" mx-5 docbooking ">
         <h1 class=" fw-bolder mb-3">{{'appointmentPage.Doctor'| translate}} {{doctor.name}} -<br>{{'reviewPage.review'| translate}} </h1>
-        <a href="" class="fw-bolder text-success text-decoration-none fs-5">{{'appointmentPage.Home'| translate}} <i
+        <a routerLink="/my-profile/appointments" class="fw-bolder text-success text-decoration-none fs-5">{{'patientProfile.sidenav10' | translate}} <i
           [ngClass]="rtlDir? 'fa-angles-left fa-solid mx-2 fs-6' : 'fa-solid fa-angles-right mx-2 fs-6'" ></i></a>
         <span class=" mx-2 fw-bolder">{{'appointmentPage.Doctor'| translate}} {{doctor.name}} - {{'reviewPage.review'| translate}}</span>
       </div>
