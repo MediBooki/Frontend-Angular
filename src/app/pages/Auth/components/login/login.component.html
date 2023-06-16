@@ -41,8 +41,8 @@
               <div class="row mb-3">
 
                   <div class="input-field d-flex  position-relative justify-content-between align-items-center px-3">
-                    <input type="submit" class="submit w-50 border-circle " value="{{ 'loginPage.login' | translate }}"  [disabled]="loginForm.invalid" (click)="login()" id="submitBtn">
-                    <a routerLink="/auth/forgetPassword" class="fs-made text-decoration-none text-success forgotPassword fw-bolder">{{ 'loginPage.forgotPass' | translate }}</a>
+                    <input type="submit" class="submit border-circle " [ngClass]="{'w-75': isSmallScreen, 'w-50': !isSmallScreen}" value="{{ 'loginPage.login' | translate }}"  [disabled]="loginForm.invalid" (click)="login()" id="submitBtn">
+                    <a routerLink="/auth/forgetPassword" class="fs-made mx-1 text-decoration-none text-success forgotPassword fw-bolder">{{ 'loginPage.forgotPass' | translate }}</a>
 
                   </div>
               </div>
@@ -50,7 +50,7 @@
           </form>
         </div>
       </div>
-      <div class="col-md-6 side-image " [ngClass]="{'d-none': isSmallScreen}">
+      <div class="col-md-6 side-image ">
         <!-------Image-------->
         <!-- <img src="images/white.png" alt=""> -->
         <div class="text position-absolute top-50 " >

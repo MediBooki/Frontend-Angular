@@ -136,6 +136,13 @@ span a:hover{
 .terms-conditions-btn:hover {
   color: var(--main);
 }
+@media only screen and (max-width: 340px){
+  .text{
+    h2,span,i{
+      font-size: 1rem !important;
+    }
+  }
+}
 @media only screen and (max-width: 768px){
   .side-image{
       border-radius: 10px 10px 0 0;

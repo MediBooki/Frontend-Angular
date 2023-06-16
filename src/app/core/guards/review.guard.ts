@@ -31,19 +31,25 @@ export class ReviewGuard implements CanActivate {
             this.AppointmentsSubscription = this._PatientProfileService.getPatientAppointments(language).subscribe({
             next: (Appointments) => {
               this.appointmentData = Appointments.data;
+              console.log(this.appointmentData)
               this.doctorId = route.paramMap.get('id')
               const currentDate = new Date();
               let flag = true
-              this.appointmentData?.forEach((appointment:any) => {
-                const appointmentDate = new Date(appointment.date); 
-                if(appointment.doctor.id === parseInt(this.doctorId)  && (appointmentDate) <= (currentDate) && appointment.status === 1  ){
-                  observer.next(true);
-                  observer.complete(); 
-                  flag = false    
-                }else{
-                  flag = true     
-                } 
-              });
+              for (const appointment of this.appointmentData){
+                  // console.log(appointment.doctor.id === parseInt(this.doctorId))
+                  const appointmentDate = new Date(appointment.date); 
+                  // console.log((appointmentDate) <= (currentDate))
+                  console.log(appointment.doctor.id === parseInt(this.doctorId)  && (appointmentDate) <= (currentDate) && appointment.status === 1 )
+                  if(appointment.doctor.id === parseInt(this.doctorId)  && (appointmentDate) <= (currentDate) && appointment.status === 1  ){
+                    observer.next(true);
+                    observer.complete(); 
+                    console.log("a7a")
+                    flag = false;
+                    break;
+                  }else{
+                    flag = true     
+                  } 
+                }
               if(flag){
                 flag=false
                 this.appointmentSubscription = this._AppointmentsService.getDoctorById(language, this.doctorId).subscribe({

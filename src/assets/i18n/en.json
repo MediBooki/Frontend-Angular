@@ -453,9 +453,9 @@
   },
   "reviewPage":{
     "review":"Review",
-    "overallRating":"overall Rating",
+    "overallRating":"Overall Rating",
     "title":"Title of your review",
-    "yourReview":"your review",
+    "yourReview":"Your Review",
     "submitReview":"submit review",
     "TitleReview":"if you could say it in one sentance, what would you say?",
     "reviewPlaceholder":"Write your review here..."

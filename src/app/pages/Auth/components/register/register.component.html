@@ -143,7 +143,7 @@
               </div>
               <!-- //////////////////////////birthDATE///////////////////////////////////////// -->
               <div class="input-field d-flex flex-column position-relative px-3">
-                  <input type="text" name="BdateUser" id="BdateUser__form" onblur="(this.type='text')" onfocus="(this.type='date')" class="input w-100 bg-transparent mb-4" id="password" required formControlName="date_of_birth">
+                  <input type="text" name="BdateUser" id="BdateUser__form" min="1800-1-1" max="2008-12-31" onblur="(this.type='text')" onfocus="(this.type='date')" class="input w-100 bg-transparent mb-4" id="password" required formControlName="date_of_birth">
                   <label for="BdateUser__form" class=" position-absolute"><i class="fa-solid fa-calendar-days text-center px-2 fs-6"></i>{{ 'registerPage.BirthOfDate' | translate }}</label>
                   <div *ngIf="date_of_birth?.touched && date_of_birth?.dirty">
                       <p id="PasswordRegisterError" class="text-danger" *ngIf="date_of_birth?.errors?.['required']">
