@@ -121,16 +121,16 @@
       </ul>
       <div class="tab-content container" id="pills-tabContent">
         <!-- ============================== ( Reviews of the Doctor ) =================================== -->
-        <div class="tab-pane fade container row " [ngClass]="{'d-flex justify-content-center': addClass}" [ngClass]="{'scrollable': displayedReviews.length >= 3}" id="pills-review" role="tabpanel" aria-labelledby="pills-review-tab">
+        <div class="tab-pane fade container review row " [ngClass]="{'d-flex justify-content-center': addClass}" [ngClass]="{'scrollable': displayedReviews.length >= 3}" id="pills-review" role="tabpanel" aria-labelledby="pills-review-tab">
           <ng-container *ngIf="reviews.length != 0 && !noReviews; else noReviewsError">
-            <div class="card w-75 mb-3" *ngFor="let review of displayedReviews">
+            <div class="card  mb-3" *ngFor="let review of displayedReviews">
               <div class="card-body row ">
                 <div class="col-lg-3 col-md-5 col-5 text-center pt-3 position-relative image mb-3 mx-3 mx-sm-0 ">
                   <img [src]="review.patient_image || defaultDoctorImg" class="img-fluid rounded-circle px-sm-2 default-img" width="150px" height="150px" alt="Patient Image">
                 </div>
                 <div class="col-7 mt-3 mx-3 mx-sm-0">
                   <h3>{{review.patient_name}}</h3>
-                  <app-rating [rating]="review.rating" class="me-0"></app-rating>
+                  <app-rating [rating]="review.rating" class="me-0 rate"></app-rating>
                   <h5 class="card-title">{{review.created_at}}</h5>
                   <p class="card-text">{{review.comment}}</p>
                 </div>

@@ -44,13 +44,22 @@
               <div class="card-body container">
 
                 <form [formGroup]="formReview">
-                  <h3 class="mx-2 fs-2"> {{'reviewPage.overallRating'| translate}}</h3>
+                  <h3 class="mx-2 overallRating"> {{'reviewPage.overallRating'| translate}}</h3>
                   <div class="cont d-flex">
-                    <div class="stars">
-                      <ngx-star-rating formControlName="rating1" [id]="'rating'"></ngx-star-rating>
+                    <div class="stars row">
+                      <ngb-rating class="px-2 mx-2" [starTemplate]="t" formControlName="rating1" [max]="5"></ngb-rating>
+                      <ng-template #t let-fill="fill" class="ms-3">
+                        <i class="bi-star-fill pb-1">
+                          <i
+                            *ngIf="fill > 0"
+                            class="bi-star-fill filled pb-1"
+                            [style.width.%]="fill"
+                          ></i>
+                        </i>
+                      </ng-template>
                     </div>
                   </div>
-                  <div class="card-body">
+                  <div class="mt-3">
                     <h4 class="mb-2">{{'reviewPage.yourReview'| translate}}</h4>
                     <div class="input-field w-100 h-100 rounded-3 p-2 col-lg-12 col-md-12 col-sm-12 form-group mb-3">
                       <textarea type="text" name="message" class="px-3 fw-bolder text-secondary w-100 border-0 lh-1 p-2"

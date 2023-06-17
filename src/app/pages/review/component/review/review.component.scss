@@ -101,6 +101,23 @@ body {
     }
   }
 }
+i {
+  position: relative;
+  display: inline-block;
+  font-size: 1.5rem;
+  color: #d3d3d3;
+  margin-right: 10px;
+}
+
+.filled {
+  color: #ffa800;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 5555;
+
+}
 
 
 
@@ -125,6 +142,16 @@ body {
     svg {
       font-size: 15px !important;
     }
+  }
+
+}
+
+@media (max-width: 350px) {
+  i {
+    font-size: 1.3rem;
+  }
+  .overallRating{
+    font-size: 1.3rem;
   }
 
 }

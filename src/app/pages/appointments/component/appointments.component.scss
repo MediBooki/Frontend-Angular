@@ -98,9 +98,6 @@ body {
 }
 
 .tab-content {
-  // .form-select {
-  //   background: $mainColor !important;
-  // }
   ::ng-deep.select2-selection {
     .select2-selection__arrow {
       height: 100% !important;
@@ -212,6 +209,11 @@ body {
 .search-empty {
   background-color: $lightGreyColor;
 }
+.review{
+  padding-left: 5rem;
+  padding-right: 4rem;
+  // font-size: 0.5rem;
+}
 
 
 
@@ -225,6 +227,15 @@ body {
     span,
     svg {
       font-size: 15px !important;
+    }
+  }
+
+}
+@media (max-width: 450px) {
+  .review{
+    padding: 0;
+    h3,h5,p{
+      font-size: 0.7rem;
     }
   }
 
